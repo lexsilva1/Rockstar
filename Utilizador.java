@@ -6,13 +6,13 @@ public abstract class Utilizador {
     private String email;
     private boolean activo;
 
-    public Utilizador(String username, String password, String nome, String NIF, String email, boolean activo) {
+    public Utilizador(String username, String password, String nome, String NIF, String email) {
         this.username = username;
         this.password = password;
         this.nome = nome;
         this.NIF = NIF;
         this.email = email;
-        this.activo = activo;
+        this.activo = true;
     }
 
 }
