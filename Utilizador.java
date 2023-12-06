@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public abstract class Utilizador {
     private String username;
     private String password;
@@ -14,5 +16,21 @@ public abstract class Utilizador {
         this.email = email;
         this.activo = true;
     }
+    public void login(){
+        Scanner xpto=new Scanner(System.in);
+        String username= xpto.nextLine();
+        String password= xpto.nextLine();
+        if(this.username.equals(username)&&this.password.equals(password)){
+            System.out.println("benvindo");
+        }
+        System.out.println("username ou password invalido");
+    }
+    public Musica pesquisaMusica() {
+        return null;
+    }
+    public void addMusica(){
+    }
+    public void meusAlbuns(){
 
+    }
 }
