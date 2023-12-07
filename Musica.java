@@ -10,7 +10,7 @@ public class Musica {
     private ArrayList<Preco> historicoPreco;
     private ArrayList<Integer> classificacoes;
     private ArrayList<String> votosUtilizadores;
-    double classificacao;
+    double rating;
 
     public Musica(String titulo, String genero, LocalDate data, Musico autor,double valor) {
         this.titulo = titulo;
@@ -23,7 +23,7 @@ public class Musica {
         this.classificacoes=new ArrayList<>();
         this.votosUtilizadores=new ArrayList<>();
         this.autor=autor;
-        this.classificacao=classificacao();
+        this.rating=rating();
     }
     public void alterarPreco(double preco){
         Preco novopreco= new Preco(preco);
@@ -32,7 +32,7 @@ public class Musica {
     public double getPreco(){
         return historicoPreco.getLast().getPreco();
     }
-    public double classificacao(){
+    public double rating(){
         int soma=0;
         for( int i : this.classificacoes){
             soma+=i;
