@@ -11,4 +11,8 @@ public class Cliente extends Utilizador{
         this.carrinhoCompras = new ArrayList<>();
         this.historicoCompras= new ArrayList<>();
     }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 }
