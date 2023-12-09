@@ -12,4 +12,8 @@ public class Preco {
     public double getPreco() {
         return preco;
     }
+
+    public LocalDate getData() {
+        return data;
+    }
 }

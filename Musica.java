@@ -40,4 +40,16 @@ public class Musica {
         }
         return soma/this.classificacoes.size();
     }
+
+    public ArrayList<String> getVotosUtilizadores() {
+        return votosUtilizadores;
+    }
+
+    public ArrayList<Integer> getClassificacoes() {
+        return classificacoes;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
 }

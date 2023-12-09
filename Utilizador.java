@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public abstract class Utilizador {
-    private String username;
+    protected String username;
     private String password;
     private String nome;
     private String NIF;

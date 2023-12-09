@@ -17,4 +17,15 @@ public class Album {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
+    public String getGenero() {
+        return genero;
+    }
+    public void addMusica(Musica musica){
+        this.musicas.add(musica);
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
 }
