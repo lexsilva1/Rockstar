@@ -16,7 +16,7 @@ public class Cliente extends Utilizador {
         this.saldo = saldo;
     }
 
-    public void votar(int voto, Musica musica) {
+    public void votar(int voto, Musica musica) {//ainda vai sofrer alterações para ficar com HashMap
         for (String username : musica.getVotosUtilizadores()) {
             if (this.username.equals(username)) {
                 System.out.println("já votou nesta musica");
@@ -28,7 +28,7 @@ public class Cliente extends Utilizador {
         }
     }
 
-    public Playlist criaPlaylistGenero(String genero, int num, String titulo) {
+    public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
         Playlist playlist = new Playlist(this.username, titulo, genero);
         for (int i = 0; i < num; i++) {
             for (Compra c : historicoCompras) {
@@ -39,7 +39,7 @@ public class Cliente extends Utilizador {
                 }
             }
         }
-        if (playlist.getMusicas().size() < num) {
+        if (playlist.getMusicas().size() < num) {//caso o cliente não tenha musicas daquele genero suficientes, a playlist é criada com as musicas disponiveis
             System.out.println("Foram adicionadas apenas " + playlist.getMusicas().size() + " músicas.");
         }
         System.out.println("Playlist criada com sucesso");
