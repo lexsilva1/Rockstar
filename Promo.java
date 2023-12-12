@@ -18,7 +18,7 @@ public class Promo {
         this.clientes = new ArrayList<>();
     }
 
-    public void setCupoes() {//setter especifico para quando é usada uma promo deduzir um cupão
+    public void retiraCupoes() {//setter especifico para quando é usada uma promo deduzir um cupão
         while (this.cupoes > 0) {
             this.cupoes--;
         }

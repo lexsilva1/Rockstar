@@ -27,7 +27,7 @@ public class Rockstar {
     public ArrayList<Utilizador> getUtilizadores() {
         return utilizadores;
     }
-    public void adPlaylistGenero(Cliente cliente,String genero,int num, String titulo){
+    public void addPlaylistGenero(Cliente cliente,String genero,int num, String titulo){
         Playlist nova =cliente.criaPlaylistGenero(genero,num,titulo);
         this.albuns.add(nova);
 

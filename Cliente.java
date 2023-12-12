@@ -86,7 +86,7 @@ public class Cliente extends Utilizador {
                         carrinhoCompras.remove(m);//esvazia o carrinho de compras
                     }
                     historicoCompras.add(compra);//adiciona a compra ao historico do cliente
-                    promo.setCupoes();
+                    promo.retiraCupoes();
                     promo.getClientes().add(this.username);
                     System.out.println("compra efectuada com sucesso");
                 } else
