@@ -33,4 +33,12 @@ public abstract class Utilizador {
     public void meusAlbuns(){
 
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
