@@ -4,10 +4,12 @@ import java.util.ArrayList;
 public class Compra {
     private LocalDate data;
     private ArrayList<Musica> musicas;
+    private Promo promo;
 
     public Compra() {
         this.data=LocalDate.now();
         this.musicas=new ArrayList<>();
+        this.promo=null;
     }
 
     public LocalDate getData() {
@@ -17,5 +19,8 @@ public class Compra {
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
-    
+
+    public void setPromo(Promo promo) {
+        this.promo = promo;
+    }
 }
