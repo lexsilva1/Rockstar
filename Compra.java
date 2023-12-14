@@ -17,8 +17,5 @@ public class Compra {
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
-
-    public void setPromo(Promo promo) {
-        this.promo = promo;
-    }
+    
 }
