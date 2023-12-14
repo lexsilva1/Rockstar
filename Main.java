@@ -1,5 +1,8 @@
+import GUI.Janela;
+
 public class Main {
     public static void main(String[] args) {
-         Rockstar rockstar = new Rockstar();
+
+        Janela janela = new Janela();
     }
 }
