@@ -1,19 +1,15 @@
+package backend;
+
 import java.util.Scanner;
 
 public abstract class Utilizador {
     protected String username;
-    private String password;
-    private String nome;
-    private String NIF;
-    private String email;
+    private String password;;
     private boolean activo;
 
-    public Utilizador(String username, String password, String nome, String NIF, String email) {
+    public Utilizador(String username, String password) {
         this.username = username;
         this.password = password;
-        this.nome = nome;
-        this.NIF = NIF;
-        this.email = email;
         this.activo = true;
     }
     public void login(){
@@ -32,5 +28,13 @@ public abstract class Utilizador {
     }
     public void meusAlbuns(){
 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

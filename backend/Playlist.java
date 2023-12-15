@@ -1,3 +1,5 @@
+package backend;
+
 public class Playlist extends Album{
     private boolean publico;
 
