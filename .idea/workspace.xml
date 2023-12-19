@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="" />
+    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Compra.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Compra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/GrupoMusicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/GrupoMusicas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Musica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Playlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Preco.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Preco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Promo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Promo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Rockstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Rockstar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Utilizador.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,9 +40,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pedro"
+    "git-widget-placeholder": "Alexandre3",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,5 +68,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

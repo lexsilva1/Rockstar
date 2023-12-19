@@ -1,14 +1,16 @@
 package backend;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Compra {
+public class Compra implements Serializable {
     private LocalDate data;
     private ArrayList<Musica> musicas;
     private Promo promo;
+    private double valor;
 
-    public Compra() {
+    public Compra(){
         this.data=LocalDate.now();
         this.musicas=new ArrayList<>();
         this.promo=null;
