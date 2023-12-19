@@ -17,12 +17,9 @@ public class Compra {
     public LocalDate getData() {
         return data;
     }
-
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
 
-    public void setPromo(Promo promo) {
-        this.promo = promo;
-    }
+
 }
