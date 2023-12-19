@@ -1,3 +1,5 @@
+package backend;
+
 import java.util.Scanner;
 
 public abstract class Utilizador {
