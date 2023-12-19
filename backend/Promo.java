@@ -1,9 +1,10 @@
 package backend;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Promo {
+public class Promo implements Serializable {
     int cupoes;
     String nome;
     double desconto;

@@ -31,7 +31,7 @@ public class Cliente extends Utilizador {
     }
 
     public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
-        Playlist playlist = new Playlist(this.username, titulo, genero);
+        Playlist playlist = new Playlist(this.username, titulo);
         for (int i = 0; i < num; i++) {
             for (Compra c : historicoCompras) {
                 for (Musica m : c.getMusicas()) {
