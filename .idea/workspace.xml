@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="" />
+    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/Botoes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/FramePrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelSignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/misc.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,9 +42,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pedro"
+    "git-widget-placeholder": "Ines"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

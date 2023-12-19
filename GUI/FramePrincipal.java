@@ -6,7 +6,7 @@ import java.awt.*;
 public class FramePrincipal extends JFrame {
 
     public FramePrincipal() {
-        super("Rockstar");
+        super("Rockstar Inc");
 
         PainelPrincipal painelPrincipal = new PainelPrincipal();
 

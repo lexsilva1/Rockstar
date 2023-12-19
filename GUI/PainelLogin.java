@@ -1,5 +1,4 @@
 package GUI;
-
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -9,7 +8,7 @@ class PainelLogin extends JPanel {
 
         setLayout(null);
 
-        JCheckBox chkMostrarCliente = new JCheckBox("Cliente");
+        JRadioButton chkMostrarCliente = new JRadioButton("Cliente");
         chkMostrarCliente.setBounds(50, 100, 100, 25);
         add(chkMostrarCliente);
 
@@ -67,7 +66,7 @@ class PainelLogin extends JPanel {
 
 
 
-        JCheckBox chkMostrarMusico = new JCheckBox("Músico");
+        JRadioButton chkMostrarMusico = new JRadioButton("Músico");
         chkMostrarMusico.setBounds(50, 170, 100, 25);
         add(chkMostrarMusico);
 
@@ -120,7 +119,7 @@ class PainelLogin extends JPanel {
             }
         });
 
-        JCheckBox chkMostrarAdmin = new JCheckBox("Admin");
+        JRadioButton chkMostrarAdmin = new JRadioButton("Admin");
         chkMostrarAdmin.setBounds(50, 240, 100, 25);
         add(chkMostrarAdmin);
 
@@ -142,6 +141,22 @@ class PainelLogin extends JPanel {
             }
         });
 
+        ButtonGroup groupo = new ButtonGroup();//Juntar os radiobuttons (cliente, musico, admin) para que não seja possível selecionar mais que um
+        groupo.add(chkMostrarCliente);
+        groupo.add(chkMostrarMusico);
+        groupo.add(chkMostrarAdmin);
+
+        JButton btnContinuar = new JButton("Continuar");
+        btnContinuar.setBounds(490, 420, 90, 25);
+        add(btnContinuar);
+        chkMostrarMusico.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent c) {
+                if (c.getStateChange() == ItemEvent.SELECTED) {
+                   btnContinuar.addActionListener(e -> exibirPainelMusico());
+                }
+            }
+        });
+
 
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.setBounds(10, 420, 70, 25);
@@ -154,6 +169,21 @@ class PainelLogin extends JPanel {
         add(btnSair);
     }
 
+    private void exibirPainelCliente() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelCliente());
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
+
+    private void exibirPainelMusico() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelMusico());
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
 
     private void voltarPainelPrincipal() {
         FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
