@@ -1,9 +1,10 @@
 package backend;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Musica {
+public class Musica implements Serializable {
     private String titulo;
     private Musico autor;
     private String genero;
@@ -54,4 +55,17 @@ public class Musica {
     public String getGenero() {
         return genero;
     }
+
+    public void inactiva() {
+        this.activa = false;
+    }
+
+    public Musico getAutor() {
+        return autor;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 }
+

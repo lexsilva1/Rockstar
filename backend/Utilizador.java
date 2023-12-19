@@ -1,8 +1,9 @@
 package backend;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Utilizador {
+public abstract class Utilizador implements Serializable {
     protected String username;
     private String password;;
     private boolean activo;
