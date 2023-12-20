@@ -1,12 +1,16 @@
 package GUI;
 
+import backend.Rockstar;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class FramePrincipal extends JFrame {
-
+    private Rockstar rockstar;
     public FramePrincipal() {
         super("Rockstar");
+
+        rockstar = new Rockstar();
 
         PainelPrincipal painelPrincipal = new PainelPrincipal();
 
@@ -20,6 +24,10 @@ public class FramePrincipal extends JFrame {
         //Cria ícone para quando a app é minimizada
         Image icon = new ImageIcon("resources/icone.jpg").getImage();
         setIconImage(icon);
+    }
+
+    public Rockstar getRockstar() {
+        return rockstar;
     }
 }
 

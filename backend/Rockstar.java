@@ -38,4 +38,8 @@ public class Rockstar implements Serializable {
         this.promos.add(promo);
 
     }
+
+    public void registo (Utilizador a) {
+        utilizadores.add(a);
+    }
 }
