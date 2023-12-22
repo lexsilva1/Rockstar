@@ -1,9 +1,12 @@
 package GUI;
 
+import backend.Utilizador;
+
 import javax.swing.*;
 
 public class PainelCliente extends JPanel {
 
+    private Utilizador utilizador;
     private JButton verPlaylists;
     private JButton verMusicas;
     private JButton criarPlaylist;
@@ -17,7 +20,8 @@ public class PainelCliente extends JPanel {
      * Cria um novo painel <code>JPanel</code> 'PainelCliente', para a página inicial de um utlizador do tipo 'Cliente',
      * com um buffer duplo e um flow layout.
      */
-    public PainelCliente() {
+    public PainelCliente(Utilizador utilizador) {
+        this.utilizador = utilizador;
         this.verPlaylists = new JButton("As minhas playlists");
         this.verMusicas = new JButton("As minhas músicas");
         this.criarPlaylist = new JButton("Nova playlist");

@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="alterações dos botoes login e botao continuar no login">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="PainelSignUp finalizado com verificações de introdução de dados e permite criar instâncias de utilizador e add à  arraylist &lt;Utilizador&gt; na Rockstar">
+      <change afterPath="$PROJECT_DIR$/GUI/PainelAdmin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/FramePrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelSignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Rockstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Rockstar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -35,15 +43,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pedro",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Pedro&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="GUI" />
@@ -66,7 +74,23 @@
       <option name="project" value="LOCAL" />
       <updated>1703027348285</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="PainelSignUp finalizado com verificações de introdução de dados e permite criar instâncias de utilizador e add à  arraylist &lt;Utilizador&gt; na Rockstar">
+      <option name="closed" value="true" />
+      <created>1703091014086</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703091014086</updated>
+    </task>
+    <task id="LOCAL-00003" summary="PainelSignUp finalizado com verificações de introdução de dados e permite criar instâncias de utilizador e add à  arraylist &lt;Utilizador&gt; na Rockstar">
+      <option name="closed" value="true" />
+      <created>1703091085320</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1703091085320</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -82,7 +106,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="alterações dos botoes login e botao continuar no login" />
-    <option name="LAST_COMMIT_MESSAGE" value="alterações dos botoes login e botao continuar no login" />
+    <MESSAGE value="PainelSignUp finalizado com verificações de introdução de dados e permite criar instâncias de utilizador e add à  arraylist &lt;Utilizador&gt; na Rockstar" />
+    <MESSAGE value="Alterações PainelLogin&#10;criei metodo para o login musico que acrescenta o pin, em relação aos restantes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações PainelLogin&#10;criei metodo para o login musico que acrescenta o pin, em relação aos restantes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

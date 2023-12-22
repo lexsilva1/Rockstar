@@ -17,9 +17,19 @@ public class Rockstar implements Serializable {
         this.promos= new ArrayList<>();
     }
     public Utilizador login(String username, String password){
-        for (Utilizador n : getUtilizadores()){
+        for (Utilizador n : utilizadores){
             if(n.getUsername().equals(username) && n.getPassword().equals(password)){
                 return n;
+            }
+        }
+        return null;
+    }
+    public Utilizador loginMusico (String username, String password, String pin){
+        for (Utilizador n : utilizadores) {
+            if (n instanceof Musico) {
+                if(n.getUsername().equals(username) && n.getPassword().equals(password) && ((Musico) n).getPin().equals(pin)){
+                    return n;
+                }
             }
         }
         return null;
