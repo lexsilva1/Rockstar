@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Musico extends Utilizador{
     private ArrayList<Musica>musicas;
-    private String PIN;
-    public Musico(String username, String password,String PIN) {
+    private String pin;
+    public Musico(String username, String password,String pin) {
         super(username, password);
-        this.PIN=PIN;
+        this.pin = pin;
         this.musicas=new ArrayList<>();
     }
     public void inactivaMusica(Musica musica){
@@ -27,6 +27,10 @@ public class Musico extends Utilizador{
             } else
                 System.out.println("a musica não pode ser alterada por si");
         }
+    }
+
+    public String getPin() {
+        return pin;
     }
 }
 

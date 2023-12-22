@@ -1,12 +1,19 @@
 package GUI;
+import backend.Admin;
+import backend.Cliente;
+import backend.Utilizador;
+
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 class PainelLogin extends JPanel {
+
+    private FramePrincipal framePrincipal;
     public PainelLogin() {
 
         setLayout(null);
+
+        framePrincipal = new FramePrincipal();
 
         JRadioButton chkMostrarCliente = new JRadioButton("Cliente");
         chkMostrarCliente.setBounds(50, 100, 100, 25);
@@ -35,32 +42,28 @@ class PainelLogin extends JPanel {
         JCheckBox chkMostrarPass = new JCheckBox("Mostrar Password");
         chkMostrarPass.setBounds(350, 225, 150, 25);
         chkMostrarPass.setVisible(false);
-        chkMostrarPass.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    txtPassword.setEchoChar((char) 0); // Mostrar senha
-                } else {
-                    txtPassword.setEchoChar('•'); // Ocultar senha
-                }
+        chkMostrarPass.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                txtPassword.setEchoChar((char) 0); // Mostrar senha
+            } else {
+                txtPassword.setEchoChar('•'); // Ocultar senha
             }
         });
         add(chkMostrarPass);
 
-        chkMostrarCliente.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    lblUsername.setVisible(true);
-                    txtUsername.setVisible(true); // Mostrar o campo de senha
-                    lblPassword.setVisible(true);
-                    txtPassword.setVisible(true);
-                    chkMostrarPass.setVisible(true);
-                } else {
-                    lblUsername.setVisible(false);
-                    txtUsername.setVisible(false); // Ocultar o campo de senha
-                    lblPassword.setVisible(false);
-                    txtPassword.setVisible(false);
-                    chkMostrarPass.setVisible(false);
-                }
+        chkMostrarCliente.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                lblUsername.setVisible(true);
+                txtUsername.setVisible(true);
+                lblPassword.setVisible(true);
+                txtPassword.setVisible(true);
+                chkMostrarPass.setVisible(true);
+            } else {
+                lblUsername.setVisible(false);
+                txtUsername.setVisible(false);
+                lblPassword.setVisible(false);
+                txtPassword.setVisible(false);
+                chkMostrarPass.setVisible(false);
             }
         });
 
@@ -84,38 +87,34 @@ class PainelLogin extends JPanel {
         JCheckBox chkMostrarPin = new JCheckBox("Mostrar Pin");
         chkMostrarPin.setBounds(350, 325, 150, 25);
         chkMostrarPin.setVisible(false);
-        chkMostrarPin.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    txtPin.setEchoChar((char) 0); // Mostrar senha
-                } else {
-                    txtPin.setEchoChar('•'); // Ocultar senha
-                }
+        chkMostrarPin.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                txtPin.setEchoChar((char) 0); // Mostrar PIN
+            } else {
+                txtPin.setEchoChar('•'); // Ocultar PIN
             }
         });
         add(chkMostrarPin);
 
-        chkMostrarMusico.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    lblUsername.setVisible(true);
-                    txtUsername.setVisible(true); // Mostrar o campo de senha
-                    lblPassword.setVisible(true);
-                    txtPassword.setVisible(true);
-                    chkMostrarPass.setVisible(true);
-                    lblPin.setVisible(true);
-                    txtPin.setVisible(true);
-                    chkMostrarPin.setVisible(true);
-                } else {
-                    lblUsername.setVisible(false);
-                    txtUsername.setVisible(false); // Ocultar o campo de senha
-                    lblPassword.setVisible(false);
-                    txtPassword.setVisible(false);
-                    chkMostrarPass.setVisible(false);
-                    lblPin.setVisible(false);
-                    txtPin.setVisible(false);
-                    chkMostrarPin.setVisible(false);
-                }
+        chkMostrarMusico.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                lblUsername.setVisible(true);
+                txtUsername.setVisible(true);
+                lblPassword.setVisible(true);
+                txtPassword.setVisible(true);
+                chkMostrarPass.setVisible(true);
+                lblPin.setVisible(true);
+                txtPin.setVisible(true);
+                chkMostrarPin.setVisible(true);
+            } else {
+                lblUsername.setVisible(false);
+                txtUsername.setVisible(false);
+                lblPassword.setVisible(false);
+                txtPassword.setVisible(false);
+                chkMostrarPass.setVisible(false);
+                lblPin.setVisible(false);
+                txtPin.setVisible(false);
+                chkMostrarPin.setVisible(false);
             }
         });
 
@@ -123,48 +122,61 @@ class PainelLogin extends JPanel {
         chkMostrarAdmin.setBounds(50, 240, 100, 25);
         add(chkMostrarAdmin);
 
-        chkMostrarAdmin.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    lblUsername.setVisible(true);
-                    txtUsername.setVisible(true); // Mostrar o campo de senha
-                    lblPassword.setVisible(true);
-                    txtPassword.setVisible(true);
-                    chkMostrarPass.setVisible(true);
-                } else {
-                    lblUsername.setVisible(false);
-                    txtUsername.setVisible(false); // Ocultar o campo de senha
-                    lblPassword.setVisible(false);
-                    txtPassword.setVisible(false);
-                    chkMostrarPass.setVisible(false);
-                }
+        chkMostrarAdmin.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                lblUsername.setVisible(true);
+                txtUsername.setVisible(true); // Mostrar o campo de senha
+                lblPassword.setVisible(true);
+                txtPassword.setVisible(true);
+                chkMostrarPass.setVisible(true);
+            } else {
+                lblUsername.setVisible(false);
+                txtUsername.setVisible(false); // Ocultar o campo de senha
+                lblPassword.setVisible(false);
+                txtPassword.setVisible(false);
+                chkMostrarPass.setVisible(false);
             }
         });
 
-        ButtonGroup groupo = new ButtonGroup();//Juntar os radiobuttons (cliente, musico, admin) para que não seja possível selecionar mais que um
-        groupo.add(chkMostrarCliente);
-        groupo.add(chkMostrarMusico);
-        groupo.add(chkMostrarAdmin);
+        //Juntar os radiobuttons (cliente, musico, admin) para que não seja possível selecionar mais do que um
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(chkMostrarCliente);
+        grupo.add(chkMostrarMusico);
+        grupo.add(chkMostrarAdmin);
 
         JButton btnContinuar = new JButton("Continuar");
         btnContinuar.setBounds(490, 420, 90, 25);
         add(btnContinuar);
-        chkMostrarMusico.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent c) {
-                if (c.getStateChange() == ItemEvent.SELECTED) {
-                    btnContinuar.addActionListener(e -> exibirPainelMusico());
+
+        //Verifica se todos os campos estão preenchidos, o tipo de utilizador selecionado e se os dados estão corretos
+        //Mostra o painel correspondente ao tipo de 'Utilizador'
+        btnContinuar.addActionListener(e -> {
+            if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (chkMostrarMusico.isSelected()) {
+                    if (String.valueOf(txtPin.getPassword()).isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Por favor introduza o PIN", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+                    } else if ((framePrincipal.getRockstar().loginMusico(txtUsername.getText(), String.valueOf(txtPassword.getPassword()), String.valueOf(txtPin.getPassword())) == null)) {
+                        JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        exibirPainelMusico(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
+                    }
+                }
+
+                if (chkMostrarCliente.isSelected() || chkMostrarAdmin.isSelected()) {
+                    if (((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))) == null)) {
+                        JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Cliente) {
+                            exibirPainelCliente(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
+                        } else if (framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Admin) {
+                            exibirPainelAdmin(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
+                        }
+                    }
                 }
             }
         });
-
-        chkMostrarCliente.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent c) {
-                if (c.getStateChange() == ItemEvent.SELECTED) {
-                    btnContinuar.addActionListener(e -> exibirPainelCliente());
-                }
-            }
-        });
-
 
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.setBounds(10, 420, 70, 25);
@@ -177,22 +189,45 @@ class PainelLogin extends JPanel {
         add(btnSair);
     }
 
-    private void exibirPainelCliente() {
+    /**
+     * Método para limpar painel atual e gerar um novo 'PainelCliente'
+     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     */
+    private void exibirPainelCliente(Utilizador utilizador) {
         FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelCliente());
+        framePrincipal.getContentPane().add(new PainelCliente(utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
 
-    private void exibirPainelMusico() {
+    /**
+     * Método para limpar painel atual e gerar um novo 'PainelMusico'
+     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     */
+    private void exibirPainelMusico(Utilizador utilizador) {
         FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelMusico());
+        framePrincipal.getContentPane().add(new PainelMusico(utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
 
+    /**
+     * Método para limpar painel atual e gerar um novo 'PainelAdmin'
+     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     */
+    private void exibirPainelAdmin(Utilizador utilizador) {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelAdmin(utilizador));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
+
+    /**
+     * Método para limpar painel atual e gerar um novo 'PainelPrincipal'
+     */
     private void voltarPainelPrincipal() {
         FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
