@@ -10,12 +10,14 @@ import java.awt.event.*;
 import java.util.Arrays;
 
 public class PainelSignUp extends JPanel {
-private FramePrincipal framePrincipal;
-    public PainelSignUp () {
+    protected final FramePrincipal [] armazenaFrame;
+    private FramePrincipal framePrincipal;
+
+    public PainelSignUp(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
+        this.armazenaFrame = new FramePrincipal[] {framePrincipal};
 
         setLayout(null);
-
-        framePrincipal = new FramePrincipal();
 
         JLabel lblNome = new JLabel("Nome completo:");
         lblNome.setBounds(10, 50, 120, 25);
@@ -76,11 +78,6 @@ private FramePrincipal framePrincipal;
         JButton btnContinuar = new JButton("Continuar");
         btnContinuar.setBounds(490, 420, 90, 25);
 
-        JButton btnSair = new JButton("Sair");
-        btnSair.setBounds(525, 5, 56, 26);
-        btnSair.addActionListener(e -> System.exit(0));
-        add(btnSair);
-
 
         //Mostrar campos para introdução de atributos de um utilizador do tipo 'Musico'
         chkMusico.addItemListener(e -> {
@@ -100,7 +97,7 @@ private FramePrincipal framePrincipal;
            if (e.getStateChange() == ItemEvent.SELECTED) {
                //Verifica disponibilidade de username
                // ou dá mensagem de erro e apaga o conteúdo da caixa de texto, em caso negativo
-               if (!verificarUser(txtUsername.getText(), framePrincipal)) {
+               if (!verificarUser(txtUsername.getText())) {
                    JOptionPane.showMessageDialog(null, "Utilizador já existe", "Erro", JOptionPane.ERROR_MESSAGE);
                    txtUsername.setText("");
                }
@@ -145,11 +142,11 @@ private FramePrincipal framePrincipal;
        });
 
 
-        //Faz todas as verificações antes de permitir avançar para o painel seguinte (PinelLogin)
+        //Faz todas as verificações antes de permitir avançar para o painel seguinte (PainelLogin)
         //Add nova instância de 'Musico' ou 'Cliente' consoante a seleção do utilizador
         //Mostra mensagens de erro quando alguma verificação não é bem sucedida
         btnContinuar.addActionListener(e -> {
-            framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor((Component) e.getSource()); //vai buscar o componente (botão) que é acionado
+            armazenaFrame[0] = (FramePrincipal) SwingUtilities.getWindowAncestor((Component) e.getSource()); //vai buscar o componente (botão) que é acionado
             String username = "";
             String password = "";
             if (!txtUsername.getText().isEmpty() && !String.valueOf(txtPassword.getPassword()).isEmpty() && Arrays.equals(txtPassword.getPassword(), txtConfirmarPassword.getPassword())) {
@@ -165,7 +162,7 @@ private FramePrincipal framePrincipal;
                         Utilizador novoUtilizador = new Musico(username, password, pin);
                         framePrincipal.getRockstar().registo(novoUtilizador);
                         framePrincipal.getContentPane().removeAll();
-                        framePrincipal.getContentPane().add(new PainelLogin());
+                        framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                         framePrincipal.revalidate();
                         framePrincipal.repaint();
                     }
@@ -175,7 +172,7 @@ private FramePrincipal framePrincipal;
                     Utilizador novoUtilizador = new Cliente(username, password);
                     framePrincipal.getRockstar().registo(novoUtilizador);
                     framePrincipal.getContentPane().removeAll();
-                    framePrincipal.getContentPane().add(new PainelLogin());
+                    framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                     framePrincipal.revalidate();
                     framePrincipal.repaint();
                 }
@@ -198,7 +195,7 @@ private FramePrincipal framePrincipal;
     private void voltarPainelPrincipal() {
         FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelPrincipal());
+        framePrincipal.getContentPane().add(new PainelPrincipal(framePrincipal));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
@@ -209,7 +206,7 @@ private FramePrincipal framePrincipal;
      * Return 'true' se o username não estiver a ser utilizado;
      * Return 'false' se o username já estiver a ser utilizado;
      */
-    public boolean verificarUser (String username, FramePrincipal framePrincipal) {
+    public boolean verificarUser (String username) {
         for (Utilizador c : framePrincipal.getRockstar().getUtilizadores()) {
             if (username.equals(c.getUsername())) {
                 return false;
