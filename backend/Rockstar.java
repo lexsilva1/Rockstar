@@ -1,5 +1,6 @@
 package backend;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Rockstar implements Serializable {
         this.musicas=new ArrayList<>();
         this.promos= new ArrayList<>();
     }
+
     public Utilizador login(String username, String password){
         for (Utilizador n : utilizadores){
             if(n.getUsername().equals(username) && n.getPassword().equals(password)){
@@ -24,6 +26,7 @@ public class Rockstar implements Serializable {
         }
         return null;
     }
+
     public Utilizador loginMusico (String username, String password, String pin){
         for (Utilizador n : utilizadores) {
             if (n instanceof Musico) {
@@ -38,18 +41,19 @@ public class Rockstar implements Serializable {
     public ArrayList<Utilizador> getUtilizadores() {
         return utilizadores;
     }
+
     public void addPlaylistGenero(Cliente cliente,String genero,int num, String titulo){
         Playlist nova =cliente.criaPlaylistGenero(genero,num,titulo);
         this.grupoMusicas.add(nova);
-
     }
+
     public void addPromo (Admin admin, int cupoes, String nome, double desconto, LocalDate dataInicio, LocalDate dataFim){
         Promo promo = admin.criaPromo(cupoes, nome, desconto, dataInicio, dataFim);
         this.promos.add(promo);
-
     }
 
     public void registo (Utilizador a) {
         utilizadores.add(a);
     }
+
 }
