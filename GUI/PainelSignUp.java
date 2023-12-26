@@ -161,6 +161,8 @@ public class PainelSignUp extends JPanel {
                         String pin = txtPinMusico.getText();
                         Utilizador novoUtilizador = new Musico(username, password, pin);
                         framePrincipal.getRockstar().registo(novoUtilizador);
+                        JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso", "Registo bem sucedido" , JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println("Musico add");
                         framePrincipal.getContentPane().removeAll();
                         framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                         framePrincipal.revalidate();
@@ -171,6 +173,8 @@ public class PainelSignUp extends JPanel {
                     password = Arrays.toString(txtPassword.getPassword());
                     Utilizador novoUtilizador = new Cliente(username, password);
                     framePrincipal.getRockstar().registo(novoUtilizador);
+                    JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso", "Registo bem sucedido" , JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Cliente add");
                     framePrincipal.getContentPane().removeAll();
                     framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                     framePrincipal.revalidate();
