@@ -2,18 +2,16 @@ package GUI;
 import backend.Admin;
 import backend.Cliente;
 import backend.Utilizador;
-
 import javax.swing.*;
 import java.awt.event.*;
 
 class PainelLogin extends JPanel {
-
     private FramePrincipal framePrincipal;
-    public PainelLogin() {
+
+    public PainelLogin(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
 
         setLayout(null);
-
-        framePrincipal = new FramePrincipal();
 
         JRadioButton chkMostrarCliente = new JRadioButton("Cliente");
         chkMostrarCliente.setBounds(50, 100, 100, 25);
@@ -183,10 +181,6 @@ class PainelLogin extends JPanel {
         btnVoltar.addActionListener(e -> voltarPainelPrincipal());
         add(btnVoltar);
 
-        JButton btnSair = new JButton("Sair");
-        btnSair.setBounds(525, 5, 56, 26);
-        btnSair.addActionListener(e -> System.exit(0));
-        add(btnSair);
     }
 
     /**
@@ -194,9 +188,9 @@ class PainelLogin extends JPanel {
      * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
      */
     private void exibirPainelCliente(Utilizador utilizador) {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelCliente(utilizador));
+        framePrincipal.getContentPane().add(new PainelCliente(framePrincipal, utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
@@ -206,9 +200,9 @@ class PainelLogin extends JPanel {
      * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
      */
     private void exibirPainelMusico(Utilizador utilizador) {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelMusico(utilizador));
+        framePrincipal.getContentPane().add(new PainelMusico(framePrincipal, utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
@@ -218,9 +212,9 @@ class PainelLogin extends JPanel {
      * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
      */
     private void exibirPainelAdmin(Utilizador utilizador) {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelAdmin(utilizador));
+        framePrincipal.getContentPane().add(new PainelAdmin(framePrincipal, utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
@@ -229,9 +223,9 @@ class PainelLogin extends JPanel {
      * Método para limpar painel atual e gerar um novo 'PainelPrincipal'
      */
     private void voltarPainelPrincipal() {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelPrincipal());
+        framePrincipal.getContentPane().add(new PainelPrincipal(framePrincipal));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
