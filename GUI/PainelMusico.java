@@ -1,12 +1,13 @@
 package GUI;
 
+import backend.Musico;
 import backend.Utilizador;
 
 import javax.swing.*;
 
 public class PainelMusico extends JPanel {
     private FramePrincipal framePrincipal;
-    private Utilizador utilizador;
+    private Musico musico;
     private JButton btnVerAlbuns;
     private JButton btnVerMusicas;
     private JButton btnCriarAlbum;
@@ -22,9 +23,9 @@ public class PainelMusico extends JPanel {
      * Cria um novo painel <code>JPanel</code> 'PainelMusico', para a página inicial de um utlizador do tipo 'Musico',
      * com um buffer duplo e um flow layout.
      */
-    public PainelMusico(FramePrincipal framePrincipal, Utilizador utilizador) {
+    public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
         this.framePrincipal = framePrincipal;
-        this.utilizador = utilizador;
+        this.musico = musico;
         this.btnVerAlbuns = new JButton("Os meus álbuns");
         this.btnVerMusicas = new JButton("As minhas músicas");
         this.btnCriarAlbum = new JButton("Novo álbum");
