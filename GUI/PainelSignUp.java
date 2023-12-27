@@ -147,8 +147,8 @@ public class PainelSignUp extends JPanel {
         //Mostra mensagens de erro quando alguma verificação não é bem sucedida
         btnContinuar.addActionListener(e -> {
             armazenaFrame[0] = (FramePrincipal) SwingUtilities.getWindowAncestor((Component) e.getSource()); //vai buscar o componente (botão) que é acionado
-            String username = "";
-            String password = "";
+            String username = txtUsername.getText();
+            String password = String.valueOf(txtPassword.getPassword());
             if (!txtUsername.getText().isEmpty() && !String.valueOf(txtPassword.getPassword()).isEmpty() && Arrays.equals(txtPassword.getPassword(), txtConfirmarPassword.getPassword())) {
                 if (chkMusico.isSelected()) {
                     if (txtPinMusico.getText().isEmpty()) {

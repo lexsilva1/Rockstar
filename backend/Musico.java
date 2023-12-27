@@ -1,5 +1,6 @@
 package backend;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Musico extends Utilizador{
@@ -31,6 +32,10 @@ public class Musico extends Utilizador{
 
     public String getPin() {
         return pin;
+    }
+    public Musica criaMusica(String titulo, String genero, LocalDate data, double valor){
+        Musica musica = new Musica(titulo,genero,data,this,valor);
+        return musica;
     }
 }
 
