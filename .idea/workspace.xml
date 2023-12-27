@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="alterações dos botoes login e botao continuar no login">
+      <change afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ockstar.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelSignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pedro",
+    "git-widget-placeholder": "ines3",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -64,6 +67,13 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="GUI" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-8336523bb0d9-657b72ed" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
