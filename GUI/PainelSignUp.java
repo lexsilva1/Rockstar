@@ -12,15 +12,18 @@ import java.util.Arrays;
 public class PainelSignUp extends JPanel {
     protected final FramePrincipal [] armazenaFrame;
     private FramePrincipal framePrincipal;
+    private Image imagemDeFundo;
 
     public PainelSignUp(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         this.armazenaFrame = new FramePrincipal[] {framePrincipal};
+        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
 
         setLayout(null);
 
         JLabel lblNome = new JLabel("Nome completo:");
         lblNome.setBounds(10, 50, 120, 25);
+        lblNome.setForeground(Color.WHITE);
         add(lblNome);
 
 
@@ -30,6 +33,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setBounds(10, 100, 120, 25);
+        lblUsername.setForeground(Color.WHITE);
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
@@ -38,6 +42,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setBounds(10, 150, 120, 25);
+        lblPassword.setForeground(Color.WHITE);
         add(lblPassword);
 
         JPasswordField txtPassword = new JPasswordField();
@@ -46,6 +51,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblConfirmarPassword = new JLabel("Confirmar Password:");
         lblConfirmarPassword.setBounds(10, 200, 120, 25);
+        lblConfirmarPassword.setForeground(Color.WHITE);
         add(lblConfirmarPassword);
 
         JPasswordField txtConfirmarPassword = new JPasswordField();
@@ -53,15 +59,20 @@ public class PainelSignUp extends JPanel {
         add(txtConfirmarPassword);
 
         JCheckBox chkMusico = new JCheckBox("Sou Músico");
-        chkMusico.setBounds(140, 250, 150, 25);
+        chkMusico.setBounds(140, 250, 100, 25);
+        chkMusico.setBackground(Color.BLACK);
+        chkMusico.setForeground(Color.WHITE);
         add(chkMusico);
 
         JCheckBox chkConfirmar = new JCheckBox("Confirmo que os dados introduzidos são verdadeiros");
-        chkConfirmar.setBounds(10, 350, 500, 25);
+        chkConfirmar.setBounds(10, 350, 350, 25);
+        chkConfirmar.setBackground(Color.BLACK);
+        chkConfirmar.setForeground(Color.WHITE);
         add(chkConfirmar);
 
         JLabel lblPin = new JLabel("Pin:");
         lblPin.setBounds(10, 300, 120, 25);
+        lblPin.setForeground(Color.WHITE);
         lblPin.setVisible(false);  // Inicialmente invisível
         add(lblPin);
 
@@ -71,7 +82,7 @@ public class PainelSignUp extends JPanel {
         add(txtPinMusico);
 
         JButton btnVoltar = new JButton("Voltar");
-        btnVoltar.setBounds(10, 420, 70, 25);
+        btnVoltar.setBounds(10, 620, 70, 25);
         btnVoltar.addActionListener(e -> voltarPainelPrincipal());
         add(btnVoltar);
 
@@ -217,6 +228,12 @@ public class PainelSignUp extends JPanel {
             }
         }
         return true;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Desenha a imagem de fundo
+        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
     }
 }
 
