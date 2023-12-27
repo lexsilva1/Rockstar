@@ -4,6 +4,7 @@ import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class PainelCliente extends JPanel{
     private FramePrincipal framePrincipal;
@@ -20,6 +21,12 @@ public class PainelCliente extends JPanel{
     private JButton btnVoltar;
     private JLabel labelUsername; //Colocar o username visivel
     private JLabel labelSaldo; //Colocar o saldo visível
+    private PainelOpcoesCliente painelOpcoesCliente;
+    private PainelCriarPlaylist painelCriarPlaylist;
+    private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
+    private Image imagemDeFundo;
+
+
 
 
     /**
@@ -40,8 +47,14 @@ public class PainelCliente extends JPanel{
         this.btnLogout = new JButton("Logout");
         this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
         this.btnVoltar = new JButton("Voltar");
-        this.labelUsername = new JLabel(getCliente().getUsername());
-        this.labelSaldo = new JLabel(String.valueOf(getCliente().getSaldo()));
+        this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
+        this.labelSaldo = new JLabel("Saldo: " + String.valueOf(getCliente().getSaldo()));
+        this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
+        this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
+
+
 
 
         setLayout(null);
@@ -51,6 +64,7 @@ public class PainelCliente extends JPanel{
         btnCriarPlaylist.setBounds(20,200,200,25);
         btnCriarPlaylist.addActionListener(e -> abrirPainelCriarPlaylist());
         btnCriarPlaylistGenero.setBounds(20,250,200,25);
+        btnCriarPlaylistGenero.addActionListener(e -> abrirPainelCriarPlaylistGenero());
         btnOrdenarMusicas.setBounds(20,300,200,25);
         btnPesquisa.setBounds(20,350,200,25);
         btnCarregamento.setBounds(20,400,200,25);
@@ -60,6 +74,14 @@ public class PainelCliente extends JPanel{
         btnVoltar.addActionListener(e -> voltarPainelLogin());
         btnCarrinhoCompras.setBounds(725,10,50,30);
         labelUsername.setBounds(20,5,200,25);
+        labelUsername.setForeground(Color.WHITE);
+        labelSaldo.setBounds(300,5,200,25);
+        labelSaldo.setForeground(Color.WHITE);
+        painelOpcoesCliente.setBounds(275,100,450,500);
+        painelCriarPlaylist.setBounds(275,100,450,500);
+        painelCriarPlaylistGenero.setBounds(275,100,450,500);
+
+
 
 
         add(btnVerPlaylists);
@@ -73,19 +95,32 @@ public class PainelCliente extends JPanel{
         add(btnCarrinhoCompras);
         add(btnVoltar);
         add(labelUsername);
+        add(labelSaldo);
+        add(painelOpcoesCliente);
+
+
 
         setVisible(true);
-
-
     }
 
 
     private void abrirPainelCriarPlaylist() {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
-        framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelCriarPlaylist(framePrincipal));
-        framePrincipal.revalidate();
-        framePrincipal.repaint();
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painelCriarPlaylist);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
+    private void abrirPainelCriarPlaylistGenero() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painelCriarPlaylistGenero);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
     }
 
     private void voltarPainelPrincipal() {
@@ -106,6 +141,13 @@ public class PainelCliente extends JPanel{
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Desenha a imagem de fundo
+        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
     }
 }
 
