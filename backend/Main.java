@@ -10,8 +10,16 @@ public class Main {
         FramePrincipal frame = new FramePrincipal();
         frame.setVisible(true);
 
-/*
-       Rockstar rockstar = null;
+/*      Admin admin = new Admin("toy","password");
+        Cliente cliente = new Cliente("joaosilva","password");
+        Musico musico = new Musico("inesisabel","password","1234");
+
+        Rockstar rockstar = new Rockstar();
+
+        rockstar.getUtilizadores().add(admin);
+        rockstar.getUtilizadores().add(cliente);
+        rockstar.getUtilizadores().add(musico);
+
         try {
             FileInputStream fileIn = new FileInputStream("Rockstar.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -28,7 +36,8 @@ public class Main {
             System.err.println("não encontro");
         }
 
-       for (Utilizador i : rockstar.getUtilizadores()) {
+
+        for (Utilizador i : rockstar.getUtilizadores()) {
             System.out.println(i.getUsername());
 
         }
@@ -38,7 +47,7 @@ public class Main {
             System.out.println("Object serialized successfully");
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        } */
     }
 
 }

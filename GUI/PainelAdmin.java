@@ -1,12 +1,14 @@
 package GUI;
 
+import backend.Admin;
+import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
 
 public class PainelAdmin extends JPanel {
     private FramePrincipal framePrincipal;
-    private Utilizador utilizador;
+    private Admin admin;
     private JButton btnPesquisarMusica;
     private JButton btnPesquisarUtilizador;
     private JButton btnVerCampanhas;
@@ -20,11 +22,11 @@ public class PainelAdmin extends JPanel {
      * Cria um novo painel <code>JPanel</code> 'PainelAdmin', para a página inicial de um utlizador do tipo 'Administrador',
      * com um buffer duplo e um flow layout.
      */
-    public PainelAdmin(FramePrincipal framePrincipal, Utilizador utilizador) {
+    public PainelAdmin(FramePrincipal framePrincipal, Admin admin) {
         this.framePrincipal = framePrincipal;
-        this.utilizador = utilizador;
+        this.admin = admin;
         this.btnPesquisarMusica = new JButton("Pesquisar Música");
-        this.btnPesquisarUtilizador = new JButton("ªPesquisar Utilizador");
+        this.btnPesquisarUtilizador = new JButton("Pesquisar Utilizador");
         this.btnVerCampanhas = new JButton("Ver Campanhas");
         this.btnCriarCampanha = new JButton("Criar Campanha");
         this.btnLogout = new JButton("Logout");
