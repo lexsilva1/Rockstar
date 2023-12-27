@@ -1,5 +1,6 @@
 package GUI;
 
+import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
@@ -61,7 +62,7 @@ public class PainelCriarPlaylist extends JPanel {
     private void voltarPainelCliente() {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelCliente(framePrincipal, utilizador));
+        framePrincipal.getContentPane().add(new PainelCliente(framePrincipal, (Cliente) utilizador));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
