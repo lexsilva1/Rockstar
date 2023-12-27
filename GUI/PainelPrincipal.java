@@ -13,12 +13,12 @@ public class PainelPrincipal extends JPanel {
         setLayout(null);
 
         btnLogin = new JButton("Login");
-        btnLogin.setBounds(160, 320, 80, 25);
+        btnLogin.setBounds(260, 420, 80, 25);
         btnLogin.addActionListener(e -> exibirPainelLogin());
         add(btnLogin);
 
         btnSignUp = new JButton("Sign up");
-        btnSignUp.setBounds(360, 320, 80, 25);
+        btnSignUp.setBounds(460, 420, 80, 25);
         btnSignUp.addActionListener(e -> exibirPainelSignUp());
         add(btnSignUp);
 

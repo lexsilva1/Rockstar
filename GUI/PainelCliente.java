@@ -1,12 +1,13 @@
 package GUI;
 
+import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
 
 public class PainelCliente extends JPanel{
     private FramePrincipal framePrincipal;
-    private Utilizador utilizador;
+    private Cliente cliente;
     private JButton btnVerPlaylists;
     private JButton btnVerMusicas;
     private JButton btnCriarPlaylist;
@@ -18,6 +19,7 @@ public class PainelCliente extends JPanel{
     private BotaoCarrinho btnCarrinhoCompras;
     private JButton btnVoltar;
     private JLabel labelUsername; //Colocar o username visivel
+    private JLabel labelSaldo; //Colocar o saldo visível
 
 
     /**
@@ -25,9 +27,9 @@ public class PainelCliente extends JPanel{
      * com um buffer duplo e um flow layout.
      */
 
-    public PainelCliente(FramePrincipal framePrincipal, Utilizador utilizador) {
+    public PainelCliente(FramePrincipal framePrincipal, Cliente cliente) {
         this.framePrincipal = framePrincipal;
-        this.utilizador = utilizador;
+        this.cliente = cliente;
         this.btnVerPlaylists = new JButton("As minhas playlists");
         this.btnVerMusicas = new JButton("As minhas músicas");
         this.btnCriarPlaylist = new JButton("Nova playlist");
@@ -38,24 +40,25 @@ public class PainelCliente extends JPanel{
         this.btnLogout = new JButton("Logout");
         this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
         this.btnVoltar = new JButton("Voltar");
-        this.labelUsername = new JLabel(getUtilizador().getUsername());
+        this.labelUsername = new JLabel(getCliente().getUsername());
+        this.labelSaldo = new JLabel(String.valueOf(getCliente().getSaldo()));
 
 
         setLayout(null);
 
-        btnVerPlaylists.setBounds(20,50,200,25);
-        btnVerMusicas.setBounds(20,100,200,25);
-        btnCriarPlaylist.setBounds(20,150,200,25);
+        btnVerPlaylists.setBounds(20,100,200,25);
+        btnVerMusicas.setBounds(20,150,200,25);
+        btnCriarPlaylist.setBounds(20,200,200,25);
         btnCriarPlaylist.addActionListener(e -> abrirPainelCriarPlaylist());
-        btnCriarPlaylistGenero.setBounds(20,200,200,25);
-        btnOrdenarMusicas.setBounds(20,250,200,25);
-        btnPesquisa.setBounds(20,300,200,25);
-        btnCarregamento.setBounds(20,350,200,25);
-        btnLogout.setBounds(435, 10, 75, 25);
+        btnCriarPlaylistGenero.setBounds(20,250,200,25);
+        btnOrdenarMusicas.setBounds(20,300,200,25);
+        btnPesquisa.setBounds(20,350,200,25);
+        btnCarregamento.setBounds(20,400,200,25);
+        btnLogout.setBounds(635, 10, 75, 25);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
-        btnVoltar.setBounds(10,425,75,25);
+        btnVoltar.setBounds(10,625,75,25);
         btnVoltar.addActionListener(e -> voltarPainelLogin());
-        btnCarrinhoCompras.setBounds(525,10,50,30);
+        btnCarrinhoCompras.setBounds(725,10,50,30);
         labelUsername.setBounds(20,5,200,25);
 
 
@@ -101,7 +104,9 @@ public class PainelCliente extends JPanel{
         framePrincipal.repaint();
     }
 
-    public Utilizador getUtilizador() {
-        return utilizador;
+    public Cliente getCliente() {
+        return cliente;
     }
 }
+
+

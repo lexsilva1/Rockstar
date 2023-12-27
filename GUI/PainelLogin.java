@@ -185,12 +185,12 @@ class PainelLogin extends JPanel {
 
     /**
      * Método para limpar painel atual e gerar um novo 'PainelCliente'
-     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     * @param cliente: instância de 'Utilizador' para que seja guardado no novo painel
      */
-    private void exibirPainelCliente(Utilizador utilizador) {
+    private void exibirPainelCliente(Cliente cliente) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelCliente(framePrincipal, utilizador));
+        framePrincipal.getContentPane().add(new PainelCliente(framePrincipal, cliente));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
