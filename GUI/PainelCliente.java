@@ -15,6 +15,9 @@ public class PainelCliente extends JPanel{
     private JButton btnPesquisa;
     private JButton btnCarregamento;
     private JButton btnLogout;
+    private BotaoCarrinho btnCarrinhoCompras;
+    private JButton btnVoltar;
+    private JLabel labelUsername; //Colocar o username visivel
 
 
     /**
@@ -33,15 +36,28 @@ public class PainelCliente extends JPanel{
         this.btnPesquisa = new JButton("Pesquisar");
         this.btnCarregamento = new JButton("Carregar conta");
         this.btnLogout = new JButton("Logout");
+        this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
+        this.btnVoltar = new JButton("Voltar");
+        this.labelUsername = new JLabel(getUtilizador().getUsername());
 
-        btnVerPlaylists.setBounds(250,50,170,25);
-        btnVerMusicas.setBounds(250,75,170,25);
-        btnCriarPlaylist.setBounds(250,100,170,25);
-        btnCriarPlaylistGenero.setBounds(250,125,170,25);
-        btnOrdenarMusicas.setBounds(250,150,170,25);
-        btnPesquisa.setBounds(250,175,170,25);
-        btnCarregamento.setBounds(250,200,170,25);
-        btnLogout.setBounds(525, 5, 56, 26);
+
+        setLayout(null);
+
+        btnVerPlaylists.setBounds(20,50,200,25);
+        btnVerMusicas.setBounds(20,100,200,25);
+        btnCriarPlaylist.setBounds(20,150,200,25);
+        btnCriarPlaylist.addActionListener(e -> abrirPainelCriarPlaylist());
+        btnCriarPlaylistGenero.setBounds(20,200,200,25);
+        btnOrdenarMusicas.setBounds(20,250,200,25);
+        btnPesquisa.setBounds(20,300,200,25);
+        btnCarregamento.setBounds(20,350,200,25);
+        btnLogout.setBounds(435, 10, 75, 25);
+        btnLogout.addActionListener(e -> voltarPainelPrincipal());
+        btnVoltar.setBounds(10,425,75,25);
+        btnVoltar.addActionListener(e -> voltarPainelLogin());
+        btnCarrinhoCompras.setBounds(525,10,50,30);
+        labelUsername.setBounds(20,5,200,25);
+
 
         add(btnVerPlaylists);
         add(btnVerMusicas);
@@ -51,9 +67,41 @@ public class PainelCliente extends JPanel{
         add(btnPesquisa);
         add(btnCarregamento);
         add(btnLogout);
+        add(btnCarrinhoCompras);
+        add(btnVoltar);
+        add(labelUsername);
 
         setVisible(true);
 
 
+    }
+
+
+    private void abrirPainelCriarPlaylist() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelCriarPlaylist(framePrincipal));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
+
+    private void voltarPainelPrincipal() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelPrincipal(framePrincipal));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
+
+    private void voltarPainelLogin() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
     }
 }
