@@ -9,12 +9,14 @@
       <change afterPath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/ockstar.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+ Alexandre3
       <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelPrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelSignUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +58,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ines3",
+    "git-widget-placeholder": "Pedro",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
