@@ -1,6 +1,7 @@
 package GUI;
 import backend.Admin;
 import backend.Cliente;
+import backend.Musico;
 import backend.Utilizador;
 import javax.swing.*;
 import java.awt.event.*;
@@ -152,25 +153,29 @@ class PainelLogin extends JPanel {
             if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (chkMostrarMusico.isSelected()) {
+                if (chkMostrarMusico.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Musico) {
                     if (String.valueOf(txtPin.getPassword()).isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Por favor introduza o PIN", "Campo vazio", JOptionPane.ERROR_MESSAGE);
                     } else if ((framePrincipal.getRockstar().loginMusico(txtUsername.getText(), String.valueOf(txtPassword.getPassword()), String.valueOf(txtPin.getPassword())) == null)) {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        exibirPainelMusico(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
+                        exibirPainelMusico((Musico) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
                 }
 
-                if (chkMostrarCliente.isSelected() || chkMostrarAdmin.isSelected()) {
+                if (chkMostrarCliente.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Cliente) {
                     if (((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))) == null)) {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        if (framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Cliente) {
-                            exibirPainelCliente(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
-                        } else if (framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Admin) {
-                            exibirPainelAdmin(framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
-                        }
+                        exibirPainelCliente((Cliente) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
+                    }
+                }
+
+                if (chkMostrarAdmin.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Admin) {
+                    if (((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))) == null)) {
+                        JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                    exibirPainelAdmin((Admin) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
                 }
             }
@@ -197,24 +202,24 @@ class PainelLogin extends JPanel {
 
     /**
      * Método para limpar painel atual e gerar um novo 'PainelMusico'
-     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     * @param musico: instância de 'Utilizador' para que seja guardado no novo painel
      */
-    private void exibirPainelMusico(Utilizador utilizador) {
+    private void exibirPainelMusico(Musico musico) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelMusico(framePrincipal, utilizador));
+        framePrincipal.getContentPane().add(new PainelMusico(framePrincipal, musico));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
 
     /**
      * Método para limpar painel atual e gerar um novo 'PainelAdmin'
-     * @param utilizador: instância de 'Utilizador' para que seja guardado no novo painel
+     * @param admin: instância de 'Utilizador' para que seja guardado no novo painel
      */
-    private void exibirPainelAdmin(Utilizador utilizador) {
+    private void exibirPainelAdmin(Admin admin) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelAdmin(framePrincipal, utilizador));
+        framePrincipal.getContentPane().add(new PainelAdmin(framePrincipal, admin));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
