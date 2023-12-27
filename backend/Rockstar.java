@@ -55,5 +55,8 @@ public class Rockstar implements Serializable {
     public void registo (Utilizador a) {
         utilizadores.add(a);
     }
+    public void addMusica(Musico musico,String titulo, String genero, LocalDate data, double valor){
+        this.musicas.add(musico.criaMusica(titulo,genero,data,valor));
+    }
 
 }
