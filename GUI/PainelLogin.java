@@ -170,17 +170,17 @@ class PainelLogin extends JPanel {
             if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (chkMostrarMusico.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Musico) {
+                if (chkMostrarMusico.isSelected()) {
                     if (String.valueOf(txtPin.getPassword()).isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Por favor introduza o PIN", "Campo vazio", JOptionPane.ERROR_MESSAGE);
                     } else if ((framePrincipal.getRockstar().loginMusico(txtUsername.getText(), String.valueOf(txtPassword.getPassword()), String.valueOf(txtPin.getPassword())) == null)) {
-                        JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Username, Password ou PIN incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else {
                         exibirPainelMusico((Musico) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
                 }
 
-                if (chkMostrarCliente.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Cliente) {
+                if (chkMostrarCliente.isSelected()) {
                     if (((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))) == null)) {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -188,7 +188,7 @@ class PainelLogin extends JPanel {
                     }
                 }
 
-                if (chkMostrarAdmin.isSelected() && framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Admin) {
+                if (chkMostrarAdmin.isSelected()) {
                     if (((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))) == null)) {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else {

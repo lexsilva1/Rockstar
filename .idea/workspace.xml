@@ -7,6 +7,8 @@
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="alterações dos botoes login e botao continuar no login">
       <change afterPath="$PROJECT_DIR$/GUI/PainelPesquisar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+ main
+ Alexandre3
       <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
@@ -14,6 +16,10 @@
       <change beforePath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelPrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelSignUp.java" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
+
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +56,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ines3",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Pedro&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\inesb\OneDrive\Documentos\GitHub\Rockstar\resources" />
