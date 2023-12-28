@@ -55,6 +55,10 @@ public class PainelCarrinhoCompras extends JPanel {
         btnContinuar.setBounds(10,200,100,25);
         add(btnContinuar);
 
+        JButton btnCarregar = new JButton("Carregar Conta");
+        btnCarregar.setBounds(10,250,125,25);
+        add(btnCarregar);
+
         JButton btnFinalizarCompra= new JButton("Finalizar Compra");
         btnFinalizarCompra.setBounds(290,200,130,25);
         add(btnFinalizarCompra);
