@@ -6,12 +6,12 @@ public class PainelPrincipal extends JPanel {
     protected FramePrincipal framePrincipal;
     private JButton btnLogin;
     private JButton btnSignUp;
-    private Image imagemDeFundo;
+
 
     public PainelPrincipal(FramePrincipal framePrincipal) {
 
-        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
         this.framePrincipal = framePrincipal;
+        setBackground(new Color(70, 90, 120));
 
         setLayout(null);
 
@@ -50,10 +50,4 @@ public class PainelPrincipal extends JPanel {
         return btnSignUp;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Desenha a imagem de fundo
-        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
-    }
 }

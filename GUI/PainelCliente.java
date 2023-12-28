@@ -24,7 +24,7 @@ public class PainelCliente extends JPanel{
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
-    private Image imagemDeFundo;
+    private PainelPesquisar painelPesquisar;
 
 
 
@@ -52,11 +52,12 @@ public class PainelCliente extends JPanel{
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
-        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
+        this.painelPesquisar = new PainelPesquisar(framePrincipal);
 
 
 
 
+        setBackground(new Color(70, 90, 120));
         setLayout(null);
 
         btnVerPlaylists.setBounds(20,100,200,25);
@@ -67,6 +68,7 @@ public class PainelCliente extends JPanel{
         btnCriarPlaylistGenero.addActionListener(e -> abrirPainelCriarPlaylistGenero());
         btnOrdenarMusicas.setBounds(20,300,200,25);
         btnPesquisa.setBounds(20,350,200,25);
+        btnPesquisa.addActionListener(e -> abrirPainelPesquisar());
         btnCarregamento.setBounds(20,400,200,25);
         btnLogout.setBounds(635, 10, 75, 25);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
@@ -113,6 +115,16 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
+
+    private void abrirPainelPesquisar() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painelPesquisar);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
     private void abrirPainelCriarPlaylistGenero() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
@@ -143,12 +155,7 @@ public class PainelCliente extends JPanel{
         return cliente;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Desenha a imagem de fundo
-        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
-    }
+
 }
 
 
