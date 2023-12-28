@@ -1,41 +1,53 @@
 package GUI;
-
 import javax.swing.*;
+import java.awt.*;
 
 public class PainelPrincipal extends JPanel {
+    protected FramePrincipal framePrincipal;
+    private JButton btnLogin;
+    private JButton btnSignUp;
 
-    public PainelPrincipal() {
+
+    public PainelPrincipal(FramePrincipal framePrincipal) {
+
+        this.framePrincipal = framePrincipal;
+        setBackground(new Color(70, 90, 120));
+
         setLayout(null);
 
-        JButton btnLogin = new JButton("Login");
-        btnLogin.setBounds(160, 320, 80, 25);
+        btnLogin = new JButton("Login");
+        btnLogin.setBounds(260, 520, 80, 25);
         btnLogin.addActionListener(e -> exibirPainelLogin());
         add(btnLogin);
 
-        JButton btnSignUp = new JButton("Sign up");
-        btnSignUp.setBounds(360, 320, 80, 25);
+        btnSignUp = new JButton("Sign up");
+        btnSignUp.setBounds(460, 520, 80, 25);
         btnSignUp.addActionListener(e -> exibirPainelSignUp());
         add(btnSignUp);
 
-        JButton btnSair = new JButton("Sair");
-        btnSair.setBounds(525, 5, 56, 26);
-        btnSair.addActionListener(e -> System.exit(0));
-        add(btnSair);
     }
 
     private void exibirPainelLogin() {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelLogin());
+        framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
     private void exibirPainelSignUp() {
-        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
-        framePrincipal.getContentPane().add(new PainelSignUp());
+        framePrincipal.getContentPane().add(new PainelSignUp(framePrincipal));
         framePrincipal.revalidate();
         framePrincipal.repaint();
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JButton getBtnSignUp() {
+        return btnSignUp;
     }
 
 }
