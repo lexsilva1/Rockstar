@@ -7,7 +7,6 @@ import backend.Utilizador;
 import javax.swing.*;
 
 public class PainelAdmin extends JPanel {
-    private FramePrincipal framePrincipal;
     private Admin admin;
     private JButton btnPesquisarMusica;
     private JButton btnPesquisarUtilizador;
@@ -23,7 +22,6 @@ public class PainelAdmin extends JPanel {
      * com um buffer duplo e um flow layout.
      */
     public PainelAdmin(FramePrincipal framePrincipal, Admin admin) {
-        this.framePrincipal = framePrincipal;
         this.admin = admin;
         this.btnPesquisarMusica = new JButton("Pesquisar Música");
         this.btnPesquisarUtilizador = new JButton("Pesquisar Utilizador");
