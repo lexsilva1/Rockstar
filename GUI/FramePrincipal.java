@@ -34,7 +34,7 @@ public class FramePrincipal extends JFrame {
         add(painelPrincipal);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 500);
+        setSize(800, 700);
         setLocationRelativeTo(null);
         setResizable(false);
 

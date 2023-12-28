@@ -97,4 +97,8 @@ public class Cliente extends Utilizador {
             }
         }
     }
+
+    public double getSaldo() {
+        return saldo;
+    }
 }

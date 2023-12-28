@@ -13,14 +13,17 @@ public class PainelSignUp extends JPanel {
     protected final FramePrincipal [] armazenaFrame;
     private FramePrincipal framePrincipal;
 
+
     public PainelSignUp(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         this.armazenaFrame = new FramePrincipal[] {framePrincipal};
 
+        setBackground(new Color(70, 90, 120));
         setLayout(null);
 
         JLabel lblNome = new JLabel("Nome completo:");
         lblNome.setBounds(10, 50, 120, 25);
+        lblNome.setForeground(Color.WHITE);
         add(lblNome);
 
 
@@ -30,6 +33,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setBounds(10, 100, 120, 25);
+        lblUsername.setForeground(Color.WHITE);
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
@@ -38,6 +42,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setBounds(10, 150, 120, 25);
+        lblPassword.setForeground(Color.WHITE);
         add(lblPassword);
 
         JPasswordField txtPassword = new JPasswordField();
@@ -46,6 +51,7 @@ public class PainelSignUp extends JPanel {
 
         JLabel lblConfirmarPassword = new JLabel("Confirmar Password:");
         lblConfirmarPassword.setBounds(10, 200, 120, 25);
+        lblConfirmarPassword.setForeground(Color.WHITE);
         add(lblConfirmarPassword);
 
         JPasswordField txtConfirmarPassword = new JPasswordField();
@@ -53,15 +59,20 @@ public class PainelSignUp extends JPanel {
         add(txtConfirmarPassword);
 
         JCheckBox chkMusico = new JCheckBox("Sou Músico");
-        chkMusico.setBounds(140, 250, 150, 25);
+        chkMusico.setBounds(140, 250, 100, 25);
+        chkMusico.setBackground(new Color(70, 90, 120));
+        chkMusico.setForeground(Color.WHITE);
         add(chkMusico);
 
         JCheckBox chkConfirmar = new JCheckBox("Confirmo que os dados introduzidos são verdadeiros");
-        chkConfirmar.setBounds(10, 350, 500, 25);
+        chkConfirmar.setBounds(10, 350, 350, 25);
+        chkConfirmar.setBackground(new Color(70, 90, 120));
+        chkConfirmar.setForeground(Color.WHITE);
         add(chkConfirmar);
 
         JLabel lblPin = new JLabel("Pin:");
         lblPin.setBounds(10, 300, 120, 25);
+        lblPin.setForeground(Color.WHITE);
         lblPin.setVisible(false);  // Inicialmente invisível
         add(lblPin);
 
@@ -71,7 +82,7 @@ public class PainelSignUp extends JPanel {
         add(txtPinMusico);
 
         JButton btnVoltar = new JButton("Voltar");
-        btnVoltar.setBounds(10, 420, 70, 25);
+        btnVoltar.setBounds(10, 620, 70, 25);
         btnVoltar.addActionListener(e -> voltarPainelPrincipal());
         add(btnVoltar);
 
@@ -147,8 +158,8 @@ public class PainelSignUp extends JPanel {
         //Mostra mensagens de erro quando alguma verificação não é bem sucedida
         btnContinuar.addActionListener(e -> {
             armazenaFrame[0] = (FramePrincipal) SwingUtilities.getWindowAncestor((Component) e.getSource()); //vai buscar o componente (botão) que é acionado
-            String username = "";
-            String password = "";
+            String username = txtUsername.getText();
+            String password = String.valueOf(txtPassword.getPassword());
             if (!txtUsername.getText().isEmpty() && !String.valueOf(txtPassword.getPassword()).isEmpty() && Arrays.equals(txtPassword.getPassword(), txtConfirmarPassword.getPassword())) {
                 if (chkMusico.isSelected()) {
                     if (txtPinMusico.getText().isEmpty()) {
@@ -161,6 +172,8 @@ public class PainelSignUp extends JPanel {
                         String pin = txtPinMusico.getText();
                         Utilizador novoUtilizador = new Musico(username, password, pin);
                         framePrincipal.getRockstar().registo(novoUtilizador);
+                        JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso", "Registo bem sucedido" , JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println("Musico add");
                         framePrincipal.getContentPane().removeAll();
                         framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                         framePrincipal.revalidate();
@@ -171,6 +184,8 @@ public class PainelSignUp extends JPanel {
                     password = Arrays.toString(txtPassword.getPassword());
                     Utilizador novoUtilizador = new Cliente(username, password);
                     framePrincipal.getRockstar().registo(novoUtilizador);
+                    JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso", "Registo bem sucedido" , JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Cliente add");
                     framePrincipal.getContentPane().removeAll();
                     framePrincipal.getContentPane().add(new PainelLogin(framePrincipal));
                     framePrincipal.revalidate();
@@ -214,6 +229,7 @@ public class PainelSignUp extends JPanel {
         }
         return true;
     }
+
 }
 
 
