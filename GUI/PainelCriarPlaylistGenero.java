@@ -7,11 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PainelCriarPlaylistGenero extends JPanel {
-    private Utilizador utilizador;
-    private FramePrincipal framePrincipal;
-    public PainelCriarPlaylistGenero(FramePrincipal framePrincipal,Utilizador utilizador ) {
-        this.utilizador = (Cliente) utilizador;
-        this.framePrincipal=framePrincipal;
+    private Cliente cliente;
+    public PainelCriarPlaylistGenero(FramePrincipal framePrincipal) {
+        this.cliente = cliente;
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
@@ -22,9 +20,9 @@ public class PainelCriarPlaylistGenero extends JPanel {
         lblNumero.setForeground(Color.WHITE);
         add(lblNumero);
 
-        JTextField txtNumero = new JTextField();
-        txtNumero.setBounds(25, 200, 150, 25);
-        add(txtNumero);
+        JTextField txtUsername = new JTextField();
+        txtUsername.setBounds(25, 200, 150, 25);
+        add(txtUsername);
 
         JLabel lblNome = new JLabel("Nome:");
         lblNome.setBounds(200, 175, 150, 25);
@@ -71,30 +69,12 @@ public class PainelCriarPlaylistGenero extends JPanel {
         grupo.add(chkPimba);
 
         JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(340,450,100,25);
+        btnContinuar.setBounds(300,350,100,25);
         add(btnContinuar);
 
 
-        btnContinuar.addActionListener(e ->{
-            String genero = "Rock";
-            if (chkPop.isSelected()) {
-                genero = "Pop";
-            } else if (chkPimba.isSelected()) {
-                genero = "Pimba";
-            } else if (chkHipHop.isSelected()) {
-                genero = "Hip Hop";
-            }
-            criaPlaylistGenero(genero,Integer.parseInt(txtNumero.getText()),txtNome.getText());
-            txtNome.setText("");
-            txtNumero.setText("");
-        });
+        setVisible(true);
 
-
-        setVisible(false);
-
-    }
-    public void criaPlaylistGenero(String genero, int num, String titulo){
-        framePrincipal.getRockstar().addPlaylistGenero((Cliente) this.utilizador,genero,num,titulo);
     }
 
 }
