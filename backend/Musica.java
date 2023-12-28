@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Musica implements Serializable {
     private String titulo;
-    private Musico autor;
+    private String autor;
     private String genero;
     private boolean activa;
     private LocalDate dataLancamento;
@@ -15,7 +15,7 @@ public class Musica implements Serializable {
     private ArrayList<String> votosUtilizadores;
     double rating;
 
-    public Musica(String titulo, String genero, LocalDate data, Musico autor,double valor) {
+    public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
         this.titulo = titulo;
         this.genero = genero;
         this.dataLancamento=data;
@@ -60,7 +60,7 @@ public class Musica implements Serializable {
         this.activa = false;
     }
 
-    public Musico getAutor() {
+    public String getAutor() {
         return autor;
     }
 

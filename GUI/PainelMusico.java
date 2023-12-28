@@ -1,22 +1,14 @@
 package GUI;
 
 import backend.Musico;
-import backend.Utilizador;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PainelMusico extends JPanel {
     private FramePrincipal framePrincipal;
     private Musico musico;
-    private JButton btnVerAlbuns;
-    private JButton btnVerMusicas;
-    private JButton btnCriarAlbum;
-    private JButton btnAddMusica;
-    private JButton btnPesquisa;
-    private JButton btnOrdenarMusicas;
-    private JButton btnEstatisticas;
-    private JButton btnLogout;
-
 
 
     /**
@@ -26,36 +18,92 @@ public class PainelMusico extends JPanel {
     public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
         this.framePrincipal = framePrincipal;
         this.musico = musico;
-        this.btnVerAlbuns = new JButton("Os meus álbuns");
-        this.btnVerMusicas = new JButton("As minhas músicas");
-        this.btnCriarAlbum = new JButton("Novo álbum");
-        this.btnAddMusica = new JButton("Adicionar música");
-        this.btnPesquisa = new JButton("Pesquisar música");
-        this.btnOrdenarMusicas = new JButton("Ordenar as minhas músicas");
-        this.btnEstatisticas = new JButton("Ver estatísticas");
-        this.btnLogout = new JButton("Logout");
-        btnLogout.setBounds(525, 5, 56, 26);
+        JLabel labelUsername = new JLabel("Bem-vindo: " + getMusico().getUsername());
+        JButton btnVerAlbuns = new JButton("Os meus álbuns");
+        JButton btnVerMusicas = new JButton("As minhas músicas");
+        JButton btnCriarAlbum = new JButton("+ Álbum");
+        JButton btnAddMusica = new JButton("+ Música");
+        JButton btnOrdenarMusicas = new JButton("Ordenar as minhas músicas");
+        JButton btnEstatisticas = new JButton("Ver estatísticas");
+        JButton btnLogout = new JButton("Logout");
+        JLabel lblPesquisar = new JLabel("Pesquisar");
+        JTextField txtPesquisar = new JTextField();
+        PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
+        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal);
+        PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal);
 
 
-        btnVerAlbuns.setBounds(250,50,170,25);
-        btnVerMusicas.setBounds(250,75,170,25);
-        btnCriarAlbum.setBounds(250,100,170,25);
-        btnAddMusica.setBounds(250,125,170,25);
-        btnPesquisa.setBounds(250,175,170,25);
-        btnOrdenarMusicas.setBounds(250,150,170,25);
-        btnEstatisticas.setBounds(250,200,170,25);
+        setBackground(new Color(70, 90, 120));
+        setLayout(null);
+
+        labelUsername.setBounds(20,5,200,25);
+        labelUsername.setForeground(Color.WHITE);
+
+        lblPesquisar.setBounds(200  , 5, 100, 25);
+        lblPesquisar.setForeground(Color.WHITE);
+        lblPesquisar.setVisible(true);
+        add(lblPesquisar);
+
+        txtPesquisar.setBounds(270, 5, 200, 25);
+        txtPesquisar.setVisible(true);
+        add(txtPesquisar);
+
+        JRadioButton chkPesquisaNome = new JRadioButton("Nome");
+        chkPesquisaNome.setBounds(270, 25, 100, 25);
+        chkPesquisaNome.setBackground(new Color(70, 90, 120));
+        chkPesquisaNome.setForeground(Color.WHITE);
+        add(chkPesquisaNome);
+
+        JRadioButton chkPesquisaGenero = new JRadioButton("Género");
+        chkPesquisaGenero.setBounds(390, 25, 100, 25);
+        chkPesquisaGenero.setBackground(new Color(70, 90, 120));
+        chkPesquisaGenero.setForeground(Color.WHITE);
+        add(chkPesquisaGenero);
+
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(chkPesquisaNome);
+        grupo.add(chkPesquisaGenero);
+
+        btnLogout.setBounds(725, 10, 75, 25);
+        btnVerAlbuns.setBounds(20,100,200,25);
+        btnVerMusicas.setBounds(20,150,200,25);
+        btnOrdenarMusicas.setBounds(20,250,200,25);
+        btnEstatisticas.setBounds(20,200,200,25);
+        btnCriarAlbum.setBounds(500,10,100,25);
+        btnAddMusica.setBounds(600,10,100,25);
+        painelOpcoes.setBounds(275,0,450,500);
+        painelAlbum.setBounds(275,100,450,100);
+        painelMusica.setBounds(275,100,450,100);
+
+
+        btnAddMusica.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        painelOpcoes.add(painelAlbum);
+        painelOpcoes.add(painelMusica);
+        painelAlbum.setVisible(true);
+
+
+
+        add(labelUsername);
         add(btnLogout);
-
         add(btnVerAlbuns);
         add(btnVerMusicas);
         add(btnCriarAlbum);
         add(btnAddMusica);
-        add(btnPesquisa);
         add(btnOrdenarMusicas);
         add(btnEstatisticas);
+        add(painelOpcoes);
         
         setVisible(true);
 
+    }
 
+    public Musico getMusico() {
+        return musico;
     }
 }
