@@ -34,7 +34,7 @@ public class Musico extends Utilizador{
         return pin;
     }
     public Musica criaMusica(String titulo, String genero, LocalDate data, double valor){
-        Musica musica = new Musica(titulo,genero,data,this,valor);
+        Musica musica = new Musica(titulo,genero,data,this.username,valor);
         return musica;
     }
 }
