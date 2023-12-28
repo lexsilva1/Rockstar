@@ -59,4 +59,7 @@ public class Rockstar implements Serializable {
         this.musicas.add(musico.criaMusica(titulo,genero,data,valor));
     }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
 }
