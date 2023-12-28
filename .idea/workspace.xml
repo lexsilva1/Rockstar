@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
 
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="alterações dos botoes login e botao continuar no login">
-      <change afterPath="$PROJECT_DIR$/GUI/PainelAddMusica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/PainelCriarAlbum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelOpcoesCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Musica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
 
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +51,10 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Alexandre3",
+
+    "git-widget-placeholder": "ines3",
+
+
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
