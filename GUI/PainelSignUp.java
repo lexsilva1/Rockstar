@@ -12,13 +12,13 @@ import java.util.Arrays;
 public class PainelSignUp extends JPanel {
     protected final FramePrincipal [] armazenaFrame;
     private FramePrincipal framePrincipal;
-    private Image imagemDeFundo;
+
 
     public PainelSignUp(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         this.armazenaFrame = new FramePrincipal[] {framePrincipal};
-        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
 
+        setBackground(new Color(70, 90, 120));
         setLayout(null);
 
         JLabel lblNome = new JLabel("Nome completo:");
@@ -60,13 +60,13 @@ public class PainelSignUp extends JPanel {
 
         JCheckBox chkMusico = new JCheckBox("Sou Músico");
         chkMusico.setBounds(140, 250, 100, 25);
-        chkMusico.setBackground(Color.BLACK);
+        chkMusico.setBackground(new Color(70, 90, 120));
         chkMusico.setForeground(Color.WHITE);
         add(chkMusico);
 
         JCheckBox chkConfirmar = new JCheckBox("Confirmo que os dados introduzidos são verdadeiros");
         chkConfirmar.setBounds(10, 350, 350, 25);
-        chkConfirmar.setBackground(Color.BLACK);
+        chkConfirmar.setBackground(new Color(70, 90, 120));
         chkConfirmar.setForeground(Color.WHITE);
         add(chkConfirmar);
 
@@ -229,12 +229,7 @@ public class PainelSignUp extends JPanel {
         }
         return true;
     }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Desenha a imagem de fundo
-        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
-    }
+
 }
 
 

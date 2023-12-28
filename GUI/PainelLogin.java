@@ -9,18 +9,18 @@ import java.awt.event.*;
 
 class PainelLogin extends JPanel {
     private FramePrincipal framePrincipal;
-    private Image imagemDeFundo;
+
 
     public PainelLogin(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
-        this.imagemDeFundo = new ImageIcon(getClass().getResource("/resources/ockstar.png")).getImage();
+        setBackground(new Color(70, 90, 120));
 
 
         setLayout(null);
 
         JRadioButton chkMostrarCliente = new JRadioButton("Cliente");
         chkMostrarCliente.setBounds(50, 100, 100, 25);
-        chkMostrarCliente.setBackground(Color.BLACK);
+        chkMostrarCliente.setBackground(new Color(70, 90, 120));
         chkMostrarCliente.setForeground(Color.WHITE);
         add(chkMostrarCliente);
 
@@ -48,7 +48,7 @@ class PainelLogin extends JPanel {
 
         JCheckBox chkMostrarPass = new JCheckBox("Mostrar Password");
         chkMostrarPass.setBounds(600, 325, 150, 25);
-        chkMostrarPass.setBackground(Color.BLACK);
+        chkMostrarPass.setBackground(new Color(70, 90, 120));
         chkMostrarPass.setForeground(Color.WHITE);
         chkMostrarPass.setVisible(false);
         chkMostrarPass.addItemListener(e -> {
@@ -80,7 +80,7 @@ class PainelLogin extends JPanel {
 
         JRadioButton chkMostrarMusico = new JRadioButton("Músico");
         chkMostrarMusico.setBounds(50, 250, 100, 25);
-        chkMostrarMusico.setBackground(Color.BLACK);
+        chkMostrarMusico.setBackground(new Color(70, 90, 120));
         chkMostrarMusico.setForeground(Color.WHITE);
         add(chkMostrarMusico);
 
@@ -98,7 +98,7 @@ class PainelLogin extends JPanel {
 
         JCheckBox chkMostrarPin = new JCheckBox("Mostrar Pin");
         chkMostrarPin.setBounds(600, 425, 150, 25);
-        chkMostrarPin.setBackground(Color.BLACK);
+        chkMostrarPin.setBackground(new Color(70, 90, 120));
         chkMostrarPin.setForeground(Color.WHITE);
         chkMostrarPin.setVisible(false);
         chkMostrarPin.addItemListener(e -> {
@@ -134,7 +134,7 @@ class PainelLogin extends JPanel {
 
         JRadioButton chkMostrarAdmin = new JRadioButton("Admin");
         chkMostrarAdmin.setBounds(50, 400, 100, 25);
-        chkMostrarAdmin.setBackground(Color.BLACK);
+        chkMostrarAdmin.setBackground(new Color(70, 90, 120));
         chkMostrarAdmin.setForeground(Color.WHITE);
         add(chkMostrarAdmin);
 
@@ -252,11 +252,5 @@ class PainelLogin extends JPanel {
         framePrincipal.repaint();
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Desenha a imagem de fundo
-        g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
-    }
 }
 

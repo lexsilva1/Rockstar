@@ -12,6 +12,7 @@ public class PainelCriarPlaylist extends JPanel {
         this.cliente = cliente;
 
         setLayout(null);
+        setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
 
         JLabel lblUsername = new JLabel("Nome da Playlist:");
