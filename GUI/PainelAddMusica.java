@@ -1,42 +1,33 @@
 package GUI;
 
 import backend.Cliente;
-import backend.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PainelCriarPlaylistGenero extends JPanel {
+public class PainelAddMusica extends JPanel {
     private Cliente cliente;
-    public PainelCriarPlaylistGenero(FramePrincipal framePrincipal) {
+    public PainelAddMusica(FramePrincipal framePrincipal) {
         this.cliente = cliente;
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
 
-        JLabel lblNumero = new JLabel("Número de músicas:");
-        lblNumero.setBounds(25, 175, 150, 25);
-        lblNumero.setForeground(Color.WHITE);
-        add(lblNumero);
 
-        JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(25, 200, 150, 25);
-        add(txtUsername);
+        JLabel lblTitulo = new JLabel("Título");
+        JTextField txtTitulo = new JTextField();
 
-        JLabel lblNome = new JLabel("Nome:");
-        lblNome.setBounds(200, 175, 150, 25);
-        lblNome.setForeground(Color.WHITE);
-        add(lblNome);
+        JLabel lblGenero = new JLabel("Género:");
+        lblGenero.setBounds(25, 100, 220, 25);
+        lblGenero.setForeground(Color.WHITE);
+        add(lblGenero);
 
-        JTextField txtNome = new JTextField();
-        txtNome.setBounds(200, 200, 150, 25);
-        add(txtNome);
+        JLabel lblData = new JLabel("Data de lançamento:");
+        JTextField txtData = new JTextField();
 
-        JLabel lblOpcao = new JLabel("Escolha o género:");
-        lblOpcao.setBounds(25, 100, 220, 25);
-        lblOpcao.setForeground(Color.WHITE);
-        add(lblOpcao);
+        JLabel lblValor = new JLabel("Valor (€):");
+        JTextField txtValor = new JTextField();
 
         JRadioButton chkPop = new JRadioButton("Pop");
         chkPop.setBounds(25, 125, 85, 25);
@@ -67,10 +58,6 @@ public class PainelCriarPlaylistGenero extends JPanel {
         grupo.add(chkRock);
         grupo.add(chkHipHop);
         grupo.add(chkPimba);
-
-        JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(340,450,100,25);
-        add(btnContinuar);
 
 
         setVisible(false);
