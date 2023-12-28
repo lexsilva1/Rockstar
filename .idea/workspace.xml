@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
 
-    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="alterações dos botoes login e botao continuar no login">
+    <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico">
+      <change afterPath="$PROJECT_DIR$/GUI/TabelaMusicas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelAddMusica.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelAddMusica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Musica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Rockstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Rockstar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" afterDir="false" />
 
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703689284612</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="avanço painel musico">
+      <option name="closed" value="true" />
+      <created>1703765765172</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1703765765172</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,7 +189,8 @@
     <MESSAGE value="Alterações PainelLogin&#10;criei metodo para o login musico que acrescenta o pin, em relação aos restantes" />
     <MESSAGE value="Já dá!" />
     <MESSAGE value="alterações dos botoes login e botao continuar no login" />
-    <option name="LAST_COMMIT_MESSAGE" value="alterações dos botoes login e botao continuar no login" />
+    <MESSAGE value="avanço painel musico" />
+    <option name="LAST_COMMIT_MESSAGE" value="avanço painel musico" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

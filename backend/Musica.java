@@ -35,13 +35,16 @@ public class Musica implements Serializable {
     public double getPreco(){
         return historicoPreco.getLast().getPreco();
     }
-    public double rating(){
-        int soma=0;
-        for( int i : this.classificacoes){
-            soma+=i;
-
+    public double rating() {
+        int soma = 0;
+        if (classificacoes.isEmpty()) {
+            return 0;
+        } else {
+            for (int i : this.classificacoes) {
+                soma += i;
+            }
+            return soma / this.classificacoes.size();
         }
-        return soma/this.classificacoes.size();
     }
 
     public ArrayList<String> getVotosUtilizadores() {
@@ -62,6 +65,22 @@ public class Musica implements Serializable {
 
     public String getAutor() {
         return autor;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public boolean getActiva() {
+        return activa;
+    }
+
+    public LocalDate getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public double getRating() {
+        return rating;
     }
 
     public void setTitulo(String titulo) {
