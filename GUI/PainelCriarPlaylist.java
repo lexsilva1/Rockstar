@@ -30,7 +30,6 @@ public class PainelCriarPlaylist extends JPanel {
 
         setVisible(true);
 
-Alexandre3
 
     }
 
