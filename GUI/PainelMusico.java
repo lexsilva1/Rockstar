@@ -30,7 +30,8 @@ public class PainelMusico extends JPanel {
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
         PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal);
-        PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal);
+        PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
+        TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
 
 
         setBackground(new Color(70, 90, 120));
@@ -71,22 +72,29 @@ public class PainelMusico extends JPanel {
         btnEstatisticas.setBounds(20,200,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
-        painelOpcoes.setBounds(275,0,450,500);
-        painelAlbum.setBounds(275,100,450,100);
-        painelMusica.setBounds(275,100,450,100);
+        painelOpcoes.setBounds(275,50,450,500);
+        painelAlbum.setBounds(275,0,450,100);
+        painelMusica.setBounds(275,0,450,100);
 
 
         btnAddMusica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            painelMusica.setVisible(true);
+            }
+        });
 
+        btnVerMusicas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tabelaMusicas.setVisible(true);
+                tabelaMusicas.getScrollPane().setVisible(true);
             }
         });
 
         painelOpcoes.add(painelAlbum);
         painelOpcoes.add(painelMusica);
-        painelAlbum.setVisible(true);
-
+        painelOpcoes.add(tabelaMusicas);
 
 
         add(labelUsername);
