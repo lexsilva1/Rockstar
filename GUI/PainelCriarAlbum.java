@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
     public PainelCriarAlbum(FramePrincipal framePrincipal, Utilizador utilizador) {
-        super(framePrincipal,(Musico) utilizador);
+        super(framePrincipal);
 
 
         JButton btnAddMusica = new JButton("+");
