@@ -10,7 +10,7 @@ public class Main {
         FramePrincipal frame = new FramePrincipal();
         frame.setVisible(true);
 
-      /*Admin admin = new Admin("toy","password");
+     /*Admin admin = new Admin("toy","password");
         Cliente cliente = new Cliente("joaosilva","password");
         Musico musico = new Musico("inesisabel","password","1234");
 

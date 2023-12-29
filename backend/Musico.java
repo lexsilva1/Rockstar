@@ -20,13 +20,20 @@ public class Musico extends Utilizador{
                 System.out.println("a musica não pode ser inactivada por si");
         }
     }
-    public void actualizaTitulo(Musica musica, String titulo){
-        for ( Musica m : musicas){
-            if (m.equals(musica) && this.equals(musica.getAutor())){
+    public void actualizaTitulo(Musica musica, String titulo) {
+        for (Musica m : musicas) {
+            if (m.equals(musica) && this.equals(musica.getAutor())) {
                 musica.setTitulo(titulo);
                 System.out.println("Titulo alterado");
-            } else
-                System.out.println("a musica não pode ser alterada por si");
+            }
+        }
+    }
+
+    public void actualizaPreco(Musica musica, Double preco){
+        for ( Musica m : musicas){
+            if (m.equals(musica) && this.equals(musica.getAutor())){
+                musica.alterarPreco(preco);
+            }
         }
     }
 
