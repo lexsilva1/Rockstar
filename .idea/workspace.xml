@@ -8,9 +8,11 @@
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico" />
 =======
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico">
+      <change afterPath="$PROJECT_DIR$/GUI/PainelMusicasLoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lupa.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCarrinhoCompras.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCarrinhoCompras.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
     </list>
 >>>>>>> origin/ines3
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703865150194</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="avanço painel musico">
+      <option name="closed" value="true" />
+      <created>1703867937572</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703867937572</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

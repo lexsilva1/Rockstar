@@ -1,9 +1,11 @@
 package GUI;
 
 import backend.Cliente;
+import backend.Musica;
 import backend.Utilizador;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,13 +19,16 @@ public class PainelCliente extends JPanel{
     private JButton btnOrdenarMusicas;
     private JButton btnLogout;
     private BotaoCarrinho btnCarrinhoCompras;
+    private BotaoLupa btnLupa;
     private JLabel labelUsername; //Colocar o username visivel
     private JButton btnSaldo; //Colocar o saldo visível
+    private JButton btnLoja;
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelMinhasMusicas painelMinhasMusicas;
     private PainelCarrinhoCompras painelCarrinhoCompras;
+    private PainelMusicasLoja painelMusicasLoja;
 
 
 
@@ -44,13 +49,16 @@ public class PainelCliente extends JPanel{
         this.btnOrdenarMusicas = new JButton("Ordenar as minhas músicas");
         this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
         this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
+        this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
+        this.btnLoja = new JButton("Loja");
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
         this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
+        this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
 
 
 
@@ -82,6 +90,8 @@ public class PainelCliente extends JPanel{
                 exibirJanelaCarregarSaldo();
             }
         });
+        btnLoja.setBounds(20,350,200,25);
+        btnLoja.addActionListener(e -> abrirPainelMusicasLoja());
         painelOpcoesCliente.setBounds(275,100,450,500);
         painelCriarPlaylist.setBounds(275,100,450,500);
         painelCriarPlaylistGenero.setBounds(275,100,450,500);
@@ -94,6 +104,8 @@ public class PainelCliente extends JPanel{
         txtPesquisar.setBounds(370, 5, 200, 25);
         txtPesquisar.setVisible(true);
         add(txtPesquisar);
+
+        btnLupa.setBounds(580,5,20,20);
 
         JRadioButton chkPesquisaNome = new JRadioButton("Nome");
         chkPesquisaNome.setBounds(370, 30, 100, 25);
@@ -110,7 +122,44 @@ public class PainelCliente extends JPanel{
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
+        btnLupa.addActionListener((ActionEvent e) ->{
+            JPanel painel =new JPanel();
+            painel.setLayout(new BorderLayout());
+            painel.setBackground(new Color(70, 90, 120));
+            painel.setPreferredSize(new Dimension(450, 500));
+            DefaultTableModel modeloTabela = new DefaultTableModel();
+            modeloTabela.addColumn("Título");
+            modeloTabela.addColumn("Género");
+            modeloTabela.addColumn("Data Lançamento");
+            modeloTabela.addColumn("Rating");
+            modeloTabela.addColumn("Preço");
+            modeloTabela.addColumn("Ações");
+            if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
+                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parametro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+            }else if( chkPesquisaNome.isSelected()) {
+                for (Musica a : framePrincipal.getRockstar().getMusicas() ){
+                    if(a.getTitulo().equals(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                    }
+                }
 
+            } else if (chkPesquisaGenero.isSelected()) {
+                for (Musica a : framePrincipal.getRockstar().getMusicas()){
+                    if(a.getGenero().equals(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                    }
+                }
+
+            }
+            JTable tabela = new JTable(modeloTabela);
+
+            JScrollPane scrollPane = new JScrollPane(tabela);
+            scrollPane.setVisible(true);
+            painel.add(scrollPane, BorderLayout.CENTER);
+            painel.setVisible(true);
+            abrirPainelPesquisa(painel);
+
+        });
 
 
         add(btnVerPlaylists);
@@ -123,6 +172,9 @@ public class PainelCliente extends JPanel{
         add(labelUsername);
         add(btnSaldo);
         add(painelOpcoesCliente);
+        add(btnLupa);
+        add(btnLoja);
+        painelOpcoesCliente.add(painelMusicasLoja);
 
 
 
@@ -139,6 +191,16 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
+    private void abrirPainelPesquisa(JPanel painel) {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painel);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
+
 
     private void abrirPainelMinhasMusicas() {
         // Remover todos os componentes do painelOpcoesCliente
@@ -171,27 +233,32 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.repaint();
     }
 
+    private void abrirPainelMusicasLoja() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painelMusicasLoja);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
+
     private void exibirJanelaCarregarSaldo() {
-        // Simular o saldo atual (substitua por lógica real)
         double saldoAtual = getCliente().getSaldo();
 
-        // Obter o montante a carregar do usuário
+
         String input = JOptionPane.showInputDialog(this,
                 "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
                 JOptionPane.QUESTION_MESSAGE);
 
-        // Verificar se o user pressionou Cancelar ou fechou a janela
         if (input != null && !input.isEmpty()) {
                 double montanteCarregar = Double.parseDouble(input);
 
-                // Aqui você pode realizar a lógica de carregamento de saldo com o valor 'montanteCarregar'
-                // Substitua a linha abaixo pela lógica real de carregamento de saldo
                 JOptionPane.showMessageDialog(this, "Saldo carregado com sucesso: " + montanteCarregar,
                         "Carregar Saldo", JOptionPane.INFORMATION_MESSAGE);
                 cliente.setSaldo(saldoAtual+montanteCarregar);
                 saldoAtual = cliente.getSaldo();
 
-                // Atualizar o rótulo do saldo com o novo valor
                 btnSaldo.setText("Saldo: " + (saldoAtual));
                 revalidate();
                 repaint();
