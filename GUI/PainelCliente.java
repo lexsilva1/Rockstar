@@ -5,6 +5,8 @@ import backend.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PainelCliente extends JPanel{
     private Cliente cliente;
@@ -16,7 +18,7 @@ public class PainelCliente extends JPanel{
     private JButton btnLogout;
     private BotaoCarrinho btnCarrinhoCompras;
     private JLabel labelUsername; //Colocar o username visivel
-    private JLabel labelSaldo; //Colocar o saldo visível
+    private JButton btnSaldo; //Colocar o saldo visível
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
@@ -43,7 +45,7 @@ public class PainelCliente extends JPanel{
         this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
         this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
-        this.labelSaldo = new JLabel("Saldo: " + String.valueOf(getCliente().getSaldo()));
+        this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
@@ -70,8 +72,16 @@ public class PainelCliente extends JPanel{
         btnCarrinhoCompras.addActionListener(e -> abrirPainelCarrinhoCompras());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
-        labelSaldo.setBounds(100,600,200,25);
-        labelSaldo.setForeground(Color.WHITE);
+        btnSaldo.setBounds(100,600,200,25);
+        btnSaldo.setForeground(Color.WHITE);
+        btnSaldo.setBackground(new Color(70, 90, 120));
+        btnSaldo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Exibir janela de carregamento de saldo
+                exibirJanelaCarregarSaldo();
+            }
+        });
         painelOpcoesCliente.setBounds(275,100,450,500);
         painelCriarPlaylist.setBounds(275,100,450,500);
         painelCriarPlaylistGenero.setBounds(275,100,450,500);
@@ -102,6 +112,7 @@ public class PainelCliente extends JPanel{
         grupo.add(chkPesquisaGenero);
 
 
+
         add(btnVerPlaylists);
         add(btnVerMusicas);
         add(btnCriarPlaylist);
@@ -110,7 +121,7 @@ public class PainelCliente extends JPanel{
         add(btnLogout);
         add(btnCarrinhoCompras);
         add(labelUsername);
-        add(labelSaldo);
+        add(btnSaldo);
         add(painelOpcoesCliente);
 
 
@@ -158,6 +169,36 @@ public class PainelCliente extends JPanel{
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
+    }
+
+    private void exibirJanelaCarregarSaldo() {
+        // Simular o saldo atual (substitua por lógica real)
+        double saldoAtual = getCliente().getSaldo();
+
+        // Obter o montante a carregar do usuário
+        String input = JOptionPane.showInputDialog(this,
+                "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
+                JOptionPane.QUESTION_MESSAGE);
+
+        // Verificar se o user pressionou Cancelar ou fechou a janela
+        if (input != null && !input.isEmpty()) {
+                double montanteCarregar = Double.parseDouble(input);
+
+                // Aqui você pode realizar a lógica de carregamento de saldo com o valor 'montanteCarregar'
+                // Substitua a linha abaixo pela lógica real de carregamento de saldo
+                JOptionPane.showMessageDialog(this, "Saldo carregado com sucesso: " + montanteCarregar,
+                        "Carregar Saldo", JOptionPane.INFORMATION_MESSAGE);
+                cliente.setSaldo(saldoAtual+montanteCarregar);
+                saldoAtual = cliente.getSaldo();
+
+                // Atualizar o rótulo do saldo com o novo valor
+                btnSaldo.setText("Saldo: " + (saldoAtual));
+                revalidate();
+                repaint();
+            } else{
+                JOptionPane.showMessageDialog(this, "Por favor, insira um valor válido.", "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+            }
     }
 
     private void voltarPainelPrincipal() {
