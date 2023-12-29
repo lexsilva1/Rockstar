@@ -1,9 +1,12 @@
+package backend;
+
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Utilizador {
+public abstract class Utilizador implements Serializable {
     protected String username;
     private String password;;
-    private boolean activo;
+    protected boolean activo;
 
     public Utilizador(String username, String password) {
         this.username = username;
@@ -35,4 +38,11 @@ public abstract class Utilizador {
     public String getPassword() {
         return password;
     }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+
+
 }

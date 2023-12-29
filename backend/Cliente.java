@@ -1,3 +1,5 @@
+package backend;
+
 import java.util.ArrayList;
 
 public class Cliente extends Utilizador {
@@ -29,7 +31,7 @@ public class Cliente extends Utilizador {
     }
 
     public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
-        Playlist playlist = new Playlist(this.username, titulo, genero);
+        Playlist playlist = new Playlist(this.username, titulo);
         for (int i = 0; i < num; i++) {
             for (Compra c : historicoCompras) {
                 for (Musica m : c.getMusicas()) {
@@ -42,7 +44,7 @@ public class Cliente extends Utilizador {
         if (playlist.getMusicas().size() < num) {//caso o cliente não tenha musicas daquele genero suficientes, a playlist é criada com as musicas disponiveis
             System.out.println("Foram adicionadas apenas " + playlist.getMusicas().size() + " músicas.");
         }
-        System.out.println("Playlist criada com sucesso");
+        System.out.println("backend.Playlist criada com sucesso");
         return playlist;
     }
 
@@ -94,5 +96,9 @@ public class Cliente extends Utilizador {
 
             }
         }
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
 }

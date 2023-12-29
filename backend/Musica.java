@@ -1,9 +1,12 @@
+package backend;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Musica {
+public class Musica implements Serializable {
     private String titulo;
-    private Musico autor;
+    private String autor;
     private String genero;
     private boolean activa;
     private LocalDate dataLancamento;
@@ -12,7 +15,7 @@ public class Musica {
     private ArrayList<String> votosUtilizadores;
     double rating;
 
-    public Musica(String titulo, String genero, LocalDate data, Musico autor,double valor) {
+    public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
         this.titulo = titulo;
         this.genero = genero;
         this.dataLancamento=data;
@@ -32,13 +35,16 @@ public class Musica {
     public double getPreco(){
         return historicoPreco.getLast().getPreco();
     }
-    public double rating(){
-        int soma=0;
-        for( int i : this.classificacoes){
-            soma+=i;
-
+    public double rating() {
+        int soma = 0;
+        if (classificacoes.isEmpty()) {
+            return 0;
+        } else {
+            for (int i : this.classificacoes) {
+                soma += i;
+            }
+            return soma / this.classificacoes.size();
         }
-        return soma/this.classificacoes.size();
     }
 
     public ArrayList<String> getVotosUtilizadores() {
@@ -52,4 +58,33 @@ public class Musica {
     public String getGenero() {
         return genero;
     }
+
+    public void inactiva() {
+        this.activa = false;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public boolean getActiva() {
+        return activa;
+    }
+
+    public LocalDate getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 }
+
