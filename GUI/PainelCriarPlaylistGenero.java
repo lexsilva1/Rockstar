@@ -76,10 +76,6 @@ public class PainelCriarPlaylistGenero extends JPanel {
         add(btnContinuar);
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ines3
         setVisible(true);
 
     }

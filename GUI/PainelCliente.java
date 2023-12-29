@@ -28,10 +28,8 @@ public class PainelCliente extends JPanel{
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelMinhasMusicas painelMinhasMusicas;
     private PainelCarrinhoCompras painelCarrinhoCompras;
-<<<<<<< HEAD
-=======
     private PainelMusicasLoja painelMusicasLoja;
->>>>>>> ines3
+
 
 
 
@@ -61,10 +59,8 @@ public class PainelCliente extends JPanel{
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
         this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
-<<<<<<< HEAD
-=======
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
->>>>>>> ines3
+
 
 
 
