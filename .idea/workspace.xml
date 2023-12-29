@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico">
-      <change afterPath="$PROJECT_DIR$/GUI/PainelMusicasLoja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lupa.png" afterDir="false" />
+
+      <change afterPath="$PROJECT_DIR$/GUI/PainelAddSaldo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarAlbum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +59,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ines3",
+    "git-widget-placeholder": "Alexandre3",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>

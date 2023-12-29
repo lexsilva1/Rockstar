@@ -29,7 +29,7 @@ public class PainelMusico extends JPanel {
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
-        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal);
+        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal,this.musico);
         PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
 
 
