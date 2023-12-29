@@ -24,6 +24,7 @@ public class PainelCliente extends JPanel{
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelPesquisar painelPesquisar;
+    private PainelAddSaldo painelsaldo;
 
 
 
@@ -51,8 +52,9 @@ public class PainelCliente extends JPanel{
         this.labelSaldo = new JLabel("Saldo: " + String.valueOf(getCliente().getSaldo()));
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal,cliente);
         this.painelPesquisar = new PainelPesquisar(framePrincipal);
+        this.painelsaldo = new PainelAddSaldo(framePrincipal,cliente,this.labelSaldo);
 
 
 
@@ -70,6 +72,7 @@ public class PainelCliente extends JPanel{
         btnPesquisa.setBounds(20,350,200,25);
         btnPesquisa.addActionListener(e -> abrirPainelPesquisar());
         btnCarregamento.setBounds(20,400,200,25);
+        btnCarregamento.addActionListener(e -> abrirPainelAddSaldo());
         btnLogout.setBounds(635, 10, 75, 25);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         btnCarrinhoCompras.setBounds(725,10,50,30);
@@ -80,6 +83,7 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.setBounds(275,100,450,500);
         painelCriarPlaylist.setBounds(275,100,450,500);
         painelCriarPlaylistGenero.setBounds(275,100,450,500);
+        painelsaldo.setBounds(275,100,450,500);
 
         lblPesquisar.setBounds(300  , 5, 100, 25);
         lblPesquisar.setForeground(Color.WHITE);
@@ -130,6 +134,7 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelCriarPlaylist.setVisible(true);
         painelOpcoesCliente.add(painelCriarPlaylist);
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
@@ -149,7 +154,18 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelCriarPlaylistGenero.setVisible(true);
         painelOpcoesCliente.add(painelCriarPlaylistGenero);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
+    private void abrirPainelAddSaldo() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelAddSaldo ao painelOpcoesCliente
+        painelsaldo.setVisible(true);
+        painelOpcoesCliente.add(painelsaldo);
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();

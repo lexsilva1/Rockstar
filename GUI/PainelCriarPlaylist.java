@@ -28,7 +28,7 @@ public class PainelCriarPlaylist extends JPanel {
         add(btnAdicionar);
 
 
-        setVisible(true);
+        setVisible(false);
 
 
     }
