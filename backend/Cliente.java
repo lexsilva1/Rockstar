@@ -14,8 +14,8 @@ public class Cliente extends Utilizador {
         this.historicoCompras = new ArrayList<>();
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public void carregaSaldo(double saldo) {
+        this.saldo += saldo;
     }
 
     public void votar(int voto, Musica musica) {//ainda vai sofrer alterações para ficar com HashMap
