@@ -16,15 +16,16 @@ public class PainelCriarPlaylist extends JPanel {
         setPreferredSize(new Dimension(450, 500));
 
         JLabel lblUsername = new JLabel("Nome da Playlist:");
-        lblUsername.setBounds(20, 200, 120, 25);
+        lblUsername.setBounds(20, 100, 120, 25);
+        lblUsername.setForeground(Color.WHITE);
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(150, 200, 250, 25);
+        txtUsername.setBounds(150, 100, 250, 25);
         add(txtUsername);
 
         JButton btnAdicionar = new JButton("Adicionar");
-        btnAdicionar.setBounds(340,450,100,25);
+        btnAdicionar.setBounds(300,250,100,25);
         add(btnAdicionar);
 
 

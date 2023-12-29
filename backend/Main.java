@@ -20,7 +20,7 @@ public class Main {
         rockstar.getUtilizadores().add(cliente);
         rockstar.getUtilizadores().add(musico);
 
-        try {
+        /*try {
             FileInputStream fileIn = new FileInputStream("Rockstar.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             try {
