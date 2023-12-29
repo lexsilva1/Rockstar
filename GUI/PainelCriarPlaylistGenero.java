@@ -4,6 +4,8 @@ import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class PainelCriarPlaylistGenero extends JPanel {
@@ -16,6 +18,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
+
 
         JLabel lblNumero = new JLabel("Número de músicas:");
         lblNumero.setBounds(25, 175, 150, 25);
@@ -75,6 +78,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
         add(btnContinuar);
 
 
+
         btnContinuar.addActionListener(e ->{
             String genero = "Rock";
             if (chkPop.isSelected()) {
@@ -88,6 +92,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
             txtNome.setText("");
             txtNumero.setText("");
         });
+
 
 
         setVisible(false);
