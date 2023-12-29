@@ -9,7 +9,7 @@ import java.io.*;
 public class FramePrincipal extends JFrame {
     private Rockstar rockstar;
     protected PainelPrincipal painelPrincipal;
-    private static final String FILE_PATH = "Rockstar.ser";
+    private final String FILE_PATH = "Rockstar.ser";
     public FramePrincipal() {
         super("Rockstar");
 
