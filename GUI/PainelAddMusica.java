@@ -31,12 +31,12 @@ public class PainelAddMusica extends JPanel {
         txtTitulo.setForeground(Color.BLACK);
         add(txtTitulo);
 
-        JLabel lblGenero = new JLabel("Género:");
+        JLabel lblGenero = new JLabel("Género");
         lblGenero.setBounds(25, 100, 220, 25);
         lblGenero.setForeground(Color.WHITE);
         add(lblGenero);
 
-        JLabel lblData = new JLabel("Data de lançamento:");
+        JLabel lblData = new JLabel("Data de lançamento");
         lblData.setBounds(25, 190, 220, 25);
         lblData.setForeground(Color.WHITE);
         add(lblData);
@@ -46,8 +46,8 @@ public class PainelAddMusica extends JPanel {
         txtAno.setForeground(Color.BLACK);
         add(txtAno);
 
-        JLabel lblAno = new JLabel("Ano ");
-        lblAno.setBounds(250, 220, 50, 25);
+        JLabel lblAno = new JLabel("Ano");
+        lblAno.setBounds(260, 210, 50, 25);
         lblAno.setForeground(Color.WHITE);
         add(lblAno);
 
@@ -56,8 +56,8 @@ public class PainelAddMusica extends JPanel {
         txtMes.setForeground(Color.BLACK);
         add(txtMes);
 
-        JLabel lblMes = new JLabel("Mês ");
-        lblMes.setBounds(300, 220, 50, 25);
+        JLabel lblMes = new JLabel("Mês");
+        lblMes.setBounds(310, 210, 50, 25);
         lblMes.setForeground(Color.WHITE);
         add(lblMes);
 
@@ -66,13 +66,13 @@ public class PainelAddMusica extends JPanel {
         txtDia.setForeground(Color.BLACK);
         add(txtDia);
 
-        JLabel lblDia = new JLabel("Dia ");
-        lblDia.setBounds(350, 220, 50, 25);
+        JLabel lblDia = new JLabel("Dia");
+        lblDia.setBounds(360, 210, 50, 25);
         lblDia.setForeground(Color.WHITE);
         add(lblDia);
 
 
-        JLabel lblValor = new JLabel("Valor (€):");
+        JLabel lblValor = new JLabel("Valor (€)");
         lblValor.setBounds(25, 250, 220, 25);
         lblValor.setForeground(Color.WHITE);
         add(lblValor);
@@ -121,6 +121,10 @@ public class PainelAddMusica extends JPanel {
         btnCriar.setBounds(380, 310, 75, 25);
         btnCriar.setForeground(Color.BLACK);
 
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(280, 310, 100, 25);
+        btnCancelar.setForeground(Color.BLACK);
+
         btnCriar.addActionListener(e -> {
             if (txtTitulo.getText().isEmpty() || txtAno.getText().isEmpty() || txtMes.getText().isEmpty() || txtDia.getText().isEmpty() || txtValor.getText().isEmpty() || grupo.getSelection() == null) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
@@ -148,7 +152,20 @@ public class PainelAddMusica extends JPanel {
             }
         });
 
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtTitulo.setText("");
+                txtAno.setText("");
+                txtMes.setText("");
+                txtDia.setText("");
+                txtValor.setText("");
+                setVisible(false);
+            }
+        });
+
         add(btnCriar);
+        add(btnCancelar);
         add(lblTitulo);
         add(txtTitulo);
         add(lblGenero);
