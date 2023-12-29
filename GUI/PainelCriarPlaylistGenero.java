@@ -69,11 +69,11 @@ public class PainelCriarPlaylistGenero extends JPanel {
         grupo.add(chkPimba);
 
         JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(340,450,100,25);
+        btnContinuar.setBounds(300,350,100,25);
         add(btnContinuar);
 
 
-        setVisible(false);
+        setVisible(true);
 
     }
 
