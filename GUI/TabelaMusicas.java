@@ -5,8 +5,6 @@ import backend.Musico;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +37,6 @@ public class TabelaMusicas extends JPanel {
         modeloTabela.addColumn("Rating");
         modeloTabela.addColumn("Preço");
         modeloTabela.addColumn("Activa");
-        modeloTabela.addColumn("Ações");
 
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
             if (a.getAutor().equals(musico.getUsername())) {

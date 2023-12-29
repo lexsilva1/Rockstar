@@ -3,8 +3,6 @@ package GUI;
 import backend.Musico;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PainelMusico extends JPanel {
     private FramePrincipal framePrincipal;
@@ -29,7 +27,7 @@ public class PainelMusico extends JPanel {
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
-        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal,this.musico);
+        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal, musico);
         PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
 
 
@@ -105,7 +103,7 @@ public class PainelMusico extends JPanel {
         add(btnOrdenarMusicas);
         add(btnEstatisticas);
         add(painelOpcoes);
-        
+
         setVisible(true);
 
     }

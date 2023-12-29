@@ -33,6 +33,7 @@ public class PainelCliente extends JPanel{
 
 
 
+
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelCliente', para a página inicial de um utlizador do tipo 'Cliente',
      * com um buffer duplo e um flow layout.
@@ -55,10 +56,11 @@ public class PainelCliente extends JPanel{
         this.btnLoja = new JButton("Loja");
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal,cliente);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
         this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
+
 
 
 
@@ -80,7 +82,7 @@ public class PainelCliente extends JPanel{
         btnCarrinhoCompras.addActionListener(e -> abrirPainelCarrinhoCompras());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
-        btnSaldo.setBounds(100,600,200,25);
+        btnSaldo.setBounds(100,600,100,25);
         btnSaldo.setForeground(Color.WHITE);
         btnSaldo.setBackground(new Color(70, 90, 120));
         btnSaldo.addActionListener(new ActionListener() {
@@ -129,6 +131,7 @@ public class PainelCliente extends JPanel{
             painel.setPreferredSize(new Dimension(450, 500));
             DefaultTableModel modeloTabela = new DefaultTableModel();
             modeloTabela.addColumn("Título");
+            modeloTabela.addColumn("Artista");
             modeloTabela.addColumn("Género");
             modeloTabela.addColumn("Data Lançamento");
             modeloTabela.addColumn("Rating");
@@ -138,20 +141,21 @@ public class PainelCliente extends JPanel{
                 JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parametro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             }else if( chkPesquisaNome.isSelected()) {
                 for (Musica a : framePrincipal.getRockstar().getMusicas() ){
-                    if(a.getTitulo().equals(txtPesquisar.getText())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                    if(a.getTitulo().contains(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
                     }
                 }
 
             } else if (chkPesquisaGenero.isSelected()) {
                 for (Musica a : framePrincipal.getRockstar().getMusicas()){
-                    if(a.getGenero().equals(txtPesquisar.getText())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                    if(a.getGenero().contains(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
                     }
                 }
 
             }
             JTable tabela = new JTable(modeloTabela);
+            tabela.setAutoCreateRowSorter(true);
 
             JScrollPane scrollPane = new JScrollPane(tabela);
             scrollPane.setVisible(true);
@@ -245,8 +249,6 @@ public class PainelCliente extends JPanel{
 
     private void exibirJanelaCarregarSaldo() {
         double saldoAtual = getCliente().getSaldo();
-
-
         String input = JOptionPane.showInputDialog(this,
                 "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
                 JOptionPane.QUESTION_MESSAGE);
@@ -256,7 +258,7 @@ public class PainelCliente extends JPanel{
 
                 JOptionPane.showMessageDialog(this, "Saldo carregado com sucesso: " + montanteCarregar,
                         "Carregar Saldo", JOptionPane.INFORMATION_MESSAGE);
-                cliente.setSaldo(saldoAtual+montanteCarregar);
+                cliente.carregaSaldo(montanteCarregar);
                 saldoAtual = cliente.getSaldo();
 
                 btnSaldo.setText("Saldo: " + (saldoAtual));

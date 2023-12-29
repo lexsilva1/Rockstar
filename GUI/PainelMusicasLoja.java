@@ -29,8 +29,14 @@ public class PainelMusicasLoja extends JPanel {
         setPreferredSize(new Dimension(450, 500));
 
         // Criar o modelo da tabela
-        modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
+
         modeloTabela.addColumn("Título");
+        modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
         modeloTabela.addColumn("Data Lançamento");
         modeloTabela.addColumn("Rating");
@@ -38,19 +44,17 @@ public class PainelMusicasLoja extends JPanel {
         modeloTabela.addColumn("Ações");
 
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-
-                modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
-
+            modeloTabela.addRow(new Object[]{a.getTitulo(),a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
         }
 
         tabela = new JTable(modeloTabela);
-
+        tabela.setAutoCreateRowSorter(true);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
         add(scrollPane, BorderLayout.CENTER);
         setVisible(true);
-    }
 
+    }
 }
 
 
