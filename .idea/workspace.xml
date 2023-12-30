@@ -6,15 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/FramePrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCarrinhoCompras.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCarrinhoCompras.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PainelMinhasMusicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMinhasMusicas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelMusicasLoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusicasLoja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/TabelaMusicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/TabelaMusicas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/PesquisarMusica.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,15 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ines3",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ines3&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\inesb\OneDrive\Documentos\GitHub\Rockstar\resources" />
@@ -181,7 +179,23 @@
       <option name="project" value="LOCAL" />
       <updated>1703867937572</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="avanço painel musico">
+      <option name="closed" value="true" />
+      <created>1703888863449</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703888863449</updated>
+    </task>
+    <task id="LOCAL-00014" summary="avanço painel musico">
+      <option name="closed" value="true" />
+      <created>1703889031039</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703889031039</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,17 +216,6 @@
     <MESSAGE value="alterações dos botoes login e botao continuar no login" />
     <MESSAGE value="avanço painel musico" />
     <option name="LAST_COMMIT_MESSAGE" value="avanço painel musico" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GUI/FramePrincipal.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
