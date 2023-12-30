@@ -11,18 +11,16 @@ public class Musico extends Utilizador{
         this.pin = pin;
         this.musicas=new ArrayList<>();
     }
-    public void inactivaMusica(Musica musica){
-        for ( Musica m : musicas){
-            if (m.equals(musica) && this.equals(musica.getAutor())){
-                musica.inactiva();
-                System.out.println("musica inactivada");
-            } else
-                System.out.println("a musica não pode ser inactivada por si");
+    public void inactivaMusica(Musica musica, boolean activo) {
+        for (Musica m : musicas) {
+            if (m.equals(musica) && this.username.equals(musica.getAutor())) {
+                musica.inactiva(activo);
+            }
         }
     }
     public void actualizaTitulo(Musica musica, String titulo) {
         for (Musica m : musicas) {
-            if (m.equals(musica) && this.equals(musica.getAutor())) {
+            if (m.equals(musica) && this.username.equals(musica.getAutor())) {
                 musica.setTitulo(titulo);
                 System.out.println("Titulo alterado");
             }
@@ -31,7 +29,7 @@ public class Musico extends Utilizador{
 
     public void actualizaPreco(Musica musica, Double preco){
         for ( Musica m : musicas){
-            if (m.equals(musica) && this.equals(musica.getAutor())){
+            if (m.equals(musica) && this.username.equals(musica.getAutor())){
                 musica.alterarPreco(preco);
             }
         }
