@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TabelaMusicas extends JPanel {
-    private Musico musico;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
@@ -23,7 +22,9 @@ public class TabelaMusicas extends JPanel {
      *                       e sobre o qual queremos obter informações
      */
     public TabelaMusicas(FramePrincipal framePrincipal, Musico musico) {
-        this.musico = musico;
+
+
+
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
@@ -40,7 +41,13 @@ public class TabelaMusicas extends JPanel {
 
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
             if (a.getAutor().equals(musico.getUsername())) {
-                modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                String estado;
+                if (a.getActiva()) {
+                    estado = "Sim";
+                } else {
+                    estado = "Não";
+                }
+                modeloTabela.addRow(new Object[]{a.getTitulo(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), estado});
             }
         }
 
@@ -94,19 +101,55 @@ public class TabelaMusicas extends JPanel {
                 int selectedRow = tabela.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    String preco = (String) tabela.getValueAt(selectedRow, 4);
+                    double preco = (double) tabela.getValueAt(selectedRow, 4);
+                    String titulo = (String) tabela.getValueAt(selectedRow, 0);
 
                     String input = JOptionPane.showInputDialog(framePrincipal, "Preço Atual: " + preco + "\n Novo Preço", "Alterar Preço", JOptionPane.QUESTION_MESSAGE);
 
                     if (input != null && !input.isEmpty()) {
                         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-                            if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(preco)) {
+                            if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
                                 musico.actualizaPreco(a, Double.parseDouble(input));
                                 JOptionPane.showMessageDialog(framePrincipal, "Preço alterado com sucesso", "Alterar Preço", JOptionPane.INFORMATION_MESSAGE);
                                 int modelRow = tabela.convertRowIndexToModel(selectedRow);
-                                modeloTabela.setValueAt(input, modelRow, 0);
+                                modeloTabela.setValueAt(a.getPreco(), modelRow, 4);
                                 tabela.repaint();
                             }
+                        }
+                    }
+                }
+            }
+        });
+
+        altEstado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tabela.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    String estado;
+                    String titulo = (String) tabela.getValueAt(selectedRow, 0);
+
+                    for (Musica a : framePrincipal.getRockstar().getMusicas()) {
+                        if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
+                            if (a.getActiva()) {
+                                musico.inactivaMusica(a,false);
+                            } else {
+                                musico.inactivaMusica(a,true);
+                            }
+                            JOptionPane.showMessageDialog(framePrincipal, "Estado alterado com sucesso", "Alterar Estado", JOptionPane.INFORMATION_MESSAGE);
+                            if (a.getActiva()) {
+                                estado = "Sim";
+                                int modelRow = tabela.convertRowIndexToModel(selectedRow);
+                                modeloTabela.setValueAt(estado, modelRow, 5);
+                                tabela.repaint();
+                            } else {
+                                estado = "Não";
+                                int modelRow = tabela.convertRowIndexToModel(selectedRow);
+                                modeloTabela.setValueAt(estado, modelRow, 5);
+                                tabela.repaint();
+                            }
+
                         }
                     }
                 }
