@@ -56,7 +56,7 @@ public class PainelCliente extends JPanel{
         this.btnLoja = new JButton("Loja");
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
         this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
