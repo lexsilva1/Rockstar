@@ -15,10 +15,11 @@ public class PainelCarrinhoCompras extends JPanel {
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JLabel labelCustoTotal;
-    private ArrayList<Musica> musicas;
-    public PainelCarrinhoCompras(FramePrincipal framePrincipal) {
+    private PainelCliente painelCliente;
+    public PainelCarrinhoCompras(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
         this.cliente = cliente;
-        this.musicas=new ArrayList<>();
+        this.painelCliente=painelCliente;
+
         setLayout(null); // Layout nulo
 
         setBackground(new Color(70, 90, 120));
@@ -29,20 +30,17 @@ public class PainelCarrinhoCompras extends JPanel {
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
-       // modeloTabela.addColumn("Data Lançamento");
+        modeloTabela.addColumn("Data Lançamento");
         modeloTabela.addColumn("Rating");
         modeloTabela.addColumn("Preço");
-       // modeloTabela.addColumn("Ações");
 
 
         // Adicionar dados de exemplo à tabela
-       // for (Musica a : this.musicas ){
-              // modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
-          // }
+        for (Musica a : cliente.getCarrinhoCompras() ){
+               modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+        }
 
-        adicionarMusica("Música 1", "Artista 1", "Pop", 4.5, 2.99);
-        adicionarMusica("Música 2", "Artista 2", "Rock", 3.8, 1.99);
-        adicionarMusica("Música 3", "Artista 3", "Jazz", 5.0, 3.49);
+
 
         // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
@@ -56,10 +54,15 @@ public class PainelCarrinhoCompras extends JPanel {
         add(scrollPane);
 
         // mostrar o custo total
-        labelCustoTotal = new JLabel("Custo Total: " + calcularCustoTotal());
+        labelCustoTotal = new JLabel("Custo Total: " + calcularCustoTotal() + " €");
         labelCustoTotal.setForeground(Color.WHITE);
         labelCustoTotal.setBounds(10, 120, 200, 25); // Definir posição e tamanho manualmente
         add(labelCustoTotal);
+
+        JButton btnReset= new JButton("Limpar Carrinho");
+        btnReset.setBounds(290,130,130,25);
+        btnReset.addActionListener(e -> limparCarrinhoCompras(cliente,painelCliente));
+        add(btnReset);
 
         JButton btnContinuar = new JButton("Campanhas");
         btnContinuar.setBounds(10,200,100,25);
@@ -67,29 +70,35 @@ public class PainelCarrinhoCompras extends JPanel {
 
         JButton btnFinalizarCompra= new JButton("Finalizar Compra");
         btnFinalizarCompra.setBounds(290,200,130,25);
+        btnFinalizarCompra.addActionListener(e -> comprarMusicas(cliente,painelCliente));
         add(btnFinalizarCompra);
+
     }
 
-    private void adicionarMusica(String nome, String artista, String genero, double rating, double preco) {
-        // Adicionar uma nova linha à tabela
-        modeloTabela.addRow(new Object[]{nome, artista, genero, rating, preco});
-    }
 
     private String calcularCustoTotal() {
         double custoTotal = 0.0;
         int rowCount = modeloTabela.getRowCount();
 
         for (int i = 0; i < rowCount; i++) {
-            double preco = (double) modeloTabela.getValueAt(i, 4); // 4 é o índice da coluna de preço
+            double preco = (double) modeloTabela.getValueAt(i, 5); // 5 é o índice da coluna de preço
             custoTotal += preco;
         }
-
         // Formatando o custo total para exibir duas casas decimais
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(custoTotal);
     }
 
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
+    public void limparCarrinhoCompras (Cliente cliente,PainelCliente painelCliente){
+        cliente.getCarrinhoCompras().removeAll(cliente.getCarrinhoCompras());
+        painelCliente.abrirPainelCarrinhoCompras();
     }
-}
+
+    public void comprarMusicas ( Cliente cliente, PainelCliente painelCliente) {
+        cliente.compra();
+        limparCarrinhoCompras(cliente,painelCliente);
+        painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
+
+        }
+    }
+

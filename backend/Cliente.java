@@ -6,9 +6,11 @@ public class Cliente extends Utilizador {
     private double saldo;
     private ArrayList<Musica> carrinhoCompras;
     private ArrayList<Compra> historicoCompras;
+    private ArrayList<Musica> musicas;
 
     public Cliente(String username, String password) {
         super(username, password);
+        this.musicas=new ArrayList<>();
         this.saldo = 0;
         this.carrinhoCompras = new ArrayList<>();
         this.historicoCompras = new ArrayList<>();
@@ -57,14 +59,9 @@ public class Cliente extends Utilizador {
         }
         if (this.saldo >= total) {//confirmação de saldo
             this.saldo -= total;
-            for (Musica m : carrinhoCompras) {
-                carrinhoCompras.remove(m);//esvazia o carrinho de compras
-            }
+            musicas.addAll(carrinhoCompras);
             historicoCompras.add(compra);//adiciona a compra ao historico do cliente
-            System.out.println("compra efectuada com sucesso");
-        } else
-            System.out.println("saldo insuficiente");
-
+        }
     }
 
     public void compraPromo(Promo promo) {
@@ -85,6 +82,7 @@ public class Cliente extends Utilizador {
                 if (this.saldo >= total) {
                     this.saldo -= total;
                     for (Musica m : carrinhoCompras) {
+                        musicas.add(m);
                         carrinhoCompras.remove(m);//esvazia o carrinho de compras
                     }
                     historicoCompras.add(compra);//adiciona a compra ao historico do cliente
@@ -100,5 +98,13 @@ public class Cliente extends Utilizador {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public ArrayList<Musica> getCarrinhoCompras() {
+        return carrinhoCompras;
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
     }
 }
