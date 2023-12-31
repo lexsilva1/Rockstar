@@ -4,6 +4,8 @@ import backend.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class PainelCriarPlaylistGenero extends JPanel {
     private Utilizador utilizador;
@@ -17,7 +19,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
     protected JRadioButton chkHipHop;
     protected JRadioButton chkPimba;
     protected ButtonGroup grupo;
-    protected JButton btnCriar ;
+    protected JButton btnCriar;
 
 
 
@@ -86,6 +88,26 @@ public class PainelCriarPlaylistGenero extends JPanel {
         this.btnCriar = new JButton("Criar");
         btnCriar.setBounds(300,350,100,25);
         add(btnCriar);
+
+        txtNumero.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caractere = e.getKeyChar();
+                if (!Character.isDigit(caractere)) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
 
         setVisible(true);

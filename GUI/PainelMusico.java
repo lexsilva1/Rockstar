@@ -101,6 +101,15 @@ public class PainelMusico extends JPanel {
             repaint();
         });
 
+        btnVerAlbuns.addActionListener(e -> {
+            painelOpcoes.removeAll();
+            TabelaAlbuns tabelaAlbuns = new TabelaAlbuns(framePrincipal, musico);
+            painelOpcoes.add(tabelaAlbuns);
+            tabelaAlbuns.setVisible(true);
+            revalidate();
+            repaint();
+        });
+
 
         add(labelUsername);
         add(btnLogout);

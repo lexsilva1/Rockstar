@@ -19,6 +19,7 @@ public class Album extends GrupoMusicas{
     public int getNumFaixas() {
         return numFaixas;
     }
+
 }
 
 

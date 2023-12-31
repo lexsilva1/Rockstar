@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6affdaf3-5ee3-4faf-ab89-f3105b5a15b5" name="Changes" comment="avanço painel musico, tabela musicas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelAddMusica.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelAddMusica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelCriarAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarAlbum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelCriarPlaylistGenero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/TabelaMusicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/TabelaMusicas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Musica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Rockstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Rockstar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +30,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -176,7 +166,31 @@
       <option name="project" value="LOCAL" />
       <updated>1703871652083</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="avanço painel musico, tabela musicas">
+      <option name="closed" value="true" />
+      <created>1703966857583</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703966857583</updated>
+    </task>
+    <task id="LOCAL-00013" summary="avanço painel musico, tabela musicas">
+      <option name="closed" value="true" />
+      <created>1703966935309</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703966935309</updated>
+    </task>
+    <task id="LOCAL-00014" summary="avanço painel musico, tabela musicas">
+      <option name="closed" value="true" />
+      <created>1703966967092</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703966967092</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +210,7 @@
     <MESSAGE value="Já dá!" />
     <MESSAGE value="alterações dos botoes login e botao continuar no login" />
     <MESSAGE value="avanço painel musico" />
+    <MESSAGE value="Merge pull request #92 from lexsilva1/Alexandre3&#10;&#10;Alexandre3" />
     <MESSAGE value="avanço painel musico, tabela musicas" />
     <option name="LAST_COMMIT_MESSAGE" value="avanço painel musico, tabela musicas" />
   </component>
