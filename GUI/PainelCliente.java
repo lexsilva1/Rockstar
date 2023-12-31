@@ -29,10 +29,8 @@ public class PainelCliente extends JPanel{
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelMinhasMusicas painelMinhasMusicas;
-    private PainelCarrinhoCompras painelCarrinhoCompras;
     private PainelMusicasLoja painelMusicasLoja;
-
-
+    private FramePrincipal framePrincipal;
 
 
 
@@ -43,6 +41,7 @@ public class PainelCliente extends JPanel{
 
     public PainelCliente(FramePrincipal framePrincipal, Cliente cliente) {
         this.cliente = cliente;
+        this.framePrincipal = framePrincipal;
         this.btnVerPlaylists = new JButton("As minhas playlists");
         this.btnVerMusicas = new JButton("As minhas músicas");
         this.btnCriarPlaylist = new JButton("Nova playlist");
@@ -60,11 +59,9 @@ public class PainelCliente extends JPanel{
 
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
-        this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
-        this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
-
 
 
 
@@ -96,6 +93,7 @@ public class PainelCliente extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 // Exibir janela de carregamento de saldo
                 exibirJanelaCarregarSaldo();
+
             }
         });
 
@@ -236,10 +234,11 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.repaint();
     }
 
-    private void abrirPainelCarrinhoCompras() {
+    public void abrirPainelCarrinhoCompras() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        PainelCarrinhoCompras painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal, cliente,this);
         painelOpcoesCliente.add(painelCarrinhoCompras);
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
@@ -292,6 +291,9 @@ public class PainelCliente extends JPanel{
 
     public Cliente getCliente() {
         return cliente;
+    }
+    public JButton botaosaldo(){
+        return btnSaldo;
     }
 
 
