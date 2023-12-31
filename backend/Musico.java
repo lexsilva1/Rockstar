@@ -11,10 +11,12 @@ public class Musico extends Utilizador {
     public Musico(String username, String password, String pin) {
         super(username, password);
         this.pin = pin;
+
         this.musicas = new ArrayList<>();
         this.albuns = new ArrayList<>();
 
     }
+
 
     public void inactivaMusica(Musica musica, boolean activo) {
         for (Musica m : musicas) {
@@ -33,9 +35,11 @@ public class Musico extends Utilizador {
         }
     }
 
+
     public void actualizaPreco(Musica musica, Double preco) {
         for (Musica m : musicas) {
             if (m.equals(musica) && this.username.equals(musica.getAutor())) {
+
                 musica.alterarPreco(preco);
             }
         }
