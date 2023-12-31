@@ -10,6 +10,7 @@ public class FramePrincipal extends JFrame {
     private Rockstar rockstar;
     protected PainelPrincipal painelPrincipal;
     private static final String FILE_PATH = "Rockstar.ser";
+    //File file=new File("C:\\Users\\inesb\\OneDrive\\Documentos\\GitHub\\Rockstar\\Rockstar.ser");
     public FramePrincipal() {
         super("Rockstar");
 

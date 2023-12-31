@@ -42,9 +42,8 @@ public class Rockstar implements Serializable {
         return utilizadores;
     }
 
-    public void addPlaylistGenero(Cliente cliente,String genero,int num, String titulo){
-        Playlist nova =cliente.criaPlaylistGenero(genero,num,titulo);
-        this.grupoMusicas.add(nova);
+    public void addGrupoDeMusicas(GrupoMusicas grupoMusicas){
+        this.grupoMusicas.add(grupoMusicas);
     }
 
     public void addPromo (Admin admin, int cupoes, String nome, double desconto, LocalDate dataInicio, LocalDate dataFim){

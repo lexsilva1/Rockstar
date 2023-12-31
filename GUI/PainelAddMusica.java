@@ -12,9 +12,7 @@ import java.time.LocalDate;
 import java.util.Enumeration;
 
 public class PainelAddMusica extends JPanel {
-    private Musico musico;
     public PainelAddMusica(FramePrincipal framePrincipal, Musico musico) {
-        this.musico = musico;
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
@@ -142,12 +140,6 @@ public class PainelAddMusica extends JPanel {
                 }
                 framePrincipal.getRockstar().addMusica(musico, txtTitulo.getText(), genero, data, valor);
                 JOptionPane.showMessageDialog(null, "Música adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                txtTitulo.setText("");
-                txtAno.setText("");
-                txtMes.setText("");
-                txtDia.setText("");
-                txtValor.setText("");
                 this.setVisible(false);
             }
         });

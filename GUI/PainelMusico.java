@@ -29,7 +29,6 @@ public class PainelMusico extends JPanel {
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
-        PainelCriarAlbum painelAlbum = new PainelCriarAlbum(framePrincipal,this.musico);
         PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
 
 
@@ -72,9 +71,9 @@ public class PainelMusico extends JPanel {
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
         painelOpcoes.setBounds(275,50,450,500);
-        painelAlbum.setBounds(275,0,450,100);
         painelMusica.setBounds(275,0,450,100);
 
+        btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
         btnAddMusica.addActionListener(e -> {
             painelOpcoes.removeAll();
@@ -93,7 +92,23 @@ public class PainelMusico extends JPanel {
             repaint();
         });
 
-        painelOpcoes.add(painelAlbum);
+        btnCriarAlbum.addActionListener(e -> {
+            painelOpcoes.removeAll();
+            PainelCriarAlbum painelCriarAlbum = new PainelCriarAlbum(framePrincipal, musico);
+            painelOpcoes.add(painelCriarAlbum);
+            painelCriarAlbum.setVisible(true);
+            revalidate();
+            repaint();
+        });
+
+        btnVerAlbuns.addActionListener(e -> {
+            painelOpcoes.removeAll();
+            TabelaAlbuns tabelaAlbuns = new TabelaAlbuns(framePrincipal, musico);
+            painelOpcoes.add(tabelaAlbuns);
+            tabelaAlbuns.setVisible(true);
+            revalidate();
+            repaint();
+        });
 
 
         add(labelUsername);
@@ -105,12 +120,20 @@ public class PainelMusico extends JPanel {
         add(btnOrdenarMusicas);
         add(btnEstatisticas);
         add(painelOpcoes);
-        
+
         setVisible(true);
 
     }
 
     public Musico getMusico() {
         return musico;
+    }
+
+    private void voltarPainelPrincipal() {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelPrincipal(framePrincipal));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
     }
 }
