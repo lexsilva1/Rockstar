@@ -1,5 +1,8 @@
 package backend;
 
+import GUI.FramePrincipal;
+
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -45,9 +48,10 @@ public class Musico extends Utilizador {
         }
     }
 
-    public Musica criaMusica(String titulo, String genero, LocalDate data, double valor) {
+    public Musica criaMusica(FramePrincipal framePrincipal, String titulo, String genero, LocalDate data, double valor) {
         Musica musica = new Musica(titulo, genero, data, this.username, valor);
         this.musicas.add(musica);
+        framePrincipal.getRockstar().addMusica(framePrincipal,this, titulo, genero, data, valor);
         return musica;
     }
 
@@ -70,16 +74,29 @@ public class Musico extends Utilizador {
         return false;
     }
 
-    public void addAlbum(Album album) {
-        this.albuns.add(album);
+    public Album procurarAlbum (String titulo) {
+        for (Album a : albuns) {
+            if (a.getTitulo().equalsIgnoreCase(titulo)) {
+                return a;
+            }
+        }
+        return null;
     }
-
     public String getPin() {
         return pin;
     }
 
     public ArrayList<Album> getAlbuns() {
         return albuns;
+    }
+
+    public boolean musicaExiste (String titulo) {
+        for (Musica m : musicas) {
+            if (m.getTitulo().equalsIgnoreCase(titulo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
