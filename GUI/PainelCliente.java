@@ -33,6 +33,7 @@ public class PainelCliente extends JPanel{
 
 
 
+
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelCliente', para a página inicial de um utlizador do tipo 'Cliente',
      * com um buffer duplo e um flow layout.
@@ -55,10 +56,11 @@ public class PainelCliente extends JPanel{
         this.btnLoja = new JButton("Loja");
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
         this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
+
 
 
 

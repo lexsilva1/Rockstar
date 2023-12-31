@@ -20,5 +20,9 @@ public class GrupoMusicas implements Serializable {
     public void addMusica(Musica musica){
         musicas.add(musica);
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
 }
 

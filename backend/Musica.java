@@ -59,8 +59,10 @@ public class Musica implements Serializable {
         return genero;
     }
 
-    public void inactiva() {
-        this.activa = false;
+    public void inactiva(boolean activo) {
+        if (this.activa != activo) {
+            this.activa = activo;
+        }
     }
 
     public String getAutor() {
