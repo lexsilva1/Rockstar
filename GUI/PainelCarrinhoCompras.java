@@ -1,35 +1,45 @@
 package GUI;
 
 import backend.Cliente;
+import backend.Musica;
 import backend.Utilizador;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class PainelCarrinhoCompras extends JPanel {
     private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JLabel labelCustoTotal;
+    private ArrayList<Musica> musicas;
     public PainelCarrinhoCompras(FramePrincipal framePrincipal) {
         this.cliente = cliente;
-
+        this.musicas=new ArrayList<>();
         setLayout(null); // Layout nulo
 
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
         // Criar o modelo da tabela
-        modeloTabela = new DefaultTableModel();
+        modeloTabela=new DefaultTableModel();
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
-        modeloTabela.addColumn("Gênero");
+        modeloTabela.addColumn("Género");
+       // modeloTabela.addColumn("Data Lançamento");
         modeloTabela.addColumn("Rating");
-        modeloTabela.addColumn("Preço"); // Adicione uma coluna para o preço
+        modeloTabela.addColumn("Preço");
+       // modeloTabela.addColumn("Ações");
+
 
         // Adicionar dados de exemplo à tabela
+       // for (Musica a : this.musicas ){
+              // modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+          // }
+
         adicionarMusica("Música 1", "Artista 1", "Pop", 4.5, 2.99);
         adicionarMusica("Música 2", "Artista 2", "Rock", 3.8, 1.99);
         adicionarMusica("Música 3", "Artista 3", "Jazz", 5.0, 3.49);
@@ -55,10 +65,6 @@ public class PainelCarrinhoCompras extends JPanel {
         btnContinuar.setBounds(10,200,100,25);
         add(btnContinuar);
 
-        JButton btnCarregar = new JButton("Carregar Conta");
-        btnCarregar.setBounds(10,250,125,25);
-        add(btnCarregar);
-
         JButton btnFinalizarCompra= new JButton("Finalizar Compra");
         btnFinalizarCompra.setBounds(290,200,130,25);
         add(btnFinalizarCompra);
@@ -81,5 +87,9 @@ public class PainelCarrinhoCompras extends JPanel {
         // Formatando o custo total para exibir duas casas decimais
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(custoTotal);
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
     }
 }
