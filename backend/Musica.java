@@ -60,8 +60,9 @@ public class Musica implements Serializable {
     }
 
     public void inactiva(boolean activo) {
-        if(this.activa != activo){
-            this.activa=activo;
+
+        if (this.activa != activo) {
+            this.activa = activo;
         }
 
     }
