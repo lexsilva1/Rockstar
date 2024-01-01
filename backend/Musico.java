@@ -51,7 +51,6 @@ public class Musico extends Utilizador {
     public Musica criaMusica(FramePrincipal framePrincipal, String titulo, String genero, LocalDate data, double valor) {
         Musica musica = new Musica(titulo, genero, data, this.username, valor);
         this.musicas.add(musica);
-        framePrincipal.getRockstar().addMusica(framePrincipal,this, titulo, genero, data, valor);
         return musica;
     }
 
