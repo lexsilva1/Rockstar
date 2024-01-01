@@ -59,7 +59,7 @@ public class PainelCliente extends JPanel{
 
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal);
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
 

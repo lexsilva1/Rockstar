@@ -71,7 +71,7 @@ public class PainelMusicasLoja extends JPanel {
             if (linhaSelecionada != -1) {
                 String titulo = (String) tabela.getValueAt(linhaSelecionada, 0);
                 String artista = (String) tabela.getValueAt(linhaSelecionada, 1);
-
+                
 
                     for (Musica b : cliente.getMusicas()) {
                         if (b.getTitulo().equals(titulo)&& b.getAutor().equals(artista)) {
