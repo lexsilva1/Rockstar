@@ -1,6 +1,7 @@
 package GUI;
 
 import backend.Cliente;
+import backend.Musica;
 import backend.Utilizador;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class PainelMinhasMusicas extends JPanel {
     private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
-    public PainelMinhasMusicas(FramePrincipal framePrincipal) {
+    public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente) {
         this.cliente = cliente;
 
         setLayout(new BorderLayout());
@@ -20,15 +21,13 @@ public class PainelMinhasMusicas extends JPanel {
 
         // Criar o modelo da tabela
         modeloTabela = new DefaultTableModel();
-        modeloTabela.addColumn("Nome da Música");
+        modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
-        modeloTabela.addColumn("Gênero");
+        modeloTabela.addColumn("Género");
+        modeloTabela.addColumn("Data Lançamento");
         modeloTabela.addColumn("Rating");
-
-        // Adicionar dados de exemplo à tabela
-        adicionarMusica("Música 1", "Artista 1", "Pop", 4.5);
-        adicionarMusica("Música 2", "Artista 2", "Rock", 3.8);
-        adicionarMusica("Música 3", "Artista 3", "Jazz", 5.0);
+        modeloTabela.addColumn("Preço");
+        adicionarMusica(cliente);
 
         // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
@@ -40,8 +39,12 @@ public class PainelMinhasMusicas extends JPanel {
         add(painelRolagem, BorderLayout.CENTER);
     }
 
-    private void adicionarMusica(String nome, String artista, String genero, double rating) {
-        // Adicionar uma nova linha à tabela
-        modeloTabela.addRow(new Object[]{nome, artista, genero, rating});
+    public void adicionarMusica(Cliente cliente) {
+        for (Musica a : cliente.getMusicas()) {
+            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco()});
+            revalidate();
+            repaint();
+        }
     }
+
 }
