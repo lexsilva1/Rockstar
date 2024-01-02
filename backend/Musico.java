@@ -1,5 +1,7 @@
 package backend;
 
+import GUI.FramePrincipal;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,10 +13,12 @@ public class Musico extends Utilizador {
     public Musico(String username, String password, String pin) {
         super(username, password);
         this.pin = pin;
+
         this.musicas = new ArrayList<>();
         this.albuns = new ArrayList<>();
 
     }
+
 
     public void inactivaMusica(Musica musica, boolean activo) {
         for (Musica m : musicas) {
@@ -33,15 +37,17 @@ public class Musico extends Utilizador {
         }
     }
 
+
     public void actualizaPreco(Musica musica, Double preco) {
         for (Musica m : musicas) {
             if (m.equals(musica) && this.username.equals(musica.getAutor())) {
+
                 musica.alterarPreco(preco);
             }
         }
     }
 
-    public Musica criaMusica(String titulo, String genero, LocalDate data, double valor) {
+    public Musica criaMusica(FramePrincipal framePrincipal, String titulo, String genero, LocalDate data, double valor) {
         Musica musica = new Musica(titulo, genero, data, this.username, valor);
         this.musicas.add(musica);
         return musica;
@@ -52,7 +58,7 @@ public class Musico extends Utilizador {
         this.albuns.add(album);
     }
 
-    public boolean addMusicaAoALbum(Album album, Musica musica) {
+    public boolean addMusicaAoAlbum(Album album, Musica musica) {
         int faixasNoAlbum = 0;
 
         for (int i = 0; i <= album.getNumFaixas() - 1; i++) {
@@ -66,16 +72,29 @@ public class Musico extends Utilizador {
         return false;
     }
 
-    public void addAlbum(Album album) {
-        this.albuns.add(album);
+    public Album procurarAlbum (String titulo) {
+        for (Album a : albuns) {
+            if (a.getTitulo().equalsIgnoreCase(titulo)) {
+                return a;
+            }
+        }
+        return null;
     }
-
     public String getPin() {
         return pin;
     }
 
     public ArrayList<Album> getAlbuns() {
         return albuns;
+    }
+
+    public boolean musicaExiste (String titulo) {
+        for (Musica m : musicas) {
+            if (m.getTitulo().equalsIgnoreCase(titulo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

@@ -1,5 +1,7 @@
 package backend;
 
+import GUI.FramePrincipal;
+
 import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -54,9 +56,14 @@ public class Rockstar implements Serializable {
     public void registo (Utilizador a) {
         utilizadores.add(a);
     }
-    public void addMusica(Musico musico,String titulo, String genero, LocalDate data, double valor){
-        this.musicas.add(musico.criaMusica(titulo,genero,data,valor));
+
+    public void addMusica(Musica musica){
+        this.musicas.add(musica);
     }
+
+    /*public void addMusica(FramePrincipal framePrincipal, Musico musico, String titulo, String genero, LocalDate data, double valor){
+        this.musicas.add(musico.criaMusica(framePrincipal, titulo,genero,data,valor));
+    }*/
 
     public ArrayList<Musica> getMusicas() {
         return musicas;

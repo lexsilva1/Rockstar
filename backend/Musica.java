@@ -26,7 +26,7 @@ public class Musica implements Serializable {
         this.classificacoes=new ArrayList<>();
         this.votosUtilizadores=new ArrayList<>();
         this.autor=autor;
-        this.rating=rating();
+        //this.rating=rating();
     }
     public void alterarPreco(double preco){
         Preco novopreco= new Preco(preco);
@@ -35,7 +35,7 @@ public class Musica implements Serializable {
     public double getPreco(){
         return historicoPreco.getLast().getPreco();
     }
-    public double rating() {
+    /*public double rating() {
         int soma = 0;
         if (classificacoes.isEmpty()) {
             return 0;
@@ -45,7 +45,7 @@ public class Musica implements Serializable {
             }
             return soma / this.classificacoes.size();
         }
-    }
+    }*/
 
     public ArrayList<String> getVotosUtilizadores() {
         return votosUtilizadores;
@@ -60,9 +60,11 @@ public class Musica implements Serializable {
     }
 
     public void inactiva(boolean activo) {
+
         if (this.activa != activo) {
             this.activa = activo;
         }
+
     }
 
     public String getAutor() {
