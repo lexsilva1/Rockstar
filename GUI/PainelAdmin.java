@@ -1,18 +1,26 @@
 package GUI;
 
 import backend.Admin;
-import backend.Cliente;
+import backend.Musica;
 import backend.Utilizador;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PainelAdmin extends JPanel {
     private Admin admin;
-    private JButton btnPesquisarMusica;
-    private JButton btnPesquisarUtilizador;
     private JButton btnVerCampanhas;
     private JButton btnCriarCampanha;
+    private JButton btnCriarAdministrador;
+    private JLabel labelUsername; //Colocar o username visivel
     private JButton btnLogout;
+    private BotaoLupa btnLupa;
+    private PainelOpcoesAdmin painelOpcoesAdmin;
+    private PainelPesquisarUtilizador painelPesquisarUtilizador;
+    private PainelCriarAdmin painelCriarAdmin;
 
 
 
@@ -23,26 +31,152 @@ public class PainelAdmin extends JPanel {
      */
     public PainelAdmin(FramePrincipal framePrincipal, Admin admin) {
         this.admin = admin;
-        this.btnPesquisarMusica = new JButton("Pesquisar Música");
-        this.btnPesquisarUtilizador = new JButton("Pesquisar Utilizador");
         this.btnVerCampanhas = new JButton("Ver Campanhas");
         this.btnCriarCampanha = new JButton("Criar Campanha");
-        this.btnLogout = new JButton("Logout");
-        btnLogout.setBounds(525, 5, 56, 26);
+        this.btnCriarAdministrador = new JButton("Criar Administrador");
+        this.labelUsername = new JLabel("Bem-vindo: " + admin.getUsername());
+        JLabel lblPesquisar = new JLabel("Pesquisar");
+        JTextField txtPesquisar = new JTextField();
+        this.btnLupa = new BotaoLupa("/resources/lupa.png");
+        this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
+        this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
+        this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
+        this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
 
-        btnPesquisarMusica.setBounds(250,50,170,25);
-        btnPesquisarUtilizador.setBounds(250,75,170,25);
-        btnVerCampanhas.setBounds(250,100,170,25);
-        btnCriarCampanha.setBounds(250,125,170,25);
-        add(btnLogout);
 
-        add(btnPesquisarMusica);
-        add(btnPesquisarUtilizador);
+        setBackground(new Color(70, 90, 120));
+        setLayout(null);
+
+        btnVerCampanhas.setBounds(20,150,200,25);
+        btnCriarCampanha.setBounds(20,200,200,25);
+        btnCriarAdministrador.setBounds(20,250,200,25);
+        btnCriarAdministrador.addActionListener(e -> abrirPainelCriarAdmin());
+        btnLogout.setBounds(740, 10, 40, 30);
+        btnLogout.addActionListener(e -> voltarPainelPrincipal());
+        labelUsername.setBounds(20,5,200,25);
+        labelUsername.setForeground(Color.WHITE);
+        painelOpcoesAdmin.setBounds(275,100,450,500);
+
+        lblPesquisar.setBounds(300  , 5, 100, 25);
+        lblPesquisar.setForeground(Color.WHITE);
+        lblPesquisar.setVisible(true);
+        add(lblPesquisar);
+
+        txtPesquisar.setBounds(370, 5, 200, 25);
+        txtPesquisar.setVisible(true);
+        add(txtPesquisar);
+
+        btnLupa.setBounds(580,5,20,20);
+
+        JRadioButton chkPesquisaMusica = new JRadioButton("Música");
+        chkPesquisaMusica.setBounds(370, 30, 100, 25);
+        chkPesquisaMusica.setBackground(new Color(70, 90, 120));
+        chkPesquisaMusica.setForeground(Color.WHITE);
+        add(chkPesquisaMusica);
+
+        JRadioButton chkPesquisaUtilizador = new JRadioButton("Utilizador");
+        chkPesquisaUtilizador.setBounds(490, 30, 100, 25);
+        chkPesquisaUtilizador.setBackground(new Color(70, 90, 120));
+        chkPesquisaUtilizador.setForeground(Color.WHITE);
+        add(chkPesquisaUtilizador);
+
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(chkPesquisaMusica);
+        grupo.add(chkPesquisaUtilizador);
+        btnLupa.addActionListener((ActionEvent e) ->{
+            if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
+                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parametro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+        } else if( chkPesquisaMusica.isSelected()) {
+            JPanel painel =new JPanel();
+            painel.setLayout(new BorderLayout());
+            painel.setBackground(new Color(70, 90, 120));
+            painel.setPreferredSize(new Dimension(450, 500));
+            DefaultTableModel modeloTabela = new DefaultTableModel();
+            modeloTabela.addColumn("Título");
+            modeloTabela.addColumn("Artista");
+            modeloTabela.addColumn("Género");
+            modeloTabela.addColumn("Data Lançamento");
+            modeloTabela.addColumn("Rating");
+            modeloTabela.addColumn("Preço");
+            modeloTabela.addColumn("Ações");
+
+
+            for (Musica a : framePrincipal.getRockstar().getMusicas() ){
+                    if(a.getTitulo().contains(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                    }
+                }
+
+                JTable tabela = new JTable(modeloTabela);
+                tabela.setAutoCreateRowSorter(true);
+                JScrollPane scrollPane = new JScrollPane(tabela);
+                scrollPane.setVisible(true);
+                painel.add(scrollPane, BorderLayout.CENTER);
+                painel.setVisible(true);
+                abrirPainelPesquisa(painel);
+
+            } else if (chkPesquisaUtilizador.isSelected()) {
+                JPanel painel =new JPanel();
+                painel.setLayout(new BorderLayout());
+                painel.setBackground(new Color(70, 90, 120));
+                painel.setPreferredSize(new Dimension(450, 500));
+                DefaultTableModel modeloTabela = new DefaultTableModel();
+                modeloTabela.addColumn("Username");
+                modeloTabela.addColumn("Tipo de Utilizador");
+                modeloTabela.addColumn("Ativo");
+                modeloTabela.addColumn("password");
+                for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
+                    if(a.getUsername().contains(txtPesquisar.getText())){
+                        modeloTabela.addRow(new Object[]{a.getUsername(), a.getClass().getSimpleName(), a.isActivo(),a.getPassword()});
+                    }
+                }
+                JTable tabela = new JTable(modeloTabela);
+                tabela.setAutoCreateRowSorter(true);
+                JScrollPane scrollPane = new JScrollPane(tabela);
+                scrollPane.setVisible(true);
+                painel.add(scrollPane, BorderLayout.CENTER);
+                painel.setVisible(true);
+                abrirPainelPesquisa(painel);
+            }
+        });
+
+
         add(btnVerCampanhas);
         add(btnCriarCampanha);
-
+        add(btnCriarAdministrador);
+        add(btnLupa);
+        add(btnLogout);
+        add(painelOpcoesAdmin);
         setVisible(true);
 
+    }
 
+    private void abrirPainelPesquisa(JPanel painel) {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesAdmin.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesAdmin.add(painel);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesAdmin.revalidate();
+        painelOpcoesAdmin.repaint();
+    }
+
+    private void abrirPainelCriarAdmin() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesAdmin.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesAdmin.add(painelCriarAdmin);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesAdmin.revalidate();
+        painelOpcoesAdmin.repaint();
+    }
+
+
+    private void voltarPainelPrincipal () {
+        FramePrincipal framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
+        framePrincipal.getContentPane().removeAll();
+        framePrincipal.getContentPane().add(new PainelPrincipal(framePrincipal));
+        framePrincipal.revalidate();
+        framePrincipal.repaint();
     }
 }

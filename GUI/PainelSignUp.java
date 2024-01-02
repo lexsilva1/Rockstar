@@ -180,8 +180,6 @@ public class PainelSignUp extends JPanel {
                         framePrincipal.repaint();
                     }
                 } else {
-                    username = txtUsername.getText();
-                    password = Arrays.toString(txtPassword.getPassword());
                     Utilizador novoUtilizador = new Cliente(username, password);
                     framePrincipal.getRockstar().registo(novoUtilizador);
                     JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso", "Registo bem sucedido" , JOptionPane.INFORMATION_MESSAGE);

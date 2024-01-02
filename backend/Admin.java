@@ -17,7 +17,7 @@ public class Admin extends Utilizador {
     }
 
 
-    public void setUtilizador(Utilizador utilizador, boolean activo){
-        utilizador.setActivo(activo);
+    public void setActivo(){
+        this.activo= !this.activo;
     }
 }
