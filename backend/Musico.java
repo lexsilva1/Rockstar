@@ -2,7 +2,6 @@ package backend;
 
 import GUI.FramePrincipal;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -59,7 +58,7 @@ public class Musico extends Utilizador {
         this.albuns.add(album);
     }
 
-    public boolean addMusicaAoALbum(Album album, Musica musica) {
+    public boolean addMusicaAoAlbum(Album album, Musica musica) {
         int faixasNoAlbum = 0;
 
         for (int i = 0; i <= album.getNumFaixas() - 1; i++) {
