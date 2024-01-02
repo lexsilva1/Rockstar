@@ -10,17 +10,17 @@ public class Main {
         FramePrincipal frame = new FramePrincipal();
         frame.setVisible(true);
 
-/*     Admin admin = new Admin("toy","password");
+/*       Admin admin = new Admin("toy","password");
         Cliente cliente = new Cliente("joaosilva","password");
         Musico musico = new Musico("inesisabel","password","1234");
 
-        Rockstar rockstar = new Rockstar();
+       Rockstar rockstar = new Rockstar();
 
         rockstar.getUtilizadores().add(admin);
         rockstar.getUtilizadores().add(cliente);
         rockstar.getUtilizadores().add(musico);
 
-       Rockstar rockstar = null;
+     Rockstar rockstar = null;
 
         try {
             FileInputStream fileIn = new FileInputStream("Rockstar.ser");

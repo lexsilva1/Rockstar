@@ -22,15 +22,15 @@ public class PainelCliente extends JPanel{
     private BotaoLupa btnLupa;
     private JLabel labelUsername; //Colocar o username visivel
     private JButton btnSaldo; //Colocar o saldo visível
+
     private JButton btnLoja;
+
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelMinhasMusicas painelMinhasMusicas;
-    private PainelCarrinhoCompras painelCarrinhoCompras;
     private PainelMusicasLoja painelMusicasLoja;
-
-
+    private FramePrincipal framePrincipal;
 
 
 
@@ -41,6 +41,7 @@ public class PainelCliente extends JPanel{
 
     public PainelCliente(FramePrincipal framePrincipal, Cliente cliente) {
         this.cliente = cliente;
+        this.framePrincipal = framePrincipal;
         this.btnVerPlaylists = new JButton("As minhas playlists");
         this.btnVerMusicas = new JButton("As minhas músicas");
         this.btnCriarPlaylist = new JButton("Nova playlist");
@@ -53,14 +54,14 @@ public class PainelCliente extends JPanel{
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
+
         this.btnLoja = new JButton("Loja");
+
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
-        this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal);
-        this.painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal);
+        this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
-
 
 
 
@@ -82,7 +83,9 @@ public class PainelCliente extends JPanel{
         btnCarrinhoCompras.addActionListener(e -> abrirPainelCarrinhoCompras());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
+
         btnSaldo.setBounds(100,600,100,25);
+
         btnSaldo.setForeground(Color.WHITE);
         btnSaldo.setBackground(new Color(70, 90, 120));
         btnSaldo.addActionListener(new ActionListener() {
@@ -90,10 +93,13 @@ public class PainelCliente extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 // Exibir janela de carregamento de saldo
                 exibirJanelaCarregarSaldo();
+
             }
         });
+
         btnLoja.setBounds(20,350,200,25);
         btnLoja.addActionListener(e -> abrirPainelMusicasLoja());
+
         painelOpcoesCliente.setBounds(275,100,450,500);
         painelCriarPlaylist.setBounds(275,100,450,500);
         painelCriarPlaylistGenero.setBounds(275,100,450,500);
@@ -166,6 +172,7 @@ public class PainelCliente extends JPanel{
         });
 
 
+
         add(btnVerPlaylists);
         add(btnVerMusicas);
         add(btnCriarPlaylist);
@@ -227,10 +234,11 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.repaint();
     }
 
-    private void abrirPainelCarrinhoCompras() {
+    public void abrirPainelCarrinhoCompras() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        PainelCarrinhoCompras painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal, cliente,this);
         painelOpcoesCliente.add(painelCarrinhoCompras);
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
@@ -249,6 +257,7 @@ public class PainelCliente extends JPanel{
 
     private void exibirJanelaCarregarSaldo() {
         double saldoAtual = getCliente().getSaldo();
+
         String input = JOptionPane.showInputDialog(this,
                 "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
                 JOptionPane.QUESTION_MESSAGE);
@@ -260,6 +269,7 @@ public class PainelCliente extends JPanel{
                         "Carregar Saldo", JOptionPane.INFORMATION_MESSAGE);
                 cliente.carregaSaldo(montanteCarregar);
                 saldoAtual = cliente.getSaldo();
+
 
                 btnSaldo.setText("Saldo: " + (saldoAtual));
                 revalidate();
@@ -281,6 +291,9 @@ public class PainelCliente extends JPanel{
 
     public Cliente getCliente() {
         return cliente;
+    }
+    public JButton botaosaldo(){
+        return btnSaldo;
     }
 
 

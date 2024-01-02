@@ -5,7 +5,6 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.time.LocalDate;
 
 public class TabelaAlbuns extends TabelaMusicas {
     private JTable tabela;
@@ -63,10 +62,6 @@ public class TabelaAlbuns extends TabelaMusicas {
             String titulo = (String) tabela.getValueAt(selectedRow, 0);
 
             if (selectedRow != -1) {
-               /* Album album = new Album(musico.getUsername(),"ola pedro","Rock",1);
-                musico.addAlbum(album);
-                Musica musica = new Musica("Teste", "Rock", (LocalDate.now()),musico.getUsername(),0);
-                musico.addMusicaAoALbum(album,musica);*/
                 TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal,musico);
                 musicasAlbum(tabelaMusicas, musico, titulo);
                 tabelaMusicas.setBounds(0,250,450,50);

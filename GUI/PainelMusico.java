@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PainelMusico extends JPanel {
-    private FramePrincipal framePrincipal;
     private Musico musico;
 
 
@@ -16,7 +15,6 @@ public class PainelMusico extends JPanel {
      * com um buffer duplo e um flow layout.
      */
     public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
-        this.framePrincipal = framePrincipal;
         this.musico = musico;
         JLabel labelUsername = new JLabel("Bem-vindo: " + getMusico().getUsername());
         JButton btnVerAlbuns = new JButton("Os meus álbuns");
@@ -29,7 +27,6 @@ public class PainelMusico extends JPanel {
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
-        PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
 
 
         setBackground(new Color(70, 90, 120));
@@ -71,12 +68,13 @@ public class PainelMusico extends JPanel {
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
         painelOpcoes.setBounds(275,50,450,500);
-        painelMusica.setBounds(275,0,450,100);
+        //painelMusica.setBounds(275,0,450,100);
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
         btnAddMusica.addActionListener(e -> {
             painelOpcoes.removeAll();
+            PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
             painelOpcoes.add(painelMusica);
             painelMusica.setVisible(true);
             revalidate();
