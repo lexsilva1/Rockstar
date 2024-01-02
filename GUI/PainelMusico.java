@@ -1,14 +1,15 @@
 package GUI;
 
+import backend.Musica;
 import backend.Musico;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class PainelMusico extends JPanel {
     private Musico musico;
-
 
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelMusico', para a página inicial de um utlizador do tipo 'Musico',
@@ -27,6 +28,8 @@ public class PainelMusico extends JPanel {
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
+        BotaoLupa btnLupa = new BotaoLupa("/resources/lupa.png");
+
 
 
         setBackground(new Color(70, 90, 120));
@@ -43,6 +46,8 @@ public class PainelMusico extends JPanel {
         txtPesquisar.setBounds(270, 5, 200, 25);
         txtPesquisar.setVisible(true);
         add(txtPesquisar);
+
+        btnLupa.setBounds(480,5,20,20);
 
         JRadioButton chkPesquisaNome = new JRadioButton("Nome");
         chkPesquisaNome.setBounds(270, 25, 100, 25);
@@ -68,7 +73,6 @@ public class PainelMusico extends JPanel {
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
         painelOpcoes.setBounds(275,50,450,500);
-        //painelMusica.setBounds(275,0,450,100);
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
@@ -108,9 +112,26 @@ public class PainelMusico extends JPanel {
             repaint();
         });
 
+        btnLupa.addActionListener((ActionEvent e) ->{
+            painelOpcoes.removeAll();
+            if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
+                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+            } else {
+                TabelaMusicas tabelaPesquisa = new TabelaMusicas(framePrincipal, musico);
+                tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome, chkPesquisaGenero);
+                painelOpcoes.add(tabelaPesquisa);
+                tabelaPesquisa.setVisible(true);
+                revalidate();
+                repaint();
+            }
+            revalidate();
+            repaint();
+        });
+
 
         add(labelUsername);
         add(btnLogout);
+        add(btnLupa);
         add(btnVerAlbuns);
         add(btnVerMusicas);
         add(btnCriarAlbum);
