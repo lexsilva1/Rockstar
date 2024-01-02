@@ -156,6 +156,25 @@ public class PainelAddMusica extends JPanel {
         btnCancelar.setBounds(280, 460, 100, 25);
         btnCancelar.setForeground(Color.BLACK);
 
+        txtValor.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input)) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         txtAno.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -255,9 +274,7 @@ public class PainelAddMusica extends JPanel {
                             if (musico.procurarAlbum(txtAlbum.getText()) == null) {
                                 JOptionPane.showMessageDialog(null, "Álbum não encontrado", "Dados errados", JOptionPane.ERROR_MESSAGE);
                             } else {
-                                if (!verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
-                                    JOptionPane.showMessageDialog(null, "Data inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
-                                } else {
+                                if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
                                     String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
                                     LocalDate data = LocalDate.parse(txtData);
                                     double valor = Double.parseDouble(txtValor.getText());
@@ -273,16 +290,37 @@ public class PainelAddMusica extends JPanel {
                                         JOptionPane.showMessageDialog(null, "Já existe uma música sua com o mesmo nome", "Música já existe", JOptionPane.ERROR_MESSAGE);
                                     } else {
                                         Musica musica = musico.criaMusica(framePrincipal, txtTitulo.getText(), genero, data, valor);
-                                        musico.addMusicaAoALbum(musico.procurarAlbum(txtAlbum.getText()), musica);
+                                        Album album = musico.procurarAlbum(txtAlbum.getText());
+
+                                        if (musico.addMusicaAoAlbum(album, musica)) {
+                                            for (Album a : musico.getAlbuns()) {
+                                                System.out.println(a.getTitulo());
+                                                for (Musica m : a.getMusicas()) {
+                                                    System.out.println(m.getTitulo());
+                                                }
+                                            }
+                                            framePrincipal.getRockstar().addMusica(musica);
+                                            JOptionPane.showMessageDialog(null, "Música criada com sucesso e adicionada ao álbum '" + txtAlbum.getText() + "'!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                            txtTitulo.setText("");
+                                            txtAno.setText("");
+                                            txtMes.setText("");
+                                            txtDia.setText("");
+                                            txtValor.setText("");
+                                            txtAlbum.setText("");
+                                            grupo.clearSelection();
+                                            grupoAlbum.clearSelection();
+                                            this.setVisible(false);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Não foi possível adicionar a música ao álbum selecionado", "Álbum cheio", JOptionPane.ERROR_MESSAGE);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 } else {
-                    if (!verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
-                        JOptionPane.showMessageDialog(null, "Data inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
-                    } else {
+                    if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
+
                         double valor = Double.parseDouble(txtValor.getText());
                         String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
                         LocalDate data = LocalDate.parse(txtData);
@@ -295,8 +333,17 @@ public class PainelAddMusica extends JPanel {
                             genero = "Hip Hop";
                         }
 
-                        framePrincipal.getRockstar().addMusica(framePrincipal,musico, txtTitulo.getText(), genero, data, valor);
-                        JOptionPane.showMessageDialog(null, "Música adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        Musica musica = musico.criaMusica(framePrincipal, txtTitulo.getText(), genero, data, valor);
+                        framePrincipal.getRockstar().addMusica(musica);
+                        JOptionPane.showMessageDialog(null, "Música criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        txtTitulo.setText("");
+                        txtAno.setText("");
+                        txtMes.setText("");
+                        txtDia.setText("");
+                        txtValor.setText("");
+                        txtAlbum.setText("");
+                        grupo.clearSelection();
+                        grupoAlbum.clearSelection();
                         this.setVisible(false);
                     }
                 }
@@ -309,6 +356,9 @@ public class PainelAddMusica extends JPanel {
             txtMes.setText("");
             txtDia.setText("");
             txtValor.setText("");
+            txtAlbum.setText("");
+            grupo.clearSelection();
+            grupoAlbum.clearSelection();
             setVisible(false);
         });
 
@@ -328,21 +378,45 @@ public class PainelAddMusica extends JPanel {
         setVisible(false);
     }
 
+    /**
+     * Verifica se os dados introduzidos nos campos relativos à data são válidos para criar uma data do tipo <code>LocalDate</code>.
+     * Data introduzida não deve ser posterior à data atual (variável criada através do método <code>LocalDate.now()</code>,
+     * verificado através da sua comparação através do método <code>.isAfter</code>.
+     * @param ano String que será convertida em int e representa o year no <code>LocalDate</code>; deve ser composta por 4 caracteres
+     *           e o valor não deve ser inferior a 1900;
+     * @param mes String que será convertida em int e representa o month no <code>LocalDate</code>; deve ser composta por 2 caracteres
+     *      *           e o valor não deve ser <1 ou >12;
+     * @param dia String que será convertida em int e representa o dayOfMonth no <code>LocalDate</code>; deve ser composta por 2 caracteres
+     *      *      *           e o valor deve ser válido para o mês em questão (verificado através do método <code>.lengthOfMonth()</code>
+     *            com os dados do ano e mês fornecidos e o valor '1' para o dayOfMonth;
+     * @return true se a data satisfizer todas as condições; false em caso contrário, demonstrando quais os dados incorretos através de mensagens
+     * que surgem através de <code>JOptionPane</code>.
+     */
     public boolean verificarData(String ano, String mes, String dia) {
         int ano1 = Integer.parseInt(ano);
         int mes1 = Integer.parseInt(mes);
         int dia1 = Integer.parseInt(dia);
 
-        if (ano1 < 1900) {
+        if (ano1 < 1900 || ano.length() > 4) {
+            JOptionPane.showMessageDialog(null, "Ano deve ser posterior a 1900 e conter apenas 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
+        } else if (mes1 <1 || mes1 > 12) {
+            JOptionPane.showMessageDialog(null, "Mês inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (mes.length() == 1 || dia.length() == 1) {
+            JOptionPane.showMessageDialog(null, "Mês e dia devem ter 2 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (dia1 < 1 || dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth()) {
+                JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                return false;
         } else {
-            LocalDate data = LocalDate.of(ano1, mes1, dia1).minusMonths(1);
+            LocalDate data = LocalDate.of(ano1, mes1, dia1);
             LocalDate hoje = LocalDate.now();
-            if (data.getDayOfMonth() > hoje.getDayOfMonth() &&  data.getMonthValue() > hoje.getMonthValue() && data.getYear() > hoje.getYear() ) {
+            if (data.isAfter(hoje)) {
+                JOptionPane.showMessageDialog(null, "Data não deve ser posterior à data atual", "Dados errados", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
-
         return true;
     }
 }
