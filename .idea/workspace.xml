@@ -8,10 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelAddMusica.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelAddMusica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/PainelMusico.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/PainelMusico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/TabelaAlbuns.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/TabelaAlbuns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/TabelaMusicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/TabelaMusicas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Rockstar.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Musico.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Musico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Rockstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Rockstar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Rockstar/Rockstar.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Rockstar/resources/carrinho-Frid4y.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,15 +51,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pedro",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Pedro&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\inesb\OneDrive\Documentos\GitHub\Rockstar\resources" />
@@ -193,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703889031039</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="avanço painel musico">
+      <option name="closed" value="true" />
+      <created>1704163887771</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704163887771</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,6 +225,31 @@
     <MESSAGE value="alterações dos botoes login e botao continuar no login" />
     <MESSAGE value="avanço painel musico" />
     <option name="LAST_COMMIT_MESSAGE" value="avanço painel musico" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/Main.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GUI/PainelMusico.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/GUI/TabelaMusicas.java</url>
+          <line>166</line>
+          <properties class="GUI.TabelaMusicas" method="resultadosPesquisa">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

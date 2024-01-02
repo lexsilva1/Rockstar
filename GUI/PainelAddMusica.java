@@ -289,16 +289,10 @@ public class PainelAddMusica extends JPanel {
                                     if (musico.musicaExiste(txtTitulo.getText())) {
                                         JOptionPane.showMessageDialog(null, "Já existe uma música sua com o mesmo nome", "Música já existe", JOptionPane.ERROR_MESSAGE);
                                     } else {
-                                        Musica musica = musico.criaMusica(framePrincipal, txtTitulo.getText(), genero, data, valor);
+                                        Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
                                         Album album = musico.procurarAlbum(txtAlbum.getText());
 
                                         if (musico.addMusicaAoAlbum(album, musica)) {
-                                            for (Album a : musico.getAlbuns()) {
-                                                System.out.println(a.getTitulo());
-                                                for (Musica m : a.getMusicas()) {
-                                                    System.out.println(m.getTitulo());
-                                                }
-                                            }
                                             framePrincipal.getRockstar().addMusica(musica);
                                             JOptionPane.showMessageDialog(null, "Música criada com sucesso e adicionada ao álbum '" + txtAlbum.getText() + "'!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                             txtTitulo.setText("");
@@ -333,7 +327,7 @@ public class PainelAddMusica extends JPanel {
                             genero = "Hip Hop";
                         }
 
-                        Musica musica = musico.criaMusica(framePrincipal, txtTitulo.getText(), genero, data, valor);
+                        Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
                         framePrincipal.getRockstar().addMusica(musica);
                         JOptionPane.showMessageDialog(null, "Música criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         txtTitulo.setText("");

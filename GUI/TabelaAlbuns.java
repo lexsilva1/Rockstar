@@ -97,7 +97,7 @@ public class TabelaAlbuns extends TabelaMusicas {
         for (Album a : musico.getAlbuns()) {
             if (a.getTitulo().equals(titulo)) {
                 if (a.getMusicas().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Álbum Vazio", "Alterar Preço", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "O álbum selecionado não tem músicas adicionadas", "Álbum Vazio", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     for (int i = 0; i < tabelaMusicas.getModeloTabela().getRowCount(); i++) {
                         int contador = 0;
