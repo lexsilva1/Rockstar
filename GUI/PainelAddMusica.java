@@ -160,7 +160,9 @@ public class PainelAddMusica extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 char input = e.getKeyChar();
-                if (!Character.isDigit(input)) {
+                if (!Character.isDigit(input) && input != '.') {
+                    e.consume();
+                } else if (input == '.' && txtValor.getText().contains(".")) {
                     e.consume();
                 }
             }
@@ -293,7 +295,7 @@ public class PainelAddMusica extends JPanel {
                                         Album album = musico.procurarAlbum(txtAlbum.getText());
 
                                         if (musico.addMusicaAoAlbum(album, musica)) {
-                                            framePrincipal.getRockstar().addMusica(musica);
+                                            framePrincipal.getRockstar().getMusicas().add(musica);
                                             JOptionPane.showMessageDialog(null, "Música criada com sucesso e adicionada ao álbum '" + txtAlbum.getText() + "'!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                             txtTitulo.setText("");
                                             txtAno.setText("");
@@ -328,7 +330,7 @@ public class PainelAddMusica extends JPanel {
                         }
 
                         Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
-                        framePrincipal.getRockstar().addMusica(musica);
+                        framePrincipal.getRockstar().getMusicas().add(musica);
                         JOptionPane.showMessageDialog(null, "Música criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         txtTitulo.setText("");
                         txtAno.setText("");
