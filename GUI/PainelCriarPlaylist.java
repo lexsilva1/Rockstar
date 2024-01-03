@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class PainelCriarPlaylist extends JPanel {
     private Cliente cliente;
-    public PainelCriarPlaylist(FramePrincipal framePrincipal) {
-        this.cliente = cliente;
+    public PainelCriarPlaylist(FramePrincipal framePrincipal, Cliente cliente) {
+
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
