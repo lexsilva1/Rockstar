@@ -89,6 +89,10 @@ public class Musico extends Utilizador {
         return albuns;
     }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
+
     public boolean musicaExiste (String titulo) {
         for (Musica m : musicas) {
             if (m.getTitulo().equalsIgnoreCase(titulo)) {
