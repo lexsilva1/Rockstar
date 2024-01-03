@@ -66,25 +66,22 @@ public class TabelaMusicas extends JPanel {
         JMenuItem altEstado = new JMenuItem("Alterar Estado");
         JMenuItem addAlbum = new JMenuItem("Adicionar a Álbum");
 
-        altTitulo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = tabela.getSelectedRow();
+        altTitulo.addActionListener(e -> {
+            int selectedRow = tabela.getSelectedRow();
 
-                if (selectedRow != -1) {
-                    String titulo = (String) tabela.getValueAt(selectedRow, 0);
+            if (selectedRow != -1) {
+                String titulo = (String) tabela.getValueAt(selectedRow, 0);
 
-                    String input = JOptionPane.showInputDialog(framePrincipal, "Título Atual: " + titulo + "\n Novo Título", "Alterar Título", JOptionPane.QUESTION_MESSAGE);
+                String input = JOptionPane.showInputDialog(framePrincipal, "Título Atual: " + titulo + "\n Novo Título", "Alterar Título", JOptionPane.QUESTION_MESSAGE);
 
-                    if (input != null && !input.isEmpty()) {
-                        for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-                            if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                                musico.actualizaTitulo(a, input);
-                                JOptionPane.showMessageDialog(framePrincipal, "Título alterado com sucesso", "Alterar Título", JOptionPane.INFORMATION_MESSAGE);
-                                int modelRow = tabela.convertRowIndexToModel(selectedRow);
-                                modeloTabela.setValueAt(input, modelRow, 0);
-                                tabela.repaint();
-                            }
+                if (input != null && !input.isEmpty()) {
+                    for (Musica a : framePrincipal.getRockstar().getMusicas()) {
+                        if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
+                            musico.actualizaTitulo(a, input);
+                            JOptionPane.showMessageDialog(framePrincipal, "Título alterado com sucesso", "Alterar Título", JOptionPane.INFORMATION_MESSAGE);
+                            int modelRow = tabela.convertRowIndexToModel(selectedRow);
+                            modeloTabela.setValueAt(input, modelRow, 0);
+                            tabela.repaint();
                         }
                     }
                 }
@@ -144,6 +141,23 @@ public class TabelaMusicas extends JPanel {
                     }
                 }
             }
+        });
+
+        addAlbum.addActionListener(e -> {
+            int selectedRow = tabela.getSelectedRow();
+
+            if (selectedRow != -1) {
+                String estado;
+                String titulo = (String) tabela.getValueAt(selectedRow, 0);
+
+
+
+
+            }
+
+
+
+
         });
 
         popupMenu.add(altTitulo);
