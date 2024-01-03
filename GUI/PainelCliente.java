@@ -16,7 +16,7 @@ public class PainelCliente extends JPanel{
     private JButton btnVerMusicas;
     private JButton btnCriarPlaylist;
     private JButton btnCriarPlaylistGenero;
-    private JButton btnOrdenarMusicas;
+    private JButton btnHistoricoCompras;
     private JButton btnLogout;
     private BotaoCarrinho btnCarrinhoCompras;
     private BotaoLupa btnLupa;
@@ -31,6 +31,7 @@ public class PainelCliente extends JPanel{
     private PainelMinhasMusicas painelMinhasMusicas;
     private PainelMusicasLoja painelMusicasLoja;
     private FramePrincipal framePrincipal;
+    private HistoricodeCompras historicodeCompras;
 
 
 
@@ -48,7 +49,7 @@ public class PainelCliente extends JPanel{
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         this.btnCriarPlaylistGenero = new JButton("Nova playlist por género");
-        this.btnOrdenarMusicas = new JButton("Ordenar as minhas músicas");
+        this.btnHistoricoCompras = new JButton("Historico de Compras");
         this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
         this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
@@ -60,8 +61,8 @@ public class PainelCliente extends JPanel{
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
-        this.painelMinhasMusicas = new PainelMinhasMusicas(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
+
 
 
 
@@ -76,7 +77,8 @@ public class PainelCliente extends JPanel{
         btnCriarPlaylist.addActionListener(e -> abrirPainelCriarPlaylist());
         btnCriarPlaylistGenero.setBounds(20,250,200,25);
         btnCriarPlaylistGenero.addActionListener(e -> abrirPainelCriarPlaylistGenero());
-        btnOrdenarMusicas.setBounds(20,300,200,25);
+        btnHistoricoCompras.setBounds(20,300,200,25);
+        btnHistoricoCompras.addActionListener(e -> abrirHistoricoCompras());
         btnLogout.setBounds(740, 10, 40, 30);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         btnCarrinhoCompras.setBounds(20,600,50,30);
@@ -177,7 +179,7 @@ public class PainelCliente extends JPanel{
         add(btnVerMusicas);
         add(btnCriarPlaylist);
         add(btnCriarPlaylistGenero);
-        add(btnOrdenarMusicas);
+        add(btnHistoricoCompras);
         add(btnLogout);
         add(btnCarrinhoCompras);
         add(labelUsername);
@@ -217,7 +219,16 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(painelMinhasMusicas);
+        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente));
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }
+    private void abrirHistoricoCompras() { // mudar para variavel local para actualizar
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(new HistoricodeCompras(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
