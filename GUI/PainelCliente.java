@@ -55,11 +55,9 @@ public class PainelCliente extends JPanel{
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
-
         this.btnLoja = new JButton("Loja");
-
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
-        this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal);
+        this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
 
