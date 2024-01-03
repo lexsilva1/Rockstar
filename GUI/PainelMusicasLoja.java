@@ -71,22 +71,22 @@ public class PainelMusicasLoja extends JPanel {
             if (linhaSelecionada != -1) {
                 String titulo = (String) tabela.getValueAt(linhaSelecionada, 0);
                 String artista = (String) tabela.getValueAt(linhaSelecionada, 1);
-                
 
-                    for (Musica b : cliente.getMusicas()) {
-                        if (b.getTitulo().equals(titulo)&& b.getAutor().equals(artista)) {
-                            JOptionPane.showMessageDialog(null, "Musica já adquirida", "ERRO", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            for( Musica a : cliente.getCarrinhoCompras()) {
-                                if (a.getTitulo().equals(titulo) && a.getAutor().equals(artista)) {
-                                    JOptionPane.showMessageDialog(null, "Musica já adicionada ao carrinho", "ERRO", JOptionPane.ERROR_MESSAGE);
-                                }else{
-                                    cliente.getCarrinhoCompras().add(a);
+
+                for (Musica c : framePrincipal.getRockstar().getMusicas()) {
+                    if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
+                        boolean alreadyPurchased = isAlreadyPurchased(c, cliente);
+                        boolean alreadyInCart = !alreadyPurchased && isAlreadyInCart(c, cliente);
+
+                        if (!alreadyPurchased) {
+                            if (!alreadyInCart) {
+                                cliente.getCarrinhoCompras().add(c);
                                 JOptionPane.showMessageDialog(framePrincipal, "Música adicionada ao carrinho", "Adicionar ao Carrinho", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Musica já adicionada ao carrinho", "ERRO", JOptionPane.ERROR_MESSAGE);
                             }
-
-
-
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Musica já adquirida", "ERRO", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
@@ -97,4 +97,12 @@ public class PainelMusicasLoja extends JPanel {
 
         return popupMenu;
     }
+
+        private boolean isAlreadyPurchased(Musica music, Cliente cliente) {
+            return cliente.getMusicas().stream().anyMatch(m -> m.equals(music));
+        }
+
+        private boolean isAlreadyInCart(Musica music, Cliente cliente) {
+            return cliente.getCarrinhoCompras().stream().anyMatch(m -> m.equals(music));
+        }
 }

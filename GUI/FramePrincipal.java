@@ -9,7 +9,7 @@ import java.io.*;
 public class FramePrincipal extends JFrame {
     private Rockstar rockstar;
     protected PainelPrincipal painelPrincipal;
-    private static final String FILE_PATH = "Rockstar.ser";
+    private final String FILE_PATH = "Rockstar.ser"; // estava static mas temos de ver melhor
     //File file=new File("C:\\Users\\inesb\\OneDrive\\Documentos\\GitHub\\Rockstar\\Rockstar.ser");
     public FramePrincipal() {
         super("Rockstar");
@@ -25,6 +25,9 @@ public class FramePrincipal extends JFrame {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+        }
+        catch ( FileNotFoundException e){
+            System.err.println("não encontro ficheiro");
         }
         catch (IOException e){
             System.err.println("não encontro");
