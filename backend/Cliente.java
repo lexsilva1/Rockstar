@@ -107,4 +107,8 @@ public class Cliente extends Utilizador {
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
+
+    public ArrayList<Compra> getHistoricoCompras() {
+        return historicoCompras;
+    }
 }

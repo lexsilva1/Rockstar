@@ -79,7 +79,7 @@ public class TabelaMusicas extends JPanel {
                     if (input != null && !input.isEmpty()) {
                         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
                             if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                                musico.actualizaTitulo(a,input);
+                                musico.actualizaTitulo(a, input);
                                 JOptionPane.showMessageDialog(framePrincipal, "Título alterado com sucesso", "Alterar Título", JOptionPane.INFORMATION_MESSAGE);
                                 int modelRow = tabela.convertRowIndexToModel(selectedRow);
                                 modeloTabela.setValueAt(input, modelRow, 0);
@@ -124,9 +124,9 @@ public class TabelaMusicas extends JPanel {
                 for (Musica a : framePrincipal.getRockstar().getMusicas()) {
                     if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
                         if (a.getActiva()) {
-                            musico.inactivaMusica(a,false);
+                            musico.inactivaMusica(a, false);
                         } else {
-                            musico.inactivaMusica(a,true);
+                            musico.inactivaMusica(a, true);
                         }
                         JOptionPane.showMessageDialog(framePrincipal, "Estado alterado com sucesso", "Alterar Estado", JOptionPane.INFORMATION_MESSAGE);
                         if (a.getActiva()) {
@@ -156,5 +156,27 @@ public class TabelaMusicas extends JPanel {
 
     public DefaultTableModel getModeloTabela() {
         return modeloTabela;
+    }
+
+    /**
+     * Redifine as linhas da tabela de acordo com os critérios de pesquisa do <code>Musico</code>.
+     * @param pesquisa campo de texto onde o <code>Utilizador</code> escreve a <code>String</code> com o que pretende pesquisar
+     * @param chkPesquisaNome <code>JRadioButton</code> de seleção do critério de pesquisa
+     * @param chkPesquisagenero <code>JRadioButton</code> de seleção do critério de pesquisa
+     */
+    public void resultadosPesquisa(JTextField pesquisa, JRadioButton chkPesquisaNome, JRadioButton chkPesquisagenero) {
+        for (int i = (modeloTabela.getRowCount() - 1); i >= 0 ; i--) {
+            if (chkPesquisaNome.isSelected()) {
+                String titulo = (String) modeloTabela.getValueAt(i, 0);
+                if (!titulo.equalsIgnoreCase(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            } else {
+                String genero = (String) modeloTabela.getValueAt(i, 1);
+                if (!genero.equalsIgnoreCase(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            }
+        }
     }
 }
