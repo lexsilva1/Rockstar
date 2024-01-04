@@ -1,10 +1,7 @@
 package GUI;
 
 
-import backend.Admin;
-import backend.Musica;
-import backend.Promo;
-import backend.Utilizador;
+import backend.*;
 
 
 import javax.swing.*;
