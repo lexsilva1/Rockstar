@@ -176,9 +176,8 @@ public class TabelaMusicas extends JPanel {
      * Redifine as linhas da tabela de acordo com os critérios de pesquisa do <code>Musico</code>.
      * @param pesquisa campo de texto onde o <code>Utilizador</code> escreve a <code>String</code> com o que pretende pesquisar
      * @param chkPesquisaNome <code>JRadioButton</code> de seleção do critério de pesquisa
-     * @param chkPesquisagenero <code>JRadioButton</code> de seleção do critério de pesquisa
      */
-    public void resultadosPesquisa(JTextField pesquisa, JRadioButton chkPesquisaNome, JRadioButton chkPesquisagenero) {
+    public void resultadosPesquisa(JTextField pesquisa, JRadioButton chkPesquisaNome) {
         for (int i = (modeloTabela.getRowCount() - 1); i >= 0 ; i--) {
             if (chkPesquisaNome.isSelected()) {
                 String titulo = (String) modeloTabela.getValueAt(i, 0);

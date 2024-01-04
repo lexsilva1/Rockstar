@@ -118,7 +118,7 @@ public class PainelMusico extends JPanel {
                 JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
                 TabelaMusicas tabelaPesquisa = new TabelaMusicas(framePrincipal, musico);
-                tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome, chkPesquisaGenero);
+                tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
                 painelOpcoes.add(tabelaPesquisa);
                 tabelaPesquisa.setVisible(true);
                 revalidate();
