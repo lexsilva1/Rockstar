@@ -1,9 +1,11 @@
 package GUI;
 
+
 import backend.Admin;
 import backend.Musica;
 import backend.Promo;
 import backend.Utilizador;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -118,6 +120,8 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
+                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela);
+                tabela.setComponentPopupMenu(popupMenu);
 
             } else if (chkPesquisaUtilizador.isSelected()) {
                 JPanel painel =new JPanel();
@@ -141,6 +145,8 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
+                JPopupMenu popupMenu = criarPopupMenuUtilizador(framePrincipal,tabela);
+                tabela.setComponentPopupMenu(popupMenu);
             }
         });
         btnVerCampanhas.addActionListener(e -> {
@@ -206,6 +212,70 @@ public class PainelAdmin extends JPanel {
         // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
+    }
+    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela) {
+        JPopupMenu popupMenu = new JPopupMenu();
+
+        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Remover Musica");
+        adicionarAoCarrinhoItem.addActionListener(e -> {
+            int linhaSelecionada = tabela.getSelectedRow();
+
+            if (linhaSelecionada != -1) {
+                String titulo = (String) tabela.getValueAt(linhaSelecionada, 0);
+                String artista = (String) tabela.getValueAt(linhaSelecionada, 1);
+
+
+                for (Musica c : framePrincipal.getRockstar().getMusicas()) {
+                    if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
+                        framePrincipal.getRockstar().getMusicas().remove(c);
+                    }
+                }
+                for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
+                    if( a instanceof Cliente){
+                        for(Musica c :  ((Cliente) a).getMusicas()){
+                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
+                                ((Cliente) a).getMusicas().remove(c);
+                            }
+                        }
+                    }else if (a instanceof Musico){
+                        for (Musica c : ((Musico) a).getMusicas()){
+                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
+                                ((Musico) a).getMusicas().remove(c);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        popupMenu.add(adicionarAoCarrinhoItem);
+
+        return popupMenu;
+    }
+    public JPopupMenu criarPopupMenuUtilizador(FramePrincipal framePrincipal, JTable tabela) {
+        JPopupMenu popupMenu = new JPopupMenu();
+
+        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Bloquear Utilizador");
+        adicionarAoCarrinhoItem.addActionListener(e -> {
+            int linhaSelecionada = tabela.getSelectedRow();
+
+            if (linhaSelecionada != -1) {
+                String username = (String) tabela.getValueAt(linhaSelecionada, 0);
+
+                for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
+                    if( a instanceof Admin && ((Admin) a).getIdAdmin()==1 && a.getUsername().equals(username)){
+                        JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
+                    }else if (a.getUsername().equals(username))
+                        a.setActivo();
+                    JOptionPane.showMessageDialog(framePrincipal, "Utilizador Bloqueado", "Bloquear utilizador", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        });
+
+        popupMenu.add(adicionarAoCarrinhoItem);
+
+        return popupMenu;
     }
 
 
