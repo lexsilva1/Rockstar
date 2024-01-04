@@ -130,48 +130,21 @@ public class PainelCliente extends JPanel{
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
-        btnLupa.addActionListener((ActionEvent e) ->{
-            JPanel painel =new JPanel();
-            painel.setLayout(new BorderLayout());
-            painel.setBackground(new Color(70, 90, 120));
-            painel.setPreferredSize(new Dimension(450, 500));
-            DefaultTableModel modeloTabela = new DefaultTableModel();
-            modeloTabela.addColumn("Título");
-            modeloTabela.addColumn("Artista");
-            modeloTabela.addColumn("Género");
-            modeloTabela.addColumn("Data Lançamento");
-            modeloTabela.addColumn("Rating");
-            modeloTabela.addColumn("Preço");
-            modeloTabela.addColumn("Ações");
-            if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
-                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parametro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
-            }else if( chkPesquisaNome.isSelected()) {
-                for (Musica a : framePrincipal.getRockstar().getMusicas() ){
-                    if(a.getTitulo().contains(txtPesquisar.getText())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
-                    }
-                }
-
-            } else if (chkPesquisaGenero.isSelected()) {
-                for (Musica a : framePrincipal.getRockstar().getMusicas()){
-                    if(a.getGenero().contains(txtPesquisar.getText())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
-                    }
-                }
-
+        btnLupa.addActionListener((ActionEvent e) -> {
+            painelOpcoesCliente.removeAll();
+            if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null) {
+                abrirPainelMusicasLoja();
+            } else {
+                PainelMusicasLoja painel = new PainelMusicasLoja(framePrincipal, cliente);
+                painel.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
+                painelOpcoesCliente.add(painel);
+                painel.setVisible(true);
+                revalidate();
+                repaint();
             }
-            JTable tabela = new JTable(modeloTabela);
-            tabela.setAutoCreateRowSorter(true);
-
-            JScrollPane scrollPane = new JScrollPane(tabela);
-            scrollPane.setVisible(true);
-            painel.add(scrollPane, BorderLayout.CENTER);
-            painel.setVisible(true);
-            abrirPainelPesquisa(painel);
-
+            revalidate();
+            repaint();
         });
-
-
 
         add(btnVerPlaylists);
         add(btnVerMusicas);
