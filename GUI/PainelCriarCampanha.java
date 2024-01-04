@@ -155,7 +155,7 @@ public class PainelCriarCampanha extends JPanel {
                     String txtDataFim = txtAnoFim.getText() + "-" + txtMesFim.getText() + "-" + txtDiaFim.getText();
                     LocalDate dataFim = LocalDate.parse(txtDataFim);
                     String nome = txtNome.getText();
-                    double desconto = Double.parseDouble(txtDesconto.getText());
+                    int desconto = Integer.parseInt(txtDesconto.getText());
                     int numeroCupoes = Integer.parseInt(txtNumeroCupoes.getText());
                     framePrincipal.getRockstar().addPromo(admin, numeroCupoes, nome, desconto, dataInicio, dataFim);
                     JOptionPane.showMessageDialog(null, "Campanha criada com sucesso");
