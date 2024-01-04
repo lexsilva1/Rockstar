@@ -54,14 +54,14 @@ public class PainelMusicasLoja extends JPanel {
         scrollPane.setVisible(true);
         add(scrollPane, BorderLayout.CENTER);
 
-        JPopupMenu popupMenu = criarPopupMenu(framePrincipal, cliente);
+        JPopupMenu popupMenu = criarPopupMenuCliente(framePrincipal, cliente);
         tabela.setComponentPopupMenu(popupMenu);
 
         setVisible(true);
 
     }
 
-    private JPopupMenu criarPopupMenu(FramePrincipal framePrincipal, Cliente cliente) {
+    public JPopupMenu criarPopupMenuCliente(FramePrincipal framePrincipal, Cliente cliente) {
         JPopupMenu popupMenu = new JPopupMenu();
 
         JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Adicionar ao Carrinho");
@@ -98,11 +98,29 @@ public class PainelMusicasLoja extends JPanel {
         return popupMenu;
     }
 
-        private boolean isAlreadyPurchased(Musica music, Cliente cliente) {
+
+    private boolean isAlreadyPurchased(Musica music, Cliente cliente) {
             return cliente.getMusicas().stream().anyMatch(m -> m.equals(music));
         }
 
         private boolean isAlreadyInCart(Musica music, Cliente cliente) {
             return cliente.getCarrinhoCompras().stream().anyMatch(m -> m.equals(music));
         }
+    public void resultadosPesquisa(JTextField pesquisa, JRadioButton chkPesquisaNome) {
+        for (int i = (modeloTabela.getRowCount() - 1); i >= 0 ; i--) {
+            if (chkPesquisaNome.isSelected()) {
+                String titulo = (String) modeloTabela.getValueAt(i, 0);
+                titulo = titulo.toLowerCase();
+                if (!titulo.contains(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            } else {
+                String genero = (String) modeloTabela.getValueAt(i, 2);
+                genero = genero.toLowerCase();
+                if (!genero.contains(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            }
+        }
+    }
 }

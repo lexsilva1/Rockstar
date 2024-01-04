@@ -54,7 +54,7 @@ public class PainelCarrinhoCompras extends JPanel {
         add(scrollPane);
 
         // mostrar o custo total
-        labelCustoTotal = new JLabel("Custo Total: " + calcularCustoTotal() + " €");
+        labelCustoTotal = new JLabel("Custo Total: " + String.valueOf(calcularCustoTotal()) + " €");
         labelCustoTotal.setForeground(Color.WHITE);
         labelCustoTotal.setBounds(10, 120, 200, 25); // Definir posição e tamanho manualmente
         add(labelCustoTotal);
@@ -76,7 +76,7 @@ public class PainelCarrinhoCompras extends JPanel {
     }
 
 
-    private String calcularCustoTotal() {
+    private double calcularCustoTotal() {
         double custoTotal = 0.0;
         int rowCount = modeloTabela.getRowCount();
 
@@ -84,9 +84,7 @@ public class PainelCarrinhoCompras extends JPanel {
             double preco = (double) modeloTabela.getValueAt(i, 5); // 5 é o índice da coluna de preço
             custoTotal += preco;
         }
-        // Formatando o custo total para exibir duas casas decimais
-        DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(custoTotal);
+        return (custoTotal);
     }
 
     public void limparCarrinhoCompras (Cliente cliente,PainelCliente painelCliente){
@@ -95,10 +93,14 @@ public class PainelCarrinhoCompras extends JPanel {
     }
 
     public void comprarMusicas ( Cliente cliente, PainelCliente painelCliente) {
-        cliente.compra();
-        limparCarrinhoCompras(cliente,painelCliente);
-        painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
-
+        if (cliente.getSaldo() < calcularCustoTotal()) {
+            JOptionPane.showMessageDialog(this, "Saldo insuficiente.", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            cliente.compra();
+            limparCarrinhoCompras(cliente, painelCliente);
+            painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
         }
     }
+}
 

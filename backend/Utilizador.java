@@ -39,10 +39,9 @@ public abstract class Utilizador implements Serializable {
         return password;
     }
 
-    public void setActivo() {
-
+    public void setActivo(){
+        this.activo= !this.activo;
     }
-
     public boolean isActivo() {
         return activo;
     }
