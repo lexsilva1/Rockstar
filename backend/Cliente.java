@@ -50,6 +50,10 @@ public class Cliente extends Utilizador {
         return playlist;
     }*/
 
+    public Playlist criaPlaylist(String nome){
+        return new Playlist(this.username,nome);
+    }
+
     public void compra() {//compra sem promocao
         Compra compra = new Compra();
         double total = 0;

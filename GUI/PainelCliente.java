@@ -22,9 +22,7 @@ public class PainelCliente extends JPanel{
     private BotaoLupa btnLupa;
     private JLabel labelUsername; //Colocar o username visivel
     private JButton btnSaldo; //Colocar o saldo visível
-
     private JButton btnLoja;
-
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
@@ -32,6 +30,7 @@ public class PainelCliente extends JPanel{
     private PainelMusicasLoja painelMusicasLoja;
     private FramePrincipal framePrincipal;
     private HistoricodeCompras historicodeCompras;
+    private PainelMinhasPlaylists painelMinhasPlaylists;
 
 
 
@@ -60,6 +59,7 @@ public class PainelCliente extends JPanel{
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
+        this.painelMinhasPlaylists = new PainelMinhasPlaylists(framePrincipal, cliente);
 
 
 
@@ -69,6 +69,7 @@ public class PainelCliente extends JPanel{
         setLayout(null);
 
         btnVerPlaylists.setBounds(20,100,200,25);
+        btnVerPlaylists.addActionListener(e -> abrirPainelMinhasPlaylists());
         btnVerMusicas.setBounds(20,150,200,25);
         btnVerMusicas.addActionListener(e -> abrirPainelMinhasMusicas());
         btnCriarPlaylist.setBounds(20,200,200,25);
@@ -176,11 +177,21 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
-    private void abrirPainelPesquisa(JPanel painel) {
+    /*private void abrirPainelPesquisa(JPanel painel) {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(painel);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesCliente.revalidate();
+        painelOpcoesCliente.repaint();
+    }*/
+
+    private void abrirPainelMinhasPlaylists() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesCliente.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesCliente.add(painelMinhasPlaylists);
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();

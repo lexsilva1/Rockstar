@@ -1,6 +1,8 @@
 package backend;
 
-public class Playlist extends GrupoMusicas{
+import java.util.Iterator;
+
+public class Playlist extends GrupoMusicas  {
     private boolean publico;
 
     public Playlist(String owner, String titulo) {
@@ -11,4 +13,7 @@ public class Playlist extends GrupoMusicas{
 
     }
 
+    public boolean isPublico() {
+        return publico;
+    }
 }
