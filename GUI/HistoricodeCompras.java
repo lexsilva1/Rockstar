@@ -8,6 +8,7 @@ import backend.Rockstar;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Map;
 
 public class HistoricodeCompras extends JPanel {
 
@@ -35,9 +36,13 @@ public class HistoricodeCompras extends JPanel {
         modeloTabela.addColumn("Género");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Preço");
-        for (Compra c : cliente.getHistoricoCompras()){
-            for (Musica m : c.getMusicas()) {
-                modeloTabela.addRow(new Object[]{c.getData(), m.getTitulo(), m.getGenero(), m.getAutor(), m.getPreco()});
+        for (Compra c : cliente.getHistoricoCompras()) {
+            for (Musica m : cliente.getMusicas()) {
+                for (Map.Entry<String, Double> entry : c.getMusicas().entrySet()) {
+                    if(m.getTitulo().equals(entry.getKey())) {
+                        modeloTabela.addRow(new Object[]{c.getData(), entry.getKey(), m.getGenero(), m.getAutor(), entry.getValue()});
+                    }
+                }
             }
         }
         tabela = new JTable(modeloTabela);
