@@ -16,8 +16,7 @@ public class Admin extends Utilizador {
         return promo;
     }
 
-
-    public void setActivo(){
-        this.activo= !this.activo;
+    public int getIdAdmin() {
+        return idAdmin;
     }
 }

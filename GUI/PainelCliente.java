@@ -137,6 +137,7 @@ public class PainelCliente extends JPanel{
             } else {
                 PainelMusicasLoja painel = new PainelMusicasLoja(framePrincipal, cliente);
                 painel.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
+                painel.setComponentPopupMenu(painel.criarPopupMenuCliente(framePrincipal,cliente));
                 painelOpcoesCliente.add(painel);
                 painel.setVisible(true);
                 revalidate();

@@ -54,14 +54,14 @@ public class PainelMusicasLoja extends JPanel {
         scrollPane.setVisible(true);
         add(scrollPane, BorderLayout.CENTER);
 
-        JPopupMenu popupMenu = criarPopupMenu(framePrincipal, cliente);
+        JPopupMenu popupMenu = criarPopupMenuCliente(framePrincipal, cliente);
         tabela.setComponentPopupMenu(popupMenu);
 
         setVisible(true);
 
     }
 
-    private JPopupMenu criarPopupMenu(FramePrincipal framePrincipal, Cliente cliente) {
+    public JPopupMenu criarPopupMenuCliente(FramePrincipal framePrincipal, Cliente cliente) {
         JPopupMenu popupMenu = new JPopupMenu();
 
         JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Adicionar ao Carrinho");
@@ -98,7 +98,8 @@ public class PainelMusicasLoja extends JPanel {
         return popupMenu;
     }
 
-        private boolean isAlreadyPurchased(Musica music, Cliente cliente) {
+
+    private boolean isAlreadyPurchased(Musica music, Cliente cliente) {
             return cliente.getMusicas().stream().anyMatch(m -> m.equals(music));
         }
 

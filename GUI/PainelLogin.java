@@ -175,6 +175,8 @@ class PainelLogin extends JPanel {
                         JOptionPane.showMessageDialog(null, "Por favor introduza o PIN", "Campo vazio", JOptionPane.ERROR_MESSAGE);
                     } else if ((framePrincipal.getRockstar().loginMusico(txtUsername.getText(), String.valueOf(txtPassword.getPassword()), String.valueOf(txtPin.getPassword())) == null)) {
                         JOptionPane.showMessageDialog(null, "Username, Password ou PIN incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    }else if (!(framePrincipal.getRockstar().loginMusico(txtUsername.getText(), String.valueOf(txtPassword.getPassword()), String.valueOf(txtPin.getPassword())).isActivo())) {
+                            JOptionPane.showMessageDialog(null, "Por favor contacte Administrador", "Utilizador Bloqueado", JOptionPane.ERROR_MESSAGE);
                     } else {
                         exibirPainelMusico((Musico) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
@@ -185,6 +187,8 @@ class PainelLogin extends JPanel {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else if (!((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Cliente))) {
                         JOptionPane.showMessageDialog(null, "Dados introduzidos não correspondem a 'Cliente'", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    } else if (!((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())).isActivo()))) {
+                        JOptionPane.showMessageDialog(null, "Por favor contacte Administrador", "Utilizador Bloqueado", JOptionPane.ERROR_MESSAGE);
                     } else {
                         exibirPainelCliente((Cliente) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
@@ -196,6 +200,8 @@ class PainelLogin extends JPanel {
                         JOptionPane.showMessageDialog(null, "Username ou Password incorretos", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
                     } else if (!((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())) instanceof Admin))) {
                         JOptionPane.showMessageDialog(null, "Dados introduzidos não correspondem a 'Administrador'", "Dados Incorretos", JOptionPane.ERROR_MESSAGE);
+                    } else if (!((framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())).isActivo()))) {
+                        JOptionPane.showMessageDialog(null, "por favor contacte Administrador", "Utilizador Bloqueado", JOptionPane.ERROR_MESSAGE);
                     } else {
                         exibirPainelAdmin((Admin) framePrincipal.getRockstar().login(txtUsername.getText(), String.valueOf(txtPassword.getPassword())));
                     }
