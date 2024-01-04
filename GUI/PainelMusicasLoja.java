@@ -105,4 +105,21 @@ public class PainelMusicasLoja extends JPanel {
         private boolean isAlreadyInCart(Musica music, Cliente cliente) {
             return cliente.getCarrinhoCompras().stream().anyMatch(m -> m.equals(music));
         }
+    public void resultadosPesquisa(JTextField pesquisa, JRadioButton chkPesquisaNome) {
+        for (int i = (modeloTabela.getRowCount() - 1); i >= 0 ; i--) {
+            if (chkPesquisaNome.isSelected()) {
+                String titulo = (String) modeloTabela.getValueAt(i, 0);
+                titulo = titulo.toLowerCase();
+                if (!titulo.contains(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            } else {
+                String genero = (String) modeloTabela.getValueAt(i, 2);
+                genero = genero.toLowerCase();
+                if (!genero.contains(pesquisa.getText())) {
+                    modeloTabela.removeRow(i);
+                }
+            }
+        }
+    }
 }
