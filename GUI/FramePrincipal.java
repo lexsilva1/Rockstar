@@ -37,8 +37,8 @@ public class FramePrincipal extends JFrame {
             Musica musica1 = new Musica("Chupa Teresa","Pimba", LocalDate.of(2021,12,3),"inesisabel",1.5);
             Musica musica2 = new Musica("São Lagrimas","Pimba", LocalDate.of(2004,9,13),"zecabra",0.5);
             Musica musica3 = new Musica("Deixei tudo por ela","Pimba", LocalDate.of(2004,11,19),"zecabra",1);
-            Musica musica4 = new Musica("Sexta-feira","Hip Hop", LocalDate.of(2013,6,22),"BossAC",1.5);
-            Musica musica5 = new Musica("Princesa","Hip Hop", LocalDate.of(2015,4,25),"BossAC",1.5);
+            Musica musica4 = new Musica("Sexta-feira","Hip Hop", LocalDate.of(2013,6,22),"bossAC",1.5);
+            Musica musica5 = new Musica("Princesa","Hip Hop", LocalDate.of(2015,4,25),"bossAC",1.5);
 
             Rockstar rockstar = new Rockstar();
             this.rockstar = rockstar ;
