@@ -48,6 +48,7 @@ public class TabelaMusicas extends JPanel {
         }
 
         tabela = new JTable(modeloTabela);
+        tabela.setAutoCreateRowSorter(true);
 
         JPopupMenu popupMenu = criarPopupMenu(framePrincipal, musico);
         tabela.setComponentPopupMenu(popupMenu);
@@ -154,10 +155,6 @@ public class TabelaMusicas extends JPanel {
 
 
             }
-
-
-
-
         });
 
         popupMenu.add(altTitulo);
@@ -181,12 +178,14 @@ public class TabelaMusicas extends JPanel {
         for (int i = (modeloTabela.getRowCount() - 1); i >= 0 ; i--) {
             if (chkPesquisaNome.isSelected()) {
                 String titulo = (String) modeloTabela.getValueAt(i, 0);
-                if (!titulo.equalsIgnoreCase(pesquisa.getText())) {
+                titulo = titulo.toLowerCase();
+                if (!titulo.contains(pesquisa.getText())) {
                     modeloTabela.removeRow(i);
                 }
             } else {
                 String genero = (String) modeloTabela.getValueAt(i, 1);
-                if (!genero.equalsIgnoreCase(pesquisa.getText())) {
+                genero = genero.toLowerCase();
+                if (!genero.contains(pesquisa.getText())) {
                     modeloTabela.removeRow(i);
                 }
             }
