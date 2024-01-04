@@ -15,21 +15,36 @@ public class PainelCriarPlaylist extends JPanel {
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
 
-        JLabel lblUsername = new JLabel("Nome da Playlist:");
-        lblUsername.setBounds(20, 100, 120, 25);
-        lblUsername.setForeground(Color.WHITE);
-        add(lblUsername);
+        JLabel lblNome = new JLabel("Nome da Playlist:");
+        lblNome.setBounds(20, 100, 120, 25);
+        lblNome.setForeground(Color.WHITE);
+        add(lblNome);
 
-        JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(150, 100, 250, 25);
-        add(txtUsername);
+        JTextField txtNome = new JTextField();
+        txtNome.setBounds(150, 100, 250, 25);
+        add(txtNome);
 
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.setBounds(300,250,100,25);
         add(btnAdicionar);
 
+        btnAdicionar.addActionListener(e -> {
 
-        setVisible(false);
+            if (txtNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor escreva o nome da playlist", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+                } else {
+                String nome = txtNome.getText();
+                framePrincipal.getRockstar().addGrupoDeMusicas(cliente.criaPlaylist(nome));
+                JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+        });
+
+
+
+        setVisible(true);
+
+
 
 
     }

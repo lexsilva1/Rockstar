@@ -53,6 +53,14 @@ public class Rockstar implements Serializable {
         this.promos.add(promo);
     }
 
+    public void removerPlaylist (Cliente cliente, Playlist playlist) {
+        for ( GrupoMusicas p : grupoMusicas){
+            if(p instanceof Playlist && p.getOwner().equals(cliente.getUsername())){
+                grupoMusicas.remove(p);
+            }
+        }
+    }
+
     public void registo (Utilizador a) {
         utilizadores.add(a);
     }
@@ -63,5 +71,9 @@ public class Rockstar implements Serializable {
 
     public ArrayList<Promo> getPromos() {
         return promos;
+    }
+
+    public ArrayList<GrupoMusicas> getGrupoMusicas() {
+        return grupoMusicas;
     }
 }
