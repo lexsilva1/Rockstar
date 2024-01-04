@@ -22,7 +22,6 @@ public class PainelMusico extends JPanel {
         JButton btnVerMusicas = new JButton("As minhas músicas");
         JButton btnCriarAlbum = new JButton("+ Álbum");
         JButton btnAddMusica = new JButton("+ Música");
-        JButton btnOrdenarMusicas = new JButton("Ordenar as minhas músicas");
         JButton btnEstatisticas = new JButton("Ver estatísticas");
         JButton btnLogout = new JButton("Logout");
         JLabel lblPesquisar = new JLabel("Pesquisar");
@@ -68,7 +67,6 @@ public class PainelMusico extends JPanel {
         btnLogout.setBounds(725, 10, 75, 25);
         btnVerAlbuns.setBounds(20,100,200,25);
         btnVerMusicas.setBounds(20,150,200,25);
-        btnOrdenarMusicas.setBounds(20,250,200,25);
         btnEstatisticas.setBounds(20,200,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
@@ -115,10 +113,14 @@ public class PainelMusico extends JPanel {
         btnLupa.addActionListener((ActionEvent e) ->{
             painelOpcoes.removeAll();
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
-                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+                TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
+                tabelaMusicas.setVisible(true);
+                painelOpcoes.add(tabelaMusicas);
+                revalidate();
+                repaint();
             } else {
                 TabelaMusicas tabelaPesquisa = new TabelaMusicas(framePrincipal, musico);
-                tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome, chkPesquisaGenero);
+                tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
                 painelOpcoes.add(tabelaPesquisa);
                 tabelaPesquisa.setVisible(true);
                 revalidate();
@@ -136,7 +138,6 @@ public class PainelMusico extends JPanel {
         add(btnVerMusicas);
         add(btnCriarAlbum);
         add(btnAddMusica);
-        add(btnOrdenarMusicas);
         add(btnEstatisticas);
         add(painelOpcoes);
 

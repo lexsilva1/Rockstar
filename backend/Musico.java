@@ -53,9 +53,10 @@ public class Musico extends Utilizador {
         return musica;
     }
 
-    public void criaAlbum(String owner, String titulo, String genero, int numFaixas) {
+    public void criaAlbum(FramePrincipal framePrincipal, String owner, String titulo, String genero, int numFaixas) {
         Album album = new Album(owner, titulo, genero, numFaixas);
         this.albuns.add(album);
+        framePrincipal.getRockstar().addGrupoDeMusicas(album);
     }
 
     public boolean addMusicaAoAlbum(Album album, Musica musica) {
@@ -86,6 +87,10 @@ public class Musico extends Utilizador {
 
     public ArrayList<Album> getAlbuns() {
         return albuns;
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
     }
 
     public boolean musicaExiste (String titulo) {

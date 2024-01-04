@@ -34,7 +34,7 @@ public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
                     } else if (chkHipHop.isSelected()) {
                         genero = "Hip Hop";
                     }
-                    musico.criaAlbum(musico.getUsername(), txtNome.getText(), genero, numeroDeFaixas);
+                    musico.criaAlbum(framePrincipal, musico.getUsername(), txtNome.getText(), genero, numeroDeFaixas);
                     JOptionPane.showMessageDialog(null, "Álbum adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
                 }
