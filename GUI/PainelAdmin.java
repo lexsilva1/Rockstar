@@ -1,6 +1,11 @@
 package GUI;
 
-import backend.*;
+
+import backend.Admin;
+import backend.Musica;
+import backend.Promo;
+import backend.Utilizador;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +24,7 @@ public class PainelAdmin extends JPanel {
     private PainelOpcoesAdmin painelOpcoesAdmin;
     private PainelPesquisarUtilizador painelPesquisarUtilizador;
     private PainelCriarAdmin painelCriarAdmin;
+    private PainelCriarCampanha painelCriarCampanha;
 
 
 
@@ -40,6 +46,7 @@ public class PainelAdmin extends JPanel {
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
         this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
+        this.painelCriarCampanha = new PainelCriarCampanha(framePrincipal, admin);
 
 
         setBackground(new Color(70, 90, 120));
@@ -47,6 +54,7 @@ public class PainelAdmin extends JPanel {
 
         btnVerCampanhas.setBounds(20,150,200,25);
         btnCriarCampanha.setBounds(20,200,200,25);
+        btnCriarCampanha.addActionListener(e -> abrirPainelCriarCampanha());
         btnCriarAdministrador.setBounds(20,250,200,25);
         btnCriarAdministrador.addActionListener(e -> abrirPainelCriarAdmin());
         btnLogout.setBounds(740, 10, 40, 30);
@@ -141,6 +149,29 @@ public class PainelAdmin extends JPanel {
                 tabela.setComponentPopupMenu(popupMenu);
             }
         });
+        btnVerCampanhas.addActionListener(e -> {
+            JPanel painel =new JPanel();
+            painel.setLayout(new BorderLayout());
+            painel.setBackground(new Color(70, 90, 120));
+            painel.setPreferredSize(new Dimension(450, 500));
+            DefaultTableModel modeloTabela = new DefaultTableModel();
+            modeloTabela.addColumn("Nome");
+            modeloTabela.addColumn("Desconto");
+            modeloTabela.addColumn("Data Inicio");
+            modeloTabela.addColumn("Data Fim");
+            modeloTabela.addColumn("Cupoes");
+            for (Promo a : framePrincipal.getRockstar().getPromos()){
+                    modeloTabela.addRow(new Object[]{a.getNome(), a.getDesconto(),a.getDataInicio(), a.getDataFim(),a.getCupoes()});
+                }
+
+            JTable tabela = new JTable(modeloTabela);
+            tabela.setAutoCreateRowSorter(true);
+            JScrollPane scrollPane = new JScrollPane(tabela);
+            scrollPane.setVisible(true);
+            painel.add(scrollPane, BorderLayout.CENTER);
+            painel.setVisible(true);
+            abrirPainelPesquisa(painel);
+        });
 
 
         add(btnVerCampanhas);
@@ -158,6 +189,16 @@ public class PainelAdmin extends JPanel {
         painelOpcoesAdmin.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painel);
+        // Atualizar o painelOpcoesCliente
+        painelOpcoesAdmin.revalidate();
+        painelOpcoesAdmin.repaint();
+    }
+
+    private void abrirPainelCriarCampanha() {
+        // Remover todos os componentes do painelOpcoesCliente
+        painelOpcoesAdmin.removeAll();
+        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
+        painelOpcoesAdmin.add(painelCriarCampanha);
         // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();

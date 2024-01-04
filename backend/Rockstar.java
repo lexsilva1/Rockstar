@@ -60,4 +60,8 @@ public class Rockstar implements Serializable {
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
+
+    public ArrayList<Promo> getPromos() {
+        return promos;
+    }
 }
