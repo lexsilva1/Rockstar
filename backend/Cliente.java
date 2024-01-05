@@ -79,10 +79,9 @@ public class Cliente extends Utilizador {
                 compra.setPromo(promo);// adiciona a promoção à compra
                 double total = 0;
                 for (Musica m : carrinhoCompras) {
-                    compra.getMusicas().put(m.getTitulo(),m.getPreco()*(promo.getDesconto()/100)); //guarda o titulo da musica e o preço com desconto
-                    total += m.getPreco()*(promo.getDesconto()/100);
+                    compra.getMusicas().put(m.getTitulo(),(m.getPreco()-m.getPreco()*(promo.getDesconto()/100))); //guarda o titulo da musica e o preço com desconto
+                    total += m.getPreco()*(m.getPreco()-m.getPreco()*(promo.getDesconto()/100));//efectua o total da compra com o desconto correspondente
                 }
-                total = total - (total * promo.getDesconto());//efectua o total da compra com o desconto correspondente
                 if (this.saldo >= total) {
                     this.saldo -= total;
                     for (Musica m : carrinhoCompras) {
