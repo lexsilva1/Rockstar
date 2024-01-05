@@ -187,11 +187,11 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.repaint();
     }*/
 
-    private void abrirPainelMinhasPlaylists() {
+    public void abrirPainelMinhasPlaylists() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente));
+        painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente,this));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
