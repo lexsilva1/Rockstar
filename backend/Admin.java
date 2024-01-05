@@ -8,7 +8,7 @@ public class Admin extends Utilizador {
 
     public Admin(String username, String password) {
         super(username, password);
-        this.idAdmin = ultimoidAdmin++;
+        this.idAdmin = ++ultimoidAdmin;
     }
 
     public Promo criaPromo(int cupoes, String nome, double desconto, LocalDate dataInicio, LocalDate dataFim) {
