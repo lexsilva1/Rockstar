@@ -110,7 +110,7 @@ public class PainelAdmin extends JPanel {
 
 
                 for (Musica a : framePrincipal.getRockstar().getMusicas() ){
-                    if(a.getTitulo().contains(txtPesquisar.getText())){
+                    if(a.getTitulo().toLowerCase().contains(txtPesquisar.getText().toLowerCase())){
                         modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
                     }
                 }
@@ -137,7 +137,7 @@ public class PainelAdmin extends JPanel {
                 modeloTabela.addColumn("Password");
 
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
-                    if (a.getUsername().contains(txtPesquisar.getText())){
+                    if (a.getUsername().toLowerCase().contains(txtPesquisar.getText().toLowerCase())){
                         String estado;
                         if (a.isActivo()) {
                             estado = "Ativo";
@@ -220,6 +220,7 @@ public class PainelAdmin extends JPanel {
         painelOpcoesAdmin.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painelCriarAdmin);
+        painelCriarAdmin.setVisible(true);
         // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
@@ -296,12 +297,16 @@ public class PainelAdmin extends JPanel {
             if (linhaSelecionada != -1) {
                 String username = (String) tabela.getValueAt(linhaSelecionada, 0);
                 String estado;
+                boolean stopIf = false;
+                boolean stopElse = false;
 
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()) {
-                    if (a instanceof Admin && ((Admin) a).getIdAdmin() == 1) {
-                        JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
+                    if (!stopIf && a instanceof Admin && ((Admin) a).getIdAdmin() == 1) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível inativar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
+                        stopIf = true;
+                        stopElse = true;
                     } else {
-                        if (a.getUsername().equals(username)) {
+                        if (!stopElse && a.getUsername().equals(username)) {
                             a.setActivo();
                             if (a.isActivo()) {
                                 JOptionPane.showMessageDialog(framePrincipal, "Utilizador Reativado", "Estado Utilizador", JOptionPane.INFORMATION_MESSAGE);
@@ -316,8 +321,8 @@ public class PainelAdmin extends JPanel {
                                 modeloTabela.setValueAt(estado, modelRow, 2);
                                 tabela.repaint();
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Utilizador não corresponde", JOptionPane.ERROR_MESSAGE);
+                            stopIf = true;
+                            stopElse = true;
                         }
                     }
                 }
