@@ -148,11 +148,14 @@ public class PainelCarrinhoCompras extends JPanel {
             if (this.promo == null) {
                 cliente.compra();
                 limparCarrinhoCompras(cliente, painelCliente);
+                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
-            } else
+            } else {
                 cliente.compraPromo(promo);
-            limparCarrinhoCompras(cliente, painelCliente);
+                limparCarrinhoCompras(cliente, painelCliente);
+                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
+            }
         }
     }
 
