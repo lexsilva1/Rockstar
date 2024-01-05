@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PainelAdmin extends JPanel {
@@ -233,23 +235,46 @@ public class PainelAdmin extends JPanel {
                 String titulo = (String) tabela.getValueAt(linhaSelecionada, 0);
                 String artista = (String) tabela.getValueAt(linhaSelecionada, 1);
 
-
-                for (Musica c : framePrincipal.getRockstar().getMusicas()) {
+                Iterator<Musica> iterator = framePrincipal.getRockstar().getMusicas().iterator();
+                while (iterator.hasNext()) {
+                    Musica c = iterator.next();
                     if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                        framePrincipal.getRockstar().getMusicas().remove(c);
+                        iterator.remove(); // Use the iterator's remove method
                     }
                 }
+
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
                     if( a instanceof Cliente){
-                        for(Musica c :  ((Cliente) a).getMusicas()){
-                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                                ((Cliente) a).getMusicas().remove(c);
+                        Iterator<Musica> iteratorcliente = ((Cliente) a).getMusicas().iterator();
+                        while (iteratorcliente.hasNext()) {
+                            Musica m = iteratorcliente.next();
+                            if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
+                                double totalValueToRefund = 0.0;
+
+                                // Calculate the total value of the removed song from the purchase
+                                for (Compra k : ((Cliente) a).getHistoricoCompras()) {
+                                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
+                                        if (entry.getKey().equals(titulo)) {
+                                            totalValueToRefund = entry.getValue();
+                                            break; // Stop iterating when the song is found in a purchase
+                                        }
+                                    }
+                                }
+
+                                // Remove the song from the user's music list
+                                iteratorcliente.remove();
+
+                                // Add the refunded value back to the user's balance
+                                ((Cliente) a).carregaSaldo(totalValueToRefund);
                             }
                         }
+
                     }else if (a instanceof Musico){
-                        for (Musica c : ((Musico) a).getMusicas()){
-                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                                ((Musico) a).getMusicas().remove(c);
+                        Iterator<Musica> iteratormusico = ((Musico) a).getMusicas().iterator();
+                        while (iteratormusico.hasNext()){
+                            Musica m = iteratormusico.next();
+                            if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
+                                iteratormusico.remove();
                             }
                         }
                     }

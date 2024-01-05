@@ -273,9 +273,11 @@ public class PainelCriarCampanha extends JPanel {
         btnCriar.addActionListener(e -> {
             if (txtNome.getText().isEmpty() || txtDesconto.getText().isEmpty() || txtNumeroCupoes.getText().isEmpty() || txtAnoFim.getText().isEmpty() || txtMesFim.getText().isEmpty() || txtDiaFim.getText().isEmpty() || txtAnoInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() ) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+
             } else {
                 if (admin.promoExiste(framePrincipal.getRockstar(), txtNome.getText())) {
                     JOptionPane.showMessageDialog(null, "Já existe campanha com o mesmo nome", "Campanha já existe", JOptionPane.ERROR_MESSAGE);
+
                     txtNome.setText("");
                 } else {
                     if (Integer.parseInt(txtDesconto.getText()) > 50) {
