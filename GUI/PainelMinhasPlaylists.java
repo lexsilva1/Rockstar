@@ -87,15 +87,13 @@ public class PainelMinhasPlaylists extends JPanel {
                 }
 
                 // Criar a tabela com o modelo
-                this.removeAll();
                 JTable tabela1 = new JTable(modeloTabela1);
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
                 scrollPane1.setVisible(true);
+
+                this.removeAll();
                 this.add(scrollPane1, BorderLayout.CENTER);
-                tabela1.setVisible(true);
-                this.add(tabela1);
                 revalidate();
-                repaint();
             }
         });
 

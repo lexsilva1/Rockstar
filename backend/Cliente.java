@@ -1,6 +1,8 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class Cliente extends Utilizador {
     private double saldo;
@@ -30,6 +32,21 @@ public class Cliente extends Utilizador {
                 musica.getVotosUtilizadores().add(this.username);
             }
         }
+    }
+    public Playlist criaPlaylistGenero(int num, String titulo, ArrayList<Musica> musicasGenero) {
+        Playlist playlist = new Playlist(this.username, titulo);
+        Collections.shuffle(musicasGenero);
+
+        Iterator<Musica> iterator = musicasGenero.iterator();
+        int i = 0;
+        while (i < num && iterator.hasNext()) {
+            Musica m = iterator.next();
+            playlist.getMusicas().add(m);
+            iterator.remove(); // Remove o elemento atual da lista
+            i++;
+        }
+
+        return playlist;
     }
 
     /*public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
