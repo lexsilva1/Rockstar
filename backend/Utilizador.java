@@ -1,6 +1,8 @@
 package backend;
 
 import java.io.Serializable;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Utilizador implements Serializable {
@@ -45,4 +47,5 @@ public abstract class Utilizador implements Serializable {
     public boolean isActivo() {
         return activo;
     }
+
 }

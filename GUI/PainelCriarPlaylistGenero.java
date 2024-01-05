@@ -1,14 +1,18 @@
 package GUI;
 
+import backend.Cliente;
+import backend.Musica;
+import backend.Playlist;
 import backend.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class PainelCriarPlaylistGenero extends JPanel {
-    private Utilizador utilizador;
+    protected Utilizador cliente;
     protected JLabel lblNumero;
     protected JTextField txtNumero;
     protected JLabel lblNome;
@@ -24,9 +28,8 @@ public class PainelCriarPlaylistGenero extends JPanel {
 
 
 
-    public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilizador) {
-        this.utilizador = utilizador;
-
+    public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilazador) {
+        this.cliente= utilazador;
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
@@ -89,6 +92,43 @@ public class PainelCriarPlaylistGenero extends JPanel {
         btnCriar.setBounds(300,350,100,25);
         add(btnCriar);
 
+
+        btnCriar.addActionListener(e -> {
+            if (txtNome.getText().isEmpty() || txtNumero.getText().isEmpty() || grupo.getSelection() == null) {
+                JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (Integer.parseInt(txtNumero.getText()) > 20) {
+                    JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até 20 faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int numeroDeFaixas = Integer.parseInt(txtNumero.getText());
+
+                    String genero = "Rock";
+                    if (chkPop.isSelected()) {
+                        genero = "Pop";
+                    } else if (chkPimba.isSelected()) {
+                        genero = "Pimba";
+                    } else if (chkHipHop.isSelected()) {
+                        genero = "Hip Hop";
+                    }
+                    if( cliente instanceof Cliente) {
+                        ArrayList<Musica> todasDesteGenero = criaArrayGernero((Cliente) cliente, genero);
+                        Playlist playlist = ((Cliente) cliente).criaPlaylistGenero(Integer.parseInt(txtNumero.getText()), txtNome.getText(), todasDesteGenero);
+                        if(playlist.getMusicas().size()<Integer.parseInt(txtNumero.getText())&& !playlist.getMusicas().isEmpty()) {
+                            framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
+                            JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso, apenas com " + playlist.getMusicas().size() + " musicas", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        }else if (playlist.getMusicas().isEmpty()){
+                            JOptionPane.showMessageDialog(null, "Playlist não criada por falta de musicas do genero solicitado. Por favor visite a nossa Loja", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                        }else {
+                            framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
+                            JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                        }
+                    }
+                }
+            }
+
+                });
+
         txtNumero.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -112,6 +152,15 @@ public class PainelCriarPlaylistGenero extends JPanel {
 
         setVisible(true);
 
+    }
+    public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
+         ArrayList<Musica> listagenero =new ArrayList<>();
+         for(Musica m :  cliente.getMusicas()){
+             if(m.getGenero().equals(genero)){
+                 listagenero.add(m);
+             }
+         }
+         return listagenero;
     }
 
 }

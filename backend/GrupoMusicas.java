@@ -28,5 +28,10 @@ public class GrupoMusicas implements Serializable {
     public String getOwner() {
         return owner;
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }
 
