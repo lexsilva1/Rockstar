@@ -1,27 +1,21 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import backend.Promo;
-import backend.Utilizador;
 import backend.Admin;
+import backend.Rockstar;
 
 public class PainelCriarCampanha extends JPanel {
-    private FramePrincipal framePrincipal;
-    private Admin admin;
 
     public PainelCriarCampanha(FramePrincipal framePrincipal, Admin admin) {
-        this.framePrincipal = framePrincipal;
-        this.admin = admin;
-
-
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));
-        ;
+
         setPreferredSize(new Dimension(450, 500));
 
         JLabel lblNome = new JLabel("Nome:");
@@ -138,74 +132,258 @@ public class PainelCriarCampanha extends JPanel {
         btnCancelar.setForeground(Color.BLACK);
         add(btnCancelar);
 
+        txtAnoInicio.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtAnoInicio.getText().length() == 4) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtMesInicio.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtMesInicio.getText().length() == 2) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtDiaInicio.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtDiaInicio.getText().length() == 2) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtAnoFim.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtAnoFim.getText().length() == 4) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtMesFim.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtMesFim.getText().length() == 2) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtDiaFim.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char input = e.getKeyChar();
+                if (!Character.isDigit(input) || txtDiaFim.getText().length() == 2) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+        txtNumeroCupoes.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (txtNumeroCupoes.getText().length() == 3) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         btnCriar.addActionListener(e -> {
             if (txtNome.getText().isEmpty() || txtDesconto.getText().isEmpty() || txtNumeroCupoes.getText().isEmpty() || txtAnoFim.getText().isEmpty() || txtMesFim.getText().isEmpty() || txtDiaFim.getText().isEmpty() || txtAnoInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() ) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
-            }else {
-            for(Promo p : framePrincipal.getRockstar().getPromos()) {
-                if (txtNome.getText().equals(p.getNome())) {
-                    JOptionPane.showMessageDialog(null, "Campanha já existente", "Campanha já existente", JOptionPane.ERROR_MESSAGE);
-                    txtNome.setText("");
-                }
-            }}
-            if (verificarData(txtAnoInicio.getText(), txtMesInicio.getText(), txtDiaInicio.getText())) {
-                String txtDataInicio = txtAnoInicio.getText() + "-" + txtMesInicio.getText() + "-" + txtDiaInicio.getText();
-                LocalDate dataInicio = LocalDate.parse(txtDataInicio);
-                if (verificarData(txtAnoFim.getText(), txtMesFim.getText(), txtDiaFim.getText())) {
-                    String txtDataFim = txtAnoFim.getText() + "-" + txtMesFim.getText() + "-" + txtDiaFim.getText();
-                    LocalDate dataFim = LocalDate.parse(txtDataFim);
-                    String nome = txtNome.getText();
-                    double desconto = Double.parseDouble(txtDesconto.getText());
-                    int numeroCupoes = Integer.parseInt(txtNumeroCupoes.getText());
-                    framePrincipal.getRockstar().addPromo(admin, numeroCupoes, nome, desconto, dataInicio, dataFim);
-                    JOptionPane.showMessageDialog(null, "Campanha criada com sucesso");
-                    txtNome.setText("");
-                    txtDesconto.setText("");
-                    txtNumeroCupoes.setText("");
-                    txtAnoInicio.setText("");
-                    txtMesInicio.setText("");
-                    txtDiaInicio.setText("");
-                    txtAnoFim.setText("");
-                    txtMesFim.setText("");
-                    txtDiaFim.setText("");
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Data Final inválida", "Erro", JOptionPane.ERROR_MESSAGE);
-                    txtAnoFim.setText("");
-                    txtMesFim.setText("");
-                    txtDiaFim.setText("");
-                    }
             } else {
-                JOptionPane.showMessageDialog(this, "Data Inicial inválida", "Erro", JOptionPane.ERROR_MESSAGE);
-                txtAnoInicio.setText("");
-                txtMesInicio.setText("");
-                txtDiaInicio.setText("");
+                if (admin.promoExiste(framePrincipal.getRockstar(), txtNome.getText())) {
+                    JOptionPane.showMessageDialog(null, "Já existe campanha com o mesmo nome", "Campanha já existe", JOptionPane.ERROR_MESSAGE);
+                    txtNome.setText("");
+                } else {
+                    if (Integer.parseInt(txtDesconto.getText()) > 50) {
+                        JOptionPane.showMessageDialog(null, "Desconto máximo permitido: 50%", "Desconto inválido", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (verificarDataInicio(txtAnoInicio.getText(), txtMesInicio.getText(), txtDiaInicio.getText())) {
+                            String txtDataInicio = txtAnoInicio.getText() + "-" + txtMesInicio.getText() + "-" + txtDiaInicio.getText();
+                            LocalDate dataInicio = LocalDate.parse(txtDataInicio);
+                            if (verificarDataFim(txtAnoFim.getText(), txtMesFim.getText(), txtDiaFim.getText(), dataInicio)) {
+                                String txtDataFim = txtAnoFim.getText() + "-" + txtMesFim.getText() + "-" + txtDiaFim.getText();
+                                LocalDate dataFim = LocalDate.parse(txtDataFim);
+                                if (dataFim.isBefore(dataInicio)) {
+                                    txtAnoFim.setText("");
+                                    txtMesFim.setText("");
+                                    txtDiaFim.setText("");
+                                } else {
+                                    String nome = txtNome.getText();
+                                    double desconto = Double.parseDouble(txtDesconto.getText());
+                                    int numeroCupoes = Integer.parseInt(txtNumeroCupoes.getText());
+                                    framePrincipal.getRockstar().addPromo(admin, numeroCupoes, nome, desconto, dataInicio, dataFim);
+                                    JOptionPane.showMessageDialog(null, "Campanha criada com sucesso");
+                                    txtNome.setText("");
+                                    txtDesconto.setText("");
+                                    txtNumeroCupoes.setText("");
+                                    txtAnoInicio.setText("");
+                                    txtMesInicio.setText("");
+                                    txtDiaInicio.setText("");
+                                    txtAnoFim.setText("");
+                                    txtMesFim.setText("");
+                                    txtDiaFim.setText("");
+                                    setVisible(false);
+                                }
+
+                            } else {
+                                //JOptionPane.showMessageDialog(this, "Data Final inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                                txtAnoFim.setText("");
+                                txtMesFim.setText("");
+                                txtDiaFim.setText("");
+                            }
+                        } else {
+                            //JOptionPane.showMessageDialog(this, "Data Inicial inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                            txtAnoInicio.setText("");
+                            txtMesInicio.setText("");
+                            txtDiaInicio.setText("");
+                        }
+                    }
                 }
+            }
 
       });
 
     }
 
 
-    public boolean verificarData(String ano, String mes, String dia) {
-        int ano1 = Integer.parseInt(ano);
-        int mes1 = Integer.parseInt(mes);
-        int dia1 = Integer.parseInt(dia);
+    public boolean verificarDataInicio(String anoInicio, String mesInicio, String diaInicio) {
+        int ano1 = Integer.parseInt(anoInicio);
+        int mes1 = Integer.parseInt(mesInicio);
+        int dia1 = Integer.parseInt(diaInicio);
 
-        if (ano1 < LocalDate.now().getYear() || ano.length() > 4) {
-            JOptionPane.showMessageDialog(null, "Ano deve ser posterior a hoje e conter apenas 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
+        if (ano1 < LocalDate.now().getYear()) {
+            JOptionPane.showMessageDialog(null, "Ano não deve ser anterior ao ano atual", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if ((mes1 < 1 || mes1 > 12) || mes1 < LocalDate.now().getMonthValue()) {
+        } else if (mes1 < 1 || mes1 > 12 || mes1 < LocalDate.now().getMonthValue()) {
             JOptionPane.showMessageDialog(null, "Mês inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (mes.length() == 1 || dia.length() == 1) {
-            JOptionPane.showMessageDialog(null, "Mês e dia devem ter 2 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
+        } else if (dia1 < 1 || dia1 > 31) {
+            JOptionPane.showMessageDialog(null, "Dia inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (dia1 < 1 || dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth() || dia1 < LocalDate.now().getDayOfMonth()) {
+        } else if (dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth()) {
             JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
+        } else {
+            LocalDate dataInicio = LocalDate.of(ano1, mes1, dia1);
+            LocalDate hoje = LocalDate.now();
+            if (dataInicio.isBefore(hoje)) {
+                JOptionPane.showMessageDialog(null, "Data não deve ser anterior à data atual", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            return true;
         }
-        return true;
+    }
+
+    public boolean verificarDataFim(String anoFim, String mesFim, String diaFim, LocalDate dataInicio) {
+
+        int anoFim1 = Integer.parseInt(anoFim);
+        int mesFim1 = Integer.parseInt(mesFim);
+        int diaFim1 = Integer.parseInt(diaFim);
+
+        if (anoFim.length() < 4) {
+            JOptionPane.showMessageDialog(null, "Ano deve conter 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (mesFim1 < 1 || mesFim1 > 12) {
+            JOptionPane.showMessageDialog(null, "Mês inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (diaFim1 < 1 || diaFim1 > 31) {
+            JOptionPane.showMessageDialog(null, "Dia inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (diaFim1 > LocalDate.of(anoFim1, mesFim1, 1).lengthOfMonth()) {
+            JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado", "Dados errados", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            LocalDate dataFim = LocalDate.of(anoFim1, mesFim1, diaFim1);
+            if (dataFim.isBefore(dataInicio)) {
+                JOptionPane.showMessageDialog(null, "Data Fim não deve ser anterior à Data Início", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            return true;
+        }
     }
 }
 

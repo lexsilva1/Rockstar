@@ -1,16 +1,18 @@
 package backend;
 
+import GUI.FramePrincipal;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Promo implements Serializable {
-    int cupoes;
-    String nome;
-    double desconto;
-    LocalDate dataInicio;
-    LocalDate dataFim;
-    ArrayList<String> clientes;
+    private int cupoes;
+    private String nome;
+    private double desconto;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private ArrayList<String> clientes;
 
     public Promo(int cupoes, String nome, double desconto, LocalDate dataInicio, LocalDate dataFim) {
         this.cupoes = cupoes;
@@ -26,25 +28,23 @@ public class Promo implements Serializable {
             this.cupoes--;
         }
     }
-        public int getCupoes () {
-            return cupoes;
-        }
+    public int getCupoes () {
+        return cupoes;
+    }
+    public String getNome () {
+        return nome;
+    }
+    public double getDesconto () {
+        return desconto;
+    }
 
-        public String getNome () {
-            return nome;
-        }
+    public LocalDate getDataInicio () {
+        return dataInicio;
+    }
 
-        public double getDesconto () {
-            return desconto;
-        }
-
-        public LocalDate getDataInicio () {
-            return dataInicio;
-        }
-
-        public LocalDate getDataFim () {
-            return dataFim;
-        }
+    public LocalDate getDataFim () {
+        return dataFim;
+    }
 
     public ArrayList<String> getClientes() {
         return clientes;
