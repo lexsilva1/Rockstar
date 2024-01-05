@@ -1,8 +1,6 @@
 package GUI;
 
-import backend.Cliente;
-import backend.Musica;
-import backend.Utilizador;
+import backend.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +12,6 @@ public class PainelCarrinhoCompras extends JPanel {
     private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
-    private JLabel labelCustoTotal;
     private PainelCliente painelCliente;
     public PainelCarrinhoCompras(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
         this.cliente = cliente;
@@ -25,7 +22,7 @@ public class PainelCarrinhoCompras extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela
+        // Criar o modelo da tabela das músicas que foram adicionadas ao carrinho
         modeloTabela=new DefaultTableModel();
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
@@ -41,37 +38,68 @@ public class PainelCarrinhoCompras extends JPanel {
         }
 
 
-
         // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
         tabela.setPreferredScrollableViewportSize(new Dimension(400, 100));
 
         // Adicionar a tabela a um JScrollPane
         JScrollPane scrollPane = new JScrollPane(tabela);
-        scrollPane.setBounds(10, 10, 400, 100); // Definir posição e tamanho manualmente
+        scrollPane.setBounds(10, 30, 400, 150); // Definir posição e tamanho manualmente
 
         // Adicionar o JScrollPane ao painel
         add(scrollPane);
 
         // mostrar o custo total
-        labelCustoTotal = new JLabel("Custo Total: " + String.valueOf(calcularCustoTotal()) + " €");
+        JLabel labelCustoTotal = new JLabel("Custo Total: " + String.valueOf(calcularCustoTotal()) + " €");
         labelCustoTotal.setForeground(Color.WHITE);
-        labelCustoTotal.setBounds(10, 120, 200, 25); // Definir posição e tamanho manualmente
+        labelCustoTotal.setBounds(10, 190, 200, 25); // Definir posição e tamanho manualmente
         add(labelCustoTotal);
 
+        JLabel labelCarrinho = new JLabel("Carrinho de Compras");
+        labelCarrinho.setForeground(Color.WHITE);
+        labelCarrinho.setBounds(10, 0, 200, 25); // Definir posição e tamanho manualmente
+        add(labelCarrinho);
+
         JButton btnReset= new JButton("Limpar Carrinho");
-        btnReset.setBounds(290,130,130,25);
+        btnReset.setBounds(280,190,130,25);
         btnReset.addActionListener(e -> limparCarrinhoCompras(cliente,painelCliente));
         add(btnReset);
 
-        JButton btnContinuar = new JButton("Campanhas");
-        btnContinuar.setBounds(10,200,100,25);
-        add(btnContinuar);
+        JLabel lblContinuar = new JLabel("Campanhas");
+        lblContinuar.setForeground(Color.WHITE);
+        lblContinuar.setBounds(10,280,100,25);
+        add(lblContinuar);
 
         JButton btnFinalizarCompra= new JButton("Finalizar Compra");
-        btnFinalizarCompra.setBounds(290,200,130,25);
+        btnFinalizarCompra.setBounds(280,230,130,25);
         btnFinalizarCompra.addActionListener(e -> comprarMusicas(cliente,painelCliente));
         add(btnFinalizarCompra);
+
+        // Criar o modelo da tabela das campanhas
+        modeloTabela=new DefaultTableModel();
+        modeloTabela.addColumn("Nome");
+        modeloTabela.addColumn("Desconto");
+        modeloTabela.addColumn("Data de início");
+        modeloTabela.addColumn("Data de fim");
+        modeloTabela.addColumn("Cupões disponíveis");
+
+        // Adicionar dados de exemplo à tabela
+        for (Promo a : framePrincipal.getRockstar().getPromos() ){
+            modeloTabela.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+        }
+
+
+        // Criar a tabela com o modelo
+        tabela = new JTable(modeloTabela);
+        tabela.setPreferredScrollableViewportSize(new Dimension(400, 100));
+
+        // Adicionar a tabela a um JScrollPane
+        JScrollPane scrollPane1 = new JScrollPane(tabela);
+        scrollPane1.setBounds(10, 305, 400, 150); // Definir posição e tamanho manualmente
+
+        // Adicionar o JScrollPane ao painel
+        add(scrollPane1);
+
 
     }
 
