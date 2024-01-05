@@ -298,27 +298,30 @@ public class PainelAdmin extends JPanel {
                 String estado;
 
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()) {
-                    if (a instanceof Admin && ((Admin) a).getIdAdmin() == 1 && a.getUsername().equals(username)) {
+                    if (a instanceof Admin && ((Admin) a).getIdAdmin() == 1) {
                         JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
-                    } else if (a.getUsername().equals(username)) {
-                        a.setActivo();
-                        if (a.isActivo()) {
-                            JOptionPane.showMessageDialog(framePrincipal, "Utilizador Reativado", "Estado Utilizador", JOptionPane.INFORMATION_MESSAGE);
-                            estado = "Ativo";
-                            int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
-                            modeloTabela.setValueAt(estado, modelRow, 2);
-                            tabela.repaint();
+                    } else {
+                        if (a.getUsername().equals(username)) {
+                            a.setActivo();
+                            if (a.isActivo()) {
+                                JOptionPane.showMessageDialog(framePrincipal, "Utilizador Reativado", "Estado Utilizador", JOptionPane.INFORMATION_MESSAGE);
+                                estado = "Ativo";
+                                int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
+                                modeloTabela.setValueAt(estado, modelRow, 2);
+                                tabela.repaint();
+                            } else {
+                                JOptionPane.showMessageDialog(framePrincipal, "Utilizador Inativado", "Estado utilizador", JOptionPane.INFORMATION_MESSAGE);
+                                estado = "Inativo";
+                                int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
+                                modeloTabela.setValueAt(estado, modelRow, 2);
+                                tabela.repaint();
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(framePrincipal, "Utilizador Inativado", "Estado utilizador", JOptionPane.INFORMATION_MESSAGE);
-                            estado = "Inativo";
-                            int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
-                            modeloTabela.setValueAt(estado, modelRow, 2);
-                            tabela.repaint();
+                            JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Utilizador não corresponde", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
             }
-
         });
 
         popupMenu.add(adicionarAoCarrinhoItem);

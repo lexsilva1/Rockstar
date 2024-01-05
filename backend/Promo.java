@@ -24,9 +24,8 @@ public class Promo implements Serializable {
     }
 
     public void retiraCupoes() {//setter especifico para quando é usada uma promo deduzir um cupão
-        while (this.cupoes > 0) {
             this.cupoes--;
-        }
+
     }
     public int getCupoes () {
         return cupoes;

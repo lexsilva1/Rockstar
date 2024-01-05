@@ -69,36 +69,22 @@ public class Cliente extends Utilizador {
     }
 
     public void compraPromo(Promo promo) {
-        for (String user : promo.getClientes()) {
-            if (user.equals(this.username)) {
-                System.out.println("promo já utilizada");//verifica se o cliente já utilizou a promoção
-
-            } else {
 
                 Compra compra = new Compra();
                 compra.setPromo(promo);// adiciona a promoção à compra
                 double total = 0;
                 for (Musica m : carrinhoCompras) {
-                    compra.getMusicas().put(m.getTitulo(),m.getPreco()*(promo.getDesconto()/100)); //guarda o titulo da musica e o preço com desconto
-                    total += m.getPreco()*(promo.getDesconto()/100);
+                    compra.getMusicas().put(m.getTitulo(),(m.getPreco()-m.getPreco()*(promo.getDesconto()/100))); //guarda o titulo da musica e o preço com desconto
+                    total += (m.getPreco()-m.getPreco()*(promo.getDesconto()/100));//efectua o total da compra com o desconto correspondente
                 }
-                total = total - (total * promo.getDesconto());//efectua o total da compra com o desconto correspondente
-                if (this.saldo >= total) {
+                    musicas.addAll(carrinhoCompras);
                     this.saldo -= total;
-                    for (Musica m : carrinhoCompras) {
-                        musicas.add(m);
-                        carrinhoCompras.remove(m);//esvazia o carrinho de compras
-                    }
                     historicoCompras.add(compra);//adiciona a compra ao historico do cliente
                     promo.retiraCupoes();
                     promo.getClientes().add(this.username);
-                    System.out.println("compra efectuada com sucesso");
-                } else
-                    System.out.println("saldo insuficiente");
-
             }
-        }
-    }
+
+
 
     public double getSaldo() {
         return saldo;
