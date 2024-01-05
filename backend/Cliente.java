@@ -32,7 +32,7 @@ public class Cliente extends Utilizador {
         }
     }
 
-    public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
+    /*public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
         Playlist playlist = new Playlist(this.username, titulo);
         for (int i = 0; i < num; i++) {
             for (Compra c : historicoCompras) {
@@ -48,7 +48,7 @@ public class Cliente extends Utilizador {
         }
         System.out.println("backend.Playlist criada com sucesso");
         return playlist;
-    }
+    }*/
 
     public Playlist criaPlaylist(String nome){
         return new Playlist(this.username,nome);
@@ -56,9 +56,9 @@ public class Cliente extends Utilizador {
 
     public void compra() {//compra sem promocao
         Compra compra = new Compra();
-        compra.getMusicas().addAll(carrinhoCompras);
         double total = 0;
-        for (Musica m : compra.getMusicas()) {
+        for (Musica m : carrinhoCompras) {
+            compra.getMusicas().put(m.getTitulo(),m.getPreco());
             total += m.getPreco();// vai buscar o preço de cada musica e soma todos no total
         }
         if (this.saldo >= total) {//confirmação de saldo
@@ -77,10 +77,10 @@ public class Cliente extends Utilizador {
 
                 Compra compra = new Compra();
                 compra.setPromo(promo);// adiciona a promoção à compra
-                compra.getMusicas().addAll(carrinhoCompras);
                 double total = 0;
-                for (Musica m : compra.getMusicas()) {
-                    total += m.getPreco();
+                for (Musica m : carrinhoCompras) {
+                    compra.getMusicas().put(m.getTitulo(),m.getPreco()*(promo.getDesconto()/100)); //guarda o titulo da musica e o preço com desconto
+                    total += m.getPreco()*(promo.getDesconto()/100);
                 }
                 total = total - (total * promo.getDesconto());//efectua o total da compra com o desconto correspondente
                 if (this.saldo >= total) {

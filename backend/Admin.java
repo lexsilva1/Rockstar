@@ -19,4 +19,12 @@ public class Admin extends Utilizador {
     public int getIdAdmin() {
         return idAdmin;
     }
+    public boolean promoExiste (Rockstar rockstar, String nome) {
+        for(Promo p : rockstar.getPromos()) {
+            if (nome.equalsIgnoreCase(p.getNome())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

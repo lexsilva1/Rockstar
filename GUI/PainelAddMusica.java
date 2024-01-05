@@ -181,7 +181,7 @@ public class PainelAddMusica extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 char input = e.getKeyChar();
-                if (!Character.isDigit(input)) {
+                if (!Character.isDigit(input) || txtAno.getText().length() == 4) {
                     e.consume();
                 }
             }
@@ -200,7 +200,7 @@ public class PainelAddMusica extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 char input = e.getKeyChar();
-                if (!Character.isDigit(input)) {
+                if (!Character.isDigit(input) || txtMes.getText().length() == 2) {
                     e.consume();
                 }
             }
@@ -220,7 +220,7 @@ public class PainelAddMusica extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 char input = e.getKeyChar();
-                if (!Character.isDigit(input)) {
+                if (!Character.isDigit(input) || txtDia.getText().length() == 2) {
                     e.consume();
                 }
             }
@@ -290,6 +290,7 @@ public class PainelAddMusica extends JPanel {
                                     }
                                     if (musico.musicaExiste(txtTitulo.getText())) {
                                         JOptionPane.showMessageDialog(null, "Já existe uma música sua com o mesmo nome", "Música já existe", JOptionPane.ERROR_MESSAGE);
+                                        txtTitulo.setText("");
                                     } else {
                                         Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
                                         Album album = musico.procurarAlbum(txtAlbum.getText());
@@ -393,14 +394,11 @@ public class PainelAddMusica extends JPanel {
         int mes1 = Integer.parseInt(mes);
         int dia1 = Integer.parseInt(dia);
 
-        if (ano1 < 1900 || ano.length() > 4) {
-            JOptionPane.showMessageDialog(null, "Ano deve ser posterior a 1900 e conter apenas 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
+        if (ano1 < 1900 || ano.length() < 4) {
+            JOptionPane.showMessageDialog(null, "Ano deve ser posterior a 1900 e conter 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
         } else if (mes1 <1 || mes1 > 12) {
             JOptionPane.showMessageDialog(null, "Mês inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else if (mes.length() == 1 || dia.length() == 1) {
-            JOptionPane.showMessageDialog(null, "Mês e dia devem ter 2 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
         } else if (dia1 < 1 || dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth()) {
                 JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado", "Dados errados", JOptionPane.ERROR_MESSAGE);

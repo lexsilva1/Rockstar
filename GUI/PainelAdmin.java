@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PainelAdmin extends JPanel {
@@ -16,6 +18,8 @@ public class PainelAdmin extends JPanel {
     private JButton btnCriarCampanha;
     private JButton btnCriarAdministrador;
     private JLabel labelUsername; //Colocar o username visivel
+    private JLabel lblPesquisar;
+    private JTextField txtPesquisar;
     private JButton btnLogout;
     private BotaoLupa btnLupa;
     private PainelOpcoesAdmin painelOpcoesAdmin;
@@ -36,8 +40,8 @@ public class PainelAdmin extends JPanel {
         this.btnCriarCampanha = new JButton("Criar Campanha");
         this.btnCriarAdministrador = new JButton("Criar Administrador");
         this.labelUsername = new JLabel("Bem-vindo: " + admin.getUsername());
-        JLabel lblPesquisar = new JLabel("Pesquisar");
-        JTextField txtPesquisar = new JTextField();
+        this.lblPesquisar = new JLabel("Pesquisar");
+        this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
@@ -86,25 +90,26 @@ public class PainelAdmin extends JPanel {
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaMusica);
         grupo.add(chkPesquisaUtilizador);
+
         btnLupa.addActionListener((ActionEvent e) ->{
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
-                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parametro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
-        } else if( chkPesquisaMusica.isSelected()) {
-            JPanel painel =new JPanel();
-            painel.setLayout(new BorderLayout());
-            painel.setBackground(new Color(70, 90, 120));
-            painel.setPreferredSize(new Dimension(450, 500));
-            DefaultTableModel modeloTabela = new DefaultTableModel();
-            modeloTabela.addColumn("Título");
-            modeloTabela.addColumn("Artista");
-            modeloTabela.addColumn("Género");
-            modeloTabela.addColumn("Data Lançamento");
-            modeloTabela.addColumn("Rating");
-            modeloTabela.addColumn("Preço");
-            modeloTabela.addColumn("Ações");
+                JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
+            } else if( chkPesquisaMusica.isSelected()) {
+                JPanel painel =new JPanel();
+                painel.setLayout(new BorderLayout());
+                painel.setBackground(new Color(70, 90, 120));
+                painel.setPreferredSize(new Dimension(450, 500));
+                DefaultTableModel modeloTabela = new DefaultTableModel();
+                modeloTabela.addColumn("Título");
+                modeloTabela.addColumn("Artista");
+                modeloTabela.addColumn("Género");
+                modeloTabela.addColumn("Data Lançamento");
+                modeloTabela.addColumn("Rating");
+                modeloTabela.addColumn("Preço");
+                modeloTabela.addColumn("Ações");
 
 
-            for (Musica a : framePrincipal.getRockstar().getMusicas() ){
+                for (Musica a : framePrincipal.getRockstar().getMusicas() ){
                     if(a.getTitulo().contains(txtPesquisar.getText())){
                         modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
                     }
@@ -129,12 +134,20 @@ public class PainelAdmin extends JPanel {
                 modeloTabela.addColumn("Username");
                 modeloTabela.addColumn("Tipo de Utilizador");
                 modeloTabela.addColumn("Ativo");
-                modeloTabela.addColumn("password");
+                modeloTabela.addColumn("Password");
+
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
-                    if(a.getUsername().contains(txtPesquisar.getText())){
-                        modeloTabela.addRow(new Object[]{a.getUsername(), a.getClass().getSimpleName(), a.isActivo(),a.getPassword()});
+                    if (a.getUsername().contains(txtPesquisar.getText())){
+                        String estado;
+                        if (a.isActivo()) {
+                            estado = "Ativo";
+                        } else {
+                            estado = "Inativo";
+                        }
+                        modeloTabela.addRow(new Object[]{a.getUsername(), a.getClass().getSimpleName(), estado,a.getPassword()});
                     }
                 }
+
                 JTable tabela = new JTable(modeloTabela);
                 tabela.setAutoCreateRowSorter(true);
                 JScrollPane scrollPane = new JScrollPane(tabela);
@@ -142,10 +155,11 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
-                JPopupMenu popupMenu = criarPopupMenuUtilizador(framePrincipal,tabela);
+                JPopupMenu popupMenu = criarPopupMenuUtilizador(framePrincipal,tabela, modeloTabela);
                 tabela.setComponentPopupMenu(popupMenu);
             }
         });
+
         btnVerCampanhas.addActionListener(e -> {
             JPanel painel =new JPanel();
             painel.setLayout(new BorderLayout());
@@ -170,7 +184,7 @@ public class PainelAdmin extends JPanel {
             abrirPainelPesquisa(painel);
         });
 
-
+        add(labelUsername);
         add(btnVerCampanhas);
         add(btnCriarCampanha);
         add(btnCriarAdministrador);
@@ -221,23 +235,46 @@ public class PainelAdmin extends JPanel {
                 String titulo = (String) tabela.getValueAt(linhaSelecionada, 0);
                 String artista = (String) tabela.getValueAt(linhaSelecionada, 1);
 
-
-                for (Musica c : framePrincipal.getRockstar().getMusicas()) {
+                Iterator<Musica> iterator = framePrincipal.getRockstar().getMusicas().iterator();
+                while (iterator.hasNext()) {
+                    Musica c = iterator.next();
                     if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                        framePrincipal.getRockstar().getMusicas().remove(c);
+                        iterator.remove(); // Use the iterator's remove method
                     }
                 }
+
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
                     if( a instanceof Cliente){
-                        for(Musica c :  ((Cliente) a).getMusicas()){
-                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                                ((Cliente) a).getMusicas().remove(c);
+                        Iterator<Musica> iteratorcliente = ((Cliente) a).getMusicas().iterator();
+                        while (iteratorcliente.hasNext()) {
+                            Musica m = iteratorcliente.next();
+                            if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
+                                double totalValueToRefund = 0.0;
+
+                                // Calculate the total value of the removed song from the purchase
+                                for (Compra k : ((Cliente) a).getHistoricoCompras()) {
+                                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
+                                        if (entry.getKey().equals(titulo)) {
+                                            totalValueToRefund = entry.getValue();
+                                            break; // Stop iterating when the song is found in a purchase
+                                        }
+                                    }
+                                }
+
+                                // Remove the song from the user's music list
+                                iteratorcliente.remove();
+
+                                // Add the refunded value back to the user's balance
+                                ((Cliente) a).carregaSaldo(totalValueToRefund);
                             }
                         }
+
                     }else if (a instanceof Musico){
-                        for (Musica c : ((Musico) a).getMusicas()){
-                            if (c.getTitulo().equals(titulo) && c.getAutor().equals(artista)) {
-                                ((Musico) a).getMusicas().remove(c);
+                        Iterator<Musica> iteratormusico = ((Musico) a).getMusicas().iterator();
+                        while (iteratormusico.hasNext()){
+                            Musica m = iteratormusico.next();
+                            if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
+                                iteratormusico.remove();
                             }
                         }
                     }
@@ -249,22 +286,36 @@ public class PainelAdmin extends JPanel {
 
         return popupMenu;
     }
-    public JPopupMenu criarPopupMenuUtilizador(FramePrincipal framePrincipal, JTable tabela) {
+    public JPopupMenu criarPopupMenuUtilizador(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Bloquear Utilizador");
+        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Inativar/Reativar Utilizador");
         adicionarAoCarrinhoItem.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
 
             if (linhaSelecionada != -1) {
                 String username = (String) tabela.getValueAt(linhaSelecionada, 0);
+                String estado;
 
-                for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()){
-                    if( a instanceof Admin && ((Admin) a).getIdAdmin()==1 && a.getUsername().equals(username)){
+                for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()) {
+                    if (a instanceof Admin && ((Admin) a).getIdAdmin() == 1 && a.getUsername().equals(username)) {
                         JOptionPane.showMessageDialog(null, "Não foi possível inactivar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
-                    }else if (a.getUsername().equals(username))
+                    } else if (a.getUsername().equals(username)) {
                         a.setActivo();
-                    JOptionPane.showMessageDialog(framePrincipal, "Utilizador Bloqueado", "Bloquear utilizador", JOptionPane.INFORMATION_MESSAGE);
+                        if (a.isActivo()) {
+                            JOptionPane.showMessageDialog(framePrincipal, "Utilizador Reativado", "Estado Utilizador", JOptionPane.INFORMATION_MESSAGE);
+                            estado = "Ativo";
+                            int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
+                            modeloTabela.setValueAt(estado, modelRow, 2);
+                            tabela.repaint();
+                        } else {
+                            JOptionPane.showMessageDialog(framePrincipal, "Utilizador Inativado", "Estado utilizador", JOptionPane.INFORMATION_MESSAGE);
+                            estado = "Inativo";
+                            int modelRow = tabela.convertRowIndexToModel(linhaSelecionada);
+                            modeloTabela.setValueAt(estado, modelRow, 2);
+                            tabela.repaint();
+                        }
+                    }
                 }
             }
 
