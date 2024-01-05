@@ -16,4 +16,8 @@ public class Playlist extends GrupoMusicas  {
     public boolean isPublico() {
         return publico;
     }
+
+    public void setPublico() {
+        this.publico = !this.publico;
+    }
 }

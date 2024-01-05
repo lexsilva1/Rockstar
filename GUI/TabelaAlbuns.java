@@ -10,6 +10,7 @@ public class TabelaAlbuns extends TabelaMusicas {
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
+    private PainelOpcoesCliente painelMusico;
 
     /**
      * Cria um <code>JPanel</code> com uma tabela onde são imprimidos os dados relativos às instâncias
@@ -19,8 +20,9 @@ public class TabelaAlbuns extends TabelaMusicas {
      * @param musico     instância de <code>Musico</code>, que será quem tem o login efetuado,
      *                   e sobre o qual queremos obter informações
      */
-    public TabelaAlbuns(FramePrincipal framePrincipal, Musico musico) {
+    public TabelaAlbuns(FramePrincipal framePrincipal, Musico musico, PainelOpcoesCliente painelMusico) {
         super(framePrincipal,musico);
+        this.painelMusico = painelMusico;
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
@@ -66,11 +68,13 @@ public class TabelaAlbuns extends TabelaMusicas {
                 musicasAlbum(tabelaMusicas, musico, titulo);
                 tabelaMusicas.setBounds(0,250,450,50);
                 tabelaMusicas.setVisible(true);
-                add(tabelaMusicas);
+                painelMusico.add(tabelaMusicas);
                 revalidate();
                 repaint();
 
             }
+            revalidate();
+            repaint();
         });
 
         popupMenu.add(verMusicas);
