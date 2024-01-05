@@ -98,7 +98,7 @@ public class PainelCarrinhoCompras extends JPanel {
         // Criar a tabela com o modelo
         tabelapromo = new JTable(modelotabelapromo);
         tabelapromo.setPreferredScrollableViewportSize(new Dimension(400, 100));
-        JPopupMenu popupMenu = criarPopupMenuPromo(framePrincipal, cliente);
+        JPopupMenu popupMenu = criarPopupMenuPromo(framePrincipal, cliente,labelCustoTotal);
         tabelapromo.setComponentPopupMenu(popupMenu);
 
 
@@ -166,7 +166,7 @@ public class PainelCarrinhoCompras extends JPanel {
         }
     }*/
 
-    public JPopupMenu criarPopupMenuPromo(FramePrincipal framePrincipal, Cliente cliente) {
+    public JPopupMenu criarPopupMenuPromo(FramePrincipal framePrincipal, Cliente cliente,JLabel labelCustoTotal) {
         JPopupMenu popupMenu = new JPopupMenu();
 
         JMenuItem adicionarCampanha = new JMenuItem("Adicionar Campanha");
@@ -182,6 +182,10 @@ public class PainelCarrinhoCompras extends JPanel {
                         if (!isAlreadyUsed(promo, cliente)) {
                             this.setPromo(promo);
                             JOptionPane.showMessageDialog(framePrincipal, "Promoção adicionada ao carrinho", "Adicionar ao Carrinho", JOptionPane.INFORMATION_MESSAGE);
+                            labelCustoTotal.setText("Custo Total: " + String.format("%1$,.2f€",calcularCustoTotalPromo(promo)));
+                            labelCustoTotal.setForeground(Color.WHITE);
+                            labelCustoTotal.setBounds(10, 190, 200, 25); // Definir posição e tamanho manualmente
+                            add(labelCustoTotal);
                         } else {
                             JOptionPane.showMessageDialog(null, "Promoção já utilizada", "ERRO", JOptionPane.ERROR_MESSAGE);
                         }
