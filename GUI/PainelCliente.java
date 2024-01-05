@@ -59,7 +59,7 @@ public class PainelCliente extends JPanel{
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
-        this.painelMinhasPlaylists = new PainelMinhasPlaylists(framePrincipal, cliente);
+
 
 
 
@@ -191,7 +191,7 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(painelMinhasPlaylists);
+        painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
