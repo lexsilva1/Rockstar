@@ -198,11 +198,11 @@ public class PainelCliente extends JPanel{
     }
 
 
-    private void abrirPainelMinhasMusicas() {
+    public void abrirPainelMinhasMusicas() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente));
+        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
@@ -243,7 +243,7 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(painelMusicasLoja);
+        painelOpcoesCliente.add(new PainelMusicasLoja(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
