@@ -15,7 +15,6 @@ public class PainelMinhasMusicas extends JPanel {
 
 
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
-        this.cliente = cliente;
 
 
         setLayout(new BorderLayout());
@@ -119,7 +118,7 @@ public class PainelMinhasMusicas extends JPanel {
                                     repaint();
                                 }
 
-                            }
+
                         } else {
                             JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
                                     JOptionPane.ERROR_MESSAGE);
