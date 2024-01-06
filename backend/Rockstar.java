@@ -141,4 +141,28 @@ public class Rockstar implements Serializable {
         }
         return musica.getTitulo()+ " - " + musica.getAutor();
     }
+    public int numeroUtilizadoresMusicas(Musico musico){
+        boolean stoploop;
+        int clientes=0;
+        for(Utilizador c : utilizadores){
+            stoploop = true;
+            if(c instanceof Cliente){
+                if (((Cliente) c).getMusicas().isEmpty()) {
+                    stoploop = false;
+                }
+                    while(stoploop) {
+                        for (Musica m : ((Cliente) c).getMusicas()) {
+                            if (m.getAutor().equals(musico.getUsername())) {
+                                clientes++;
+                                stoploop = false;
+                            }
+                            if(m.equals(((Cliente) c).getMusicas().getLast())) {
+                                stoploop = false;
+                            }
+                        }
+                    }
+                }
+            }
+        return clientes;
+    }
 }
