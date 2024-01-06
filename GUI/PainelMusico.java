@@ -20,8 +20,9 @@ public class PainelMusico extends JPanel {
         JButton btnVerMusicas = new JButton("As minhas músicas");
         JButton btnCriarAlbum = new JButton("+ Álbum");
         JButton btnAddMusica = new JButton("+ Música");
-        JButton btnEstatisticas = new JButton("Ver estatísticas");
-        JButton btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
+
+        JButton btnLogout = new JButton("Logout");
+
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
@@ -65,10 +66,132 @@ public class PainelMusico extends JPanel {
         btnLogout.setBounds(725, 10, 75, 25);
         btnVerAlbuns.setBounds(20,100,200,25);
         btnVerMusicas.setBounds(20,150,200,25);
-        btnEstatisticas.setBounds(20,200,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
         painelOpcoes.setBounds(275,100,450,500);;
+
+
+
+        JLabel lblTotalUsers = new JLabel("Total Utilizadores");
+        lblTotalUsers.setBounds(30,200,200,25);
+        lblTotalUsers.setBackground(Color.lightGray);
+        lblTotalUsers.setOpaque(true);
+        lblTotalUsers.setVisible(true);
+
+        JLabel totalUsers = new JLabel(String.valueOf((framePrincipal.getRockstar().getUtilizadores().size())));
+        totalUsers.setBounds(30,220,200,25);
+        totalUsers.setOpaque(true);
+        totalUsers.setBackground(Color.lightGray);
+        totalUsers.setVisible(true);
+
+        JLabel lblTotalMusicas = new JLabel("Total Músicas");
+        lblTotalMusicas.setBounds(30,245,200,25);
+        lblTotalMusicas.setBackground(Color.lightGray);
+        lblTotalMusicas.setOpaque(true);
+        lblTotalMusicas.setVisible(true);
+
+        JLabel totalMusicas = new JLabel(String.valueOf((framePrincipal.getRockstar().getMusicas().size())));
+        totalMusicas.setBounds(30,265,200,25);
+        totalMusicas.setOpaque(true);
+        totalMusicas.setBackground(Color.lightGray);
+        totalMusicas.setVisible(true);
+
+        JLabel lblValorMusicas = new JLabel("Valor Total Músicas");
+        lblValorMusicas.setBounds(30,290,200,25);
+        lblValorMusicas.setBackground(Color.lightGray);
+        lblValorMusicas.setOpaque(true);
+        lblValorMusicas.setVisible(true);
+
+        JLabel valorMusicas = new JLabel(String.valueOf((framePrincipal.getRockstar().valorMusicas())));
+        valorMusicas.setBounds(30,310,200,25);
+        valorMusicas.setOpaque(true);
+        valorMusicas.setBackground(Color.lightGray);
+        valorMusicas.setVisible(true);
+
+        JLabel lblValorVendas = new JLabel("Valor Total Vendas");
+        lblValorVendas.setBounds(30,335,200,25);
+        lblValorVendas.setBackground(Color.lightGray);
+        lblValorVendas.setOpaque(true);
+        lblValorVendas.setVisible(true);
+
+        JLabel valorVendas = new JLabel(String.valueOf((framePrincipal.getRockstar().valorVendas())));
+        valorVendas.setBounds(30,355,200,25);
+        valorVendas.setOpaque(true);
+        valorVendas.setBackground(Color.lightGray);
+        valorVendas.setVisible(true);
+
+        JLabel lblTotalRock = new JLabel("Total Álbuns Rock");
+        lblTotalRock.setBounds(30,380,200,25);
+        lblTotalRock.setBackground(Color.lightGray);
+        lblTotalRock.setOpaque(true);
+        lblTotalRock.setVisible(true);
+
+        JLabel totalRock = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsRock())));
+        totalRock.setBounds(30,400,200,25);
+        totalRock.setOpaque(true);
+        totalRock.setBackground(Color.lightGray);
+        totalRock.setVisible(true);
+
+        JLabel lblTotalHipHop = new JLabel("Total Álbuns Hip Hop");
+        lblTotalHipHop.setBounds(30,425,200,25);
+        lblTotalHipHop.setBackground(Color.lightGray);
+        lblTotalHipHop.setOpaque(true);
+        lblTotalHipHop.setVisible(true);
+
+        JLabel totalHipHop = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsHipHop())));
+        totalHipHop.setBounds(30,445,200,25);
+        totalHipHop.setOpaque(true);
+        totalHipHop.setBackground(Color.lightGray);
+        totalHipHop.setVisible(true);
+
+        JLabel lblTotalPimba = new JLabel("Total Álbuns Pimba");
+        lblTotalPimba.setBounds(30,470,200,25);
+        lblTotalPimba.setBackground(Color.lightGray);
+        lblTotalPimba.setOpaque(true);
+        lblTotalPimba.setVisible(true);
+
+        JLabel totalPimba = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsPimba())));
+        totalPimba.setBounds(30,490,200,25);
+        totalPimba.setOpaque(true);
+        totalPimba.setBackground(Color.lightGray);
+        totalPimba.setVisible(true);
+
+        JLabel lblTotalPop = new JLabel("Total Álbuns Pop");
+        lblTotalPop.setBounds(30,515,200,25);
+        lblTotalPop.setBackground(Color.lightGray);
+        lblTotalPop.setOpaque(true);
+        lblTotalPop.setVisible(true);
+
+        JLabel totalPop = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsPop())));
+        totalPop.setBounds(30,535,200,25);
+        totalPop.setOpaque(true);
+        totalPop.setBackground(Color.lightGray);
+        totalPop.setVisible(true);
+
+        JLabel lblMaiorRating = new JLabel("Música com maior rating");
+        lblMaiorRating.setBounds(30,560,200,25);
+        lblMaiorRating.setBackground(Color.lightGray);
+        lblMaiorRating.setOpaque(true);
+        lblMaiorRating.setVisible(true);
+
+        JLabel maiorRating = new JLabel(String.valueOf((framePrincipal.getRockstar().musicaMaiorRating())));
+        maiorRating.setBounds(30,580,200,25);
+        maiorRating.setOpaque(true);
+        maiorRating.setBackground(Color.lightGray);
+        maiorRating.setVisible(true);
+
+        JLabel lblMeusUtilizadores = new JLabel("Utilizadores com a minha música");
+        lblMeusUtilizadores.setBounds(30,605,200,25);
+        lblMeusUtilizadores.setBackground(Color.lightGray);
+        lblMeusUtilizadores.setOpaque(true);
+        lblMeusUtilizadores.setVisible(true);
+
+        JLabel meusUtilizadores = new JLabel(String.valueOf((framePrincipal.getRockstar().numeroUtilizadoresMusicas(musico))));
+        meusUtilizadores.setBounds(30,625,200,25);
+        meusUtilizadores.setOpaque(true);
+        meusUtilizadores.setBackground(Color.lightGray);
+        meusUtilizadores.setVisible(true);
+
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
@@ -136,10 +259,27 @@ public class PainelMusico extends JPanel {
         add(btnVerMusicas);
         add(btnCriarAlbum);
         add(btnAddMusica);
-        add(btnEstatisticas);
         add(painelOpcoes);
-
-        setVisible(true);
+        add(lblTotalUsers);
+        add(totalUsers);
+        add(lblTotalMusicas);
+        add(totalMusicas);
+        add(lblValorMusicas);
+        add(valorMusicas);
+        add(lblValorVendas);
+        add(valorVendas);
+        add(lblTotalRock);
+        add(totalRock);
+        add(lblTotalHipHop);
+        add(totalHipHop);
+        add(lblTotalPimba);
+        add(totalPimba);
+        add(lblTotalPop);
+        add(totalPop);
+        add(lblMaiorRating);
+        add(maiorRating);
+        add(lblMeusUtilizadores);
+        add(meusUtilizadores);
 
     }
 
