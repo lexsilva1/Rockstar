@@ -6,7 +6,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PainelCarrinhoCompras extends JPanel {
     private Cliente cliente;
@@ -91,7 +93,9 @@ public class PainelCarrinhoCompras extends JPanel {
 
         // Adicionar dados de exemplo à tabela
         for (Promo a : framePrincipal.getRockstar().getPromos()) {
-            modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+            if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
+                modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+            }
         }
 
 
@@ -148,11 +152,14 @@ public class PainelCarrinhoCompras extends JPanel {
             if (this.promo == null) {
                 cliente.compra();
                 limparCarrinhoCompras(cliente, painelCliente);
+                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
-            } else
+            } else {
                 cliente.compraPromo(promo);
-            limparCarrinhoCompras(cliente, painelCliente);
+                limparCarrinhoCompras(cliente, painelCliente);
+                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
+            }
         }
     }
 

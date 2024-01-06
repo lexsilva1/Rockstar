@@ -8,21 +8,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PainelMinhasMusicas extends JPanel {
-    private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
 
+
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
         this.cliente = cliente;
+
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela
         modeloTabela = new DefaultTableModel();
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
@@ -31,6 +30,7 @@ public class PainelMinhasMusicas extends JPanel {
         modeloTabela.addColumn("Rating");
         modeloTabela.addColumn("Preço");
         adicionarMusica(cliente);
+
 
 
         // Criar a tabela com o modelo
@@ -51,8 +51,11 @@ public class PainelMinhasMusicas extends JPanel {
         add(painelSuperior, BorderLayout.NORTH);
         add(painelRolagem, BorderLayout.CENTER);
 
+
         JPopupMenu popupMenu = adicionarMusicaPlaylist(framePrincipal, cliente,painelCliente);
         tabela.setComponentPopupMenu(popupMenu);
+        tabela.setAutoCreateRowSorter(true);
+
     }
 
     public void adicionarMusica(Cliente cliente) {
@@ -66,6 +69,7 @@ public class PainelMinhasMusicas extends JPanel {
     public JPopupMenu adicionarMusicaPlaylist(FramePrincipal framePrincipal, Cliente cliente,PainelCliente painelCliente) {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem adicionarMusicaPlaylist = new JMenuItem("Adicionar à playlist");
+
         adicionarMusicaPlaylist.addActionListener(e -> {
             int selectedRow = tabela.getSelectedRow();
             String titulo = (String) tabela.getValueAt(selectedRow, 0);
@@ -93,6 +97,7 @@ public class PainelMinhasMusicas extends JPanel {
             JButton okButton = new JButton();
             okButton.setText("Ok");
             okButton.setFocusable(false);
+
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -113,19 +118,21 @@ public class PainelMinhasMusicas extends JPanel {
                                     revalidate();
                                     repaint();
                                 }
+
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
+                                    JOptionPane.ERROR_MESSAGE);
                         }
                     }
+                }
             });
 
             JButton cancelButton = new JButton();
             cancelButton.setText("Cancelar");
             cancelButton.setFocusable(false);
-            cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    addToPlaylist.dispose();  //fechar a janela
-                }
+            cancelButton.addActionListener(e12 -> {
+                addToPlaylist.dispose();  //fechar a janela
             });
 
             painelSul.add(okButton);
@@ -222,18 +229,17 @@ public class PainelMinhasMusicas extends JPanel {
 
 
     public GrupoMusicas[] verPlaylists(FramePrincipal framePrincipal, Cliente cliente) {
-        ArrayList<GrupoMusicas> coiso = new ArrayList<>();
+        ArrayList<GrupoMusicas> playlists = new ArrayList<>();
         for (GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas()) {
             if (g.getOwner().equals(cliente.getUsername())) {
-                coiso.add(g);
+                playlists.add(g);
             }
         }
-        GrupoMusicas [] minhasplaylists = new Playlist[coiso.size()];
+        GrupoMusicas [] minhasplaylists = new Playlist[playlists.size()];
         int i=0;
-        for (GrupoMusicas x : coiso){
-                minhasplaylists[i]=x;
-                i++;
-
+        for (GrupoMusicas g : playlists){
+            minhasplaylists[i]=g;
+            i++;
         }
         return minhasplaylists;
     }
