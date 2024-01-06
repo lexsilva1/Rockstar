@@ -30,7 +30,6 @@ public class PainelMusicasLoja extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false; // Torna todas as células não editáveis
