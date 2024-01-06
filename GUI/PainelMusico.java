@@ -71,13 +71,13 @@ public class PainelMusico extends JPanel {
 
 
         JLabel lblTotalUsers = new JLabel("Total Utilizadores");
-        lblTotalUsers.setBounds(30,200,200,25);
+        lblTotalUsers.setBounds(30,200,180,25);
         lblTotalUsers.setBackground(Color.lightGray);
         lblTotalUsers.setOpaque(true);
         lblTotalUsers.setVisible(true);
 
         JLabel totalUsers = new JLabel(String.valueOf((framePrincipal.getRockstar().getUtilizadores().size())));
-        totalUsers.setBounds(30,220,200,25);
+        totalUsers.setBounds(30,220,180,25);
         totalUsers.setOpaque(true);
         totalUsers.setBackground(Color.lightGray);
         totalUsers.setVisible(true);
@@ -100,7 +100,7 @@ public class PainelMusico extends JPanel {
         lblValorMusicas.setOpaque(true);
         lblValorMusicas.setVisible(true);
 
-        JLabel valorMusicas = new JLabel(String.valueOf((framePrincipal.getRockstar().valorMusicas())));
+        JLabel valorMusicas = new JLabel(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorMusicas())));
         valorMusicas.setBounds(30,310,200,25);
         valorMusicas.setOpaque(true);
         valorMusicas.setBackground(Color.lightGray);
@@ -112,7 +112,7 @@ public class PainelMusico extends JPanel {
         lblValorVendas.setOpaque(true);
         lblValorVendas.setVisible(true);
 
-        JLabel valorVendas = new JLabel(String.valueOf((framePrincipal.getRockstar().valorVendas())));
+        JLabel valorVendas = new JLabel(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorVendas())));
         valorVendas.setBounds(30,355,200,25);
         valorVendas.setOpaque(true);
         valorVendas.setBackground(Color.lightGray);
