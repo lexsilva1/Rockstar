@@ -252,6 +252,4 @@ public class PainelMinhasMusicas extends JPanel {
         return playlist.getMusicas().stream().anyMatch(m -> m.equals(music));
     }
 
-
-
 }
