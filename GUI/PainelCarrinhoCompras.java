@@ -7,21 +7,15 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class PainelCarrinhoCompras extends JPanel {
-    private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private DefaultTableModel modelotabelapromo;
     private JTable tabelapromo;
-    private PainelCliente painelCliente;
     private Promo promo;
 
     public PainelCarrinhoCompras(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
-        this.cliente = cliente;
-        this.painelCliente = painelCliente;
         this.promo=null;
 
         setLayout(null); // Layout nulo
@@ -162,16 +156,6 @@ public class PainelCarrinhoCompras extends JPanel {
             }
         }
     }
-
-    /*public void comprarMusicasPromo(Cliente cliente, PainelCliente painelCliente,Promo promo) {
-        if (cliente.getSaldo() < calcularCustoTotal()) {
-            JOptionPane.showMessageDialog(this, "Saldo insuficiente.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else {
-            cliente.compraPromo(promo);
-            limparCarrinhoCompras(cliente, painelCliente);
-            painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
-        }
-    }*/
 
     public JPopupMenu criarPopupMenuPromo(FramePrincipal framePrincipal, Cliente cliente,JLabel labelCustoTotal) {
         JPopupMenu popupMenu = new JPopupMenu();
