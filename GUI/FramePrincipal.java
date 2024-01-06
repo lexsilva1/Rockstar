@@ -112,7 +112,7 @@ public class FramePrincipal extends JFrame {
             musico6.getMusicas().addAll(Arrays.asList(justinSong1, justinSong2, justinSong3, justinSong4, justinSong5, justinSong6, justinSong7, justinSong8, justinSong9, justinSong10));
             rockstar.getMusicas().addAll(Arrays.asList(justinSong1, justinSong2, justinSong3, justinSong4, justinSong5, justinSong6, justinSong7, justinSong8, justinSong9, justinSong10));
 
-// Add Musicas for Rihanna
+
             Musica rihannaSong1 = new Musica("Umbrella", "Pop", LocalDate.of(2007, 5, 1), "rihanna", 0);
             Musica rihannaSong2 = new Musica("Diamonds", "Pop", LocalDate.of(2012, 9, 26), "rihanna", 0);
             Musica rihannaSong3 = new Musica("We Found Love", "Pop", LocalDate.of(2011, 9, 22), "rihanna", 0.7);
@@ -169,7 +169,7 @@ public class FramePrincipal extends JFrame {
             musico4.getMusicas().addAll(Arrays.asList(drakeSong1, drakeSong2, drakeSong3, drakeSong4, drakeSong5, drakeSong6, drakeSong7, drakeSong8, drakeSong9, drakeSong10));
             rockstar.getMusicas().addAll(Arrays.asList(drakeSong1, drakeSong2, drakeSong3, drakeSong4, drakeSong5, drakeSong6, drakeSong7, drakeSong8, drakeSong9, drakeSong10));
 
-// Add Musicas for Ariana Grande
+
             Musica arianaSong1 = new Musica("Thank U, Next", "Pop", LocalDate.of(2018, 11, 3), "arianagrande", 2.2);
             Musica arianaSong2 = new Musica("7 Rings", "Pop", LocalDate.of(2019, 1, 18), "arianagrande", 2);
             Musica arianaSong3 = new Musica("No Tears Left to Cry", "Pop", LocalDate.of(2018, 4, 20), "arianagrande", 1.7);
@@ -193,11 +193,10 @@ public class FramePrincipal extends JFrame {
             rockstar.getUtilizadores().add(musico11);
             rockstar.getUtilizadores().add(musico12);
             rockstar.getUtilizadores().add(musico13);
-            // Create Musico for Iron Maiden
+
             Musico musico16 = new Musico("ironmaiden", "password", "1234");
             rockstar.getUtilizadores().add(musico16);
 
-// Add Musicas for Iron Maiden with actual release dates and fixed prices
             Musica ironmaidenSong1 = new Musica("The Trooper", "Rock", LocalDate.of(1983, 5, 20), "ironmaiden", 1.5);
             Musica ironmaidenSong2 = new Musica("Fear of the Dark", "Rock", LocalDate.of(1992, 5, 11), "ironmaiden", 1.8);
             Musica ironmaidenSong3 = new Musica("Run to the Hills", "Rock", LocalDate.of(1982, 2, 12), "ironmaiden", 1.7);
@@ -214,7 +213,6 @@ public class FramePrincipal extends JFrame {
 
 
 
-            // U2 Songs
             Musica u2Song1 = new Musica("With or Without You", "Rock", LocalDate.of(1987, 3, 16), "u2", 2);
             Musica u2Song2 = new Musica("Beautiful Day", "Rock", LocalDate.of(2000, 10, 9), "u2", 2.2);
             Musica u2Song3 = new Musica("Sunday Bloody Sunday", "Rock", LocalDate.of(1983, 3, 21), "u2", 2.6);
@@ -226,7 +224,7 @@ public class FramePrincipal extends JFrame {
             Musica u2Song9 = new Musica("One", "Rock", LocalDate.of(1991, 3, 6), "u2", 1.0);
             Musica u2Song10 = new Musica("Where the Streets Have No Name", "Rock", LocalDate.of(1987, 11, 23), "u2", 1.0);
 
-// Metallica Songs
+
             Musica metallicaSong1 = new Musica("Enter Sandman", "Rock", LocalDate.of(1991, 7, 29), "metallica", 1.7);
             Musica metallicaSong2 = new Musica("Master of Puppets", "Rock", LocalDate.of(1986, 2, 24), "metallica", 1.9);
             Musica metallicaSong3 = new Musica("Nothing Else Matters", "Rock", LocalDate.of(1992, 4, 20), "metallica", 0.75);
@@ -238,7 +236,6 @@ public class FramePrincipal extends JFrame {
             Musica metallicaSong9 = new Musica("The Day That Never Comes", "Rock", LocalDate.of(2008, 8, 20), "metallica", 1.0);
             Musica metallicaSong10 = new Musica("Seek & Destroy", "Rock", LocalDate.of(1983, 7, 25), "metallica", 1.0);
 
-// Add U2 songs to musico9's array of musicas and rockstar's array of musicas
             musico9.getMusicas().addAll(Arrays.asList(u2Song1, u2Song2, u2Song3, u2Song4, u2Song5, u2Song6, u2Song7, u2Song8, u2Song9, u2Song10));
             rockstar.getMusicas().addAll(Arrays.asList(u2Song1, u2Song2, u2Song3, u2Song4, u2Song5, u2Song6, u2Song7, u2Song8, u2Song9, u2Song10));
 
