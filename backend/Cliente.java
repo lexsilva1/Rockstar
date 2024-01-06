@@ -38,24 +38,6 @@ public class Cliente extends Utilizador {
         return playlist;
     }
 
-    /*public Playlist criaPlaylistGenero(String genero, int num, String titulo) {// vai adicionar musicas da lista de musicas que o cliente comprou que tenham aquele genero á playlist
-        Playlist playlist = new Playlist(this.username, titulo);
-        for (int i = 0; i < num; i++) {
-            for (Compra c : historicoCompras) {
-                for (Musica m : c.getMusicas()) {
-                    if (m.getGenero().equals(genero)) {
-                        playlist.addMusica(m);
-                    }
-                }
-            }
-        }
-        if (playlist.getMusicas().size() < num) {//caso o cliente não tenha musicas daquele genero suficientes, a playlist é criada com as musicas disponiveis
-            System.out.println("Foram adicionadas apenas " + playlist.getMusicas().size() + " músicas.");
-        }
-        System.out.println("backend.Playlist criada com sucesso");
-        return playlist;
-    }*/
-
     public Playlist criaPlaylist(String nome){
         return new Playlist(this.username,nome);
     }

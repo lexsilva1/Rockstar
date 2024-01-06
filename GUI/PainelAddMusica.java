@@ -397,11 +397,11 @@ public class PainelAddMusica extends JPanel {
         if (ano1 < 1900 || ano.length() < 4) {
             JOptionPane.showMessageDialog(null, "Ano deve ser posterior a 1900 e conter 4 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (mes1 <1 || mes1 > 12) {
-            JOptionPane.showMessageDialog(null, "Mês inválido", "Dados errados", JOptionPane.ERROR_MESSAGE);
+        } else if (mes1 <1 || mes1 > 12 || mes.length() < 2) {
+            JOptionPane.showMessageDialog(null, "Mês inválido.\nMês deve conter 2 dígitos", "Dados errados", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (dia1 < 1 || dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth()) {
-                JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado", "Dados errados", JOptionPane.ERROR_MESSAGE);
+        } else if (dia1 < 1 || dia1 > LocalDate.of(ano1, mes1, 1).lengthOfMonth() || dia.length() < 2) {
+                JOptionPane.showMessageDialog(null, "Dia inválido para o mês especificado.\nDia deve conter 2 dígitos.", "Dados errados", JOptionPane.ERROR_MESSAGE);
                 return false;
         } else {
             LocalDate data = LocalDate.of(ano1, mes1, dia1);

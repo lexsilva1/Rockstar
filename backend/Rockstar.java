@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Rockstar implements Serializable {
     private ArrayList<Utilizador> utilizadores;
@@ -53,12 +54,12 @@ public class Rockstar implements Serializable {
         this.promos.add(promo);
     }
 
-    public void removerPlaylist (Cliente cliente, Playlist playlist) {
-        for ( GrupoMusicas p : grupoMusicas){
-            if(p instanceof Playlist && p.getOwner().equals(cliente.getUsername())){
-                grupoMusicas.remove(p);
-            }
+    public double valorMusicas() {
+        double total = 0;
+        for (Musica m : musicas) {
+            total += m.getPreco();
         }
+        return total;
     }
 
     public void registo (Utilizador a) {
@@ -75,5 +76,69 @@ public class Rockstar implements Serializable {
 
     public ArrayList<GrupoMusicas> getGrupoMusicas() {
         return grupoMusicas;
+    }
+
+    public double valorVendas () {
+        double total = 0;
+        for (Utilizador c : utilizadores) {
+            if (c instanceof Cliente) {
+                for(Compra k : ((Cliente) c).getHistoricoCompras()) {
+                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
+                        total += entry.getValue();
+                    }
+                }
+            }
+        }
+        return total;
+    }
+
+    public int albunsRock () {
+        ArrayList<Album> total = new ArrayList<>();
+        for (GrupoMusicas g : grupoMusicas) {
+            if (g instanceof Album && ((Album) g).getGenero().equalsIgnoreCase("Rock")) {
+                total.add((Album) g);
+            }
+        }
+        return total.size();
+    }
+
+    public int albunsPimba () {
+        ArrayList<Album> total = new ArrayList<>();
+        for (GrupoMusicas g : grupoMusicas) {
+            if (g instanceof Album && ((Album) g).getGenero().equalsIgnoreCase("Pimba")) {
+                total.add((Album) g);
+            }
+        }
+        return total.size();
+    }
+    public int albunsHipHop () {
+        ArrayList<Album> total = new ArrayList<>();
+        for (GrupoMusicas g : grupoMusicas) {
+            if (g instanceof Album && ((Album) g).getGenero().equalsIgnoreCase("Hip Hop")) {
+                total.add((Album) g);
+            }
+        }
+        return total.size();
+    }
+
+    public int albunsPop () {
+        ArrayList<Album> total = new ArrayList<>();
+        for (GrupoMusicas g : grupoMusicas) {
+            if (g instanceof Album && ((Album) g).getGenero().equalsIgnoreCase("Pop")) {
+                total.add((Album) g);
+            }
+        }
+        return total.size();
+    }
+
+    public String musicaMaiorRating () {
+        Musica musica = musicas.getFirst();
+
+        for (Musica m : musicas) {
+            if (m.calculoRating() > musica.calculoRating()) {
+                musica = m;
+            }
+        }
+        return musica.getTitulo()+ " - " + musica.getAutor();
     }
 }
