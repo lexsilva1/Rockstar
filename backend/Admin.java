@@ -27,8 +27,4 @@ public class Admin extends Utilizador {
         }
         return false;
     }
-
-    public int getUltimoidAdmin() {
-        return ultimoidAdmin;
-    }
 }
