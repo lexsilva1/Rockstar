@@ -68,7 +68,7 @@ public class PainelMusico extends JPanel {
         btnEstatisticas.setBounds(20,200,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
-        painelOpcoes.setBounds(275,50,450,500);
+        painelOpcoes.setBounds(275,100,450,500);;
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 

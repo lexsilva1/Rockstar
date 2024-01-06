@@ -179,7 +179,17 @@ public class PainelAdmin extends JPanel {
             tabela.setAutoCreateRowSorter(true);
             JScrollPane scrollPane = new JScrollPane(tabela);
             scrollPane.setVisible(true);
+
+            JPanel painelSuperior = new JPanel(new BorderLayout());
+            JLabel rotuloBarra = new JLabel("Campanhas");
+            rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+            painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+            // Adicionar a tabela ao painel superior
+            painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
             painel.add(scrollPane, BorderLayout.CENTER);
+            painel.add(painelSuperior, BorderLayout.NORTH);
             painel.setVisible(true);
             abrirPainelPesquisa(painel);
         });
