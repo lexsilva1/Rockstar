@@ -290,8 +290,8 @@ public class PainelAdmin extends JPanel {
     public JPopupMenu criarPopupMenuUtilizador(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Inativar/Reativar Utilizador");
-        adicionarAoCarrinhoItem.addActionListener(e -> {
+        JMenuItem ativarInativar = new JMenuItem("Inativar/Reativar Utilizador");
+        ativarInativar.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
 
             if (linhaSelecionada != -1) {
@@ -301,7 +301,7 @@ public class PainelAdmin extends JPanel {
                 boolean stopElse = false;
 
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()) {
-                    if (!stopIf && a instanceof Admin && ((Admin) a).getIdAdmin() == 1) {
+                    if (!stopIf && a instanceof Admin && a.getUsername().equalsIgnoreCase (username) && ((Admin) a).getIdAdmin() == 1) {
                         JOptionPane.showMessageDialog(null, "Não foi possível inativar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
                         stopIf = true;
                         stopElse = true;
@@ -329,7 +329,7 @@ public class PainelAdmin extends JPanel {
             }
         });
 
-        popupMenu.add(adicionarAoCarrinhoItem);
+        popupMenu.add(ativarInativar);
 
         return popupMenu;
     }
