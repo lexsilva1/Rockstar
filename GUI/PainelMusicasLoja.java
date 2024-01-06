@@ -42,7 +42,7 @@ public class PainelMusicasLoja extends JPanel {
         modeloTabela.addColumn("Preço");
 
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.calculoRating(), a.getPreco(), a.getActiva()});
         }
 
         tabela = new JTable(modeloTabela);

@@ -1,17 +1,27 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class PainelPrincipal extends JPanel {
     protected FramePrincipal framePrincipal;
     private JButton btnLogin;
     private JButton btnSignUp;
+    private Image backgroundImage;
+
+
 
 
     public PainelPrincipal(FramePrincipal framePrincipal) {
 
         this.framePrincipal = framePrincipal;
-        setBackground(new Color(70, 90, 120));
+
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/Logo.png"));
+        backgroundImage = imageIcon.getImage();
+
+
+
+        //setBackground(new Color(70, 90, 120));
 
         setLayout(null);
 
@@ -25,6 +35,16 @@ public class PainelPrincipal extends JPanel {
         btnSignUp.addActionListener(e -> exibirPainelSignUp());
         add(btnSignUp);
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // Desenha a imagem de fundo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     private void exibirPainelLogin() {

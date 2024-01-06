@@ -43,7 +43,7 @@ public class PainelAdmin extends JPanel {
         this.lblPesquisar = new JLabel("Pesquisar");
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
-        this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
+        this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
         this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
@@ -179,7 +179,17 @@ public class PainelAdmin extends JPanel {
             tabela.setAutoCreateRowSorter(true);
             JScrollPane scrollPane = new JScrollPane(tabela);
             scrollPane.setVisible(true);
+
+            JPanel painelSuperior = new JPanel(new BorderLayout());
+            JLabel rotuloBarra = new JLabel("Campanhas");
+            rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+            painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+            // Adicionar a tabela ao painel superior
+            painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
             painel.add(scrollPane, BorderLayout.CENTER);
+            painel.add(painelSuperior, BorderLayout.NORTH);
             painel.setVisible(true);
             abrirPainelPesquisa(painel);
         });

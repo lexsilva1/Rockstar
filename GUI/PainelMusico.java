@@ -20,7 +20,9 @@ public class PainelMusico extends JPanel {
         JButton btnVerMusicas = new JButton("As minhas músicas");
         JButton btnCriarAlbum = new JButton("+ Álbum");
         JButton btnAddMusica = new JButton("+ Música");
+
         JButton btnLogout = new JButton("Logout");
+
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
@@ -66,7 +68,7 @@ public class PainelMusico extends JPanel {
         btnVerMusicas.setBounds(20,150,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
-        painelOpcoes.setBounds(275,50,450,500);
+        painelOpcoes.setBounds(275,100,450,500);;
 
 
 

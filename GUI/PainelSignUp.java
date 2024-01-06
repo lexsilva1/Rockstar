@@ -87,7 +87,7 @@ public class PainelSignUp extends JPanel {
         add(btnVoltar);
 
         JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(490, 420, 90, 25);
+        btnContinuar.setBounds(690, 620, 90, 25);
 
 
         //Mostrar campos para introdução de atributos de um utilizador do tipo 'Musico'
