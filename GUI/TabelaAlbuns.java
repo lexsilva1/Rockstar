@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class TabelaAlbuns extends TabelaMusicas {
     private JTable tabela;
+    private JPanel painelSuperior;
+    private JLabel rotuloBarra;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
     private PainelOpcoesCliente painelMusico;
@@ -24,9 +26,10 @@ public class TabelaAlbuns extends TabelaMusicas {
         super(framePrincipal,musico);
         this.painelMusico = painelMusico;
 
+
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
-        setPreferredSize(new Dimension(450, 200));
+        setPreferredSize(new Dimension(450, 500));
 
         modeloTabela = new DefaultTableModel();
         modeloTabela.addColumn("Título");
@@ -45,12 +48,23 @@ public class TabelaAlbuns extends TabelaMusicas {
 
         tabela = new JTable(modeloTabela);
 
+
+        painelSuperior = new JPanel(new BorderLayout());
+        rotuloBarra = new JLabel("Os meus Álbuns");
+        rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+        painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+        // Adicionar a tabela ao painel superior
+        painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
+
         JPopupMenu popupMenu = criarPopupMenu(framePrincipal, musico);
         tabela.setComponentPopupMenu(popupMenu);
 
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
         add(scrollPane, BorderLayout.CENTER);
+        add(painelSuperior, BorderLayout.NORTH);
         setVisible(false);
     }
 
@@ -60,21 +74,47 @@ public class TabelaAlbuns extends TabelaMusicas {
         JMenuItem verMusicas = new JMenuItem("Ver Músicas");
 
         verMusicas.addActionListener(e -> {
-            int selectedRow = tabela.getSelectedRow();
-            String titulo = (String) tabela.getValueAt(selectedRow, 0);
+            int linhaSelecionada = tabela.getSelectedRow();
+            if (linhaSelecionada != -1) {
+                String nome = (String) tabela.getValueAt(linhaSelecionada, 0);
 
-            if (selectedRow != -1) {
-                TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal,musico);
-                musicasAlbum(tabelaMusicas, musico, titulo);
-                tabelaMusicas.setBounds(0,250,450,50);
-                tabelaMusicas.setVisible(true);
-                painelMusico.add(tabelaMusicas);
+
+                DefaultTableModel modeloTabela1 = new DefaultTableModel();
+                modeloTabela1.addColumn("Título");
+                modeloTabela1.addColumn("Género");
+                modeloTabela1.addColumn("Data Lançamento");
+                modeloTabela1.addColumn("Rating");
+                modeloTabela1.addColumn("Preço");
+                modeloTabela1.addColumn("Activa");
+
+                for (GrupoMusicas p : framePrincipal.getRockstar().getGrupoMusicas()){
+                    if(p instanceof Album && p.getOwner().equals(musico.getUsername())&& p.getTitulo().equals(nome)){
+                        for (Musica m : p.getMusicas()) {
+                            modeloTabela1.addRow(new Object[]{m.getTitulo(), m.getGenero(), m.getDataLancamento(), m.calculoRating(), m.getPreco(), m.getActiva()});
+                        }
+                        revalidate();
+                        repaint();
+                    }
+                }
+
+                // Criar a tabela com o modelo
+                JTable tabela1 = new JTable(modeloTabela1);
+                JScrollPane scrollPane1 = new JScrollPane(tabela1);
+                scrollPane1.setVisible(true);
+
+                JPanel painelSuperior = new JPanel(new BorderLayout());
+                JLabel rotuloBarra = new JLabel(nome);
+                rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+                painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+                // Adicionar a tabela ao painel superior
+                painelSuperior.add(tabela1.getTableHeader(), BorderLayout.SOUTH);
+
+                this.removeAll();
+                this.add(scrollPane1, BorderLayout.CENTER);
+                this.add(painelSuperior, BorderLayout.NORTH);
                 revalidate();
-                repaint();
-
             }
-            revalidate();
-            repaint();
         });
 
         popupMenu.add(verMusicas);

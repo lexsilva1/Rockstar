@@ -72,15 +72,6 @@ public class Musico extends Utilizador {
         }
         return false;
     }
-
-    public Album procurarAlbum (String titulo) {
-        for (Album a : albuns) {
-            if (a.getTitulo().equalsIgnoreCase(titulo)) {
-                return a;
-            }
-        }
-        return null;
-    }
     public String getPin() {
         return pin;
     }
@@ -96,6 +87,15 @@ public class Musico extends Utilizador {
     public boolean musicaExiste (String titulo) {
         for (Musica m : musicas) {
             if (m.getTitulo().equalsIgnoreCase(titulo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean albumExiste (String titulo) {
+        for (Album a : albuns) {
+            if (a.getTitulo().equalsIgnoreCase(titulo)) {
                 return true;
             }
         }

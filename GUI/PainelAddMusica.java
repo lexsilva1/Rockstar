@@ -1,6 +1,7 @@
 package GUI;
 
 import backend.Album;
+import backend.GrupoMusicas;
 import backend.Musica;
 import backend.Musico;
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PainelAddMusica extends JPanel {
     public PainelAddMusica(FramePrincipal framePrincipal, Musico musico) {
@@ -138,15 +140,15 @@ public class PainelAddMusica extends JPanel {
         grupoAlbum.add(chkSim);
         grupoAlbum.add(chkNao);
 
-        JLabel lblAlbum = new JLabel("Nome do Álbum");
-        lblAlbum.setBounds(25, 400, 220, 25);
-        lblAlbum.setForeground(Color.WHITE);
-        lblAlbum.setVisible(false);
+        JLabel nomeAlbum = new JLabel();
+        nomeAlbum.setText("Escolha o Álbum");
+        nomeAlbum.setBounds(130, 380, 150, 25);
+        nomeAlbum.setForeground(Color.WHITE);
+        nomeAlbum.setVisible(false);
 
-        JTextField txtAlbum = new JTextField();
-        txtAlbum.setBounds(250, 400, 220, 25);
-        txtAlbum.setForeground(Color.BLACK);
-        txtAlbum.setVisible(false);
+        JComboBox escolhaAlbum = new JComboBox<>(verAlbuns(framePrincipal,musico));
+        escolhaAlbum.setBounds(nomeAlbum.getX() + 160, nomeAlbum.getY(), 150, 25);
+        escolhaAlbum.setVisible(false);
 
         JButton btnCriar = new JButton("Criar");
         btnCriar.setBounds(380, 460, 75, 25);
@@ -239,15 +241,15 @@ public class PainelAddMusica extends JPanel {
 
         chkSim.addActionListener(e -> {
             if (chkSim.isSelected()) {
-                add(lblAlbum);
-                add(txtAlbum);
-                lblAlbum.setVisible(true);
-                txtAlbum.setVisible(true);
+                add(nomeAlbum);
+                add(escolhaAlbum);
+                nomeAlbum.setVisible(true);
+                escolhaAlbum.setVisible(true);
                 revalidate();
                 repaint();
             } else if (chkNao.isSelected()) {
-                lblAlbum.setVisible(false);
-                txtAlbum.setVisible(false);
+                nomeAlbum.setVisible(false);
+                escolhaAlbum.setVisible(false);
                 revalidate();
                 repaint();
             }
@@ -255,8 +257,8 @@ public class PainelAddMusica extends JPanel {
 
         chkNao.addActionListener(e -> {
             if (chkNao.isSelected()) {
-                remove(lblAlbum);
-                remove(txtAlbum);
+                remove(nomeAlbum);
+                remove(escolhaAlbum);
                 revalidate();
                 repaint();
             }
@@ -266,82 +268,76 @@ public class PainelAddMusica extends JPanel {
             if (txtTitulo.getText().isEmpty() || txtAno.getText().isEmpty() || txtMes.getText().isEmpty() || txtDia.getText().isEmpty() || txtValor.getText().isEmpty() || grupo.getSelection() == null ) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (chkSim.isSelected()) {
-                    if (musico.getAlbuns().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Não tem álbuns criados", "Sem álbuns", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        if (txtAlbum.getText().isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Por favor preencha o nome do álbum", "Campo vazio", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            if (musico.procurarAlbum(txtAlbum.getText()) == null) {
-                                JOptionPane.showMessageDialog(null, "Álbum não encontrado", "Dados errados", JOptionPane.ERROR_MESSAGE);
-                            } else {
-                                if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
-                                    String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
-                                    LocalDate data = LocalDate.parse(txtData);
-                                    double valor = Double.parseDouble(txtValor.getText());
-                                    String genero = "Rock";
-                                    if (chkPop.isSelected()) {
-                                        genero = "Pop";
-                                    } else if (chkPimba.isSelected()) {
-                                        genero = "Pimba";
-                                    } else if (chkHipHop.isSelected()) {
-                                        genero = "Hip Hop";
-                                    }
-                                    if (musico.musicaExiste(txtTitulo.getText())) {
-                                        JOptionPane.showMessageDialog(null, "Já existe uma música sua com o mesmo nome", "Música já existe", JOptionPane.ERROR_MESSAGE);
-                                        txtTitulo.setText("");
-                                    } else {
-                                        Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
-                                        Album album = musico.procurarAlbum(txtAlbum.getText());
+                if (musico.musicaExiste(txtTitulo.getText())) {
+                    JOptionPane.showMessageDialog(null, "Já existe uma música sua com o mesmo nome", "Música já existe", JOptionPane.ERROR_MESSAGE);
+                    txtTitulo.setText("");
+                } else {
+                    if (chkSim.isSelected()) {
+                        if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
+                            String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
+                            LocalDate data = LocalDate.parse(txtData);
+                            double valor = Double.parseDouble(txtValor.getText());
+                            String genero = "Rock";
+                            if (chkPop.isSelected()) {
+                                genero = "Pop";
+                            } else if (chkPimba.isSelected()) {
+                                genero = "Pimba";
+                            } else if (chkHipHop.isSelected()) {
+                                genero = "Hip Hop";
+                            }
 
-                                        if (musico.addMusicaAoAlbum(album, musica)) {
-                                            framePrincipal.getRockstar().getMusicas().add(musica);
-                                            JOptionPane.showMessageDialog(null, "Música criada com sucesso e adicionada ao álbum '" + txtAlbum.getText() + "'!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                                            txtTitulo.setText("");
-                                            txtAno.setText("");
-                                            txtMes.setText("");
-                                            txtDia.setText("");
-                                            txtValor.setText("");
-                                            txtAlbum.setText("");
-                                            grupo.clearSelection();
-                                            grupoAlbum.clearSelection();
-                                            this.setVisible(false);
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Não foi possível adicionar a música ao álbum selecionado", "Álbum cheio", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }
+
+                            if (escolhaAlbum.getSelectedItem() != null) {
+
+                                Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
+
+                                Album album = (Album) escolhaAlbum.getSelectedItem();
+
+                                if (musico.addMusicaAoAlbum(album, musica)) {
+                                    framePrincipal.getRockstar().getMusicas().add(musica);
+                                    JOptionPane.showMessageDialog(null, "Música criada com sucesso e adicionada ao álbum '" + album.getTitulo() + "'!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                    txtTitulo.setText("");
+                                    txtAno.setText("");
+                                    txtMes.setText("");
+                                    txtDia.setText("");
+                                    txtValor.setText("");
+                                    grupo.clearSelection();
+                                    grupoAlbum.clearSelection();
+                                    this.setVisible(false);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Não foi possível adicionar a música ao álbum selecionado", "Álbum cheio", JOptionPane.ERROR_MESSAGE);
                                 }
                             }
                         }
-                    }
-                } else {
-                    if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
 
-                        double valor = Double.parseDouble(txtValor.getText());
-                        String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
-                        LocalDate data = LocalDate.parse(txtData);
-                        String genero = "Rock";
-                        if (chkPop.isSelected()) {
-                            genero = "Pop";
-                        } else if (chkPimba.isSelected()) {
-                            genero = "Pimba";
-                        } else if (chkHipHop.isSelected()) {
-                            genero = "Hip Hop";
+
+                    } else {
+                        if (verificarData(txtAno.getText(), txtMes.getText(), txtDia.getText())) {
+
+                            double valor = Double.parseDouble(txtValor.getText());
+                            String txtData = txtAno.getText() + "-" + txtMes.getText() + "-" + txtDia.getText();
+                            LocalDate data = LocalDate.parse(txtData);
+                            String genero = "Rock";
+                            if (chkPop.isSelected()) {
+                                genero = "Pop";
+                            } else if (chkPimba.isSelected()) {
+                                genero = "Pimba";
+                            } else if (chkHipHop.isSelected()) {
+                                genero = "Hip Hop";
+                            }
+
+                            Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
+                            framePrincipal.getRockstar().getMusicas().add(musica);
+                            JOptionPane.showMessageDialog(null, "Música criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            txtTitulo.setText("");
+                            txtAno.setText("");
+                            txtMes.setText("");
+                            txtDia.setText("");
+                            txtValor.setText("");
+                            grupo.clearSelection();
+                            grupoAlbum.clearSelection();
+                            this.setVisible(false);
                         }
-
-                        Musica musica = musico.criaMusica(txtTitulo.getText(), genero, data, valor);
-                        framePrincipal.getRockstar().getMusicas().add(musica);
-                        JOptionPane.showMessageDialog(null, "Música criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        txtTitulo.setText("");
-                        txtAno.setText("");
-                        txtMes.setText("");
-                        txtDia.setText("");
-                        txtValor.setText("");
-                        txtAlbum.setText("");
-                        grupo.clearSelection();
-                        grupoAlbum.clearSelection();
-                        this.setVisible(false);
                     }
                 }
             }
@@ -353,7 +349,6 @@ public class PainelAddMusica extends JPanel {
             txtMes.setText("");
             txtDia.setText("");
             txtValor.setText("");
-            txtAlbum.setText("");
             grupo.clearSelection();
             grupoAlbum.clearSelection();
             setVisible(false);
@@ -413,4 +408,20 @@ public class PainelAddMusica extends JPanel {
         }
         return true;
     }
+    public GrupoMusicas[] verAlbuns(FramePrincipal framePrincipal, Musico musico) {
+        ArrayList<GrupoMusicas> albuns = new ArrayList<>();
+        for (GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas()) {
+            if (g.getOwner().equals(musico.getUsername())) {
+                albuns.add(g);
+            }
+        }
+        GrupoMusicas [] meusAlbuns = new Album [albuns.size()];
+        int i=0;
+        for (GrupoMusicas g : albuns){
+            meusAlbuns[i]=g;
+            i++;
+        }
+        return meusAlbuns;
+    }
+
 }

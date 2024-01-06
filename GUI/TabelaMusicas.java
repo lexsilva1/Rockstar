@@ -1,13 +1,13 @@
 package GUI;
 
-import backend.Musica;
-import backend.Musico;
+import backend.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TabelaMusicas extends JPanel {
     private JTable tabela;
@@ -50,12 +50,21 @@ public class TabelaMusicas extends JPanel {
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
 
+        JPanel painelSuperior = new JPanel(new BorderLayout());
+        JLabel rotuloBarra = new JLabel("As minhas Músicas");
+        rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+        painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+        // Adicionar a tabela ao painel superior
+        painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
         JPopupMenu popupMenu = criarPopupMenu(framePrincipal, musico);
         tabela.setComponentPopupMenu(popupMenu);
 
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
         add(scrollPane, BorderLayout.CENTER);
+        add(painelSuperior, BorderLayout.NORTH);
         setVisible(false);
     }
 
@@ -146,15 +155,78 @@ public class TabelaMusicas extends JPanel {
 
         addAlbum.addActionListener(e -> {
             int selectedRow = tabela.getSelectedRow();
+            String titulo = (String) tabela.getValueAt(selectedRow, 0);
 
-            if (selectedRow != -1) {
-                String estado;
-                String titulo = (String) tabela.getValueAt(selectedRow, 0);
+            JDialog addToAlbum = new JDialog(framePrincipal, "Adicionar a Album", true);
+            addToAlbum.setSize(400, 150);
+            addToAlbum.setLayout(new BorderLayout());
+            addToAlbum.setResizable(false);
+
+            JPanel painelCentro = new JPanel(null);
+
+            JLabel nomeAlbum = new JLabel();
+            nomeAlbum.setText("Escolha o Álbum");
+            nomeAlbum.setBounds(40, 20, 150, 25);
+
+
+            JComboBox escolhaAlbum = new JComboBox<>(verAlbuns(framePrincipal,musico));
+            escolhaAlbum.setBounds(nomeAlbum.getX() + 160, nomeAlbum.getY(), 150, 25);
+
+            painelCentro.add(escolhaAlbum);
+            painelCentro.add(nomeAlbum);
+
+            JPanel painelSul = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+            JButton okButton = new JButton();
+            okButton.setText("Ok");
+            okButton.setFocusable(false);
+
+            okButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    GrupoMusicas albuns = (Album) escolhaAlbum.getSelectedItem();
+                    for( Musica g : musico.getMusicas()) {
+                        if (g.getTitulo().equals(titulo) && albuns != null) {
+                            if (estaAdicionada(g,albuns)) {
+                                JOptionPane.showMessageDialog(null, "A música já foi adicionada ao Álbum", "Erro",
+                                        JOptionPane.ERROR_MESSAGE);
+                                addToAlbum.setVisible(false);
+                                revalidate();
+                                repaint();
+                            } else {
+                                albuns.addMusica(g);
+                                JOptionPane.showMessageDialog(null, "Musica adicionada com sucesso",
+                                        "Musica Adicionada", JOptionPane.INFORMATION_MESSAGE);
+                                addToAlbum.setVisible(false);
+                                revalidate();
+                                repaint();
+                            }
+
+                        }
+                    }
+                }
+            });
+            JButton cancelButton = new JButton();
+            cancelButton.setText("Cancelar");
+            cancelButton.setFocusable(false);
+            cancelButton.addActionListener(e12 -> {
+                addToAlbum.dispose();  //fechar a janela
+            });
+
+            painelSul.add(okButton);
+            painelSul.add(cancelButton);
+
+            /////////Painel Principal\\\\\\\\\\\\\
+
+            addToAlbum.add(painelCentro, BorderLayout.CENTER);
+            addToAlbum.add(painelSul, BorderLayout.SOUTH);
+
+            addToAlbum.setLocationRelativeTo(framePrincipal);
+            addToAlbum.setVisible(true);
 
 
 
 
-            }
         });
 
         popupMenu.add(altTitulo);
@@ -163,6 +235,26 @@ public class TabelaMusicas extends JPanel {
         popupMenu.add(addAlbum);
 
         return popupMenu;
+    }
+
+    public GrupoMusicas[] verAlbuns(FramePrincipal framePrincipal, Musico musico) {
+        ArrayList<GrupoMusicas> albuns = new ArrayList<>();
+        for (GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas()) {
+            if (g.getOwner().equals(musico.getUsername())) {
+                albuns.add(g);
+            }
+        }
+        GrupoMusicas [] meusAlbuns = new Album [albuns.size()];
+        int i=0;
+        for (GrupoMusicas g : albuns){
+            meusAlbuns[i]=g;
+            i++;
+        }
+        return meusAlbuns;
+    }
+
+    private boolean estaAdicionada(Musica music, GrupoMusicas albuns) {
+        return albuns.getMusicas().stream().anyMatch(m -> m.equals(music));
     }
 
     public DefaultTableModel getModeloTabela() {

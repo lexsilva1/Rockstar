@@ -90,7 +90,7 @@ public class PainelMinhasPlaylists extends JPanel {
                 for (GrupoMusicas p : framePrincipal.getRockstar().getGrupoMusicas()){
                     if(p instanceof Playlist && p.getOwner().equals(cliente.getUsername())&& p.getTitulo().equals(nome)){
                         for (Musica m : p.getMusicas()) {
-                            modeloTabela1.addRow(new Object[]{m.getTitulo(), m.getAutor(), m.getGenero(), m.getDataLancamento(), m.getRating(), m.getPreco()});
+                            modeloTabela1.addRow(new Object[]{m.getTitulo(), m.getAutor(), m.getGenero(), m.getDataLancamento(), m.calculoRating(), m.getPreco()});
                         }
                         revalidate();
                         repaint();
