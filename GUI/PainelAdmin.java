@@ -268,6 +268,16 @@ public class PainelAdmin extends JPanel {
                                 ((Cliente) a).carregaSaldo(totalValueToRefund);
                             }
                         }
+                        for(GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas())
+                            if ( g.getOwner().equals(a.getUsername())) {
+                                iteratorcliente = g.getMusicas().iterator();
+                                while(iteratorcliente.hasNext()){
+                                    Musica m = iteratorcliente.next();
+                                    if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
+                                        iteratorcliente.remove();
+                                    }
+                                }
+                            }
 
                     }else if (a instanceof Musico){
                         Iterator<Musica> iteratormusico = ((Musico) a).getMusicas().iterator();
@@ -275,6 +285,15 @@ public class PainelAdmin extends JPanel {
                             Musica m = iteratormusico.next();
                             if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
                                 iteratormusico.remove();
+                            }
+                        }
+                        for (Album b :((Musico) a).getAlbuns()){
+                            iteratormusico=b.getMusicas().iterator();
+                            while(iteratormusico.hasNext()){
+                                Musica c = iteratormusico.next();
+                                if(c.getTitulo().equals(titulo) && c.getAutor().equals(artista)){
+                                    iteratormusico.remove();
+                                }
                             }
                         }
                     }
