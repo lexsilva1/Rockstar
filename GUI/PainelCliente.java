@@ -18,7 +18,7 @@ public class PainelCliente extends JPanel{
     private JButton btnCriarPlaylistGenero;
     private JButton btnHistoricoCompras;
     private JButton btnLogout;
-    private BotaoCarrinho btnCarrinhoCompras;
+    private JButton btnCarrinhoCompras;
     private BotaoLupa btnLupa;
     private JLabel labelUsername; //Colocar o username visivel
     private JButton btnSaldo; //Colocar o saldo visível
@@ -26,11 +26,9 @@ public class PainelCliente extends JPanel{
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
-    private PainelMinhasMusicas painelMinhasMusicas;
     private PainelMusicasLoja painelMusicasLoja;
     private FramePrincipal framePrincipal;
-    private HistoricodeCompras historicodeCompras;
-    private PainelMinhasPlaylists painelMinhasPlaylists;
+    private  JButton btnlimpaPesquisa;
 
 
 
@@ -49,8 +47,9 @@ public class PainelCliente extends JPanel{
         JTextField txtPesquisar = new JTextField();
         this.btnCriarPlaylistGenero = new JButton("Nova playlist por género");
         this.btnHistoricoCompras = new JButton("Historico de Compras");
-        this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
-        this.btnCarrinhoCompras = new BotaoCarrinho("/resources/carrinho.jpg");
+        this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
+        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10)); // Ajuste o tamanho da fonte conforme necessário
+        this.btnCarrinhoCompras = new JButton ("\uD83D\uDED2 Carrinho"); // Unicode para carrinho de compras
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
@@ -59,7 +58,7 @@ public class PainelCliente extends JPanel{
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
-
+        this.btnlimpaPesquisa = new JButton("Limpar \u007f");
 
 
 
@@ -78,14 +77,14 @@ public class PainelCliente extends JPanel{
         btnCriarPlaylistGenero.addActionListener(e -> abrirPainelCriarPlaylistGenero());
         btnHistoricoCompras.setBounds(20,300,200,25);
         btnHistoricoCompras.addActionListener(e -> abrirHistoricoCompras());
-        btnLogout.setBounds(740, 10, 40, 30);
+        btnLogout.setBounds(700, 10, 80, 30);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
-        btnCarrinhoCompras.setBounds(20,600,50,30);
+        btnCarrinhoCompras.setBounds(20,600,100,30);
         btnCarrinhoCompras.addActionListener(e -> abrirPainelCarrinhoCompras());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
 
-        btnSaldo.setBounds(100,600,100,25);
+        btnSaldo.setBounds(140,602,100,25);
 
         btnSaldo.setForeground(Color.WHITE);
         btnSaldo.setBackground(new Color(70, 90, 120));
@@ -114,6 +113,9 @@ public class PainelCliente extends JPanel{
 
         btnLupa.setBounds(580,5,20,20);
 
+        btnlimpaPesquisa.setBounds(640,605,85,25);
+        btnlimpaPesquisa.setVisible(false);
+
         JRadioButton chkPesquisaNome = new JRadioButton("Nome");
         chkPesquisaNome.setBounds(370, 30, 100, 25);
         chkPesquisaNome.setBackground(new Color(70, 90, 120));
@@ -129,8 +131,11 @@ public class PainelCliente extends JPanel{
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
+
         btnLupa.addActionListener((ActionEvent e) -> {
             painelOpcoesCliente.removeAll();
+            btnlimpaPesquisa.setVisible(true);
+
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null) {
                 abrirPainelMusicasLoja();
             } else {
@@ -142,9 +147,19 @@ public class PainelCliente extends JPanel{
                 revalidate();
                 repaint();
             }
+
             revalidate();
             repaint();
         });
+
+        btnlimpaPesquisa.addActionListener((ActionEvent e) -> {
+            painelOpcoesCliente.removeAll();
+            btnlimpaPesquisa.setVisible(false);
+            abrirPainelMusicasLoja();
+
+        });
+
+
 
         add(btnVerPlaylists);
         add(btnVerMusicas);
@@ -159,6 +174,7 @@ public class PainelCliente extends JPanel{
         add(btnLupa);
         add(btnLoja);
         painelOpcoesCliente.add(painelMusicasLoja);
+        add(btnlimpaPesquisa);
 
 
 
@@ -172,6 +188,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(painelCriarPlaylist);
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -191,6 +208,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente,this));
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -202,6 +220,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -211,6 +230,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new HistoricodeCompras(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -222,6 +242,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(painelCriarPlaylistGenero);
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -233,6 +254,7 @@ public class PainelCliente extends JPanel{
         PainelCarrinhoCompras painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal, cliente,this);
         painelOpcoesCliente.add(painelCarrinhoCompras);
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
@@ -243,6 +265,7 @@ public class PainelCliente extends JPanel{
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMusicasLoja(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
+        btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }

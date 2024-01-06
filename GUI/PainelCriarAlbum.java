@@ -21,22 +21,27 @@ public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
             if (txtNome.getText().isEmpty() || txtNumero.getText().isEmpty() || grupo.getSelection() == null) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (Integer.parseInt(txtNumero.getText()) > 20) {
-                    JOptionPane.showMessageDialog(null, "Apenas pode criar álbuns com até 20 faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                if (musico.albumExiste(txtNome.getText())) {
+                    JOptionPane.showMessageDialog(null, "Já existe um álbum seu com o mesmo nome", "Álbum já existe", JOptionPane.ERROR_MESSAGE);
+                    txtNome.setText("");
                 } else {
-                    int numeroDeFaixas = Integer.parseInt(txtNumero.getText());
+                    if (Integer.parseInt(txtNumero.getText()) > 20) {
+                        JOptionPane.showMessageDialog(null, "Apenas pode criar álbuns com até 20 faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        int numeroDeFaixas = Integer.parseInt(txtNumero.getText());
 
-                    String genero = "Rock";
-                    if (chkPop.isSelected()) {
-                        genero = "Pop";
-                    } else if (chkPimba.isSelected()) {
-                        genero = "Pimba";
-                    } else if (chkHipHop.isSelected()) {
-                        genero = "Hip Hop";
+                        String genero = "Rock";
+                        if (chkPop.isSelected()) {
+                            genero = "Pop";
+                        } else if (chkPimba.isSelected()) {
+                            genero = "Pimba";
+                        } else if (chkHipHop.isSelected()) {
+                            genero = "Hip Hop";
+                        }
+                        musico.criaAlbum(framePrincipal, musico.getUsername(), txtNome.getText(), genero, numeroDeFaixas);
+                        JOptionPane.showMessageDialog(null, "Álbum adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        setVisible(false);
                     }
-                    musico.criaAlbum(framePrincipal, musico.getUsername(), txtNome.getText(), genero, numeroDeFaixas);
-                    JOptionPane.showMessageDialog(null, "Álbum adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    setVisible(false);
                 }
             }
         });

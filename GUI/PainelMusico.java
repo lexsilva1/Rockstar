@@ -21,7 +21,7 @@ public class PainelMusico extends JPanel {
         JButton btnCriarAlbum = new JButton("+ Álbum");
         JButton btnAddMusica = new JButton("+ Música");
         JButton btnEstatisticas = new JButton("Ver estatísticas");
-        JButton btnLogout = new JButton("Logout");
+        JButton btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
         PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);

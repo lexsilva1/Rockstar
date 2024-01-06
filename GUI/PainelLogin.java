@@ -25,29 +25,29 @@ class PainelLogin extends JPanel {
         add(chkMostrarCliente);
 
         JLabel lblUsername = new JLabel("Username:");
-        lblUsername.setBounds(500, 200, 170, 25);
+        lblUsername.setBounds(400, 200, 170, 25);
         lblUsername.setForeground(Color.WHITE);
         lblUsername.setVisible(false);  // Inicialmente invisível
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(600, 200, 170, 25);
+        txtUsername.setBounds(500, 200, 170, 25);
         txtUsername.setVisible(false);  // Inicialmente invisível
         add(txtUsername);
 
         JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setBounds(500, 300, 80, 25);
+        lblPassword.setBounds(400, 300, 80, 25);
         lblPassword.setForeground(Color.WHITE);
         lblPassword.setVisible(false);
         add(lblPassword);
 
         JPasswordField txtPassword = new JPasswordField();
-        txtPassword.setBounds(600, 300, 170, 25);
+        txtPassword.setBounds(500, 300, 170, 25);
         txtPassword.setVisible(false);
         add(txtPassword);
 
         JCheckBox chkMostrarPass = new JCheckBox("Mostrar Password");
-        chkMostrarPass.setBounds(600, 325, 150, 25);
+        chkMostrarPass.setBounds(500, 325, 150, 25);
         chkMostrarPass.setBackground(new Color(70, 90, 120));
         chkMostrarPass.setForeground(Color.WHITE);
         chkMostrarPass.setVisible(false);
@@ -86,18 +86,18 @@ class PainelLogin extends JPanel {
 
 
         JLabel lblPin = new JLabel("Pin:");
-        lblPin.setBounds(500, 400, 80, 25);
+        lblPin.setBounds(400, 400, 80, 25);
         lblPin.setForeground(Color.WHITE);
         lblPin.setVisible(false);
         add(lblPin);
 
         JPasswordField txtPin = new JPasswordField();
-        txtPin.setBounds(600, 400, 170, 25);
+        txtPin.setBounds(500, 400, 170, 25);
         txtPin.setVisible(false);
         add(txtPin);
 
         JCheckBox chkMostrarPin = new JCheckBox("Mostrar Pin");
-        chkMostrarPin.setBounds(600, 425, 150, 25);
+        chkMostrarPin.setBounds(500, 425, 150, 25);
         chkMostrarPin.setBackground(new Color(70, 90, 120));
         chkMostrarPin.setForeground(Color.WHITE);
         chkMostrarPin.setVisible(false);
