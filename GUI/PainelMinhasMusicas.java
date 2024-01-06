@@ -15,8 +15,6 @@ public class PainelMinhasMusicas extends JPanel {
 
 
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
-        this.cliente = cliente;
-
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
@@ -104,6 +102,10 @@ public class PainelMinhasMusicas extends JPanel {
                     GrupoMusicas playlist = (Playlist) escolhaPlaylist.getSelectedItem();
                     for( Musica g : cliente.getMusicas()) {
                         if (g.getTitulo().equals(titulo) && playlist != null) {
+                            if (!g.getActiva()) {
+                                JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
+                                        JOptionPane.ERROR_MESSAGE);
+                            } else {
                                 if (estaAdicionada(g,playlist)) {
                                     JOptionPane.showMessageDialog(null, "A música já foi adicionada à Playlist", "Erro",
                                             JOptionPane.ERROR_MESSAGE);
@@ -118,11 +120,7 @@ public class PainelMinhasMusicas extends JPanel {
                                     revalidate();
                                     repaint();
                                 }
-
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
-                                    JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
