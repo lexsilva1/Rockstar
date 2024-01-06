@@ -3,6 +3,8 @@ package backend;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Musica implements Serializable {
     private String titulo;
@@ -11,8 +13,8 @@ public class Musica implements Serializable {
     private boolean activa;
     private LocalDate dataLancamento;
     private ArrayList<Preco> historicoPreco;
-    private ArrayList<Integer> classificacoes;
-    private ArrayList<String> votosUtilizadores;
+    private HashMap<String,Integer> classificacoes;
+
     double rating;
 
     public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
@@ -23,8 +25,8 @@ public class Musica implements Serializable {
         this.historicoPreco=new ArrayList<>();
         Preco preco= new Preco(valor);
         this.historicoPreco.add(preco);
-        this.classificacoes=new ArrayList<>();
-        this.votosUtilizadores=new ArrayList<>();
+        this.classificacoes=new HashMap<>();
+        this.rating=calculoRating();
         this.autor=autor;
         //this.rating=rating();
     }
@@ -47,11 +49,11 @@ public class Musica implements Serializable {
         }
     }*/
 
-    public ArrayList<String> getVotosUtilizadores() {
-        return votosUtilizadores;
+    public ArrayList<Preco> getHistoricoPreco() {
+        return historicoPreco;
     }
 
-    public ArrayList<Integer> getClassificacoes() {
+    public HashMap<String,Integer> getClassificacoes() {
         return classificacoes;
     }
 
@@ -85,6 +87,17 @@ public class Musica implements Serializable {
 
     public double getRating() {
         return rating;
+    }
+    public double calculoRating(){
+        double total = 0;
+        if(classificacoes.isEmpty()) {
+          return 0;
+        }else {
+            for (Map.Entry<String, Integer> entry : this.getClassificacoes().entrySet()) {
+                total += entry.getValue();
+            }
+        }
+        return total/classificacoes.size();
     }
 
     public void setTitulo(String titulo) {

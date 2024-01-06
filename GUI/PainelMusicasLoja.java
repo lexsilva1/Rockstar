@@ -1,8 +1,6 @@
 package GUI;
 
-import backend.Cliente;
-import backend.Musica;
-import backend.Musico;
+import backend.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +28,6 @@ public class PainelMusicasLoja extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false; // Torna todas as células não editáveis
@@ -52,7 +49,19 @@ public class PainelMusicasLoja extends JPanel {
         tabela.setAutoCreateRowSorter(true);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
+
+        // Adicionar a barra extra com o rótulo "Minhas Músicas"
+        JPanel painelSuperior = new JPanel(new BorderLayout());
+        JLabel rotuloBarra = new JLabel("Loja");
+        rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+        painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+        // Adicionar a tabela ao painel superior
+        painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
         add(scrollPane, BorderLayout.CENTER);
+
+        add(painelSuperior, BorderLayout.NORTH);
 
         JPopupMenu popupMenu = criarPopupMenuCliente(framePrincipal, cliente);
         tabela.setComponentPopupMenu(popupMenu);
@@ -93,7 +102,54 @@ public class PainelMusicasLoja extends JPanel {
             }
         });
 
+        JMenuItem verHistoricoPreco = new JMenuItem("Histórico de preços");
+
+        verHistoricoPreco.addActionListener(e -> {
+            int linhaSelecionada = tabela.getSelectedRow();
+            if (linhaSelecionada != -1) {
+                String nome = (String) tabela.getValueAt(linhaSelecionada, 0);
+
+
+                DefaultTableModel modeloTabela1 = new DefaultTableModel();
+                modeloTabela1.addColumn("Data");
+                modeloTabela1.addColumn("Preço");
+
+
+                for (Musica p : framePrincipal.getRockstar().getMusicas()){
+                    if(p.getTitulo().equals(nome)){
+                        for (Preco m : p.getHistoricoPreco()) {
+                            modeloTabela1.addRow(new Object[]{m.getData(), m.getPreco() + " €"});
+                        }
+                        revalidate();
+                        repaint();
+                    }
+                }
+
+                // Criar a tabela com o modelo
+                JTable tabela1 = new JTable(modeloTabela1);
+                JScrollPane scrollPane1 = new JScrollPane(tabela1);
+                scrollPane1.setVisible(true);
+
+                this.removeAll();
+
+                // Adicionar a barra extra com o rótulo "Minhas Músicas"
+                JPanel painelSuperior = new JPanel(new BorderLayout());
+                JLabel rotuloBarra = new JLabel(nome);
+                rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+                painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+                // Adicionar a tabela ao painel superior
+                painelSuperior.add(tabela1.getTableHeader(), BorderLayout.SOUTH);
+
+                this.add(scrollPane1, BorderLayout.CENTER);
+                this.add(painelSuperior, BorderLayout.NORTH);
+
+                revalidate();
+            }
+        });
+
         popupMenu.add(adicionarAoCarrinhoItem);
+        popupMenu.add(verHistoricoPreco);
 
         return popupMenu;
     }

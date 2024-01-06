@@ -22,17 +22,6 @@ public class Cliente extends Utilizador {
         this.saldo += saldo;
     }
 
-    public void votar(int voto, Musica musica) {//ainda vai sofrer alterações para ficar com HashMap
-        for (String username : musica.getVotosUtilizadores()) {
-            if (this.username.equals(username)) {
-                System.out.println("já votou nesta musica");
-                break;
-            } else {
-                musica.getClassificacoes().add(voto);
-                musica.getVotosUtilizadores().add(this.username);
-            }
-        }
-    }
     public Playlist criaPlaylistGenero(int num, String titulo, ArrayList<Musica> musicasGenero) {
         Playlist playlist = new Playlist(this.username, titulo);
         Collections.shuffle(musicasGenero);

@@ -89,13 +89,11 @@ public class PainelCliente extends JPanel{
 
         btnSaldo.setForeground(Color.WHITE);
         btnSaldo.setBackground(new Color(70, 90, 120));
-        btnSaldo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Exibir janela de carregamento de saldo
-                exibirJanelaCarregarSaldo();
 
-            }
+        btnSaldo.addActionListener(e -> {
+            // Exibir janela de carregamento de saldo
+            exibirJanelaCarregarSaldo();
+
         });
 
         btnLoja.setBounds(20,350,200,25);
@@ -198,11 +196,11 @@ public class PainelCliente extends JPanel{
     }
 
 
-    private void abrirPainelMinhasMusicas() {
+    public void abrirPainelMinhasMusicas() {
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente));
+        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
@@ -243,7 +241,7 @@ public class PainelCliente extends JPanel{
         // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
         // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(painelMusicasLoja);
+        painelOpcoesCliente.add(new PainelMusicasLoja(framePrincipal,cliente));
         // Atualizar o painelOpcoesCliente
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
@@ -256,7 +254,9 @@ public class PainelCliente extends JPanel{
                 "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
                 JOptionPane.QUESTION_MESSAGE);
 
+
         if (input != null && !input.isEmpty()) {
+            try {
                 double montanteCarregar = Double.parseDouble(input);
 
                 JOptionPane.showMessageDialog(this, "Saldo carregado com sucesso: " + montanteCarregar,
@@ -264,14 +264,13 @@ public class PainelCliente extends JPanel{
                 cliente.carregaSaldo(montanteCarregar);
                 saldoAtual = cliente.getSaldo();
 
-
                 btnSaldo.setText("Saldo: " + (saldoAtual));
                 revalidate();
                 repaint();
-            } else{
-                JOptionPane.showMessageDialog(this, "Por favor, insira um valor válido.", "Erro",
-                        JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Apenas valores numéricos","Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
             }
+        }
     }
 
     private void voltarPainelPrincipal() {
