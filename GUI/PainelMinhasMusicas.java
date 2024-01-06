@@ -106,7 +106,7 @@ public class PainelMinhasMusicas extends JPanel {
                                 JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
                                         JOptionPane.ERROR_MESSAGE);
                             } else {
-                                if (estaAdicionada(g,playlist)) {
+                                if (estaAdicionada(g, playlist)) {
                                     JOptionPane.showMessageDialog(null, "A música já foi adicionada à Playlist", "Erro",
                                             JOptionPane.ERROR_MESSAGE);
                                     addToPlaylist.setVisible(false);
@@ -122,7 +122,7 @@ public class PainelMinhasMusicas extends JPanel {
                                 }
 
 
-
+                            }
                         } else {
                             JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
                                     JOptionPane.ERROR_MESSAGE);

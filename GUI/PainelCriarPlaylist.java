@@ -1,6 +1,8 @@
 package GUI;
 
 import backend.Cliente;
+import backend.GrupoMusicas;
+import backend.Playlist;
 import backend.Utilizador;
 
 import javax.swing.*;
@@ -32,21 +34,29 @@ public class PainelCriarPlaylist extends JPanel {
 
             if (txtNome.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor escreva o nome da playlist", "Campo vazio", JOptionPane.ERROR_MESSAGE);
-                } else {
+            } else {
                 String nome = txtNome.getText();
-                framePrincipal.getRockstar().addGrupoDeMusicas(cliente.criaPlaylist(nome));
-                JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                if (playlistExiste(nome,framePrincipal)) {
+                    JOptionPane.showMessageDialog(null, "já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
+                    txtNome.setText("");
+                } else {
+                    framePrincipal.getRockstar().addGrupoDeMusicas(cliente.criaPlaylist(nome));
+                    txtNome.setText("");
+                    JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 }
-
+            }
         });
-
-
 
         setVisible(true);
 
-
-
-
     }
 
+    public boolean playlistExiste(String nome, FramePrincipal framePrincipal) {
+        for (GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas()) {
+            if (g instanceof Playlist && nome.equals(g.getTitulo())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
