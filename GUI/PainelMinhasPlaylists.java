@@ -46,7 +46,18 @@ public class PainelMinhasPlaylists extends JPanel {
         tabela.getColumnModel().getColumn(0).setPreferredWidth(300);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
+
+        // Adicionar a barra extra com o rótulo "Minhas Músicas"
+        JPanel painelSuperior = new JPanel(new BorderLayout());
+        JLabel rotuloBarra = new JLabel("As Minhas Playlists");
+        rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+        painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+        // Adicionar a tabela ao painel superior
+        painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
         add(scrollPane, BorderLayout.CENTER);
+        add(painelSuperior, BorderLayout.NORTH);
 
         JPopupMenu popupMenu = criarPopupMenuPlaylists(framePrincipal, cliente,painelCliente);
         tabela.setComponentPopupMenu(popupMenu);
@@ -91,8 +102,17 @@ public class PainelMinhasPlaylists extends JPanel {
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
                 scrollPane1.setVisible(true);
 
+                JPanel painelSuperior = new JPanel(new BorderLayout());
+                JLabel rotuloBarra = new JLabel(nome);
+                rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+                painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+
+                // Adicionar a tabela ao painel superior
+                painelSuperior.add(tabela1.getTableHeader(), BorderLayout.SOUTH);
+
                 this.removeAll();
                 this.add(scrollPane1, BorderLayout.CENTER);
+                this.add(painelSuperior, BorderLayout.NORTH);
                 revalidate();
             }
         });
