@@ -120,7 +120,13 @@ public class PainelMinhasMusicas extends JPanel {
                                     revalidate();
                                     repaint();
                                 }
-                            }
+
+
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
+                                    JOptionPane.ERROR_MESSAGE);
+
                         }
                     }
                 }
