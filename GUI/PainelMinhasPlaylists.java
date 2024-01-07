@@ -46,6 +46,7 @@ public class PainelMinhasPlaylists extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 
