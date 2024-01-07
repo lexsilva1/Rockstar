@@ -49,7 +49,7 @@ public class PainelMusico extends JPanel {
 
         btnLupa.setBounds(450,7,20,20);
 
-        JRadioButton chkPesquisaNome = new JRadioButton("Nome");
+        JRadioButton chkPesquisaNome = new JRadioButton("Título");
         chkPesquisaNome.setBounds(250, 27, 100, 25);
         chkPesquisaNome.setBackground(new Color(70, 90, 120));
         chkPesquisaNome.setForeground(Color.WHITE);
