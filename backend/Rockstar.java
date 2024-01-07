@@ -136,7 +136,7 @@ public class Rockstar implements Serializable {
                 musica = m;
             }
         }
-        return musica.getTitulo()+ " - " + musica.getAutor();
+        return musica.getTitulo()+ " - " + musica.getAutor()+ " - " + musica.calculoRating();
     }
     public int numeroUtilizadoresMusicas(Musico musico){
         boolean stoploop;

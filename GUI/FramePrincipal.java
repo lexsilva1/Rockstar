@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 
 public class FramePrincipal extends JFrame {
@@ -66,7 +67,7 @@ public class FramePrincipal extends JFrame {
             Musica claudisabelSong2 = new Musica("Amor à Portuguesa", "Pimba", LocalDate.of(2020, 7, 8), "claudisabel", 0);
             Musica claudisabelSong3 = new Musica("Vira Virou", "Pimba", LocalDate.of(2019, 5, 15), "claudisabel", 1.3);
             Musica claudisabelSong4 = new Musica("Marcha da Sardinha", "Pimba", LocalDate.of(2018, 9, 23), "claudisabel", 1.7);
-            Musica claudisabelSong5 = new Musica("Chupa Alho", "Pimba", LocalDate.of(2017, 3, 12), "claudisabel", 0.7);
+            Musica claudisabelSong5 = new Musica("Chupa No Dedo", "Pimba", LocalDate.of(1998, 3, 12), "claudisabel", 0.7);
             Musica claudisabelSong6 = new Musica("Fado do Emigrante", "Pimba", LocalDate.of(2016, 11, 30), "claudisabel", 0.8);
             Musica claudisabelSong7 = new Musica("Piriri Pompom", "Pimba", LocalDate.of(2015, 6, 5), "claudisabel", 0);
             Musica claudisabelSong8 = new Musica("Fado da Cerveja", "Pimba", LocalDate.of(2014, 8, 19), "claudisabel", 1.0);
@@ -259,6 +260,45 @@ public class FramePrincipal extends JFrame {
             rockstar.getUtilizadores().add(musico);
             rockstar.getUtilizadores().add(musico2);
             rockstar.getUtilizadores().add(musico3);
+            Cliente cliente2 = new Cliente("mariasantos", "password");
+            rockstar.getUtilizadores().add(cliente2);
+            Cliente cliente3 = new Cliente("pedrofonseca", "password");
+            rockstar.getUtilizadores().add(cliente3);
+            Cliente cliente4 = new Cliente("anapereira", "password");
+            rockstar.getUtilizadores().add(cliente4);
+            Cliente cliente5 = new Cliente("ricardosousa", "password");
+            rockstar.getUtilizadores().add(cliente5);
+            Cliente cliente6 = new Cliente("ineslopes", "password");
+            rockstar.getUtilizadores().add(cliente6);
+            Cliente cliente7 = new Cliente("luisoliveira", "password");
+            rockstar.getUtilizadores().add(cliente7);
+            Cliente cliente8 = new Cliente("carlamartins", "password");
+            rockstar.getUtilizadores().add(cliente8);
+            Cliente cliente9 = new Cliente("andrepires", "password");
+            rockstar.getUtilizadores().add(cliente9);
+            Cliente cliente10 = new Cliente("sofiacarvalho", "password");
+            rockstar.getUtilizadores().add(cliente10);
+            Cliente cliente11 = new Cliente("joanarodrigues", "password");
+            rockstar.getUtilizadores().add(cliente11);
+            Cliente cliente12 = new Cliente("tiagomachado", "password");
+            rockstar.getUtilizadores().add(cliente12);
+            Cliente cliente13 = new Cliente("susanasilva", "password");
+            rockstar.getUtilizadores().add(cliente13);
+            Cliente cliente14 = new Cliente("pedrosantos", "password");
+            rockstar.getUtilizadores().add(cliente14);
+            Cliente cliente15 = new Cliente("danielamoreira", "password");
+            rockstar.getUtilizadores().add(cliente15);
+            Cliente cliente16 = new Cliente("ricardocarvalho", "password");
+            rockstar.getUtilizadores().add(cliente16);
+            Cliente cliente17 = new Cliente("carlosribeiro", "password");
+            rockstar.getUtilizadores().add(cliente17);
+            Cliente cliente18 = new Cliente("margaridagomes", "password");
+            rockstar.getUtilizadores().add(cliente18);
+            Cliente cliente19 = new Cliente("hugomartins", "password");
+            rockstar.getUtilizadores().add(cliente19);
+            Cliente cliente20 = new Cliente("cristinamendes", "password");
+            rockstar.getUtilizadores().add(cliente20);
+            rockstar.addPromo(admin,999,"Desconto Boas Vindas",15,LocalDate.of(2023,12,15),LocalDate.of(2024,12,31));
         }
         catch (IOException e){
             System.err.println("outro erro");
