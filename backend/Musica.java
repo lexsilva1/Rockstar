@@ -10,25 +10,23 @@ public class Musica implements Serializable {
     private String titulo;
     private String autor;
     private String genero;
-    private boolean activa;
+    private boolean ativa;
     private LocalDate dataLancamento;
     private ArrayList<Preco> historicoPreco;
     private HashMap<String,Integer> classificacoes;
-
-    double rating;
+    private double rating;
 
     public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
         this.titulo = titulo;
         this.genero = genero;
-        this.dataLancamento=data;
-        this.activa=true;
-        this.historicoPreco=new ArrayList<>();
-        Preco preco= new Preco(valor);
+        this.dataLancamento = data;
+        this.ativa =true;
+        this.historicoPreco = new ArrayList<>();
+        Preco preco = new Preco(valor);
         this.historicoPreco.add(preco);
-        this.classificacoes=new HashMap<>();
-        this.rating=calculoRating();
+        this.classificacoes = new HashMap<>();
+        this.rating = calculoRating();
         this.autor=autor;
-        //this.rating=rating();
     }
     public void alterarPreco(double preco){
         Preco novopreco= new Preco(preco);
@@ -37,17 +35,6 @@ public class Musica implements Serializable {
     public double getPreco(){
         return historicoPreco.getLast().getPreco();
     }
-    /*public double rating() {
-        int soma = 0;
-        if (classificacoes.isEmpty()) {
-            return 0;
-        } else {
-            for (int i : this.classificacoes) {
-                soma += i;
-            }
-            return soma / this.classificacoes.size();
-        }
-    }*/
 
     public ArrayList<Preco> getHistoricoPreco() {
         return historicoPreco;
@@ -61,10 +48,10 @@ public class Musica implements Serializable {
         return genero;
     }
 
-    public void inactiva(boolean activo) {
+    public void inativa(boolean activo) {
 
-        if (this.activa != activo) {
-            this.activa = activo;
+        if (this.ativa != activo) {
+            this.ativa = activo;
         }
 
     }
@@ -77,8 +64,8 @@ public class Musica implements Serializable {
         return titulo;
     }
 
-    public boolean getActiva() {
-        return activa;
+    public boolean getAtiva() {
+        return ativa;
     }
 
     public LocalDate getDataLancamento() {

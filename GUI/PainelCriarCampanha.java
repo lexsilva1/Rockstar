@@ -5,9 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
 
-import backend.Promo;
 import backend.Admin;
-import backend.Rockstar;
 
 public class PainelCriarCampanha extends JPanel {
 
@@ -312,13 +310,11 @@ public class PainelCriarCampanha extends JPanel {
                                 }
 
                             } else {
-                                //JOptionPane.showMessageDialog(this, "Data Final inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
                                 txtAnoFim.setText("");
                                 txtMesFim.setText("");
                                 txtDiaFim.setText("");
                             }
                         } else {
-                            //JOptionPane.showMessageDialog(this, "Data Inicial inválida", "Dados errados", JOptionPane.ERROR_MESSAGE);
                             txtAnoInicio.setText("");
                             txtMesInicio.setText("");
                             txtDiaInicio.setText("");
@@ -326,11 +322,8 @@ public class PainelCriarCampanha extends JPanel {
                     }
                 }
             }
-
       });
-
     }
-
 
     public boolean verificarDataInicio(String anoInicio, String mesInicio, String diaInicio) {
         int ano1 = Integer.parseInt(anoInicio);

@@ -27,7 +27,11 @@ public class TabelaMusicas extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Género");
         modeloTabela.addColumn("Data Lançamento");
@@ -38,7 +42,7 @@ public class TabelaMusicas extends JPanel {
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
             if (a.getAutor().equals(musico.getUsername())) {
                 String estado;
-                if (a.getActiva()) {
+                if (a.getAtiva()) {
                     estado = "Sim";
                 } else {
                     estado = "Não";
@@ -55,7 +59,6 @@ public class TabelaMusicas extends JPanel {
         rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
         painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-        // Adicionar a tabela ao painel superior
         painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
 
         JPopupMenu popupMenu = criarPopupMenu(framePrincipal, musico);
@@ -87,7 +90,7 @@ public class TabelaMusicas extends JPanel {
                 if (input != null && !input.isEmpty()) {
                     for (Musica a : framePrincipal.getRockstar().getMusicas()) {
                         if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                            musico.actualizaTitulo(a, input);
+                            musico.atualizaTitulo(a, input);
                             JOptionPane.showMessageDialog(framePrincipal, "Título alterado com sucesso", "Alterar Título", JOptionPane.INFORMATION_MESSAGE);
                             int modelRow = tabela.convertRowIndexToModel(selectedRow);
                             modeloTabela.setValueAt(input, modelRow, 0);
@@ -110,7 +113,7 @@ public class TabelaMusicas extends JPanel {
                 if (input != null && !input.isEmpty()) {
                     for (Musica a : framePrincipal.getRockstar().getMusicas()) {
                         if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                            musico.actualizaPreco(a, Double.parseDouble(input));
+                            musico.atualizaPreco(a, Double.parseDouble(input));
                             JOptionPane.showMessageDialog(framePrincipal, "Preço alterado com sucesso", "Alterar Preço", JOptionPane.INFORMATION_MESSAGE);
                             int modelRow = tabela.convertRowIndexToModel(selectedRow);
                             modeloTabela.setValueAt(a.getPreco(), modelRow, 4);
@@ -130,13 +133,13 @@ public class TabelaMusicas extends JPanel {
 
                 for (Musica a : framePrincipal.getRockstar().getMusicas()) {
                     if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                        if (a.getActiva()) {
-                            musico.inactivaMusica(a, false);
+                        if (a.getAtiva()) {
+                            musico.inativaMusica(a, false);
                         } else {
-                            musico.inactivaMusica(a, true);
+                            musico.inativaMusica(a, true);
                         }
                         JOptionPane.showMessageDialog(framePrincipal, "Estado alterado com sucesso", "Alterar Estado", JOptionPane.INFORMATION_MESSAGE);
-                        if (a.getActiva()) {
+                        if (a.getAtiva()) {
                             estado = "Sim";
                             int modelRow = tabela.convertRowIndexToModel(selectedRow);
                             modeloTabela.setValueAt(estado, modelRow, 5);
@@ -181,28 +184,25 @@ public class TabelaMusicas extends JPanel {
             okButton.setText("Ok");
             okButton.setFocusable(false);
 
-            okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    GrupoMusicas albuns = (Album) escolhaAlbum.getSelectedItem();
-                    for( Musica g : musico.getMusicas()) {
-                        if (g.getTitulo().equals(titulo) && albuns != null) {
-                            if (estaAdicionada(g,albuns)) {
-                                JOptionPane.showMessageDialog(null, "A música já foi adicionada ao Álbum", "Erro",
-                                        JOptionPane.ERROR_MESSAGE);
-                                addToAlbum.setVisible(false);
-                                revalidate();
-                                repaint();
-                            } else {
-                                albuns.addMusica(g);
-                                JOptionPane.showMessageDialog(null, "Musica adicionada com sucesso",
-                                        "Musica Adicionada", JOptionPane.INFORMATION_MESSAGE);
-                                addToAlbum.setVisible(false);
-                                revalidate();
-                                repaint();
-                            }
-
+            okButton.addActionListener(e1 -> {
+                GrupoMusicas albuns = (Album) escolhaAlbum.getSelectedItem();
+                for( Musica g : musico.getMusicas()) {
+                    if (g.getTitulo().equals(titulo) && albuns != null) {
+                        if (estaAdicionada(g,albuns)) {
+                            JOptionPane.showMessageDialog(null, "A música já foi adicionada ao Álbum", "Erro",
+                                    JOptionPane.ERROR_MESSAGE);
+                            addToAlbum.setVisible(false);
+                            revalidate();
+                            repaint();
+                        } else {
+                            albuns.addMusica(g);
+                            JOptionPane.showMessageDialog(null, "Musica adicionada com sucesso",
+                                    "Musica Adicionada", JOptionPane.INFORMATION_MESSAGE);
+                            addToAlbum.setVisible(false);
+                            revalidate();
+                            repaint();
                         }
+
                     }
                 }
             });
@@ -210,23 +210,17 @@ public class TabelaMusicas extends JPanel {
             cancelButton.setText("Cancelar");
             cancelButton.setFocusable(false);
             cancelButton.addActionListener(e12 -> {
-                addToAlbum.dispose();  //fechar a janela
+                addToAlbum.dispose();
             });
 
             painelSul.add(okButton);
             painelSul.add(cancelButton);
-
-            /////////Painel Principal\\\\\\\\\\\\\
 
             addToAlbum.add(painelCentro, BorderLayout.CENTER);
             addToAlbum.add(painelSul, BorderLayout.SOUTH);
 
             addToAlbum.setLocationRelativeTo(framePrincipal);
             addToAlbum.setVisible(true);
-
-
-
-
         });
 
         popupMenu.add(altTitulo);
@@ -255,10 +249,6 @@ public class TabelaMusicas extends JPanel {
 
     private boolean estaAdicionada(Musica music, GrupoMusicas albuns) {
         return albuns.getMusicas().stream().anyMatch(m -> m.equals(music));
-    }
-
-    public DefaultTableModel getModeloTabela() {
-        return modeloTabela;
     }
 
     /**

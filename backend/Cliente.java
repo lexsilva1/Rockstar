@@ -67,7 +67,7 @@ public class Cliente extends Utilizador {
                 }
                     musicas.addAll(carrinhoCompras);
                     this.saldo -= total;
-                    historicoCompras.add(compra);//adiciona a compra ao historico do cliente
+                    historicoCompras.add(compra);
                     promo.retiraCupoes();
                     promo.getClientes().add(this.username);
             }

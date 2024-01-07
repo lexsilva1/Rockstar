@@ -2,7 +2,7 @@ package GUI;
 import backend.Admin;
 import backend.Cliente;
 import backend.Musico;
-import backend.Utilizador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,11 +10,9 @@ import java.awt.event.*;
 class PainelLogin extends JPanel {
     private FramePrincipal framePrincipal;
 
-
     public PainelLogin(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         setBackground(new Color(70, 90, 120));
-
 
         setLayout(null);
 
@@ -27,12 +25,12 @@ class PainelLogin extends JPanel {
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setBounds(400, 200, 170, 25);
         lblUsername.setForeground(Color.WHITE);
-        lblUsername.setVisible(false);  // Inicialmente invisível
+        lblUsername.setVisible(false);
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
         txtUsername.setBounds(500, 200, 170, 25);
-        txtUsername.setVisible(false);  // Inicialmente invisível
+        txtUsername.setVisible(false);
         add(txtUsername);
 
         JLabel lblPassword = new JLabel("Password:");
@@ -77,13 +75,11 @@ class PainelLogin extends JPanel {
         });
 
 
-
         JRadioButton chkMostrarMusico = new JRadioButton("Músico");
         chkMostrarMusico.setBounds(50, 250, 100, 25);
         chkMostrarMusico.setBackground(new Color(70, 90, 120));
         chkMostrarMusico.setForeground(Color.WHITE);
         add(chkMostrarMusico);
-
 
         JLabel lblPin = new JLabel("Pin:");
         lblPin.setBounds(400, 400, 80, 25);
@@ -154,7 +150,6 @@ class PainelLogin extends JPanel {
             }
         });
 
-        //Juntar os radiobuttons (cliente, musico, admin) para que não seja possível selecionar mais do que um
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkMostrarCliente);
         grupo.add(chkMostrarMusico);
@@ -262,6 +257,5 @@ class PainelLogin extends JPanel {
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
-
 }
 
