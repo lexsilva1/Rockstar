@@ -38,6 +38,7 @@ public class PainelMinhasMusicas extends JPanel {
 
         // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         // Adicionar a barra extra com o rótulo "Minhas Músicas"
         JPanel painelSuperior = new JPanel(new BorderLayout());

@@ -64,6 +64,7 @@ public class TabelaAlbuns extends TabelaMusicas {
 
         JPopupMenu popupMenu = criarPopupMenu(framePrincipal, musico);
         tabela.setComponentPopupMenu(popupMenu);
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);

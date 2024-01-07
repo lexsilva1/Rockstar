@@ -55,6 +55,7 @@ public class TabelaMusicas extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         JPanel painelSuperior = new JPanel(new BorderLayout());
         JLabel rotuloBarra = new JLabel("As minhas Músicas");

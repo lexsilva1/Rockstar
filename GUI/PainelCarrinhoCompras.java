@@ -45,6 +45,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.setPreferredScrollableViewportSize(new Dimension(400, 100));
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane scrollPane = new JScrollPane(tabela);
         scrollPane.setBounds(10, 30, 400, 150); // Definir posição e tamanho manualmente
@@ -98,6 +99,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         tabelapromo = new JTable(modelotabelapromo);
         tabelapromo.setPreferredScrollableViewportSize(new Dimension(400, 100));
+        tabelapromo.getTableHeader().setReorderingAllowed(false);
         JPopupMenu popupMenu = criarPopupMenuPromo(framePrincipal, cliente,labelCustoTotal);
         tabelapromo.setComponentPopupMenu(popupMenu);
 
