@@ -1,8 +1,6 @@
 package GUI;
 
-
 import backend.*;
-
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,20 +8,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PainelAdmin extends JPanel {
-    private Admin admin;
     private JButton btnVerCampanhas;
     private JButton btnCriarCampanha;
     private JButton btnCriarAdministrador;
-    private JLabel labelUsername; //Colocar o username visivel
+    private JLabel labelUsername;
     private JLabel lblPesquisar;
     private JTextField txtPesquisar;
     private JButton btnLogout;
     private BotaoLupa btnLupa;
     private PainelOpcoesAdmin painelOpcoesAdmin;
-    private PainelPesquisarUtilizador painelPesquisarUtilizador;
     private PainelCriarAdmin painelCriarAdmin;
     private PainelCriarCampanha painelCriarCampanha;
 
@@ -35,7 +30,6 @@ public class PainelAdmin extends JPanel {
      * com um buffer duplo e um flow layout.
      */
     public PainelAdmin(FramePrincipal framePrincipal, Admin admin) {
-        this.admin = admin;
         this.btnVerCampanhas = new JButton("Ver Campanhas");
         this.btnCriarCampanha = new JButton("Criar Campanha");
         this.btnCriarAdministrador = new JButton("Criar Administrador");
@@ -44,12 +38,12 @@ public class PainelAdmin extends JPanel {
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.btnLogout = new JButton("Logout \u21AA");
-        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
+
+        this.btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
+
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
-        this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
         this.painelCriarCampanha = new PainelCriarCampanha(framePrincipal, admin);
-
 
         setBackground(new Color(70, 90, 120));
         setLayout(null);
@@ -118,7 +112,7 @@ public class PainelAdmin extends JPanel {
 
                 for (Musica a : framePrincipal.getRockstar().getMusicas() ){
                     if(a.getTitulo().toLowerCase().contains(txtPesquisar.getText().toLowerCase())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getAtiva()});
                     }
                 }
 
@@ -129,7 +123,7 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
-                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela);
+                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela,modeloTabela);
                 tabela.setComponentPopupMenu(popupMenu);
 
             } else if (chkPesquisaUtilizador.isSelected()) {
@@ -205,8 +199,6 @@ public class PainelAdmin extends JPanel {
             JLabel rotuloBarra = new JLabel("Campanhas");
             rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
             painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
-
-            // Adicionar a tabela ao painel superior
             painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
 
             painel.add(scrollPane, BorderLayout.CENTER);
@@ -227,40 +219,31 @@ public class PainelAdmin extends JPanel {
     }
 
     private void abrirPainelPesquisa(JPanel painel) {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painel);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
 
     private void abrirPainelCriarCampanha() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painelCriarCampanha);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
 
     private void abrirPainelCriarAdmin() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painelCriarAdmin);
         painelCriarAdmin.setVisible(true);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
-    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela) {
+    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Remover Musica");
-        adicionarAoCarrinhoItem.addActionListener(e -> {
+        JMenuItem removerMusica = new JMenuItem("Remover Musica");
+        removerMusica.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
 
             if (linhaSelecionada != -1) {
@@ -288,7 +271,6 @@ public class PainelAdmin extends JPanel {
                                     for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
                                         if (entry.getKey().equals(titulo)) {
                                             totalValueToRefund = entry.getValue();
-                                            break; // Stop iterating when the song is found in a purchase
                                         }
                                     }
                                 }
@@ -331,9 +313,12 @@ public class PainelAdmin extends JPanel {
                     }
                 }
             }
+            modeloTabela.removeRow(linhaSelecionada);
+            revalidate();
+            repaint();
         });
 
-        popupMenu.add(adicionarAoCarrinhoItem);
+        popupMenu.add(removerMusica);
 
         return popupMenu;
     }

@@ -12,11 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PainelAddMusica extends JPanel {
-    public PainelAddMusica(FramePrincipal framePrincipal, Musico musico) {
+    public PainelAddMusica(FramePrincipal framePrincipal, Musico musico, JLabel totalMusicas, JLabel valorMusicas) {
 
         setLayout(null);
         setBackground(new Color(70, 90, 120));
-        ;
         setPreferredSize(new Dimension(450, 500));
 
 
@@ -341,6 +340,9 @@ public class PainelAddMusica extends JPanel {
                     }
                 }
             }
+            String espaco = " ";
+            totalMusicas.setText(espaco.concat(String.valueOf((framePrincipal.getRockstar().getMusicas().size()))));
+            valorMusicas.setText(espaco.concat(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorMusicas()))));
         });
 
         btnCancelar.addActionListener(e -> {
@@ -423,5 +425,4 @@ public class PainelAddMusica extends JPanel {
         }
         return meusAlbuns;
     }
-
 }

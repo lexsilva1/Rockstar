@@ -1,14 +1,10 @@
 package GUI;
 
 import backend.Cliente;
-import backend.Musica;
-import backend.Utilizador;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PainelCliente extends JPanel{
     private Cliente cliente;
@@ -20,8 +16,8 @@ public class PainelCliente extends JPanel{
     private JButton btnLogout;
     private JButton btnCarrinhoCompras;
     private BotaoLupa btnLupa;
-    private JLabel labelUsername; //Colocar o username visivel
-    private JButton btnSaldo; //Colocar o saldo visível
+    private JLabel labelUsername;
+    private JButton btnSaldo;
     private JButton btnLoja;
     private PainelOpcoesCliente painelOpcoesCliente;
     private PainelCriarPlaylist painelCriarPlaylist;
@@ -29,7 +25,6 @@ public class PainelCliente extends JPanel{
     private PainelMusicasLoja painelMusicasLoja;
     private FramePrincipal framePrincipal;
     private  JButton btnlimpaPesquisa;
-
 
 
     /**
@@ -48,7 +43,7 @@ public class PainelCliente extends JPanel{
         this.btnCriarPlaylistGenero = new JButton("Nova playlist por género");
         this.btnHistoricoCompras = new JButton("Historico de Compras");
         this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
-        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10)); // Ajuste o tamanho da fonte conforme necessário
+        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
         this.btnCarrinhoCompras = new JButton ("\uD83D\uDED2 Carrinho"); // Unicode para carrinho de compras
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
@@ -58,11 +53,7 @@ public class PainelCliente extends JPanel{
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
-        this.btnlimpaPesquisa = new JButton("Limpar \u007f");
-
-
-
-
+        this.btnlimpaPesquisa = new JButton("Limpar");
 
         setBackground(new Color(70, 90, 120));
         setLayout(null);
@@ -86,13 +77,11 @@ public class PainelCliente extends JPanel{
 
         btnSaldo.setBounds(140,602,120,25);
 
-        btnSaldo.setForeground(Color.WHITE);
+        btnSaldo.setForeground(Color.BLACK);
         btnSaldo.setBackground(new Color(70, 90, 120));
 
         btnSaldo.addActionListener(e -> {
-            // Exibir janela de carregamento de saldo
             exibirJanelaCarregarSaldo();
-
         });
 
         btnLoja.setBounds(20,350,200,25);
@@ -147,7 +136,6 @@ public class PainelCliente extends JPanel{
                 revalidate();
                 repaint();
             }
-
             revalidate();
             repaint();
         });
@@ -156,10 +144,7 @@ public class PainelCliente extends JPanel{
             painelOpcoesCliente.removeAll();
             btnlimpaPesquisa.setVisible(false);
             abrirPainelMusicasLoja();
-
         });
-
-
 
         add(btnVerPlaylists);
         add(btnVerMusicas);
@@ -176,60 +161,36 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.add(painelMusicasLoja);
         add(btnlimpaPesquisa);
 
-
-
         setVisible(true);
     }
 
 
     private void abrirPainelCriarPlaylist() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(painelCriarPlaylist);
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
-    /*private void abrirPainelPesquisa(JPanel painel) {
-        // Remover todos os componentes do painelOpcoesCliente
-        painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
-        painelOpcoesCliente.add(painel);
-        // Atualizar o painelOpcoesCliente
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
-    }*/
 
     public void abrirPainelMinhasPlaylists() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente,this));
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
-
 
     public void abrirPainelMinhasMusicas() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
-    private void abrirHistoricoCompras() { // mudar para variavel local para actualizar
-        // Remover todos os componentes do painelOpcoesCliente
+    private void abrirHistoricoCompras() {
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new HistoricodeCompras(framePrincipal,cliente));
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
@@ -237,34 +198,25 @@ public class PainelCliente extends JPanel{
 
 
     private void abrirPainelCriarPlaylistGenero() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(painelCriarPlaylistGenero);
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
 
     public void abrirPainelCarrinhoCompras() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         PainelCarrinhoCompras painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal, cliente,this);
         painelOpcoesCliente.add(painelCarrinhoCompras);
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
 
     private void abrirPainelMusicasLoja() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesCliente.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesCliente.add(new PainelMusicasLoja(framePrincipal,cliente));
-        // Atualizar o painelOpcoesCliente
         btnlimpaPesquisa.setVisible(false);
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
@@ -274,8 +226,9 @@ public class PainelCliente extends JPanel{
         double saldoAtual = getCliente().getSaldo();
 
         String input = JOptionPane.showInputDialog(this,
-                "Saldo Atual: " + String.format("%1$,.2f€",saldoAtual) + "\nDigite o montante a carregar:", "Carregar Saldo",
-                JOptionPane.QUESTION_MESSAGE);
+
+
+              "Saldo Atual: " + String.format("%1$,.2f€", saldoAtual) + "\nDigite o montante a carregar:", "Carregar Saldo",JOptionPane.QUESTION_MESSAGE);
 
 
         if (input != null && !input.isEmpty()) {
@@ -287,7 +240,7 @@ public class PainelCliente extends JPanel{
                 cliente.carregaSaldo(montanteCarregar);
                 saldoAtual = cliente.getSaldo();
 
-                btnSaldo.setText("Saldo: " +String.format("%1$,.2f€", saldoAtual));
+                btnSaldo.setText("Saldo: " + String.format("%1$,.2f€",saldoAtual));
                 revalidate();
                 repaint();
             } catch (NumberFormatException e) {
@@ -304,14 +257,12 @@ public class PainelCliente extends JPanel{
         framePrincipal.repaint();
     }
 
-
     public Cliente getCliente() {
         return cliente;
     }
     public JButton botaosaldo(){
         return btnSaldo;
     }
-
 
 }
 

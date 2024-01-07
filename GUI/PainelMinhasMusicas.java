@@ -22,9 +22,10 @@ public class PainelMinhasMusicas extends JPanel {
 
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
-                return false; // Torna todas as células não editáveis
+                return false;
             }
         };
+
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
@@ -106,7 +107,7 @@ public class PainelMinhasMusicas extends JPanel {
                     GrupoMusicas playlist = (Playlist) escolhaPlaylist.getSelectedItem();
                     for( Musica g : cliente.getMusicas()) {
                         if (g.getTitulo().equals(titulo) && playlist != null) {
-                            if (!g.getActiva()) {
+                            if (!g.getAtiva()) {
                                 JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
                                         JOptionPane.ERROR_MESSAGE);
                             } else {
@@ -135,7 +136,7 @@ public class PainelMinhasMusicas extends JPanel {
             cancelButton.setText("Cancelar");
             cancelButton.setFocusable(false);
             cancelButton.addActionListener(e12 -> {
-                addToPlaylist.dispose();  //fechar a janela
+                addToPlaylist.dispose();
             });
 
             painelSul.add(okButton);
@@ -148,8 +149,6 @@ public class PainelMinhasMusicas extends JPanel {
 
             addToPlaylist.setLocationRelativeTo(framePrincipal);
             addToPlaylist.setVisible(true);
-
-
         });
 
         JMenuItem avaliarMusica = new JMenuItem("Avaliar");
@@ -181,20 +180,17 @@ public class PainelMinhasMusicas extends JPanel {
             JButton okButton = new JButton();
             okButton.setText("Ok");
             okButton.setFocusable(false);
-            okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    opcoesAvaliar.getSelectedItem();
-                    for (Musica g : cliente.getMusicas()) {
-                        if (g.getTitulo().equals(titulo)) {
-                            g.getClassificacoes().put(cliente.getUsername(), (Integer) opcoesAvaliar.getSelectedItem());
-                            JOptionPane.showMessageDialog(null, "Musica avaliada com sucesso",
-                                    "Musica Avaliada", JOptionPane.INFORMATION_MESSAGE);
-                            painelCliente.abrirPainelMinhasMusicas();
-                            addToPlaylist.setVisible(false);
-                            revalidate();
-                            repaint();
-                        }
+            okButton.addActionListener(e1 -> {
+                opcoesAvaliar.getSelectedItem();
+                for (Musica g : cliente.getMusicas()) {
+                    if (g.getTitulo().equals(titulo)) {
+                        g.getClassificacoes().put(cliente.getUsername(), (Integer) opcoesAvaliar.getSelectedItem());
+                        JOptionPane.showMessageDialog(null, "Musica avaliada com sucesso",
+                                "Musica Avaliada", JOptionPane.INFORMATION_MESSAGE);
+                        painelCliente.abrirPainelMinhasMusicas();
+                        addToPlaylist.setVisible(false);
+                        revalidate();
+                        repaint();
                     }
                 }
             });
@@ -202,11 +198,8 @@ public class PainelMinhasMusicas extends JPanel {
             JButton cancelButton = new JButton();
             cancelButton.setText("Cancelar");
             cancelButton.setFocusable(false);
-            cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    addToPlaylist.dispose();  //fechar a janela
-                }
+            cancelButton.addActionListener(e13 -> {
+                addToPlaylist.dispose();
             });
 
             painelSul.add(okButton);
@@ -219,11 +212,7 @@ public class PainelMinhasMusicas extends JPanel {
 
             addToPlaylist.setLocationRelativeTo(framePrincipal);
             addToPlaylist.setVisible(true);
-
-
         });
-
-
 
         popupMenu.add(adicionarMusicaPlaylist);
         popupMenu.add(avaliarMusica);

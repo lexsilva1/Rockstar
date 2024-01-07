@@ -22,15 +22,11 @@ public class PainelCriarPlaylistGenero extends JPanel {
     protected ButtonGroup grupo;
     protected JButton btnCriar;
 
-
-
-
     public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilazador) {
         this.cliente= utilazador;
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
-
 
         this.lblNumero = new JLabel("Número de músicas");
         lblNumero.setBounds(25, 175, 150, 25);
@@ -101,6 +97,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
                     if (Integer.parseInt(txtNumero.getText()) > framePrincipal.getRockstar().getMusicas().size()) {
                         JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até "+ framePrincipal.getRockstar().getMusicas().size() +" faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
                     } else {
+                      
                         String genero = "Rock";
                         if (chkPop.isSelected()) {
                             genero = "Pop";
@@ -155,7 +152,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
          ArrayList<Musica> listagenero =new ArrayList<>();
          for(Musica m :  cliente.getMusicas()){
-             if(m.getGenero().equals(genero)){
+             if(m.getGenero().equals(genero) && m.getAtiva()){
                  listagenero.add(m);
              }
          }

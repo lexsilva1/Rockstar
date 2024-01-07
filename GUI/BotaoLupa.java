@@ -1,23 +1,19 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BotaoLupa extends JButton {
 
     public BotaoLupa(String imagePath) {
-        ImageIcon logoutIcon = createImageIcon(imagePath);
-        setIcon(logoutIcon);
-
-
+        ImageIcon iconeLupa = createImageIcon(imagePath);
+        setIcon(iconeLupa);
     }
 
     private ImageIcon createImageIcon(String path) {
         try {
             Image imagem = new ImageIcon(getClass().getResource(path)).getImage();
 
-            // Redimensionar a imagem para caber no botão (opcional)
+            // Redimensionar a imagem para caber no botão
             Image imagemRedimensionada = imagem.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 
             // Criar um ImageIcon com a imagem redimensionada
