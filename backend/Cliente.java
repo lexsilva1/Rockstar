@@ -46,7 +46,7 @@ public class Cliente extends Utilizador {
         Compra compra = new Compra();
         double total = 0;
         for (Musica m : carrinhoCompras) {
-            compra.getMusicas().put(m.getTitulo(),m.getPreco());
+            compra.getMusicas().put(m,m.getPreco());
             total += m.getPreco();// vai buscar o preço de cada musica e soma todos no total
         }
         if (this.saldo >= total) {//confirmação de saldo
@@ -62,7 +62,7 @@ public class Cliente extends Utilizador {
                 compra.setPromo(promo);// adiciona a promoção à compra
                 double total = 0;
                 for (Musica m : carrinhoCompras) {
-                    compra.getMusicas().put(m.getTitulo(),(m.getPreco()-m.getPreco()*(promo.getDesconto()/100))); //guarda o titulo da musica e o preço com desconto
+                    compra.getMusicas().put(m,(m.getPreco()-m.getPreco()*(promo.getDesconto()/100))); //guarda o titulo da musica e o preço com desconto
                     total += (m.getPreco()-m.getPreco()*(promo.getDesconto()/100));//efectua o total da compra com o desconto correspondente
                 }
                     musicas.addAll(carrinhoCompras);

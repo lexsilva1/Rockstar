@@ -265,12 +265,13 @@ public class PainelAdmin extends JPanel {
                             Musica m = iteratorcliente.next();
                             if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
                                 double totalValueToRefund = 0.0;
-
                                 // Calculate the total value of the removed song from the purchase
                                 for (Compra k : ((Cliente) a).getHistoricoCompras()) {
-                                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
-                                        if (entry.getKey().equals(titulo)) {
+                                    for (Map.Entry<Musica, Double> entry : k.getMusicas().entrySet()) {
+                                        if (entry.getKey().equals(m)) {
                                             totalValueToRefund = entry.getValue();
+
+
                                         }
                                     }
                                 }

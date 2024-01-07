@@ -80,7 +80,7 @@ public class Rockstar implements Serializable {
         for (Utilizador c : utilizadores) {
             if (c instanceof Cliente) {
                 for(Compra k : ((Cliente) c).getHistoricoCompras()) {
-                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
+                    for (Map.Entry<Musica, Double> entry : k.getMusicas().entrySet()) {
                         total += entry.getValue();
                     }
                 }
