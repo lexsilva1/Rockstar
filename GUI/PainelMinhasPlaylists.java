@@ -22,7 +22,12 @@ public class PainelMinhasPlaylists extends JPanel {
         setPreferredSize(new Dimension(450, 500));
 
         // Criar o modelo da tabela
-        modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
+
         modeloTabela.addColumn("Nome");
         modeloTabela.addColumn("Visibilidade");
         String visibilidade = "";
@@ -113,6 +118,10 @@ public class PainelMinhasPlaylists extends JPanel {
                 this.removeAll();
                 this.add(scrollPane1, BorderLayout.CENTER);
                 this.add(painelSuperior, BorderLayout.NORTH);
+
+
+
+
                 revalidate();
             }
         });

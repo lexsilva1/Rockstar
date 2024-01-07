@@ -16,13 +16,15 @@ public class PainelMinhasMusicas extends JPanel {
 
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
 
-
-
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
@@ -124,10 +126,6 @@ public class PainelMinhasMusicas extends JPanel {
                                 }
 
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Música inativada pelo seu autor", "Impossível adicionar música",
-                                    JOptionPane.ERROR_MESSAGE);
-
                         }
                     }
                 }

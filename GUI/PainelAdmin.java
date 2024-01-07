@@ -43,7 +43,8 @@ public class PainelAdmin extends JPanel {
         this.lblPesquisar = new JLabel("Pesquisar");
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
-        this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
+        this.btnLogout = new JButton("Logout \u21AA");
+        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
         this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
@@ -58,7 +59,7 @@ public class PainelAdmin extends JPanel {
         btnCriarCampanha.addActionListener(e -> abrirPainelCriarCampanha());
         btnCriarAdministrador.setBounds(20,250,200,25);
         btnCriarAdministrador.addActionListener(e -> abrirPainelCriarAdmin());
-        btnLogout.setBounds(740, 10, 40, 30);
+        btnLogout.setBounds(700, 10, 80, 30);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
@@ -100,6 +101,12 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Título");
                 modeloTabela.addColumn("Artista");
                 modeloTabela.addColumn("Género");
@@ -131,6 +138,13 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Username");
                 modeloTabela.addColumn("Tipo de Utilizador");
                 modeloTabela.addColumn("Ativo");
@@ -165,7 +179,14 @@ public class PainelAdmin extends JPanel {
             painel.setLayout(new BorderLayout());
             painel.setBackground(new Color(70, 90, 120));
             painel.setPreferredSize(new Dimension(450, 500));
+
             DefaultTableModel modeloTabela = new DefaultTableModel();
+
+            modeloTabela = new DefaultTableModel() {
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Torna todas as células não editáveis
+                }
+            };
             modeloTabela.addColumn("Nome");
             modeloTabela.addColumn("Desconto");
             modeloTabela.addColumn("Data Inicio");

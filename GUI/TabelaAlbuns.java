@@ -32,6 +32,13 @@ public class TabelaAlbuns extends TabelaMusicas {
         setPreferredSize(new Dimension(450, 500));
 
         modeloTabela = new DefaultTableModel();
+
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
+
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Género");
         modeloTabela.addColumn("N.º Faixas");

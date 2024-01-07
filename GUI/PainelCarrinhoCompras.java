@@ -24,7 +24,11 @@ public class PainelCarrinhoCompras extends JPanel {
         setPreferredSize(new Dimension(450, 500));
 
         // Criar o modelo da tabela das músicas que foram adicionadas ao carrinho
-        modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
@@ -78,7 +82,11 @@ public class PainelCarrinhoCompras extends JPanel {
         add(btnFinalizarCompra);
 
         // Criar o modelo da tabela das campanhas
-        modelotabelapromo = new DefaultTableModel();
+        modelotabelapromo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
         modelotabelapromo.addColumn("Nome");
         modelotabelapromo.addColumn("Desconto");
         modelotabelapromo.addColumn("Data de início");
