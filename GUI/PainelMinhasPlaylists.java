@@ -126,10 +126,12 @@ public class PainelMinhasPlaylists extends JPanel {
                 String nome = (String) tabela.getValueAt(linhaSelecionada, 0);
                 Iterator<GrupoMusicas> iterator = framePrincipal.getRockstar().getGrupoMusicas().iterator();
                 while (iterator.hasNext()) {
-                    Playlist c = (Playlist) iterator.next();
-                    if (c.getTitulo().equals(nome) && c.getOwner().equals(cliente.getUsername())) {
-                        iterator.remove(); // Use the iterator's remove method
-
+                    GrupoMusicas grupo = iterator.next();
+                    if (grupo instanceof Playlist) {
+                        Playlist playlist = (Playlist) grupo;
+                        if (playlist.getTitulo().equals(nome) && playlist.getOwner().equals(cliente.getUsername())) {
+                            iterator.remove();
+                        }
                     }
                 }
             }

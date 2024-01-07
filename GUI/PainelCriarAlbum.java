@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
-    public PainelCriarAlbum(FramePrincipal framePrincipal, Musico musico) {
+    public PainelCriarAlbum(FramePrincipal framePrincipal, Musico musico, JLabel totalRock, JLabel totalHipoHop, JLabel totalPop, JLabel totalPimba) {
         super(framePrincipal, musico);
 
 
@@ -44,6 +44,11 @@ public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
                     }
                 }
             }
+            String espaco = " ";
+            totalRock.setText(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsRock()))));
+            totalHipoHop.setText(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsHipHop()))));
+            totalPimba.setText(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsPimba()))));
+            totalPop.setText(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsPop()))));
         });
     }
 }

@@ -157,7 +157,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
          ArrayList<Musica> listagenero =new ArrayList<>();
          for(Musica m :  cliente.getMusicas()){
-             if(m.getGenero().equals(genero)){
+             if(m.getGenero().equals(genero) && m.getActiva()){
                  listagenero.add(m);
              }
          }

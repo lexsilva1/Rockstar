@@ -48,11 +48,11 @@ public class PainelCliente extends JPanel{
         this.btnCriarPlaylistGenero = new JButton("Nova playlist por género");
         this.btnHistoricoCompras = new JButton("Historico de Compras");
         this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
-        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10)); // Ajuste o tamanho da fonte conforme necessário
+        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
         this.btnCarrinhoCompras = new JButton ("\uD83D\uDED2 Carrinho"); // Unicode para carrinho de compras
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
-        this.btnSaldo = new JButton("Saldo: " + String.valueOf(getCliente().getSaldo()));
+        this.btnSaldo = new JButton("Saldo: " + String.format("%1$,.2f€",getCliente().getSaldo()));
         this.btnLoja = new JButton("Loja");
         this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
@@ -84,9 +84,9 @@ public class PainelCliente extends JPanel{
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
 
-        btnSaldo.setBounds(140,602,100,25);
+        btnSaldo.setBounds(140,602,120,25);
 
-        btnSaldo.setForeground(Color.WHITE);
+        btnSaldo.setForeground(Color.BLACK);
         btnSaldo.setBackground(new Color(70, 90, 120));
 
         btnSaldo.addActionListener(e -> {
@@ -274,7 +274,7 @@ public class PainelCliente extends JPanel{
         double saldoAtual = getCliente().getSaldo();
 
         String input = JOptionPane.showInputDialog(this,
-                "Saldo Atual: " + saldoAtual + "\nDigite o montante a carregar:", "Carregar Saldo",
+                "Saldo Atual: " + String.format("%1$,.2f€", saldoAtual) + "\nDigite o montante a carregar:", "Carregar Saldo",
                 JOptionPane.QUESTION_MESSAGE);
 
 
@@ -287,7 +287,7 @@ public class PainelCliente extends JPanel{
                 cliente.carregaSaldo(montanteCarregar);
                 saldoAtual = cliente.getSaldo();
 
-                btnSaldo.setText("Saldo: " + (saldoAtual));
+                btnSaldo.setText("Saldo: " + String.format("%1$,.2f€",saldoAtual));
                 revalidate();
                 repaint();
             } catch (NumberFormatException e) {

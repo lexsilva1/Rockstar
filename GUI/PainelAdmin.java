@@ -43,7 +43,8 @@ public class PainelAdmin extends JPanel {
         this.lblPesquisar = new JLabel("Pesquisar");
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
-        this.btnLogout = new JButton("Logout \u21AA"); // Unicode para LEFTWARDS ARROW WITH HOOK (U+21AA)
+        this.btnLogout = new JButton("Logout \u21AA");
+        this.btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
         this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
@@ -58,7 +59,7 @@ public class PainelAdmin extends JPanel {
         btnCriarCampanha.addActionListener(e -> abrirPainelCriarCampanha());
         btnCriarAdministrador.setBounds(20,250,200,25);
         btnCriarAdministrador.addActionListener(e -> abrirPainelCriarAdmin());
-        btnLogout.setBounds(740, 10, 40, 30);
+        btnLogout.setBounds(700, 10, 80, 30);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
@@ -122,7 +123,7 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
-                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela);
+                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela,modeloTabela);
                 tabela.setComponentPopupMenu(popupMenu);
 
             } else if (chkPesquisaUtilizador.isSelected()) {
@@ -235,11 +236,11 @@ public class PainelAdmin extends JPanel {
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
-    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela) {
+    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Remover Musica");
-        adicionarAoCarrinhoItem.addActionListener(e -> {
+        JMenuItem removerMusica = new JMenuItem("Remover Musica");
+        removerMusica.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
 
             if (linhaSelecionada != -1) {
@@ -310,9 +311,12 @@ public class PainelAdmin extends JPanel {
                     }
                 }
             }
+            modeloTabela.removeRow(linhaSelecionada);
+            revalidate();
+            repaint();
         });
 
-        popupMenu.add(adicionarAoCarrinhoItem);
+        popupMenu.add(removerMusica);
 
         return popupMenu;
     }
