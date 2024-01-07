@@ -12,7 +12,7 @@ public class PainelPrincipal extends JPanel {
 
         this.framePrincipal = framePrincipal;
 
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/Logo2.png"));
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/Logo.png"));
         backgroundImage = imageIcon.getImage();
 
 
