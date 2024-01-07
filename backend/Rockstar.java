@@ -1,8 +1,5 @@
 package backend;
 
-import GUI.FramePrincipal;
-
-import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;

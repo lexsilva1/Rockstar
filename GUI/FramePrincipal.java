@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class FramePrincipal extends JFrame {
     private Rockstar rockstar;
     protected PainelPrincipal painelPrincipal;
-    private final String FILE_PATH = "Rockstar.ser"; // estava static mas temos de ver melhor
+    private final String FILE_PATH = "Rockstar.ser";
     public FramePrincipal() {
         super("Rockstar");
 
