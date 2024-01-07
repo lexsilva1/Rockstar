@@ -2,6 +2,7 @@ package GUI;
 
 import backend.Musico;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -21,7 +22,8 @@ public class PainelMusico extends JPanel {
         JButton btnCriarAlbum = new JButton("+ Álbum");
         JButton btnAddMusica = new JButton("+ Música");
 
-        JButton btnLogout = new JButton("Logout");
+        JButton btnLogout = new JButton("Logout \u21AA");
+        btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
 
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
@@ -65,139 +67,215 @@ public class PainelMusico extends JPanel {
 
         btnLogout.setBounds(725, 10, 75, 25);
         btnVerAlbuns.setBounds(20,100,200,25);
-        btnVerMusicas.setBounds(20,150,200,25);
+        btnVerMusicas.setBounds(20,140,200,25);
         btnCriarAlbum.setBounds(500,10,100,25);
         btnAddMusica.setBounds(600,10,100,25);
-        painelOpcoes.setBounds(275,100,450,500);;
+        painelOpcoes.setBounds(275,100,450,500);
 
+        Border contorno = BorderFactory.createMatteBorder(3, 3, 0, 3, Color.white);
+        Border contorno1 = BorderFactory.createMatteBorder(3, 3, 0, 3, Color.white);
+        Border contorno2 = BorderFactory.createMatteBorder(0, 3, 0, 3, Color.white);
+        Border contorno3 = BorderFactory.createMatteBorder(0, 3, 3, 3, Color.white);
+        String espaco = " ";
 
+        JLabel lblCabecalho = new JLabel(" ESTATÍSTICAS");
+        lblCabecalho.setBounds(30,175,180,25);
+        lblCabecalho.setBackground(new Color(70, 90, 120));
+        lblCabecalho.setForeground(Color.white);
+        lblCabecalho.setBorder(contorno);
+        Font fonte = new Font(lblCabecalho.getFont().getFontName(), Font.BOLD, lblCabecalho.getFont().getSize());
+        lblCabecalho.setFont(fonte);
+        lblCabecalho.setOpaque(true);
+        lblCabecalho.setVisible(true);
 
-        JLabel lblTotalUsers = new JLabel("Total Utilizadores");
+        JLabel lblTotalUsers = new JLabel(" Total Utilizadores");
         lblTotalUsers.setBounds(30,200,180,25);
-        lblTotalUsers.setBackground(Color.lightGray);
+        lblTotalUsers.setBackground(new Color(70, 90, 120));
+        lblTotalUsers.setForeground(Color.white);
+        lblTotalUsers.setBorder(contorno);
+        lblTotalUsers.setFont(fonte);
         lblTotalUsers.setOpaque(true);
         lblTotalUsers.setVisible(true);
 
-        JLabel totalUsers = new JLabel(String.valueOf((framePrincipal.getRockstar().getUtilizadores().size())));
+        JLabel totalUsers = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().getUtilizadores().size()))));
         totalUsers.setBounds(30,220,180,25);
         totalUsers.setOpaque(true);
-        totalUsers.setBackground(Color.lightGray);
+        totalUsers.setBackground(new Color(70, 90, 120));
+        totalUsers.setForeground(Color.white);
+        totalUsers.setBorder(contorno2);
+        Font fonte2 = new Font(totalUsers.getFont().getFontName(), Font.PLAIN, (totalUsers.getFont().getSize()-2));
+        totalUsers.setFont(fonte2);
         totalUsers.setVisible(true);
 
-        JLabel lblTotalMusicas = new JLabel("Total Músicas");
-        lblTotalMusicas.setBounds(30,245,200,25);
-        lblTotalMusicas.setBackground(Color.lightGray);
+        JLabel lblTotalMusicas = new JLabel(" Total Músicas");
+        lblTotalMusicas.setBounds(30,245,180,25);
+        lblTotalMusicas.setBackground(new Color(70, 90, 120));
+        lblTotalMusicas.setForeground(Color.white);
+        lblTotalMusicas.setBorder(contorno1);
+        lblTotalMusicas.setFont(fonte);
         lblTotalMusicas.setOpaque(true);
         lblTotalMusicas.setVisible(true);
 
-        JLabel totalMusicas = new JLabel(String.valueOf((framePrincipal.getRockstar().getMusicas().size())));
-        totalMusicas.setBounds(30,265,200,25);
+        JLabel totalMusicas = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().getMusicas().size()))));
+        totalMusicas.setBounds(30,265,180,25);
         totalMusicas.setOpaque(true);
-        totalMusicas.setBackground(Color.lightGray);
+        totalMusicas.setBackground(new Color(70, 90, 120));
+        totalMusicas.setForeground(Color.white);
+        totalMusicas.setBorder(contorno2);
+        totalMusicas.setFont(fonte2);
         totalMusicas.setVisible(true);
 
-        JLabel lblValorMusicas = new JLabel("Valor Total Músicas");
-        lblValorMusicas.setBounds(30,290,200,25);
-        lblValorMusicas.setBackground(Color.lightGray);
+
+        JLabel lblValorMusicas = new JLabel(" Valor Total Músicas");
+        lblValorMusicas.setBounds(30,290,180,25);
+        lblValorMusicas.setBackground(new Color(70, 90, 120));
+        lblValorMusicas.setForeground(Color.white);
+        lblValorMusicas.setBorder(contorno1);
+        lblValorMusicas.setFont(fonte);
         lblValorMusicas.setOpaque(true);
         lblValorMusicas.setVisible(true);
 
-        JLabel valorMusicas = new JLabel(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorMusicas())));
-        valorMusicas.setBounds(30,310,200,25);
+        JLabel valorMusicas = new JLabel(espaco.concat(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorMusicas()))));
+        valorMusicas.setBounds(30,310,180,25);
         valorMusicas.setOpaque(true);
-        valorMusicas.setBackground(Color.lightGray);
+        valorMusicas.setBackground(new Color(70, 90, 120));
+        valorMusicas.setForeground(Color.white);
+        valorMusicas.setBorder(contorno2);
+        valorMusicas.setFont(fonte2);
         valorMusicas.setVisible(true);
 
-        JLabel lblValorVendas = new JLabel("Valor Total Vendas");
-        lblValorVendas.setBounds(30,335,200,25);
-        lblValorVendas.setBackground(Color.lightGray);
+        JLabel lblValorVendas = new JLabel(" Valor Total Vendas");
+        lblValorVendas.setBounds(30,335,180,25);
+        lblValorVendas.setBackground(new Color(70, 90, 120));
+        lblValorVendas.setForeground(Color.white);
+        lblValorVendas.setBorder(contorno1);
+        lblValorVendas.setFont(fonte);
         lblValorVendas.setOpaque(true);
         lblValorVendas.setVisible(true);
 
-        JLabel valorVendas = new JLabel(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorVendas())));
-        valorVendas.setBounds(30,355,200,25);
+        JLabel valorVendas = new JLabel(espaco.concat(String.format("%1$,.2f€",(framePrincipal.getRockstar().valorVendas()))));
+        valorVendas.setBounds(30,355,180,25);
         valorVendas.setOpaque(true);
-        valorVendas.setBackground(Color.lightGray);
+        valorVendas.setBackground(new Color(70, 90, 120));
+        valorVendas.setForeground(Color.white);
+        valorVendas.setBorder(contorno2);
+        valorVendas.setFont(fonte2);
         valorVendas.setVisible(true);
 
-        JLabel lblTotalRock = new JLabel("Total Álbuns Rock");
-        lblTotalRock.setBounds(30,380,200,25);
-        lblTotalRock.setBackground(Color.lightGray);
+        JLabel lblTotalRock = new JLabel(" Total Álbuns Rock");
+        lblTotalRock.setBounds(30,380,180,25);
+        lblTotalRock.setBackground(new Color(70, 90, 120));
+        lblTotalRock.setForeground(Color.white);
+        lblTotalRock.setBorder(contorno1);
+        lblTotalRock.setFont(fonte);
         lblTotalRock.setOpaque(true);
         lblTotalRock.setVisible(true);
 
-        JLabel totalRock = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsRock())));
-        totalRock.setBounds(30,400,200,25);
+        JLabel totalRock = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsRock()))));
+        totalRock.setBounds(30,400,180,25);
         totalRock.setOpaque(true);
-        totalRock.setBackground(Color.lightGray);
+        totalRock.setBackground(new Color(70, 90, 120));
+        totalRock.setForeground(Color.white);
+        totalRock.setBorder(contorno2);
+        totalRock.setFont(fonte2);
         totalRock.setVisible(true);
 
-        JLabel lblTotalHipHop = new JLabel("Total Álbuns Hip Hop");
-        lblTotalHipHop.setBounds(30,425,200,25);
-        lblTotalHipHop.setBackground(Color.lightGray);
+        JLabel lblTotalHipHop = new JLabel(" Total Álbuns Hip Hop");
+        lblTotalHipHop.setBounds(30,425,180,27);
+        lblTotalHipHop.setBackground(new Color(70, 90, 120));
+        lblTotalHipHop.setForeground(Color.white);
+        lblTotalHipHop.setBorder(contorno1);
+        lblTotalHipHop.setFont(fonte);
         lblTotalHipHop.setOpaque(true);
         lblTotalHipHop.setVisible(true);
 
-        JLabel totalHipHop = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsHipHop())));
-        totalHipHop.setBounds(30,445,200,25);
+        JLabel totalHipHop = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsHipHop()))));
+        totalHipHop.setBounds(30,445,180,25);
         totalHipHop.setOpaque(true);
-        totalHipHop.setBackground(Color.lightGray);
+        totalHipHop.setBackground(new Color(70, 90, 120));
+        totalHipHop.setForeground(Color.white);
+        totalHipHop.setBorder(contorno2);
+        totalHipHop.setFont(fonte2);
         totalHipHop.setVisible(true);
 
-        JLabel lblTotalPimba = new JLabel("Total Álbuns Pimba");
-        lblTotalPimba.setBounds(30,470,200,25);
-        lblTotalPimba.setBackground(Color.lightGray);
+        JLabel lblTotalPimba = new JLabel(" Total Álbuns Pimba");
+        lblTotalPimba.setBounds(30,470,180,25);
+        lblTotalPimba.setBackground(new Color(70, 90, 120));
+        lblTotalPimba.setForeground(Color.white);
+        lblTotalPimba.setBorder(contorno1);
+        lblTotalPimba.setFont(fonte);
         lblTotalPimba.setOpaque(true);
         lblTotalPimba.setVisible(true);
 
-        JLabel totalPimba = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsPimba())));
-        totalPimba.setBounds(30,490,200,25);
+        JLabel totalPimba = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsPimba()))));
+        totalPimba.setBounds(30,490,180,25);
         totalPimba.setOpaque(true);
-        totalPimba.setBackground(Color.lightGray);
+        totalPimba.setBackground(new Color(70, 90, 120));
+        totalPimba.setForeground(Color.white);
+        totalPimba.setBorder(contorno2);
+        totalPimba.setFont(fonte2);
         totalPimba.setVisible(true);
 
-        JLabel lblTotalPop = new JLabel("Total Álbuns Pop");
-        lblTotalPop.setBounds(30,515,200,25);
-        lblTotalPop.setBackground(Color.lightGray);
+        JLabel lblTotalPop = new JLabel(" Total Álbuns Pop");
+        lblTotalPop.setBounds(30,515,180,25);
+        lblTotalPop.setBackground(new Color(70, 90, 120));
+        lblTotalPop.setForeground(Color.white);
+        lblTotalPop.setBorder(contorno1);
+        lblTotalPop.setFont(fonte);
         lblTotalPop.setOpaque(true);
         lblTotalPop.setVisible(true);
 
-        JLabel totalPop = new JLabel(String.valueOf((framePrincipal.getRockstar().albunsPop())));
-        totalPop.setBounds(30,535,200,25);
+        JLabel totalPop = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().albunsPop()))));
+        totalPop.setBounds(30,535,180,25);
         totalPop.setOpaque(true);
-        totalPop.setBackground(Color.lightGray);
+        totalPop.setBackground(new Color(70, 90, 120));
+        totalPop.setForeground(Color.white);
+        totalPop.setBorder(contorno2);
+        totalPop.setFont(fonte2);
         totalPop.setVisible(true);
 
-        JLabel lblMaiorRating = new JLabel("Música com maior rating");
-        lblMaiorRating.setBounds(30,560,200,25);
-        lblMaiorRating.setBackground(Color.lightGray);
+        JLabel lblMaiorRating = new JLabel(" Música com maior rating");
+        lblMaiorRating.setBounds(30,560,180,25);
+        lblMaiorRating.setBackground(new Color(70, 90, 120));
+        lblMaiorRating.setForeground(Color.white);
+        lblMaiorRating.setBorder(contorno1);
+        lblMaiorRating.setFont(fonte);
         lblMaiorRating.setOpaque(true);
         lblMaiorRating.setVisible(true);
 
-        JLabel maiorRating = new JLabel(String.valueOf((framePrincipal.getRockstar().musicaMaiorRating())));
-        maiorRating.setBounds(30,580,200,25);
+        JLabel maiorRating = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().musicaMaiorRating()))));
+        maiorRating.setBounds(30,580,180,25);
         maiorRating.setOpaque(true);
-        maiorRating.setBackground(Color.lightGray);
+        maiorRating.setBackground(new Color(70, 90, 120));
+        maiorRating.setForeground(Color.white);
+        maiorRating.setBorder(contorno2);
+        maiorRating.setFont(fonte2);
         maiorRating.setVisible(true);
 
-        JLabel lblMeusUtilizadores = new JLabel("Utilizadores com a minha música");
-        lblMeusUtilizadores.setBounds(30,605,200,25);
-        lblMeusUtilizadores.setBackground(Color.lightGray);
-        lblMeusUtilizadores.setOpaque(true);
-        lblMeusUtilizadores.setVisible(true);
+        JLabel lblMeusClientes = new JLabel(" Meus clientes");
+        lblMeusClientes.setBounds(30,605,180,25);
+        lblMeusClientes.setBackground(new Color(70, 90, 120));
+        lblMeusClientes.setForeground(Color.white);
+        lblMeusClientes.setBorder(contorno1);
+        lblMeusClientes.setFont(fonte);
+        lblMeusClientes.setOpaque(true);
+        lblMeusClientes.setVisible(true);
 
-        JLabel meusUtilizadores = new JLabel(String.valueOf((framePrincipal.getRockstar().numeroUtilizadoresMusicas(musico))));
-        meusUtilizadores.setBounds(30,625,200,25);
-        meusUtilizadores.setOpaque(true);
-        meusUtilizadores.setBackground(Color.lightGray);
-        meusUtilizadores.setVisible(true);
+        JLabel meusClientes = new JLabel(espaco.concat(String.valueOf((framePrincipal.getRockstar().numeroUtilizadoresMusicas(musico)))));
+        meusClientes.setBounds(30,625,180,25);
+        meusClientes.setOpaque(true);
+        meusClientes.setBackground(new Color(70, 90, 120));
+        meusClientes.setForeground(Color.white);
+        meusClientes.setBorder(contorno3);
+        meusClientes.setFont(fonte2);
+        meusClientes.setVisible(true);
 
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
         btnAddMusica.addActionListener(e -> {
             painelOpcoes.removeAll();
-            PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico);
+            PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico, totalMusicas, valorMusicas);
             painelOpcoes.add(painelMusica);
             painelMusica.setVisible(true);
             revalidate();
@@ -215,7 +293,7 @@ public class PainelMusico extends JPanel {
 
         btnCriarAlbum.addActionListener(e -> {
             painelOpcoes.removeAll();
-            PainelCriarAlbum painelCriarAlbum = new PainelCriarAlbum(framePrincipal, musico);
+            PainelCriarAlbum painelCriarAlbum = new PainelCriarAlbum(framePrincipal, musico, totalRock, totalHipHop, totalPop, totalPimba);
             painelOpcoes.add(painelCriarAlbum);
             painelCriarAlbum.setVisible(true);
             revalidate();
@@ -260,6 +338,7 @@ public class PainelMusico extends JPanel {
         add(btnCriarAlbum);
         add(btnAddMusica);
         add(painelOpcoes);
+        add(lblCabecalho);
         add(lblTotalUsers);
         add(totalUsers);
         add(lblTotalMusicas);
@@ -278,8 +357,8 @@ public class PainelMusico extends JPanel {
         add(totalPop);
         add(lblMaiorRating);
         add(maiorRating);
-        add(lblMeusUtilizadores);
-        add(meusUtilizadores);
+        add(lblMeusClientes);
+        add(meusClientes);
 
     }
 
