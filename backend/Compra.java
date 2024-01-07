@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Compra implements Serializable {
     private LocalDate data;
-    private HashMap<String,Double> musicas;
+    private HashMap<Musica,Double> musicas;
     private Promo promo;
 
     public Compra(){
@@ -19,7 +19,7 @@ public class Compra implements Serializable {
         return data;
     }
 
-    public HashMap<String,Double> getMusicas() {
+    public HashMap<Musica,Double> getMusicas() {
         return musicas;
     }
 

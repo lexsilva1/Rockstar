@@ -19,11 +19,13 @@ public class PainelMinhasPlaylists extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
+
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+
         modeloTabela.addColumn("Nome");
         modeloTabela.addColumn("Visibilidade");
         String visibilidade = "";
@@ -44,6 +46,7 @@ public class PainelMinhasPlaylists extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 
@@ -107,6 +110,10 @@ public class PainelMinhasPlaylists extends JPanel {
                 this.removeAll();
                 this.add(scrollPane1, BorderLayout.CENTER);
                 this.add(painelSuperior, BorderLayout.NORTH);
+
+
+
+
                 revalidate();
             }
         });

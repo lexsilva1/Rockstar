@@ -22,12 +22,14 @@ public class PainelCarrinhoCompras extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
+
         modeloTabela = new DefaultTableModel();
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+
 
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
@@ -43,6 +45,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.setPreferredScrollableViewportSize(new Dimension(400, 100));
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane scrollPane = new JScrollPane(tabela);
         scrollPane.setBounds(10, 30, 400, 150); // Definir posição e tamanho manualmente
@@ -74,7 +77,14 @@ public class PainelCarrinhoCompras extends JPanel {
         btnFinalizarCompra.addActionListener(e -> comprarMusicas(cliente, painelCliente));
         add(btnFinalizarCompra);
 
-        modelotabelapromo = new DefaultTableModel();
+
+        // Criar o modelo da tabela das campanhas
+        modelotabelapromo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false; // Torna todas as células não editáveis
+            }
+        };
+
         modelotabelapromo.addColumn("Nome");
         modelotabelapromo.addColumn("Desconto");
         modelotabelapromo.addColumn("Data de início");
@@ -89,6 +99,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         tabelapromo = new JTable(modelotabelapromo);
         tabelapromo.setPreferredScrollableViewportSize(new Dimension(400, 100));
+        tabelapromo.getTableHeader().setReorderingAllowed(false);
         JPopupMenu popupMenu = criarPopupMenuPromo(framePrincipal, cliente,labelCustoTotal);
         tabelapromo.setComponentPopupMenu(popupMenu);
 

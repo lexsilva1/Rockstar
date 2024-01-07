@@ -43,6 +43,7 @@ public class PainelMusicasLoja extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 

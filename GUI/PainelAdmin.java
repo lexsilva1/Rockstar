@@ -38,7 +38,9 @@ public class PainelAdmin extends JPanel {
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.btnLogout = new JButton("Logout \u21AA");
+
         this.btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
+
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
         this.painelCriarCampanha = new PainelCriarCampanha(framePrincipal, admin);
@@ -93,6 +95,12 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Título");
                 modeloTabela.addColumn("Artista");
                 modeloTabela.addColumn("Género");
@@ -124,6 +132,13 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Username");
                 modeloTabela.addColumn("Tipo de Utilizador");
                 modeloTabela.addColumn("Ativo");
@@ -158,7 +173,14 @@ public class PainelAdmin extends JPanel {
             painel.setLayout(new BorderLayout());
             painel.setBackground(new Color(70, 90, 120));
             painel.setPreferredSize(new Dimension(450, 500));
+
             DefaultTableModel modeloTabela = new DefaultTableModel();
+
+            modeloTabela = new DefaultTableModel() {
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Torna todas as células não editáveis
+                }
+            };
             modeloTabela.addColumn("Nome");
             modeloTabela.addColumn("Desconto");
             modeloTabela.addColumn("Data Inicio");
@@ -243,12 +265,13 @@ public class PainelAdmin extends JPanel {
                             Musica m = iteratorcliente.next();
                             if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
                                 double totalValueToRefund = 0.0;
-
                                 // Calculate the total value of the removed song from the purchase
                                 for (Compra k : ((Cliente) a).getHistoricoCompras()) {
-                                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
-                                        if (entry.getKey().equals(titulo)) {
+                                    for (Map.Entry<Musica, Double> entry : k.getMusicas().entrySet()) {
+                                        if (entry.getKey().equals(m)) {
                                             totalValueToRefund = entry.getValue();
+
+
                                         }
                                     }
                                 }

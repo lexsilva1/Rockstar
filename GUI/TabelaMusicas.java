@@ -27,11 +27,13 @@ public class TabelaMusicas extends JPanel {
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
+
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Género");
         modeloTabela.addColumn("Data Lançamento");
@@ -53,6 +55,7 @@ public class TabelaMusicas extends JPanel {
 
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         JPanel painelSuperior = new JPanel(new BorderLayout());
         JLabel rotuloBarra = new JLabel("As minhas Músicas");

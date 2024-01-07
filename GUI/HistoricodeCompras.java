@@ -33,15 +33,16 @@ public class HistoricodeCompras extends JPanel {
         modeloTabela.addColumn("Preço");
         for (Compra c : cliente.getHistoricoCompras()) {
             for (Musica m : cliente.getMusicas()) {
-                for (Map.Entry<String, Double> entry : c.getMusicas().entrySet()) {
-                    if(m.getTitulo().equals(entry.getKey())) {
-                        modeloTabela.addRow(new Object[]{c.getData(), entry.getKey(), m.getGenero(), m.getAutor(), entry.getValue()});
+                for (Map.Entry<Musica, Double> entry : c.getMusicas().entrySet()) {
+                    if(m.equals(entry.getKey())) {
+                        modeloTabela.addRow(new Object[]{c.getData(), m.getTitulo(), m.getGenero(), m.getAutor(), entry.getValue()});
                     }
                 }
             }
         }
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 

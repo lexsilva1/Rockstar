@@ -16,8 +16,6 @@ public class PainelMinhasMusicas extends JPanel {
 
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
 
-
-
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
@@ -40,6 +38,7 @@ public class PainelMinhasMusicas extends JPanel {
 
         // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
+        tabela.getTableHeader().setReorderingAllowed(false);
 
         // Adicionar a barra extra com o rótulo "Minhas Músicas"
         JPanel painelSuperior = new JPanel(new BorderLayout());
