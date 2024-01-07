@@ -15,6 +15,7 @@ public class PainelPrincipal extends JPanel {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/Logo2.png"));
         backgroundImage = imageIcon.getImage();
 
+
         setLayout(null);
 
         btnLogin = new JButton("Login");

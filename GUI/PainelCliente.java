@@ -226,8 +226,9 @@ public class PainelCliente extends JPanel{
         double saldoAtual = getCliente().getSaldo();
 
         String input = JOptionPane.showInputDialog(this,
-                "Saldo Atual: " + String.format("%1$,.2f€", saldoAtual) + "\nDigite o montante a carregar:", "Carregar Saldo",
-                JOptionPane.QUESTION_MESSAGE);
+
+
+              "Saldo Atual: " + String.format("%1$,.2f€", saldoAtual) + "\nDigite o montante a carregar:", "Carregar Saldo",JOptionPane.QUESTION_MESSAGE);
 
 
         if (input != null && !input.isEmpty()) {
