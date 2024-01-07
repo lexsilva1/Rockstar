@@ -1,5 +1,4 @@
 package GUI;
-import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;

@@ -2,14 +2,12 @@ package backend;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Compra implements Serializable {
     private LocalDate data;
-    private HashMap<String,Double> musicas;
+    private HashMap<Musica,Double> musicas;
     private Promo promo;
-    private double valor;
 
     public Compra(){
         this.data=LocalDate.now();
@@ -21,7 +19,7 @@ public class Compra implements Serializable {
         return data;
     }
 
-    public HashMap<String,Double> getMusicas() {
+    public HashMap<Musica,Double> getMusicas() {
         return musicas;
     }
 

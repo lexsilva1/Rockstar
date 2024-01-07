@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.util.Arrays;
 
-import backend.Cliente;
-import backend.Musico;
 import backend.Utilizador;
 import backend.Admin;
 
@@ -113,7 +111,6 @@ public class PainelCriarAdmin extends JPanel {
             }
         });
     }
-
         public boolean verificarUser (String username) {
             for (Utilizador c : framePrincipal.getRockstar().getUtilizadores()) {
                 if (username.equalsIgnoreCase(c.getUsername())) {

@@ -1,5 +1,4 @@
 package GUI;
-import backend.Cliente;
 import backend.Utilizador;
 
 import javax.swing.*;
@@ -15,7 +14,9 @@ public class PainelOpcoesCliente extends JPanel {
         setPreferredSize(new Dimension(400, 100));
         setVisible(true);
 
-
+        JButton btnlimpaPesquisa = new JButton("Limpar \u007f");
+        btnlimpaPesquisa.setBounds(300,300,85,25);
+        btnlimpaPesquisa.setVisible(true);
 
     }
 

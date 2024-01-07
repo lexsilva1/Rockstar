@@ -6,12 +6,15 @@ public class PainelPrincipal extends JPanel {
     protected FramePrincipal framePrincipal;
     private JButton btnLogin;
     private JButton btnSignUp;
-
+    private Image backgroundImage;
 
     public PainelPrincipal(FramePrincipal framePrincipal) {
 
         this.framePrincipal = framePrincipal;
-        setBackground(new Color(70, 90, 120));
+
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/resources/Logo.png"));
+        backgroundImage = imageIcon.getImage();
+
 
         setLayout(null);
 
@@ -25,6 +28,15 @@ public class PainelPrincipal extends JPanel {
         btnSignUp.addActionListener(e -> exibirPainelSignUp());
         add(btnSignUp);
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     private void exibirPainelLogin() {
@@ -41,13 +53,4 @@ public class PainelPrincipal extends JPanel {
         framePrincipal.revalidate();
         framePrincipal.repaint();
     }
-
-    public JButton getBtnLogin() {
-        return btnLogin;
-    }
-
-    public JButton getBtnSignUp() {
-        return btnSignUp;
-    }
-
 }

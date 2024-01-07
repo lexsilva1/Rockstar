@@ -1,9 +1,6 @@
 package GUI;
 
-import backend.Cliente;
-import backend.Musica;
-import backend.Playlist;
-import backend.Utilizador;
+import backend.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,15 +22,11 @@ public class PainelCriarPlaylistGenero extends JPanel {
     protected ButtonGroup grupo;
     protected JButton btnCriar;
 
-
-
-
     public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilazador) {
         this.cliente= utilazador;
         setLayout(null);
         setBackground(new Color(70, 90, 120));;
         setPreferredSize(new Dimension(450, 500));
-
 
         this.lblNumero = new JLabel("Número de músicas");
         lblNumero.setBounds(25, 175, 150, 25);
@@ -97,37 +90,40 @@ public class PainelCriarPlaylistGenero extends JPanel {
             if (txtNome.getText().isEmpty() || txtNumero.getText().isEmpty() || grupo.getSelection() == null) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else {
-                if (Integer.parseInt(txtNumero.getText()) > 20) {
-                    JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até 20 faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                if (playlistExiste(txtNome.getText(), framePrincipal)) {
+                    JOptionPane.showMessageDialog(null, "Já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
+                    txtNome.setText("");
                 } else {
-                    int numeroDeFaixas = Integer.parseInt(txtNumero.getText());
+                    if (Integer.parseInt(txtNumero.getText()) > framePrincipal.getRockstar().getMusicas().size()) {
+                        JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até "+ framePrincipal.getRockstar().getMusicas().size() +" faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                      
+                        String genero = "Rock";
+                        if (chkPop.isSelected()) {
+                            genero = "Pop";
+                        } else if (chkPimba.isSelected()) {
+                            genero = "Pimba";
+                        } else if (chkHipHop.isSelected()) {
+                            genero = "Hip Hop";
+                        }
+                        if (cliente instanceof Cliente) {
+                            ArrayList<Musica> todasDesteGenero = criaArrayGernero((Cliente) cliente, genero);
+                            Playlist playlist = ((Cliente) cliente).criaPlaylistGenero(Integer.parseInt(txtNumero.getText()), txtNome.getText(), todasDesteGenero);
+                            if (playlist.getMusicas().size() < Integer.parseInt(txtNumero.getText()) && !playlist.getMusicas().isEmpty()) {
+                                framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
+                                JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso, apenas com as " + playlist.getMusicas().size() + " musicas que adquiriu", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            } else if (playlist.getMusicas().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Playlist não criada por falta de musicas do género solicitado. Por favor visite a nossa Loja", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
+                                JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-                    String genero = "Rock";
-                    if (chkPop.isSelected()) {
-                        genero = "Pop";
-                    } else if (chkPimba.isSelected()) {
-                        genero = "Pimba";
-                    } else if (chkHipHop.isSelected()) {
-                        genero = "Hip Hop";
-                    }
-                    if( cliente instanceof Cliente) {
-                        ArrayList<Musica> todasDesteGenero = criaArrayGernero((Cliente) cliente, genero);
-                        Playlist playlist = ((Cliente) cliente).criaPlaylistGenero(Integer.parseInt(txtNumero.getText()), txtNome.getText(), todasDesteGenero);
-                        if(playlist.getMusicas().size()<Integer.parseInt(txtNumero.getText())&& !playlist.getMusicas().isEmpty()) {
-                            framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
-                            JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso, apenas com " + playlist.getMusicas().size() + " musicas", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        }else if (playlist.getMusicas().isEmpty()){
-                            JOptionPane.showMessageDialog(null, "Playlist não criada por falta de musicas do genero solicitado. Por favor visite a nossa Loja", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                        }else {
-                            framePrincipal.getRockstar().addGrupoDeMusicas(playlist);
-                            JOptionPane.showMessageDialog(null, "Playlist adicionada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
+                            }
                         }
                     }
                 }
             }
-
-                });
+        });
 
         txtNumero.addKeyListener(new KeyListener() {
             @Override
@@ -156,11 +152,20 @@ public class PainelCriarPlaylistGenero extends JPanel {
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
          ArrayList<Musica> listagenero =new ArrayList<>();
          for(Musica m :  cliente.getMusicas()){
-             if(m.getGenero().equals(genero)){
+             if(m.getGenero().equals(genero) && m.getAtiva()){
                  listagenero.add(m);
              }
          }
          return listagenero;
+    }
+
+    public boolean playlistExiste(String nome, FramePrincipal framePrincipal) {
+        for (GrupoMusicas g : framePrincipal.getRockstar().getGrupoMusicas()) {
+            if (g instanceof Playlist && nome.equals(g.getTitulo())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

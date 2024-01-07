@@ -1,7 +1,5 @@
 package backend;
 
-import java.util.ArrayList;
-
 public class Album extends GrupoMusicas{
     private String genero;
     private int numFaixas;

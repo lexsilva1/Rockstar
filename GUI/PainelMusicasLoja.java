@@ -5,11 +5,8 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PainelMusicasLoja extends JPanel {
-    private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
@@ -22,7 +19,6 @@ public class PainelMusicasLoja extends JPanel {
      *                       e sobre o qual queremos obter informações
      */
     public PainelMusicasLoja(FramePrincipal framePrincipal, Cliente cliente) {
-        this.cliente = cliente;
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
@@ -30,7 +26,7 @@ public class PainelMusicasLoja extends JPanel {
 
         modeloTabela = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
-                return false; // Torna todas as células não editáveis
+                return false;
             }
         };
 
@@ -42,21 +38,20 @@ public class PainelMusicasLoja extends JPanel {
         modeloTabela.addColumn("Preço");
 
         for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.calculoRating(), a.getPreco(), a.getAtiva()});
         }
 
         tabela = new JTable(modeloTabela);
         tabela.setAutoCreateRowSorter(true);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 
-        // Adicionar a barra extra com o rótulo "Minhas Músicas"
         JPanel painelSuperior = new JPanel(new BorderLayout());
         JLabel rotuloBarra = new JLabel("Loja");
         rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
         painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-        // Adicionar a tabela ao painel superior
         painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
 
         add(scrollPane, BorderLayout.CENTER);
@@ -67,7 +62,6 @@ public class PainelMusicasLoja extends JPanel {
         tabela.setComponentPopupMenu(popupMenu);
 
         setVisible(true);
-
     }
 
     public JPopupMenu criarPopupMenuCliente(FramePrincipal framePrincipal, Cliente cliente) {
@@ -125,20 +119,17 @@ public class PainelMusicasLoja extends JPanel {
                     }
                 }
 
-                // Criar a tabela com o modelo
                 JTable tabela1 = new JTable(modeloTabela1);
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
                 scrollPane1.setVisible(true);
 
                 this.removeAll();
 
-                // Adicionar a barra extra com o rótulo "Minhas Músicas"
                 JPanel painelSuperior = new JPanel(new BorderLayout());
                 JLabel rotuloBarra = new JLabel(nome);
                 rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
                 painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-                // Adicionar a tabela ao painel superior
                 painelSuperior.add(tabela1.getTableHeader(), BorderLayout.SOUTH);
 
                 this.add(scrollPane1, BorderLayout.CENTER);

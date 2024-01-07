@@ -1,8 +1,5 @@
 package backend;
 
-import GUI.FramePrincipal;
-
-import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -83,7 +80,7 @@ public class Rockstar implements Serializable {
         for (Utilizador c : utilizadores) {
             if (c instanceof Cliente) {
                 for(Compra k : ((Cliente) c).getHistoricoCompras()) {
-                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
+                    for (Map.Entry<Musica, Double> entry : k.getMusicas().entrySet()) {
                         total += entry.getValue();
                     }
                 }
@@ -139,6 +136,30 @@ public class Rockstar implements Serializable {
                 musica = m;
             }
         }
-        return musica.getTitulo()+ " - " + musica.getAutor();
+        return musica.getTitulo()+ " - " + musica.getAutor()+ " - " + musica.calculoRating();
+    }
+    public int numeroUtilizadoresMusicas(Musico musico){
+        boolean stoploop;
+        int clientes=0;
+        for(Utilizador c : utilizadores){
+            stoploop = true;
+            if(c instanceof Cliente){
+                if (((Cliente) c).getMusicas().isEmpty()) {
+                    stoploop = false;
+                }
+                    while(stoploop) {
+                        for (Musica m : ((Cliente) c).getMusicas()) {
+                            if (m.getAutor().equals(musico.getUsername())) {
+                                clientes++;
+                                stoploop = false;
+                            }
+                            if(m.equals(((Cliente) c).getMusicas().getLast())) {
+                                stoploop = false;
+                            }
+                        }
+                    }
+                }
+            }
+        return clientes;
     }
 }

@@ -9,7 +9,7 @@ public class Preco implements Serializable {
 
     public Preco(double preco) {
         this.preco = preco;
-        this.data=LocalDate.now();
+        this.data = LocalDate.now();
     }
 
     public double getPreco() {

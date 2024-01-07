@@ -1,8 +1,6 @@
 package GUI;
 
-
 import backend.*;
-
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,20 +8,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PainelAdmin extends JPanel {
-    private Admin admin;
     private JButton btnVerCampanhas;
     private JButton btnCriarCampanha;
     private JButton btnCriarAdministrador;
-    private JLabel labelUsername; //Colocar o username visivel
+    private JLabel labelUsername;
     private JLabel lblPesquisar;
     private JTextField txtPesquisar;
     private JButton btnLogout;
     private BotaoLupa btnLupa;
     private PainelOpcoesAdmin painelOpcoesAdmin;
-    private PainelPesquisarUtilizador painelPesquisarUtilizador;
     private PainelCriarAdmin painelCriarAdmin;
     private PainelCriarCampanha painelCriarCampanha;
 
@@ -35,7 +30,6 @@ public class PainelAdmin extends JPanel {
      * com um buffer duplo e um flow layout.
      */
     public PainelAdmin(FramePrincipal framePrincipal, Admin admin) {
-        this.admin = admin;
         this.btnVerCampanhas = new JButton("Ver Campanhas");
         this.btnCriarCampanha = new JButton("Criar Campanha");
         this.btnCriarAdministrador = new JButton("Criar Administrador");
@@ -43,12 +37,13 @@ public class PainelAdmin extends JPanel {
         this.lblPesquisar = new JLabel("Pesquisar");
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
-        this.btnLogout = new BotaoLogout("/resources/BotaoLogout.jpg");
+        this.btnLogout = new JButton("Logout \u21AA");
+
+        this.btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
+
         this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
-        this.painelPesquisarUtilizador = new PainelPesquisarUtilizador(framePrincipal);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
         this.painelCriarCampanha = new PainelCriarCampanha(framePrincipal, admin);
-
 
         setBackground(new Color(70, 90, 120));
         setLayout(null);
@@ -58,7 +53,7 @@ public class PainelAdmin extends JPanel {
         btnCriarCampanha.addActionListener(e -> abrirPainelCriarCampanha());
         btnCriarAdministrador.setBounds(20,250,200,25);
         btnCriarAdministrador.addActionListener(e -> abrirPainelCriarAdmin());
-        btnLogout.setBounds(740, 10, 40, 30);
+        btnLogout.setBounds(700, 10, 80, 30);
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
@@ -100,6 +95,12 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Título");
                 modeloTabela.addColumn("Artista");
                 modeloTabela.addColumn("Género");
@@ -111,7 +112,7 @@ public class PainelAdmin extends JPanel {
 
                 for (Musica a : framePrincipal.getRockstar().getMusicas() ){
                     if(a.getTitulo().toLowerCase().contains(txtPesquisar.getText().toLowerCase())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getAtiva()});
                     }
                 }
 
@@ -122,7 +123,7 @@ public class PainelAdmin extends JPanel {
                 painel.add(scrollPane, BorderLayout.CENTER);
                 painel.setVisible(true);
                 abrirPainelPesquisa(painel);
-                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela);
+                JPopupMenu popupMenu = criarPopupMenuMusica(framePrincipal,tabela,modeloTabela);
                 tabela.setComponentPopupMenu(popupMenu);
 
             } else if (chkPesquisaUtilizador.isSelected()) {
@@ -131,6 +132,13 @@ public class PainelAdmin extends JPanel {
                 painel.setBackground(new Color(70, 90, 120));
                 painel.setPreferredSize(new Dimension(450, 500));
                 DefaultTableModel modeloTabela = new DefaultTableModel();
+
+                modeloTabela = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false; // Torna todas as células não editáveis
+                    }
+                };
+
                 modeloTabela.addColumn("Username");
                 modeloTabela.addColumn("Tipo de Utilizador");
                 modeloTabela.addColumn("Ativo");
@@ -165,7 +173,14 @@ public class PainelAdmin extends JPanel {
             painel.setLayout(new BorderLayout());
             painel.setBackground(new Color(70, 90, 120));
             painel.setPreferredSize(new Dimension(450, 500));
+
             DefaultTableModel modeloTabela = new DefaultTableModel();
+
+            modeloTabela = new DefaultTableModel() {
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Torna todas as células não editáveis
+                }
+            };
             modeloTabela.addColumn("Nome");
             modeloTabela.addColumn("Desconto");
             modeloTabela.addColumn("Data Inicio");
@@ -179,7 +194,15 @@ public class PainelAdmin extends JPanel {
             tabela.setAutoCreateRowSorter(true);
             JScrollPane scrollPane = new JScrollPane(tabela);
             scrollPane.setVisible(true);
+
+            JPanel painelSuperior = new JPanel(new BorderLayout());
+            JLabel rotuloBarra = new JLabel("Campanhas");
+            rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
+            painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
+            painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
+
             painel.add(scrollPane, BorderLayout.CENTER);
+            painel.add(painelSuperior, BorderLayout.NORTH);
             painel.setVisible(true);
             abrirPainelPesquisa(painel);
         });
@@ -196,40 +219,31 @@ public class PainelAdmin extends JPanel {
     }
 
     private void abrirPainelPesquisa(JPanel painel) {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painel);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
 
     private void abrirPainelCriarCampanha() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painelCriarCampanha);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
 
     private void abrirPainelCriarAdmin() {
-        // Remover todos os componentes do painelOpcoesCliente
         painelOpcoesAdmin.removeAll();
-        // Adicionar o painelCriarPlaylist ao painelOpcoesCliente
         painelOpcoesAdmin.add(painelCriarAdmin);
         painelCriarAdmin.setVisible(true);
-        // Atualizar o painelOpcoesCliente
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
-    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela) {
+    public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        JMenuItem adicionarAoCarrinhoItem = new JMenuItem("Remover Musica");
-        adicionarAoCarrinhoItem.addActionListener(e -> {
+        JMenuItem removerMusica = new JMenuItem("Remover Musica");
+        removerMusica.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
 
             if (linhaSelecionada != -1) {
@@ -251,13 +265,13 @@ public class PainelAdmin extends JPanel {
                             Musica m = iteratorcliente.next();
                             if (m.getTitulo().equals(titulo) && m.getAutor().equals(artista)) {
                                 double totalValueToRefund = 0.0;
-
                                 // Calculate the total value of the removed song from the purchase
                                 for (Compra k : ((Cliente) a).getHistoricoCompras()) {
-                                    for (Map.Entry<String, Double> entry : k.getMusicas().entrySet()) {
-                                        if (entry.getKey().equals(titulo)) {
+                                    for (Map.Entry<Musica, Double> entry : k.getMusicas().entrySet()) {
+                                        if (entry.getKey().equals(m)) {
                                             totalValueToRefund = entry.getValue();
-                                            break; // Stop iterating when the song is found in a purchase
+
+
                                         }
                                     }
                                 }
@@ -300,9 +314,12 @@ public class PainelAdmin extends JPanel {
                     }
                 }
             }
+            modeloTabela.removeRow(linhaSelecionada);
+            revalidate();
+            repaint();
         });
 
-        popupMenu.add(adicionarAoCarrinhoItem);
+        popupMenu.add(removerMusica);
 
         return popupMenu;
     }

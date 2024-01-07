@@ -8,21 +8,24 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class PainelMinhasPlaylists extends JPanel {
-    private Cliente cliente;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
 
 
     public PainelMinhasPlaylists(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
-        this.cliente = cliente;
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela
-        modeloTabela = new DefaultTableModel();
+
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         modeloTabela.addColumn("Nome");
         modeloTabela.addColumn("Visibilidade");
         String visibilidade = "";
@@ -41,19 +44,17 @@ public class PainelMinhasPlaylists extends JPanel {
             }
         }
 
-        // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
         tabela.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tabela.getTableHeader().setReorderingAllowed(false);
         scrollPane = new JScrollPane(tabela);
         scrollPane.setVisible(true);
 
-        // Adicionar a barra extra com o rótulo "Minhas Músicas"
         JPanel painelSuperior = new JPanel(new BorderLayout());
         JLabel rotuloBarra = new JLabel("As Minhas Playlists");
         rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
         painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-        // Adicionar a tabela ao painel superior
         painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
 
         add(scrollPane, BorderLayout.CENTER);
@@ -63,8 +64,6 @@ public class PainelMinhasPlaylists extends JPanel {
         tabela.setComponentPopupMenu(popupMenu);
 
         setVisible(true);
-
-
     }
 
     public JPopupMenu criarPopupMenuPlaylists(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
@@ -90,14 +89,13 @@ public class PainelMinhasPlaylists extends JPanel {
                 for (GrupoMusicas p : framePrincipal.getRockstar().getGrupoMusicas()){
                     if(p instanceof Playlist && p.getOwner().equals(cliente.getUsername())&& p.getTitulo().equals(nome)){
                         for (Musica m : p.getMusicas()) {
-                            modeloTabela1.addRow(new Object[]{m.getTitulo(), m.getAutor(), m.getGenero(), m.getDataLancamento(), m.getRating(), m.getPreco()});
+                            modeloTabela1.addRow(new Object[]{m.getTitulo(), m.getAutor(), m.getGenero(), m.getDataLancamento(), m.calculoRating(), m.getPreco()});
                         }
                         revalidate();
                         repaint();
                     }
                 }
 
-                // Criar a tabela com o modelo
                 JTable tabela1 = new JTable(modeloTabela1);
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
                 scrollPane1.setVisible(true);
@@ -107,12 +105,15 @@ public class PainelMinhasPlaylists extends JPanel {
                 rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
                 painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-                // Adicionar a tabela ao painel superior
                 painelSuperior.add(tabela1.getTableHeader(), BorderLayout.SOUTH);
 
                 this.removeAll();
                 this.add(scrollPane1, BorderLayout.CENTER);
                 this.add(painelSuperior, BorderLayout.NORTH);
+
+
+
+
                 revalidate();
             }
         });
@@ -126,10 +127,12 @@ public class PainelMinhasPlaylists extends JPanel {
                 String nome = (String) tabela.getValueAt(linhaSelecionada, 0);
                 Iterator<GrupoMusicas> iterator = framePrincipal.getRockstar().getGrupoMusicas().iterator();
                 while (iterator.hasNext()) {
-                    Playlist c = (Playlist) iterator.next();
-                    if (c.getTitulo().equals(nome) && c.getOwner().equals(cliente.getUsername())) {
-                        iterator.remove(); // Use the iterator's remove method
-
+                    GrupoMusicas grupo = iterator.next();
+                    if (grupo instanceof Playlist) {
+                        Playlist playlist = (Playlist) grupo;
+                        if (playlist.getTitulo().equals(nome) && playlist.getOwner().equals(cliente.getUsername())) {
+                            iterator.remove();
+                        }
                     }
                 }
             }

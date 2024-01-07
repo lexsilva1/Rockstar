@@ -87,10 +87,9 @@ public class PainelSignUp extends JPanel {
         add(btnVoltar);
 
         JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(490, 420, 90, 25);
+        btnContinuar.setBounds(690, 620, 90, 25);
 
 
-        //Mostrar campos para introdução de atributos de um utilizador do tipo 'Musico'
         chkMusico.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 lblPin.setVisible(true);
@@ -152,7 +151,6 @@ public class PainelSignUp extends JPanel {
            repaint();
        });
 
-
         //Faz todas as verificações antes de permitir avançar para o painel seguinte (PainelLogin)
         //Add nova instância de 'Musico' ou 'Cliente' consoante a seleção do utilizador
         //Mostra mensagens de erro quando alguma verificação não é bem sucedida
@@ -213,7 +211,6 @@ public class PainelSignUp extends JPanel {
         framePrincipal.repaint();
     }
 
-
     /**
      * Verifica se o nome de utilizador introduzido, ao tentar registar um novo utilizador, já existe.
      * Return 'true' se o username não estiver a ser utilizado;
@@ -227,7 +224,6 @@ public class PainelSignUp extends JPanel {
         }
         return true;
     }
-
 }
 
 

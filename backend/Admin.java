@@ -12,8 +12,7 @@ public class Admin extends Utilizador {
     }
 
     public Promo criaPromo(int cupoes, String nome, double desconto, LocalDate dataInicio, LocalDate dataFim) {
-        Promo promo = new Promo(cupoes, nome, desconto, dataInicio, dataFim);
-        return promo;
+        return new Promo(cupoes, nome, desconto, dataInicio, dataFim);
     }
 
     public int getIdAdmin() {
