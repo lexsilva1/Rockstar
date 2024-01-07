@@ -8,7 +8,6 @@ public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
     public PainelCriarAlbum(FramePrincipal framePrincipal, Musico musico, JLabel totalRock, JLabel totalHipoHop, JLabel totalPop, JLabel totalPimba) {
         super(framePrincipal, musico);
 
-
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.setBounds(180,350,100,25);
         btnCancelar.setForeground(Color.BLACK);

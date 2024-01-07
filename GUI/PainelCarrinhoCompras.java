@@ -5,7 +5,6 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class PainelCarrinhoCompras extends JPanel {
@@ -18,13 +17,18 @@ public class PainelCarrinhoCompras extends JPanel {
     public PainelCarrinhoCompras(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
         this.promo=null;
 
-        setLayout(null); // Layout nulo
+        setLayout(null);
 
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
 
-        // Criar o modelo da tabela das músicas que foram adicionadas ao carrinho
         modeloTabela = new DefaultTableModel();
+        modeloTabela = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         modeloTabela.addColumn("Título");
         modeloTabela.addColumn("Artista");
         modeloTabela.addColumn("Género");
@@ -33,32 +37,26 @@ public class PainelCarrinhoCompras extends JPanel {
         modeloTabela.addColumn("Preço");
 
 
-        // Adicionar dados de exemplo à tabela
         for (Musica a : cliente.getCarrinhoCompras()) {
-            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getActiva()});
+            modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getAtiva()});
         }
 
-
-        // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
         tabela.setPreferredScrollableViewportSize(new Dimension(400, 100));
 
-        // Adicionar a tabela a um JScrollPane
         JScrollPane scrollPane = new JScrollPane(tabela);
         scrollPane.setBounds(10, 30, 400, 150); // Definir posição e tamanho manualmente
 
-        // Adicionar o JScrollPane ao painel
         add(scrollPane);
 
-        // mostrar o custo total
         JLabel labelCustoTotal = new JLabel("Custo Total: " + String.valueOf(calcularCustoTotal()) + " €");
         labelCustoTotal.setForeground(Color.WHITE);
-        labelCustoTotal.setBounds(10, 190, 200, 25); // Definir posição e tamanho manualmente
+        labelCustoTotal.setBounds(10, 190, 200, 25);
         add(labelCustoTotal);
 
         JLabel labelCarrinho = new JLabel("Carrinho de Compras");
         labelCarrinho.setForeground(Color.WHITE);
-        labelCarrinho.setBounds(10, 0, 200, 25); // Definir posição e tamanho manualmente
+        labelCarrinho.setBounds(10, 0, 200, 25);
         add(labelCarrinho);
 
         JButton btnReset = new JButton("Limpar Carrinho");
@@ -71,13 +69,11 @@ public class PainelCarrinhoCompras extends JPanel {
         lblContinuar.setBounds(10, 280, 100, 25);
         add(lblContinuar);
 
-
         JButton btnFinalizarCompra = new JButton("Finalizar Compra");
         btnFinalizarCompra.setBounds(280, 230, 130, 25);
         btnFinalizarCompra.addActionListener(e -> comprarMusicas(cliente, painelCliente));
         add(btnFinalizarCompra);
 
-        // Criar o modelo da tabela das campanhas
         modelotabelapromo = new DefaultTableModel();
         modelotabelapromo.addColumn("Nome");
         modelotabelapromo.addColumn("Desconto");
@@ -85,29 +81,21 @@ public class PainelCarrinhoCompras extends JPanel {
         modelotabelapromo.addColumn("Data de fim");
         modelotabelapromo.addColumn("Cupões disponíveis");
 
-        // Adicionar dados de exemplo à tabela
         for (Promo a : framePrincipal.getRockstar().getPromos()) {
             if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
                 modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
             }
         }
 
-
-        // Criar a tabela com o modelo
         tabelapromo = new JTable(modelotabelapromo);
         tabelapromo.setPreferredScrollableViewportSize(new Dimension(400, 100));
         JPopupMenu popupMenu = criarPopupMenuPromo(framePrincipal, cliente,labelCustoTotal);
         tabelapromo.setComponentPopupMenu(popupMenu);
 
-
-        // Adicionar a tabela a um JScrollPane
         JScrollPane scrollPane1 = new JScrollPane(tabelapromo);
-        scrollPane1.setBounds(10, 305, 400, 150); // Definir posição e tamanho manualmente
+        scrollPane1.setBounds(10, 305, 400, 150);
 
-        // Adicionar o JScrollPane ao painel
         add(scrollPane1);
-
-
     }
 
 
@@ -115,24 +103,21 @@ public class PainelCarrinhoCompras extends JPanel {
             double custoTotal = 0.0;
             int rowCount = modeloTabela.getRowCount();
             for (int i = 0; i < rowCount; i++) {
-                double preco = (double) modeloTabela.getValueAt(i, 5); // 5 é o índice da coluna de preço
+                double preco = (double) modeloTabela.getValueAt(i, 5);
                 custoTotal += preco;
             }
             return (custoTotal);
         }
 
-
     private double calcularCustoTotalPromo(Promo promo) {
                 double custoTotal = 0.0;
                 int rowCount = modeloTabela.getRowCount();
                 for (int i = 0; i < rowCount; i++) {
-                    double preco = (double) modeloTabela.getValueAt(i, 5) -((double) modeloTabela.getValueAt(i,5)*(promo.getDesconto()/100)); // 5 é o índice da coluna de preço
+                    double preco = (double) modeloTabela.getValueAt(i, 5) -((double) modeloTabela.getValueAt(i,5)*(promo.getDesconto()/100));
                     custoTotal += preco;
                 }
                 return (custoTotal);
             }
-
-
 
     public void limparCarrinhoCompras(Cliente cliente, PainelCliente painelCliente) {
         cliente.getCarrinhoCompras().removeAll(cliente.getCarrinhoCompras());
@@ -175,7 +160,7 @@ public class PainelCarrinhoCompras extends JPanel {
                             JOptionPane.showMessageDialog(framePrincipal, "Promoção adicionada ao carrinho", "Adicionar ao Carrinho", JOptionPane.INFORMATION_MESSAGE);
                             labelCustoTotal.setText("Custo Total: " + String.format("%1$,.2f€",calcularCustoTotalPromo(promo)));
                             labelCustoTotal.setForeground(Color.WHITE);
-                            labelCustoTotal.setBounds(10, 190, 200, 25); // Definir posição e tamanho manualmente
+                            labelCustoTotal.setBounds(10, 190, 200, 25);
                             add(labelCustoTotal);
                         } else {
                             JOptionPane.showMessageDialog(null, "Promoção já utilizada", "ERRO", JOptionPane.ERROR_MESSAGE);

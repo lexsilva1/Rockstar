@@ -3,13 +3,11 @@ package GUI;
 import backend.Cliente;
 import backend.GrupoMusicas;
 import backend.Playlist;
-import backend.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PainelCriarPlaylist extends JPanel {
-    private Cliente cliente;
     public PainelCriarPlaylist(FramePrincipal framePrincipal, Cliente cliente) {
 
 
@@ -48,7 +46,6 @@ public class PainelCriarPlaylist extends JPanel {
         });
 
         setVisible(true);
-
     }
 
     public boolean playlistExiste(String nome, FramePrincipal framePrincipal) {
