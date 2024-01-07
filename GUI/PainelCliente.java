@@ -105,7 +105,7 @@ public class PainelCliente extends JPanel{
         btnlimpaPesquisa.setBounds(640,605,85,25);
         btnlimpaPesquisa.setVisible(false);
 
-        JRadioButton chkPesquisaNome = new JRadioButton("Nome");
+        JRadioButton chkPesquisaNome = new JRadioButton("Título");
         chkPesquisaNome.setBounds(370, 30, 100, 25);
         chkPesquisaNome.setBackground(new Color(70, 90, 120));
         chkPesquisaNome.setForeground(Color.WHITE);
