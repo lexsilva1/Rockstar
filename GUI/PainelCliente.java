@@ -211,7 +211,7 @@ public class PainelCliente extends JPanel{
     }
     private void abrirHistoricoCompras() {
         painelOpcoes.removeAll();
-        painelOpcoes.add(new HistoricodeCompras(cliente));
+        painelOpcoes.add(new HistoricoDeCompras(cliente));
         btnlimpaPesquisa.setVisible(false);
         painelOpcoes.revalidate();
         painelOpcoes.repaint();
