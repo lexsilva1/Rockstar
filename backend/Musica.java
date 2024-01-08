@@ -57,21 +57,7 @@ public class Musica implements Serializable {
 
     }
 
-    public double calculoRating(){
-        double total = 0;
-        if(classificacoes.isEmpty()) {
-          return 0;
-        }else {
-            for (Map.Entry<String, Integer> entry : this.getClassificacoes().entrySet()) {
-                total += entry.getValue();
-            }
-        }
-        return total/classificacoes.size();
-    }
-    public void avaliar(Cliente cliente, int nota){
-        classificacoes.put(cliente.getUsername(),nota);
 
-    }
     public ArrayList<Preco> getHistoricoPreco() {
         return historicoPreco;
     }

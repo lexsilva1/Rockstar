@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Map;
 
-public class HistoricodeCompras extends JPanel {
+public class HistoricoDeCompras extends JPanel {
 
     private JTable tabela;
     private DefaultTableModel modeloTabela;
@@ -20,7 +20,7 @@ public class HistoricodeCompras extends JPanel {
      * @param frameprincipal
      * @param cliente
      */
-    public HistoricodeCompras(FramePrincipal frameprincipal ,Cliente cliente) {
+    public HistoricoDeCompras(FramePrincipal frameprincipal , Cliente cliente) {
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));
