@@ -12,6 +12,10 @@ public abstract class Utilizador implements Serializable {
         this.password = password;
         this.activo = true;
     }
+    public boolean isActivo() {
+        return activo;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -22,9 +26,6 @@ public abstract class Utilizador implements Serializable {
 
     public void setActivo(){
         this.activo= !this.activo;
-    }
-    public boolean isActivo() {
-        return activo;
     }
 
 }

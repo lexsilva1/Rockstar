@@ -38,10 +38,6 @@ public class Rockstar implements Serializable {
         return null;
     }
 
-    public ArrayList<Utilizador> getUtilizadores() {
-        return utilizadores;
-    }
-
     public void addGrupoDeMusicas(GrupoMusicas grupoMusicas){
         this.grupoMusicas.add(grupoMusicas);
     }
@@ -59,20 +55,8 @@ public class Rockstar implements Serializable {
         return total;
     }
 
-    public void registo (Utilizador a) {
-        utilizadores.add(a);
-    }
-
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
-    }
-
-    public ArrayList<Promo> getPromos() {
-        return promos;
-    }
-
-    public ArrayList<GrupoMusicas> getGrupoMusicas() {
-        return grupoMusicas;
+    public void registo (Utilizador utilizador) {
+        utilizadores.add(utilizador);
     }
 
     public double valorVendas () {
@@ -138,7 +122,7 @@ public class Rockstar implements Serializable {
         }
         return musica.getTitulo()+ " - " + musica.getAutor()+ " - " + musica.calculoRating();
     }
-    public int numeroUtilizadoresMusicas(Musico musico){
+        public int numeroUtilizadoresMusicas(Musico musico){
         boolean stoploop;
         int clientes=0;
         for(Utilizador c : utilizadores){
@@ -161,5 +145,20 @@ public class Rockstar implements Serializable {
                 }
             }
         return clientes;
+    }
+    public ArrayList<Utilizador> getUtilizadores() {
+        return utilizadores;
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
+
+    public ArrayList<Promo> getPromos() {
+        return promos;
+    }
+
+    public ArrayList<GrupoMusicas> getGrupoMusicas() {
+        return grupoMusicas;
     }
 }

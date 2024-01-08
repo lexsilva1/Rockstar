@@ -14,9 +14,7 @@ public class GrupoMusicas implements Serializable {
         this.musicas=new ArrayList<>();
     }
 
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
-    }
+
     public void addMusica(Musica musica){
         musicas.add(musica);
     }
@@ -29,6 +27,9 @@ public class GrupoMusicas implements Serializable {
         return owner;
     }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
     @Override
     public String toString() {
         return titulo;

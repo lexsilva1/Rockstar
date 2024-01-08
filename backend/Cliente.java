@@ -47,12 +47,12 @@ public class Cliente extends Utilizador {
         double total = 0;
         for (Musica m : carrinhoCompras) {
             compra.getMusicas().put(m,m.getPreco());
-            total += m.getPreco();// vai buscar o preço de cada musica e soma todos no total
+            total += m.getPreco();
         }
-        if (this.saldo >= total) {//confirmação de saldo
+        if (this.saldo >= total) {
             this.saldo -= total;
             musicas.addAll(carrinhoCompras);
-            historicoCompras.add(compra);//adiciona a compra ao historico do cliente
+            historicoCompras.add(compra);
         }
     }
 

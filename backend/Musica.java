@@ -32,21 +32,7 @@ public class Musica implements Serializable {
         Preco novopreco= new Preco(preco);
         historicoPreco.add(novopreco);
     }
-    public double getPreco(){
-        return historicoPreco.getLast().getPreco();
-    }
 
-    public ArrayList<Preco> getHistoricoPreco() {
-        return historicoPreco;
-    }
-
-    public HashMap<String,Integer> getClassificacoes() {
-        return classificacoes;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
 
     public void inativa(boolean activo) {
 
@@ -54,6 +40,36 @@ public class Musica implements Serializable {
             this.ativa = activo;
         }
 
+    }
+
+    public double calculoRating(){
+        double total = 0;
+        if(classificacoes.isEmpty()) {
+          return 0;
+        }else {
+            for (Map.Entry<String, Integer> entry : this.getClassificacoes().entrySet()) {
+                total += entry.getValue();
+            }
+        }
+        return total/classificacoes.size();
+    }
+    public void avaliar(Cliente cliente, int nota){
+        classificacoes.put(cliente.getUsername(),nota);
+
+    }
+    public ArrayList<Preco> getHistoricoPreco() {
+        return historicoPreco;
+    }
+
+    public HashMap<String,Integer> getClassificacoes() {
+        return classificacoes;
+    }
+    public double getPreco(){
+        return historicoPreco.getLast().getPreco();
+    }
+
+    public String getGenero() {
+        return genero;
     }
 
     public String getAutor() {
@@ -74,21 +90,6 @@ public class Musica implements Serializable {
 
     public double getRating() {
         return rating;
-    }
-    public double calculoRating(){
-        double total = 0;
-        if(classificacoes.isEmpty()) {
-          return 0;
-        }else {
-            for (Map.Entry<String, Integer> entry : this.getClassificacoes().entrySet()) {
-                total += entry.getValue();
-            }
-        }
-        return total/classificacoes.size();
-    }
-    public void avaliar(Cliente cliente, int nota){
-        classificacoes.put(cliente.getUsername(),nota);
-
     }
 
     public void setTitulo(String titulo) {
