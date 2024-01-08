@@ -185,7 +185,7 @@ public class PainelMinhasMusicas extends JPanel {
                 opcoesAvaliar.getSelectedItem();
                 for (Musica g : cliente.getMusicas()) {
                     if (g.getTitulo().equals(titulo)) {
-                        g.getClassificacoes().put(cliente.getUsername(), (Integer) opcoesAvaliar.getSelectedItem());
+                        g.avaliar(cliente, (Integer) opcoesAvaliar.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Musica avaliada com sucesso",
                                 "Musica Avaliada", JOptionPane.INFORMATION_MESSAGE);
                         painelCliente.abrirPainelMinhasMusicas();
