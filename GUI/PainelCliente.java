@@ -19,7 +19,7 @@ public class PainelCliente extends JPanel{
     private JLabel labelUsername;
     private JButton btnSaldo;
     private JButton btnLoja;
-    private PainelOpcoesCliente painelOpcoesCliente;
+    private PainelOpcoes painelOpcoes;
     private PainelCriarPlaylist painelCriarPlaylist;
     private PainelCriarPlaylistGenero painelCriarPlaylistGenero;
     private PainelMusicasLoja painelMusicasLoja;
@@ -49,7 +49,7 @@ public class PainelCliente extends JPanel{
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.format("%1$,.2f€",getCliente().getSaldo()));
         this.btnLoja = new JButton("Loja");
-        this.painelOpcoesCliente= new PainelOpcoesCliente(cliente);
+        this.painelOpcoes= new PainelOpcoes(cliente);
         this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
         this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
@@ -87,7 +87,7 @@ public class PainelCliente extends JPanel{
         btnLoja.setBounds(20,350,200,25);
         btnLoja.addActionListener(e -> abrirPainelMusicasLoja());
 
-        painelOpcoesCliente.setBounds(275,100,450,500);
+        painelOpcoes.setBounds(275,100,450,500);
         painelCriarPlaylist.setBounds(275,100,450,500);
         painelCriarPlaylistGenero.setBounds(275,100,450,500);
 
@@ -122,7 +122,7 @@ public class PainelCliente extends JPanel{
         grupo.add(chkPesquisaGenero);
 
         btnLupa.addActionListener((ActionEvent e) -> {
-            painelOpcoesCliente.removeAll();
+            painelOpcoes.removeAll();
             btnlimpaPesquisa.setVisible(true);
 
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null) {
@@ -131,7 +131,7 @@ public class PainelCliente extends JPanel{
                 PainelMusicasLoja painel = new PainelMusicasLoja(framePrincipal, cliente);
                 painel.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
                 painel.setComponentPopupMenu(painel.criarPopupMenuCliente(framePrincipal,cliente));
-                painelOpcoesCliente.add(painel);
+                painelOpcoes.add(painel);
                 painel.setVisible(true);
                 revalidate();
                 repaint();
@@ -141,7 +141,7 @@ public class PainelCliente extends JPanel{
         });
 
         btnlimpaPesquisa.addActionListener((ActionEvent e) -> {
-            painelOpcoesCliente.removeAll();
+            painelOpcoes.removeAll();
             btnlimpaPesquisa.setVisible(false);
             abrirPainelMusicasLoja();
         });
@@ -155,10 +155,10 @@ public class PainelCliente extends JPanel{
         add(btnCarrinhoCompras);
         add(labelUsername);
         add(btnSaldo);
-        add(painelOpcoesCliente);
+        add(painelOpcoes);
         add(btnLupa);
         add(btnLoja);
-        painelOpcoesCliente.add(painelMusicasLoja);
+        painelOpcoes.add(painelMusicasLoja);
         add(btnlimpaPesquisa);
 
         setVisible(true);
@@ -166,60 +166,60 @@ public class PainelCliente extends JPanel{
 
 
     private void abrirPainelCriarPlaylist() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(painelCriarPlaylist);
+        painelOpcoes.removeAll();
+        painelOpcoes.add(painelCriarPlaylist);
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     public void abrirPainelMinhasPlaylists() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(new PainelMinhasPlaylists(framePrincipal,cliente,this));
+        painelOpcoes.removeAll();
+        painelOpcoes.add(new PainelMinhasPlaylists(framePrincipal,cliente,this));
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     public void abrirPainelMinhasMusicas() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
+        painelOpcoes.removeAll();
+        painelOpcoes.add(new PainelMinhasMusicas(framePrincipal,cliente,this));
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
     private void abrirHistoricoCompras() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(new HistoricoDeCompras(framePrincipal,cliente));
+        painelOpcoes.removeAll();
+        painelOpcoes.add(new HistoricoDeCompras(framePrincipal,cliente));
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
 
     private void abrirPainelCriarPlaylistGenero() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(painelCriarPlaylistGenero);
+        painelOpcoes.removeAll();
+        painelOpcoes.add(painelCriarPlaylistGenero);
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     public void abrirPainelCarrinhoCompras() {
-        painelOpcoesCliente.removeAll();
+        painelOpcoes.removeAll();
         PainelCarrinhoCompras painelCarrinhoCompras = new PainelCarrinhoCompras(framePrincipal, cliente,this);
-        painelOpcoesCliente.add(painelCarrinhoCompras);
+        painelOpcoes.add(painelCarrinhoCompras);
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     private void abrirPainelMusicasLoja() {
-        painelOpcoesCliente.removeAll();
-        painelOpcoesCliente.add(new PainelMusicasLoja(framePrincipal,cliente));
+        painelOpcoes.removeAll();
+        painelOpcoes.add(new PainelMusicasLoja(framePrincipal,cliente));
         btnlimpaPesquisa.setVisible(false);
-        painelOpcoesCliente.revalidate();
-        painelOpcoesCliente.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     private void exibirJanelaCarregarSaldo() {
