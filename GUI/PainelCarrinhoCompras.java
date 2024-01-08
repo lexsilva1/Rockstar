@@ -98,8 +98,12 @@ public class PainelCarrinhoCompras extends JPanel {
         modelotabelapromo.addColumn("Cupões disponíveis");
 
         for (Promo a : framePrincipal.getRockstar().getPromos()) {
-            if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
-                modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+            if (calcularCustoTotal() > 0) {
+                if (a.getDataInicio().isBefore(LocalDate.now())) {
+                    if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
+                        modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+                    }
+                }
             }
         }
 

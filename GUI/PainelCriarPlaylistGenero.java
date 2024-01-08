@@ -20,7 +20,6 @@ public class PainelCriarPlaylistGenero extends JPanel {
     protected JRadioButton chkHipHop;
     protected JRadioButton chkPimba;
     protected ButtonGroup grupo;
-    protected JButton btnCriar;
 
     public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilazador) {
         this.cliente= utilazador;
@@ -81,9 +80,51 @@ public class PainelCriarPlaylistGenero extends JPanel {
         grupo.add(chkHipHop);
         grupo.add(chkPimba);
 
-        this.btnCriar = new JButton("Criar");
+        JButton btnCriar = new JButton("Criar");
         btnCriar.setBounds(300,350,100,25);
         add(btnCriar);
+
+
+        txtNome.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtNumero.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caractere = e.getKeyChar();
+                if (!Character.isDigit(caractere)) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
 
         btnCriar.addActionListener(e -> {
@@ -125,26 +166,6 @@ public class PainelCriarPlaylistGenero extends JPanel {
             }
         });
 
-        txtNumero.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char caractere = e.getKeyChar();
-                if (!Character.isDigit(caractere)) {
-                    e.consume();
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
-
 
         setVisible(true);
 
@@ -175,5 +196,4 @@ public class PainelCriarPlaylistGenero extends JPanel {
         }
         return false;
     }
-
 }

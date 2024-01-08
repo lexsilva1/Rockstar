@@ -6,6 +6,8 @@ import backend.Playlist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class PainelCriarPlaylist extends JPanel {
     /**
@@ -32,6 +34,26 @@ public class PainelCriarPlaylist extends JPanel {
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.setBounds(300,250,100,25);
         add(btnAdicionar);
+
+        txtNome.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnAdicionar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
 /**
  * Faz a s respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
  */

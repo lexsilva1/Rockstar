@@ -130,6 +130,24 @@ public class PainelCriarCampanha extends JPanel {
         btnCancelar.setForeground(Color.BLACK);
         add(btnCancelar);
 
+        txtNome.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         txtAnoInicio.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -141,12 +159,16 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
         });
 
@@ -161,7 +183,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -181,7 +205,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -201,7 +227,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -221,7 +249,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -241,7 +271,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -259,7 +291,9 @@ public class PainelCriarCampanha extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -267,6 +301,25 @@ public class PainelCriarCampanha extends JPanel {
 
             }
         });
+        txtDesconto.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
 /**
  * O ActionListener cria a Promo, verifica se existe uma promo com o mesmo nome, e a data de inicio da campanha.
  * Não permite a criação da promo na eventualidade de já existir uma com o mesmo nome, ou de a data de inicio ser inferior à data atual.

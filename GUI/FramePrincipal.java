@@ -242,7 +242,11 @@ public class FramePrincipal extends JFrame {
             musico11.getMusicas().addAll(Arrays.asList(metallicaSong1, metallicaSong2, metallicaSong3, metallicaSong4, metallicaSong5, metallicaSong6, metallicaSong7, metallicaSong8, metallicaSong9, metallicaSong10));
             rockstar.getMusicas().addAll(Arrays.asList(metallicaSong1, metallicaSong2, metallicaSong3, metallicaSong4, metallicaSong5, metallicaSong6, metallicaSong7, metallicaSong8, metallicaSong9, metallicaSong10));
 
-
+            Promo promo1 = new Promo(999,"Boas Vindas",15,LocalDate.of(2023,6,30),LocalDate.of(2024,12,31));
+            Promo promo2 = new Promo(1,"MegaCena",35,LocalDate.of(2023,1,1),LocalDate.of(2024,2,1));
+            Promo promo4 = new Promo(4,"Black Friday23",45,LocalDate.of(2023,11,20),LocalDate.of(2023,11,26));
+            Promo promo3 = new Promo(4,"Black Friday24",45,LocalDate.of(2024,11,20),LocalDate.of(2024,11,27));
+            rockstar.getPromos().addAll(Arrays.asList(promo1,promo2,promo3,promo4));
 
             rockstar.getMusicas().add(musica1);
             rockstar.getMusicas().add(musica2);

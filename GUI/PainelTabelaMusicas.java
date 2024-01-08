@@ -5,6 +5,7 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PainelTabelaMusicas extends JPanel {
@@ -111,16 +112,23 @@ public class PainelTabelaMusicas extends JPanel {
                 double preco = (double) tabela.getValueAt(selectedRow, 4);
                 String titulo = (String) tabela.getValueAt(selectedRow, 0);
 
-                String input = JOptionPane.showInputDialog(framePrincipal, "Preço Atual: " + preco + "\n Novo Preço", "Alterar Preço", JOptionPane.QUESTION_MESSAGE);
+                String input;
 
-                if (input != null && !input.isEmpty()) {
-                    for (Musica a : framePrincipal.getRockstar().getMusicas()) {
-                        if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
-                            musico.atualizaPreco(a, Double.parseDouble(input));
-                            JOptionPane.showMessageDialog(framePrincipal, "Preço alterado com sucesso", "Alterar Preço", JOptionPane.INFORMATION_MESSAGE);
-                            int modelRow = tabela.convertRowIndexToModel(selectedRow);
-                            modeloTabela.setValueAt(a.getPreco(), modelRow, 4);
-                            tabela.repaint();
+                input = JOptionPane.showInputDialog(framePrincipal, "Preço Atual: " + preco + "\n Novo Preço (Formato: €.€€)", "Alterar Preço", JOptionPane.QUESTION_MESSAGE);
+                if (input != null) {
+                    do {
+                        input = JOptionPane.showInputDialog(framePrincipal, "Preço Atual: " + preco + "\n Novo Preço (Formato: €.€€)", "Alterar Preço", JOptionPane.QUESTION_MESSAGE);
+                    } while (input != null && !input.matches("\\d+(\\.\\d{1,2})?"));
+
+                    if (input != null && !input.isEmpty()) {
+                        for (Musica a : framePrincipal.getRockstar().getMusicas()) {
+                            if (a.getAutor().equals(musico.getUsername()) && a.getTitulo().equals(titulo)) {
+                                musico.atualizaPreco(a, Double.parseDouble(input));
+                                JOptionPane.showMessageDialog(framePrincipal, "Preço alterado com sucesso", "Alterar Preço", JOptionPane.INFORMATION_MESSAGE);
+                                int modelRow = tabela.convertRowIndexToModel(selectedRow);
+                                modeloTabela.setValueAt(a.getPreco(), modelRow, 4);
+                                tabela.repaint();
+                            }
                         }
                     }
                 }
