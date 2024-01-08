@@ -53,7 +53,7 @@ public class PainelCriarAdmin extends JPanel {
         add(chkConfirmar);
 
         JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(10, 370, 150, 25);
+        btnContinuar.setBounds(10, 380, 150, 25);
         btnContinuar.setVisible(false);
 
         //Ao selecionar a checkbox 'chkConfirmar', verifica se o username já existe, se as passwords coincidem,

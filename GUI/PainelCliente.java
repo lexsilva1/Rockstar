@@ -5,6 +5,8 @@ import backend.Cliente;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class PainelCliente extends JPanel{
     private Cliente cliente;
@@ -121,6 +123,25 @@ public class PainelCliente extends JPanel{
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
 
+        txtPesquisar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnLupa.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         btnLupa.addActionListener((ActionEvent e) -> {
             painelOpcoesCliente.removeAll();
             btnlimpaPesquisa.setVisible(true);
@@ -195,7 +216,6 @@ public class PainelCliente extends JPanel{
         painelOpcoesCliente.revalidate();
         painelOpcoesCliente.repaint();
     }
-
 
     private void abrirPainelCriarPlaylistGenero() {
         painelOpcoesCliente.removeAll();

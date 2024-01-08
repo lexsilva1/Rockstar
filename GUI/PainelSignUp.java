@@ -28,7 +28,7 @@ public class PainelSignUp extends JPanel {
 
 
         JTextField txtNome = new JTextField();
-        txtNome.setBounds(140, 50, 250, 25);
+        txtNome.setBounds(170, 50, 250, 25);
         add(txtNome);
 
         JLabel lblUsername = new JLabel("Username:");
@@ -37,7 +37,7 @@ public class PainelSignUp extends JPanel {
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(140, 100, 250, 25);
+        txtUsername.setBounds(170, 100, 250, 25);
         add(txtUsername);
 
         JLabel lblPassword = new JLabel("Password:");
@@ -46,26 +46,26 @@ public class PainelSignUp extends JPanel {
         add(lblPassword);
 
         JPasswordField txtPassword = new JPasswordField();
-        txtPassword.setBounds(140, 150, 250, 25);
+        txtPassword.setBounds(170, 150, 250, 25);
         add(txtPassword);
 
         JLabel lblConfirmarPassword = new JLabel("Confirmar Password:");
-        lblConfirmarPassword.setBounds(10, 200, 120, 25);
+        lblConfirmarPassword.setBounds(10, 200, 150, 25);
         lblConfirmarPassword.setForeground(Color.WHITE);
         add(lblConfirmarPassword);
 
         JPasswordField txtConfirmarPassword = new JPasswordField();
-        txtConfirmarPassword.setBounds(140, 200, 250, 25);
+        txtConfirmarPassword.setBounds(170, 200, 250, 25);
         add(txtConfirmarPassword);
 
         JCheckBox chkMusico = new JCheckBox("Sou Músico");
-        chkMusico.setBounds(140, 250, 100, 25);
+        chkMusico.setBounds(170, 250, 150, 25);
         chkMusico.setBackground(new Color(70, 90, 120));
         chkMusico.setForeground(Color.WHITE);
         add(chkMusico);
 
         JCheckBox chkConfirmar = new JCheckBox("Confirmo que os dados introduzidos são verdadeiros");
-        chkConfirmar.setBounds(10, 350, 350, 25);
+        chkConfirmar.setBounds(10, 350, 450, 25);
         chkConfirmar.setBackground(new Color(70, 90, 120));
         chkConfirmar.setForeground(Color.WHITE);
         add(chkConfirmar);
@@ -73,12 +73,12 @@ public class PainelSignUp extends JPanel {
         JLabel lblPin = new JLabel("Pin:");
         lblPin.setBounds(10, 300, 120, 25);
         lblPin.setForeground(Color.WHITE);
-        lblPin.setVisible(false);  // Inicialmente invisível
+        lblPin.setVisible(false);
         add(lblPin);
 
         JTextField txtPinMusico = new JTextField();
-        txtPinMusico.setBounds(140, 300, 150, 25);
-        txtPinMusico.setVisible(false);  // Inicialmente invisível
+        txtPinMusico.setBounds(170, 300, 150, 25);
+        txtPinMusico.setVisible(false);
         add(txtPinMusico);
 
         JButton btnVoltar = new JButton("Voltar");
