@@ -356,7 +356,7 @@ public class FramePrincipal extends JFrame {
         setResizable(false);
 
         //Cria ícone para quando a app é minimizada
-        Image icon = new ImageIcon("/resources/Logo2.png").getImage();
+        Image icon = new ImageIcon("/resources/Logo.png").getImage();
         setIconImage(icon);
 
         this.addWindowListener(new WindowAdapter() {
