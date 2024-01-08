@@ -22,6 +22,14 @@ public class Cliente extends Utilizador {
         this.saldo += saldo;
     }
 
+    /**
+     * Cria uma Playlist a partir do ArrayList criado com todas as musicas do genero selcionado, utiliza o método Shuffle da classe Collections
+     * para randomizar a ordem, e usa o iterator para ir retirando musicas desse ArrayList depois de os colocar na Playlist criada.
+     * @param num
+     * @param titulo
+     * @param musicasGenero
+     * @return
+     */
     public Playlist criaPlaylistGenero(int num, String titulo, ArrayList<Musica> musicasGenero) {
         Playlist playlist = new Playlist(this.username, titulo);
         Collections.shuffle(musicasGenero);

@@ -9,13 +9,20 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+/**
+ * esta classe gera a JFrame onde ficará armazenada a instância da rockstar que armazena toda a informação do programa.
+ * É também com a abertura desta frame que é feita a desserialization do objecto <code>Rockstar</code>,e a serialization no fecho da mesma.
+ */
 public class FramePrincipal extends JFrame {
     private Rockstar rockstar;
     protected PainelPrincipal painelPrincipal;
     private final String FILE_PATH = "Rockstar.ser";
     public FramePrincipal() {
         super("Rockstar");
-
+/**
+ * No processo de Leitura do ficheiro de Objecto da classe <code>Rockstar</code>, na eventualidade de um mesmo não existir,
+ * será criado um com alguns dados já criados.
+ */
         try {
             FileInputStream fileIn = new FileInputStream(FILE_PATH);
             ObjectInputStream in = new ObjectInputStream(fileIn);

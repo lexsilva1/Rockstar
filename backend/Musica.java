@@ -16,6 +16,17 @@ public class Musica implements Serializable {
     private HashMap<String,Integer> classificacoes;
     private double rating;
 
+    /**
+     * Objecto Musica, criado pelo <code>Musico</code> .
+     * Possui um HashMap para as Classificações, para que os Utilizadores possam votar mais do que uma vez,
+     * mas substituindo o voto anterior.
+     * @param titulo
+     * @param genero
+     * @param data
+     * @param autor
+     * @param valor
+     */
+
     public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
         this.titulo = titulo;
         this.genero = genero;
@@ -48,6 +59,10 @@ public class Musica implements Serializable {
         return genero;
     }
 
+    /**
+     * permite ativar/inativar a <code>Musica</code>
+     * @param activo
+     */
     public void inativa(boolean activo) {
 
         if (this.ativa != activo) {
@@ -86,6 +101,12 @@ public class Musica implements Serializable {
         }
         return total/classificacoes.size();
     }
+
+    /**
+     * adiciona ao HashMap de classificações o rating atribuido pelo cliente
+     * @param cliente
+     * @param nota
+     */
     public void avaliar(Cliente cliente, int nota){
         classificacoes.put(cliente.getUsername(),nota);
 

@@ -13,6 +13,13 @@ public class PainelMinhasMusicas extends JPanel {
     private JTable tabela;
     private DefaultTableModel modeloTabela;
 
+    /**
+     * Painel onde é possível ver todas as <code>Musica</code> que o <code>Cliente</code> já adquiriu. É também
+     *possível adicionar essas <code>Musica</code> a <code>Playlist</code>, avaliar as mesmas.
+     * @param framePrincipal
+     * @param cliente
+     * @param painelCliente
+     */
 
     public PainelMinhasMusicas(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
 
@@ -101,7 +108,9 @@ public class PainelMinhasMusicas extends JPanel {
             JButton okButton = new JButton();
             okButton.setText("Ok");
             okButton.setFocusable(false);
-
+/**
+ * Este método faz as devidas verificações para garantir que a <code>Musica</code> pode ser adicionada à <code>Playlist</code>
+ */
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -236,6 +245,13 @@ public class PainelMinhasMusicas extends JPanel {
         }
         return minhasplaylists;
     }
+
+    /**
+     * verifica se a <code>Musica</code> está adicionada à <code>Playlist</code>
+     * @param music
+     * @param playlist
+     * @return
+     */
     private boolean estaAdicionada(Musica music, GrupoMusicas playlist) {
         return playlist.getMusicas().stream().anyMatch(m -> m.equals(music));
     }

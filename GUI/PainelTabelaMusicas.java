@@ -79,7 +79,9 @@ public class PainelTabelaMusicas extends JPanel {
         JMenuItem altPreco = new JMenuItem("Alterar Preço");
         JMenuItem altEstado = new JMenuItem("Alterar Estado");
         JMenuItem addAlbum = new JMenuItem("Adicionar a Álbum");
-
+        /**
+         * Permite a alteração do título de uma <code>Musica</code>
+         */
         altTitulo.addActionListener(e -> {
             int selectedRow = tabela.getSelectedRow();
 
