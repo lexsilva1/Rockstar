@@ -12,6 +12,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PainelAddMusica extends JPanel {
+    /**
+     * Cria o painel para preenchimento dos dados necessários para a criação de um novo Objecto <code>Musica</code>
+     * @param framePrincipal
+     * @param musico
+     * @param totalMusicas é passado para proceder arespectiva actualização após a criação de uma nova <code>Musica</code>
+     * @param valorMusicas é passado para proceder arespectiva actualização após a criação de uma nova <code>Musica</code>
+     */
     public PainelAddMusica(FramePrincipal framePrincipal, Musico musico, JLabel totalMusicas, JLabel valorMusicas) {
 
         setLayout(null);
@@ -44,8 +51,8 @@ public class PainelAddMusica extends JPanel {
         txtAno.setForeground(Color.BLACK);
         add(txtAno);
 
-        JLabel lblAno = new JLabel("Ano");
-        lblAno.setBounds(260, 210, 50, 25);
+        JLabel lblAno = new JLabel("AAAA");
+        lblAno.setBounds(255, 210, 50, 25);
         lblAno.setForeground(Color.WHITE);
         add(lblAno);
 
@@ -54,8 +61,8 @@ public class PainelAddMusica extends JPanel {
         txtMes.setForeground(Color.BLACK);
         add(txtMes);
 
-        JLabel lblMes = new JLabel("Mês");
-        lblMes.setBounds(310, 210, 50, 25);
+        JLabel lblMes = new JLabel("MM");
+        lblMes.setBounds(307, 210, 50, 25);
         lblMes.setForeground(Color.WHITE);
         add(lblMes);
 
@@ -64,8 +71,8 @@ public class PainelAddMusica extends JPanel {
         txtDia.setForeground(Color.BLACK);
         add(txtDia);
 
-        JLabel lblDia = new JLabel("Dia");
-        lblDia.setBounds(360, 210, 50, 25);
+        JLabel lblDia = new JLabel("DD");
+        lblDia.setBounds(357, 210, 50, 25);
         lblDia.setForeground(Color.WHITE);
         add(lblDia);
 

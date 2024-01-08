@@ -16,6 +16,17 @@ public class Musica implements Serializable {
     private HashMap<String,Integer> classificacoes;
     private double rating;
 
+    /**
+     * Objecto Musica, criado pelo <code>Musico</code> .
+     * Possui um HashMap para as Classificações, para que os Utilizadores possam votar mais do que uma vez,
+     * mas substituindo o voto anterior.
+     * @param titulo
+     * @param genero
+     * @param data
+     * @param autor
+     * @param valor
+     */
+
     public Musica(String titulo, String genero, LocalDate data, String autor,double valor) {
         this.titulo = titulo;
         this.genero = genero;
@@ -32,10 +43,35 @@ public class Musica implements Serializable {
         Preco novopreco= new Preco(preco);
         historicoPreco.add(novopreco);
     }
-    public double getPreco(){
-        return historicoPreco.getLast().getPreco();
+
+
+    /**
+     * permite ativar/inativar a <code>Musica</code>
+     * @param activo
+     */
+    public void inativa(boolean activo) {
+
+        if (this.ativa != activo) {
+            this.ativa = activo;
+        }
+
     }
 
+    public double calculoRating(){
+        double total = 0;
+        if(classificacoes.isEmpty()) {
+          return 0;
+        }else {
+            for (Map.Entry<String, Integer> entry : this.getClassificacoes().entrySet()) {
+                total += entry.getValue();
+            }
+        }
+        return total/classificacoes.size();
+    }
+    public void avaliar(Cliente cliente, int nota){
+        classificacoes.put(cliente.getUsername(),nota);
+
+    }
     public ArrayList<Preco> getHistoricoPreco() {
         return historicoPreco;
     }
@@ -43,17 +79,12 @@ public class Musica implements Serializable {
     public HashMap<String,Integer> getClassificacoes() {
         return classificacoes;
     }
+    public double getPreco(){
+        return historicoPreco.getLast().getPreco();
+    }
 
     public String getGenero() {
         return genero;
-    }
-
-    public void inativa(boolean activo) {
-
-        if (this.ativa != activo) {
-            this.ativa = activo;
-        }
-
     }
 
     public String getAutor() {
@@ -75,6 +106,8 @@ public class Musica implements Serializable {
     public double getRating() {
         return rating;
     }
+
+
     public double calculoRating(){
         double total = 0;
         if(classificacoes.isEmpty()) {
@@ -86,6 +119,17 @@ public class Musica implements Serializable {
         }
         return total/classificacoes.size();
     }
+
+    /**
+     * adiciona ao HashMap de classificações o rating atribuido pelo cliente
+     * @param cliente
+     * @param nota
+     */
+    public void avaliar(Cliente cliente, int nota){
+        classificacoes.put(cliente.getUsername(),nota);
+
+    }
+
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
