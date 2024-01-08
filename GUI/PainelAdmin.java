@@ -337,7 +337,7 @@ public class PainelAdmin extends JPanel {
                 boolean stopElse = false;
 
                 for (Utilizador a : framePrincipal.getRockstar().getUtilizadores()) {
-                    if (!stopIf && a instanceof Admin && a.getUsername().equalsIgnoreCase (username) && ((Admin) a).getIdAdmin() == 1) {
+                    if (!stopIf && a instanceof Admin && a.getUsername().equalsIgnoreCase (username) &&  a.getUsername().equals("toy")) {
                         JOptionPane.showMessageDialog(null, "Não foi possível inativar este utilizador", "Admin primário", JOptionPane.ERROR_MESSAGE);
                         stopIf = true;
                         stopElse = true;

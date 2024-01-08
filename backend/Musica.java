@@ -86,6 +86,10 @@ public class Musica implements Serializable {
         }
         return total/classificacoes.size();
     }
+    public void avaliar(Cliente cliente, int nota){
+        classificacoes.put(cliente.getUsername(),nota);
+
+    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;

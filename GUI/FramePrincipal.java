@@ -112,7 +112,6 @@ public class FramePrincipal extends JFrame {
             musico6.getMusicas().addAll(Arrays.asList(justinSong1, justinSong2, justinSong3, justinSong4, justinSong5, justinSong6, justinSong7, justinSong8, justinSong9, justinSong10));
             rockstar.getMusicas().addAll(Arrays.asList(justinSong1, justinSong2, justinSong3, justinSong4, justinSong5, justinSong6, justinSong7, justinSong8, justinSong9, justinSong10));
 
-
             Musica rihannaSong1 = new Musica("Umbrella", "Pop", LocalDate.of(2007, 5, 1), "rihanna", 0);
             Musica rihannaSong2 = new Musica("Diamonds", "Pop", LocalDate.of(2012, 9, 26), "rihanna", 0);
             Musica rihannaSong3 = new Musica("We Found Love", "Pop", LocalDate.of(2011, 9, 22), "rihanna", 0.7);
@@ -139,7 +138,6 @@ public class FramePrincipal extends JFrame {
 
             musico12.getMusicas().addAll(Arrays.asList(britneySong1, britneySong2, britneySong3, britneySong4, britneySong5, britneySong6, britneySong7, britneySong8, britneySong9, britneySong10));
             rockstar.getMusicas().addAll(Arrays.asList(britneySong1, britneySong2, britneySong3, britneySong4, britneySong5, britneySong6, britneySong7, britneySong8, britneySong9, britneySong10));
-
 
             Musica shakiraSong1 = new Musica("Hips Don't Lie", "Pop", LocalDate.of(2006, 2, 7), "shakira", 1.7);
             Musica shakiraSong2 = new Musica("Waka Waka (This Time for Africa)", "Pop", LocalDate.of(2010, 5, 7), "shakira", 1.45);
@@ -183,16 +181,9 @@ public class FramePrincipal extends JFrame {
 
             musico5.getMusicas().addAll(Arrays.asList(arianaSong1, arianaSong2, arianaSong3, arianaSong4, arianaSong5, arianaSong6, arianaSong7, arianaSong8, arianaSong9, arianaSong10));
             rockstar.getMusicas().addAll(Arrays.asList(arianaSong1, arianaSong2, arianaSong3, arianaSong4, arianaSong5, arianaSong6, arianaSong7, arianaSong8, arianaSong9, arianaSong10));
-            rockstar.getUtilizadores().add(musico4);
-            rockstar.getUtilizadores().add(musico5);
-            rockstar.getUtilizadores().add(musico6);
-            rockstar.getUtilizadores().add(musico7);
-            rockstar.getUtilizadores().add(musico8);
-            rockstar.getUtilizadores().add(musico9);
-            rockstar.getUtilizadores().add(musico10);
-            rockstar.getUtilizadores().add(musico11);
-            rockstar.getUtilizadores().add(musico12);
-            rockstar.getUtilizadores().add(musico13);
+            rockstar.getUtilizadores().add(musico4);rockstar.getUtilizadores().add(musico5);rockstar.getUtilizadores().add(musico6);rockstar.getUtilizadores().add(musico7);
+            rockstar.getUtilizadores().add(musico8); rockstar.getUtilizadores().add(musico9);rockstar.getUtilizadores().add(musico10);rockstar.getUtilizadores().add(musico11);
+            rockstar.getUtilizadores().add(musico12); rockstar.getUtilizadores().add(musico13);
 
             Musico musico16 = new Musico("ironmaiden", "password", "1234");
             rockstar.getUtilizadores().add(musico16);
@@ -241,24 +232,10 @@ public class FramePrincipal extends JFrame {
 
             musico11.getMusicas().addAll(Arrays.asList(metallicaSong1, metallicaSong2, metallicaSong3, metallicaSong4, metallicaSong5, metallicaSong6, metallicaSong7, metallicaSong8, metallicaSong9, metallicaSong10));
             rockstar.getMusicas().addAll(Arrays.asList(metallicaSong1, metallicaSong2, metallicaSong3, metallicaSong4, metallicaSong5, metallicaSong6, metallicaSong7, metallicaSong8, metallicaSong9, metallicaSong10));
-
-
-
-            rockstar.getMusicas().add(musica1);
-            rockstar.getMusicas().add(musica2);
-            rockstar.getMusicas().add(musica3);
-            rockstar.getMusicas().add(musica4);
-            rockstar.getMusicas().add(musica5);
-            musico.getMusicas().add(musica1);
-            musico2.getMusicas().add(musica2);
-            musico2.getMusicas().add(musica3);
-            musico3.getMusicas().add(musica4);
-            musico3.getMusicas().add(musica5);
-            rockstar.getUtilizadores().add(admin);
-            rockstar.getUtilizadores().add(cliente);
-            rockstar.getUtilizadores().add(musico);
-            rockstar.getUtilizadores().add(musico2);
-            rockstar.getUtilizadores().add(musico3);
+            rockstar.getMusicas().add(musica1);rockstar.getMusicas().add(musica2);rockstar.getMusicas().add(musica3);rockstar.getMusicas().add(musica4);
+            rockstar.getMusicas().add(musica5);musico.getMusicas().add(musica1);musico2.getMusicas().add(musica2);musico2.getMusicas().add(musica3);
+            musico3.getMusicas().add(musica4);musico3.getMusicas().add(musica5);rockstar.getUtilizadores().add(admin);rockstar.getUtilizadores().add(cliente);
+            cliente.carregaSaldo(25);rockstar.getUtilizadores().add(musico);rockstar.getUtilizadores().add(musico2);rockstar.getUtilizadores().add(musico3);
             Cliente cliente2 = new Cliente("mariasantos", "password");
             rockstar.getUtilizadores().add(cliente2);
             Cliente cliente3 = new Cliente("pedrofonseca", "password");
@@ -297,14 +274,73 @@ public class FramePrincipal extends JFrame {
             rockstar.getUtilizadores().add(cliente19);
             Cliente cliente20 = new Cliente("cristinamendes", "password");
             rockstar.getUtilizadores().add(cliente20);
+            musico4.criaAlbum(this,musico4.getUsername(),"In my Feeling","Hip Hop",12);
+            Album eminemalbum = new Album("eminem","The Marshall Mathers LP","Hip Hop",13);
+            Album eminemalbum1= new Album("eminem","The eminem show","Hip Hop",15);
+            rockstar.getGrupoMusicas().add(eminemalbum1);rockstar.getGrupoMusicas().add(eminemalbum);
+            musico15.getAlbuns().add(eminemalbum1);musico15.getAlbuns().add(eminemalbum);
+            musico15.addMusicaAoAlbum(eminemalbum,eminemSong3);musico15.addMusicaAoAlbum(eminemalbum,eminemSong2);
+            cliente3.carregaSaldo(13.24);cliente4.carregaSaldo(7.65);cliente5.carregaSaldo(10);cliente6.carregaSaldo(6.30);cliente7.carregaSaldo(14.54);
+            cliente8.carregaSaldo(4.45);cliente9.carregaSaldo(15);cliente10.carregaSaldo(11.57);cliente11.carregaSaldo(17);cliente12.carregaSaldo(7.5);
+            cliente13.carregaSaldo(9.99);cliente14.carregaSaldo(2.5);cliente15.carregaSaldo(6.66);cliente16.carregaSaldo(5.60);cliente17.carregaSaldo(25.01);
+            cliente18.carregaSaldo(8.9);cliente19.carregaSaldo(13.2);cliente20.carregaSaldo(12);
+            musico16.criaAlbum(this,musico16.getUsername(),"Fear of the Dark","Rock",10);
             rockstar.addPromo(admin,999,"Desconto Boas Vindas",15,LocalDate.of(2023,12,15),LocalDate.of(2024,12,31));
+            cliente.getCarrinhoCompras().addAll(Arrays.asList(metallicaSong2, ironmaidenSong3, claudisabelSong3, shakiraSong2, britneySong2, britneySong3, drakeSong2));
+            cliente.compra();cliente.getCarrinhoCompras().remove(metallicaSong2);cliente.getCarrinhoCompras().remove(ironmaidenSong3);cliente.getCarrinhoCompras().remove(claudisabelSong3);
+            cliente.getCarrinhoCompras().remove(britneySong2);cliente.getCarrinhoCompras().remove(shakiraSong2);cliente.getCarrinhoCompras().remove(britneySong3);cliente.getCarrinhoCompras().remove(drakeSong2);
+            metallicaSong2.avaliar(cliente,5);ironmaidenSong3.avaliar(cliente,4);shakiraSong2.avaliar(cliente,3);
+            cliente2.getCarrinhoCompras().addAll(Arrays.asList(ironmaidenSong3,u2Song4,u2Song5,shakiraSong3));
+            Promo promo = new Promo(10,"MegaCena",30,LocalDate.of(2024,01,01),LocalDate.of(2024,06,30));
+            rockstar.getPromos().add(promo);
+            cliente2.carregaSaldo(10);
+            cliente2.compraPromo(promo);
+            cliente2.getCarrinhoCompras().remove(ironmaidenSong3);cliente2.getCarrinhoCompras().remove(u2Song4);cliente2.getCarrinhoCompras().remove(u2Song5);cliente2.getCarrinhoCompras().remove(shakiraSong3);
+            ironmaidenSong3.avaliar(cliente2,4);
+            musico16.atualizaPreco(ironmaidenSong3,2.0);
+            cliente3.getCarrinhoCompras().addAll(Arrays.asList(eminemSong1,eminemSong2,arianaSong3,arianaSong4,arianaSong5));
+            cliente3.compra();
+            cliente3.getCarrinhoCompras().remove(eminemSong1);cliente3.getCarrinhoCompras().remove(eminemSong2);cliente3.getCarrinhoCompras().remove(arianaSong3);cliente3.getCarrinhoCompras().remove(arianaSong4);cliente3.getCarrinhoCompras().remove(arianaSong5);
+            eminemSong1.avaliar(cliente3,4);arianaSong3.avaliar(cliente3,3);arianaSong4.avaliar(cliente3,4);
+            cliente4.getCarrinhoCompras().addAll(Arrays.asList(eminemSong1,ironmaidenSong7,britneySong6,rihannaSong2));
+            cliente4.compraPromo(promo);
+            cliente4.getCarrinhoCompras().remove(eminemSong1);cliente4.getCarrinhoCompras().remove(ironmaidenSong7);cliente4.getCarrinhoCompras().remove(britneySong6);cliente4.getCarrinhoCompras().remove(rihannaSong2);
+            eminemSong1.avaliar(cliente4,4);rihannaSong2.avaliar(cliente4,4);
+            cliente5.getCarrinhoCompras().addAll(Arrays.asList(metallicaSong2,justinSong2,justinSong3,musica1));
+            cliente5.compra();
+            cliente5.getCarrinhoCompras().remove(metallicaSong2);cliente5.getCarrinhoCompras().remove(justinSong2);cliente5.getCarrinhoCompras().remove(justinSong3);cliente5.getCarrinhoCompras().remove(musica1);
+            musica1.avaliar(cliente5,5);justinSong2.avaliar(cliente5,2);
+            cliente6.getCarrinhoCompras().addAll(Arrays.asList(musica1,claudisabelSong6,u2Song10,metallicaSong2));
+            cliente6.compra();cliente6.getCarrinhoCompras().remove(musica1);cliente6.getCarrinhoCompras().remove(claudisabelSong6);cliente6.getCarrinhoCompras().remove(u2Song10);cliente6.getCarrinhoCompras().remove(metallicaSong2);
+            musica1.avaliar(cliente6,5);metallicaSong2.avaliar(cliente6,4);
+            musico.criaAlbum(this,musico.getUsername(),"Nada do outro mundo","Pimba",7);
+            Musica inesmusica = new Musica("Alguma coisa bonita","Pimba",LocalDate.of(2010,8,31),"inesisabel",2.5);
+            musico.getMusicas().add(inesmusica);rockstar.getMusicas().add(inesmusica);
+            cliente7.getCarrinhoCompras().addAll(Arrays.asList(musica1,inesmusica,metallicaSong2,eminemSong1));cliente7.compra();
+            cliente7.getCarrinhoCompras().remove(musica1);cliente7.getCarrinhoCompras().remove(inesmusica);cliente7.getCarrinhoCompras().remove(metallicaSong2);cliente7.getCarrinhoCompras().remove(eminemSong1);
+            eminemSong1.avaliar(cliente7,4);metallicaSong2.avaliar(cliente7,4);
+            cliente8.getCarrinhoCompras().addAll(Arrays.asList(musica1,inesmusica,claudisabelSong2,claudisabelSong3,claudisabelSong4));cliente8.compra();
+            cliente8.getCarrinhoCompras().remove(musica1);cliente8.getCarrinhoCompras().remove(inesmusica);cliente8.getCarrinhoCompras().remove(claudisabelSong2);cliente8.getCarrinhoCompras().remove(claudisabelSong3);cliente8.getCarrinhoCompras().remove(claudisabelSong4);
+            inesmusica.avaliar(cliente8,4);claudisabelSong4.avaliar(cliente8,4);
+            cliente9.getMusicas().addAll(Arrays.asList(musica1,inesmusica,musica3));cliente9.compra();cliente9.getCarrinhoCompras().remove(musica1);cliente9.getCarrinhoCompras().remove(inesmusica);cliente9.getCarrinhoCompras().remove(musica3);
+            inesmusica.avaliar(cliente9,5);musica3.avaliar(cliente9,3);
+            Promo promo2 = new Promo(4,"BlackFriday",45,LocalDate.of(2023,11,15),LocalDate.of(2023,11,24));
+            Promo promo3 = new Promo(1,"CyberMonday",30,LocalDate.of(2023,11,27),LocalDate.of(2023,11,27));
+            Promo promo1 = new Promo(1,"Happy New Year",24,LocalDate.of(2024,1,1),LocalDate.of(2024,1,31));
+            rockstar.getPromos().add(promo3);rockstar.getPromos().add(promo2);rockstar.getPromos().add(promo1);
+            Album arianaAlbum=new Album("arianagrande","Positions","Pop",12);
+            musico5.getAlbuns().add(arianaAlbum);
+            Album britneyAlbum = new Album("britneyspears","Baby one more time","Pop",12);
+            musico7.getAlbuns().add(britneyAlbum);
+            cliente10.getCarrinhoCompras().addAll(Arrays.asList(britneySong4,britneySong7,britneySong1));cliente.compraPromo(promo2);
+            cliente10.getCarrinhoCompras().remove(britneySong4);cliente10.getCarrinhoCompras().remove(britneySong7);cliente10.getCarrinhoCompras().remove(britneySong1);
+
         }
         catch (IOException e){
             System.err.println("outro erro");
         }
 
         painelPrincipal = new PainelPrincipal(this);
-
         add(painelPrincipal);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

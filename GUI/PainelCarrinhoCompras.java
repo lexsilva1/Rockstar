@@ -52,7 +52,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         add(scrollPane);
 
-        JLabel labelCustoTotal = new JLabel("Custo Total: " + String.valueOf(calcularCustoTotal()) + " €");
+        JLabel labelCustoTotal = new JLabel("Custo Total: " + String.format("%1$,.2f€",calcularCustoTotal()) + " €");
         labelCustoTotal.setForeground(Color.WHITE);
         labelCustoTotal.setBounds(10, 190, 200, 25);
         add(labelCustoTotal);
@@ -143,12 +143,12 @@ public class PainelCarrinhoCompras extends JPanel {
                 cliente.compra();
                 limparCarrinhoCompras(cliente, painelCliente);
                 JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
+                painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€",cliente.getSaldo())));
             } else {
                 cliente.compraPromo(promo);
                 limparCarrinhoCompras(cliente, painelCliente);
                 JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                painelCliente.botaosaldo().setText(("Saldo: " + String.valueOf(cliente.getSaldo())));
+                painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€",cliente.getSaldo())));
             }
         }
     }
