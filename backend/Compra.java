@@ -9,6 +9,10 @@ public class Compra implements Serializable {
     private HashMap<Musica,Double> musicas;
     private Promo promo;
 
+    /**
+     * Esta classe representa a compra efectuada pelo cliente. a cada compra está associada uma data.
+     * Guarda também os dados da música comprada, com o preço efectivamente pago pelo cliente por cada musica.
+     */
     public Compra(){
         this.data=LocalDate.now();
         this.musicas=new HashMap<>();
@@ -18,7 +22,11 @@ public class Compra implements Serializable {
     public LocalDate getData() {
         return data;
     }
-
+    /**
+     *Devolve um mapa das músicas e do valor pago por cada uma na compra.
+     *
+     * @return {@code HashMap} que contem todas as músicas e os seus preços correspondentes.
+     */
     public HashMap<Musica,Double> getMusicas() {
         return musicas;
     }
