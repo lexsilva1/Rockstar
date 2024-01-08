@@ -19,6 +19,10 @@ public class PainelCriarAlbum extends PainelCriarPlaylistGenero{
 
         btnCancelar.addActionListener(e -> setVisible(false));
 
+        JButton btnCriar = new JButton("Criar");
+        btnCriar.setBounds(300,350,100,25);
+        add(btnCriar);
+
         btnCriar.addActionListener(e -> {
 
             if (txtNome.getText().isEmpty() || txtNumero.getText().isEmpty() || grupo.getSelection() == null) {

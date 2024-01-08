@@ -25,63 +25,54 @@ public class PainelSignUp extends JPanel {
         setBackground(new Color(70, 90, 120));
         setLayout(null);
 
-        JLabel lblNome = new JLabel("Nome completo:");
-        lblNome.setBounds(10, 50, 120, 25);
-        lblNome.setForeground(Color.WHITE);
-        add(lblNome);
-
-
-        JTextField txtNome = new JTextField();
-        txtNome.setBounds(170, 50, 250, 25);
-        add(txtNome);
 
         JLabel lblUsername = new JLabel("Username:");
-        lblUsername.setBounds(10, 100, 120, 25);
+        lblUsername.setBounds(10, 50, 120, 25);
         lblUsername.setForeground(Color.WHITE);
         add(lblUsername);
 
         JTextField txtUsername = new JTextField();
-        txtUsername.setBounds(170, 100, 250, 25);
+        txtUsername.setBounds(170, 50, 250, 25);
         add(txtUsername);
 
         JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setBounds(10, 150, 120, 25);
+        lblPassword.setBounds(10, 100, 120, 25);
         lblPassword.setForeground(Color.WHITE);
         add(lblPassword);
 
         JPasswordField txtPassword = new JPasswordField();
-        txtPassword.setBounds(170, 150, 250, 25);
+        txtPassword.setBounds(170, 100, 250, 25);
         add(txtPassword);
 
         JLabel lblConfirmarPassword = new JLabel("Confirmar Password:");
-        lblConfirmarPassword.setBounds(10, 200, 150, 25);
+        lblConfirmarPassword.setBounds(10, 150, 150, 25);
         lblConfirmarPassword.setForeground(Color.WHITE);
         add(lblConfirmarPassword);
 
         JPasswordField txtConfirmarPassword = new JPasswordField();
-        txtConfirmarPassword.setBounds(170, 200, 250, 25);
+        txtConfirmarPassword.setBounds(170, 150, 250, 25);
         add(txtConfirmarPassword);
 
         JCheckBox chkMusico = new JCheckBox("Sou Músico");
-        chkMusico.setBounds(170, 250, 150, 25);
+        chkMusico.setBounds(170, 200, 150, 25);
         chkMusico.setBackground(new Color(70, 90, 120));
         chkMusico.setForeground(Color.WHITE);
         add(chkMusico);
 
         JCheckBox chkConfirmar = new JCheckBox("Confirmo que os dados introduzidos são verdadeiros");
-        chkConfirmar.setBounds(10, 350, 450, 25);
+        chkConfirmar.setBounds(10, 300, 450, 25);
         chkConfirmar.setBackground(new Color(70, 90, 120));
         chkConfirmar.setForeground(Color.WHITE);
         add(chkConfirmar);
 
         JLabel lblPin = new JLabel("Pin:");
-        lblPin.setBounds(10, 300, 120, 25);
+        lblPin.setBounds(10, 250, 120, 25);
         lblPin.setForeground(Color.WHITE);
         lblPin.setVisible(false);
         add(lblPin);
 
         JTextField txtPinMusico = new JTextField();
-        txtPinMusico.setBounds(170, 300, 150, 25);
+        txtPinMusico.setBounds(170, 250, 150, 25);
         txtPinMusico.setVisible(false);
         add(txtPinMusico);
 

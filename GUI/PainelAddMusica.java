@@ -164,6 +164,24 @@ public class PainelAddMusica extends JPanel {
         btnCancelar.setBounds(280, 460, 100, 25);
         btnCancelar.setForeground(Color.BLACK);
 
+        txtTitulo.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         txtValor.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -177,7 +195,9 @@ public class PainelAddMusica extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -196,7 +216,9 @@ public class PainelAddMusica extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -215,7 +237,9 @@ public class PainelAddMusica extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override
@@ -235,7 +259,9 @@ public class PainelAddMusica extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnCriar.doClick();
+                }
             }
 
             @Override

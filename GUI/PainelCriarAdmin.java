@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Arrays;
 
 import backend.Utilizador;
@@ -59,6 +61,68 @@ public class PainelCriarAdmin extends JPanel {
         JButton btnContinuar = new JButton("Continuar");
         btnContinuar.setBounds(10, 380, 150, 25);
         btnContinuar.setVisible(false);
+
+        txtUsername.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !chkConfirmar.isSelected()) {
+                    chkConfirmar.doClick();
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER && chkConfirmar.isSelected()) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !chkConfirmar.isSelected()) {
+                    chkConfirmar.doClick();
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER && chkConfirmar.isSelected()) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+        txtConfirmarPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !chkConfirmar.isSelected()) {
+                    chkConfirmar.doClick();
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER && chkConfirmar.isSelected()) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
         /**
          * Ao selecionar a checkbox 'chkConfirmar', verifica se o username já existe, se as passwords coincidem,
