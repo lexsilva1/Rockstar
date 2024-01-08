@@ -155,9 +155,65 @@ class PainelLogin extends JPanel {
         grupo.add(chkMostrarMusico);
         grupo.add(chkMostrarAdmin);
 
-        JButton btnContinuar = new JButton("Continuar");
+        JButton btnContinuar = new JButton("Entrar");
         btnContinuar.setBounds(690, 620, 90, 25);
         add(btnContinuar);
+
+        txtUsername.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+        txtPassword.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        txtPin.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnContinuar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
         //Verifica se todos os campos estão preenchidos, o tipo de utilizador selecionado e se os dados estão corretos
         //Mostra o painel correspondente ao tipo de 'Utilizador'

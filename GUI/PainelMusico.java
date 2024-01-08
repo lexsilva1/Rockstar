@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class PainelMusico extends JPanel {
@@ -124,7 +126,6 @@ public class PainelMusico extends JPanel {
         totalMusicas.setBorder(contorno2);
         totalMusicas.setFont(fonte2);
         totalMusicas.setVisible(true);
-
 
         JLabel lblValorMusicas = new JLabel(" Valor Total Músicas");
         lblValorMusicas.setBounds(30,290,180,25);
@@ -272,6 +273,25 @@ public class PainelMusico extends JPanel {
 
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
+
+        txtPesquisar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnLupa.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
         btnAddMusica.addActionListener(e -> {
             painelOpcoes.removeAll();
