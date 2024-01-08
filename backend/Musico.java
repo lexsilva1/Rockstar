@@ -33,7 +33,6 @@ public class Musico extends Utilizador {
         }
     }
 
-
     public void atualizaPreco(Musica musica, Double preco) {
         for (Musica m : musicas) {
             if (m.equals(musica) && this.username.equals(musica.getAutor())) {
@@ -67,17 +66,6 @@ public class Musico extends Utilizador {
         }
         return false;
     }
-    public String getPin() {
-        return pin;
-    }
-
-    public ArrayList<Album> getAlbuns() {
-        return albuns;
-    }
-
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
-    }
 
     public boolean musicaExiste (String titulo) {
         for (Musica m : musicas) {
@@ -95,6 +83,18 @@ public class Musico extends Utilizador {
             }
         }
         return false;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public ArrayList<Album> getAlbuns() {
+        return albuns;
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
     }
 }
 
