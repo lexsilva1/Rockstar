@@ -10,6 +10,10 @@ import java.awt.event.*;
 class PainelLogin extends JPanel {
     private FramePrincipal framePrincipal;
 
+    /**
+     * Painel de Login comum a todas as classes de <code>Utilizador</code>.
+     * @param framePrincipal
+     */
     public PainelLogin(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         setBackground(new Color(70, 90, 120));
@@ -158,9 +162,10 @@ class PainelLogin extends JPanel {
         JButton btnContinuar = new JButton("Continuar");
         btnContinuar.setBounds(690, 620, 90, 25);
         add(btnContinuar);
-
-        //Verifica se todos os campos estão preenchidos, o tipo de utilizador selecionado e se os dados estão corretos
-        //Mostra o painel correspondente ao tipo de 'Utilizador'
+        /**
+         * Verifica se todos os campos estão preenchidos, o tipo de utilizador selecionado e se os dados estão corretos
+         * Mostra o painel correspondente ao tipo de 'Utilizador'
+         */
         btnContinuar.addActionListener(e -> {
             if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
@@ -211,10 +216,6 @@ class PainelLogin extends JPanel {
 
     }
 
-    /**
-     * Método para limpar painel atual e gerar um novo 'PainelCliente'
-     * @param cliente: instância de 'Utilizador' para que seja guardado no novo painel
-     */
     private void exibirPainelCliente(Cliente cliente) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
@@ -223,10 +224,6 @@ class PainelLogin extends JPanel {
         framePrincipal.repaint();
     }
 
-    /**
-     * Método para limpar painel atual e gerar um novo 'PainelMusico'
-     * @param musico: instância de 'Utilizador' para que seja guardado no novo painel
-     */
     private void exibirPainelMusico(Musico musico) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
@@ -235,10 +232,6 @@ class PainelLogin extends JPanel {
         framePrincipal.repaint();
     }
 
-    /**
-     * Método para limpar painel atual e gerar um novo 'PainelAdmin'
-     * @param admin: instância de 'Utilizador' para que seja guardado no novo painel
-     */
     private void exibirPainelAdmin(Admin admin) {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();
@@ -247,9 +240,6 @@ class PainelLogin extends JPanel {
         framePrincipal.repaint();
     }
 
-    /**
-     * Método para limpar painel atual e gerar um novo 'PainelPrincipal'
-     */
     private void voltarPainelPrincipal() {
         framePrincipal = (FramePrincipal) SwingUtilities.getWindowAncestor(this);
         framePrincipal.getContentPane().removeAll();

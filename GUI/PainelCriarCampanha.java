@@ -267,7 +267,10 @@ public class PainelCriarCampanha extends JPanel {
 
             }
         });
-
+/**
+ * O ActionListener cria a Promo, verifica se existe uma promo com o mesmo nome, e a data de inicio da campanha.
+ * Não permite a criação da promo na eventualidade de já existir uma com o mesmo nome, ou de a data de inicio ser inferior à data atual.
+ */
         btnCriar.addActionListener(e -> {
             if (txtNome.getText().isEmpty() || txtDesconto.getText().isEmpty() || txtNumeroCupoes.getText().isEmpty() || txtAnoFim.getText().isEmpty() || txtMesFim.getText().isEmpty() || txtDiaFim.getText().isEmpty() || txtAnoInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() || txtMesInicio.getText().isEmpty() ) {
                 JOptionPane.showMessageDialog(null, "Por favor preencha todos os dados", "Campo vazio", JOptionPane.ERROR_MESSAGE);
@@ -325,6 +328,13 @@ public class PainelCriarCampanha extends JPanel {
       });
     }
 
+    /**
+     * Metodo utilizado na criação de Promos para assegurar a correcte inserção de dados, e que a data de inicio da campanha é igyal ou superior á data atual;
+     * @param anoInicio
+     * @param mesInicio
+     * @param diaInicio
+     * @return
+     */
     public boolean verificarDataInicio(String anoInicio, String mesInicio, String diaInicio) {
         int ano1 = Integer.parseInt(anoInicio);
         int mes1 = Integer.parseInt(mesInicio);
@@ -353,6 +363,14 @@ public class PainelCriarCampanha extends JPanel {
         }
     }
 
+    /**
+     * Assegura que os dados para a criação da data foram introduzidos correctamente.
+     * @param anoFim
+     * @param mesFim
+     * @param diaFim
+     * @param dataInicio
+     * @return
+     */
     public boolean verificarDataFim(String anoFim, String mesFim, String diaFim, LocalDate dataInicio) {
 
         int anoFim1 = Integer.parseInt(anoFim);

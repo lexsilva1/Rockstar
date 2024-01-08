@@ -85,7 +85,9 @@ public class PainelAdmin extends JPanel {
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaMusica);
         grupo.add(chkPesquisaUtilizador);
-
+        /**
+         * Este listener gera uma de duas JTable consoante a escolha de pesquisa do utilizador (Utilizadores ou Musicas)
+         */
         btnLupa.addActionListener((ActionEvent e) ->{
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
                 JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
@@ -239,6 +241,15 @@ public class PainelAdmin extends JPanel {
         painelOpcoesAdmin.revalidate();
         painelOpcoesAdmin.repaint();
     }
+
+    /**
+     * Neste método o <code>Admin<code> remove todas as instâncias do objecto <code>Musica</code> que seleciona. No caso dos clientes, são reembolsados
+     * do valor que pagaram pela música na altura da aquisição, e não pelo preço da musica que vigorava na altura da sua remoção.
+     * @param framePrincipal
+     * @param tabela
+     * @param modeloTabela
+     * @return
+     */
     public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 
@@ -323,6 +334,15 @@ public class PainelAdmin extends JPanel {
 
         return popupMenu;
     }
+
+    /**
+     * Neste método, o Admin pode inativar/ativar utilizadores de acordo com as restrições impostas no enunciado. Para evitar
+     * o uso de break, utilizamos variaveis boolean para parar os ciclos quando necessário.
+     * @param framePrincipal
+     * @param tabela
+     * @param modeloTabela
+     * @return
+     */
     public JPopupMenu criarPopupMenuUtilizador(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();
 

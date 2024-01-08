@@ -13,6 +13,7 @@ public class PainelMusico extends JPanel {
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelMusico', para a página inicial de um utlizador do tipo 'Musico',
      * com um buffer duplo e um flow layout.
+     * Apresenta as estatistcas do utilizdor e permite aceder às funcionalidades desta classe de utilizador.
      */
     public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
         this.musico = musico;

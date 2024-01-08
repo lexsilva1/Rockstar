@@ -120,7 +120,9 @@ public class PainelCliente extends JPanel{
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
-
+/**
+ * Gera uma nova instancia local do PainelMusicasLoja, com as restições impostas pela pesquisa do cliente.
+ */
         btnLupa.addActionListener((ActionEvent e) -> {
             painelOpcoesCliente.removeAll();
             btnlimpaPesquisa.setVisible(true);
