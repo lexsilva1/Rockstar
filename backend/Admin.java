@@ -3,7 +3,12 @@ package backend;
 import java.time.LocalDate;
 
 public class Admin extends Utilizador {
-
+    /**
+     * Classe que herda da classe <code>Utilizador</code>
+     * Possui a particularidade de criar objectos <code>Promo</code>
+     * @param username
+     * @param password
+     */
     public Admin(String username, String password) {
         super(username, password);
     }

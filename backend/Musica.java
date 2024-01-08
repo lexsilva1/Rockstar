@@ -39,6 +39,11 @@ public class Musica implements Serializable {
         this.rating = calculoRating();
         this.autor=autor;
     }
+
+    /**
+     * Cria um novo objecto <code>Preco</code> e armazena no historico de preços da musica.
+     * @param preco valor numerico do <code>Preco</code> criado.
+     */
     public void alterarPreco(double preco){
         Preco novopreco= new Preco(preco);
         historicoPreco.add(novopreco);
@@ -89,6 +94,10 @@ public class Musica implements Serializable {
         return dataLancamento;
     }
 
+    /**
+     * calcula o rating da música.
+     * @return Dvolve um double que é a média de todas as avaliações feitas por clientes que adquiriram esta musica.
+     */
     public double getRating() {
         return rating;
     }
@@ -108,8 +117,8 @@ public class Musica implements Serializable {
 
     /**
      * adiciona ao HashMap de classificações o rating atribuido pelo cliente
-     * @param cliente
-     * @param nota
+     * @param cliente cliente que avalia.
+     * @param nota valor da avaliação.
      */
     public void avaliar(Cliente cliente, int nota){
         classificacoes.put(cliente.getUsername(),nota);

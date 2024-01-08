@@ -6,13 +6,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class PainelPainelTabelaAlbuns extends PainelTabelaMusicas {
+public class PainelTabelaAlbuns extends PainelTabelaMusicas {
     private JTable tabela;
     private JPanel painelSuperior;
     private JLabel rotuloBarra;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
-    private PainelOpcoes painelMusico;
+
 
     /**
      * Cria um <code>JPanel</code> com uma tabela onde são imprimidos os dados relativos às instâncias
@@ -22,9 +22,9 @@ public class PainelPainelTabelaAlbuns extends PainelTabelaMusicas {
      * @param musico     instância de <code>Musico</code>, que será quem tem o login efetuado,
      *                   e sobre o qual queremos obter informações
      */
-    public PainelPainelTabelaAlbuns(FramePrincipal framePrincipal, Musico musico, PainelOpcoes painelMusico) {
+    public PainelTabelaAlbuns(FramePrincipal framePrincipal, Musico musico) {
         super(framePrincipal,musico);
-        this.painelMusico = painelMusico;
+
 
 
         setLayout(new BorderLayout());
@@ -77,7 +77,9 @@ public class PainelPainelTabelaAlbuns extends PainelTabelaMusicas {
         JPopupMenu popupMenu = new JPopupMenu();
 
         JMenuItem verMusicas = new JMenuItem("Ver Músicas");
-
+/**
+ * Este ActionListener permite ver as músicas que estão dentro de cada <code>Playlist</code>, apresentando os seus respectivos detalhes.
+ */
         verMusicas.addActionListener(e -> {
             int linhaSelecionada = tabela.getSelectedRow();
             if (linhaSelecionada != -1) {
