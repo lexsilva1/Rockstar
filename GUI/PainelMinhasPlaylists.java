@@ -105,6 +105,7 @@ public class PainelMinhasPlaylists extends JPanel {
 
                 JTable tabela1 = new JTable(modeloTabela1);
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
+                tabela1.getTableHeader().setReorderingAllowed(false);
                 scrollPane1.setVisible(true);
 
                 JPanel painelSuperior = new JPanel(new BorderLayout());

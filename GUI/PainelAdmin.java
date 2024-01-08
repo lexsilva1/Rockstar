@@ -170,6 +170,7 @@ public class PainelAdmin extends JPanel {
 
                 JTable tabela = new JTable(modeloTabela);
                 tabela.setAutoCreateRowSorter(true);
+                tabela.getTableHeader().setReorderingAllowed(false);
                 JScrollPane scrollPane = new JScrollPane(tabela);
                 scrollPane.setVisible(true);
                 painel.add(scrollPane, BorderLayout.CENTER);
@@ -204,6 +205,7 @@ public class PainelAdmin extends JPanel {
 
             JTable tabela = new JTable(modeloTabela);
             tabela.setAutoCreateRowSorter(true);
+            tabela.getTableHeader().setReorderingAllowed(false);
             JScrollPane scrollPane = new JScrollPane(tabela);
             scrollPane.setVisible(true);
 
