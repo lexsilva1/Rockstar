@@ -55,7 +55,7 @@ public class PainelCriarPlaylist extends JPanel {
         });
 
 /**
- * Faz a s respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
+ * Faz as respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
  */
         btnAdicionar.addActionListener(e -> {
 
@@ -64,7 +64,7 @@ public class PainelCriarPlaylist extends JPanel {
             } else {
                 String nome = txtNome.getText();
                 if (playlistExiste(nome,framePrincipal)) {
-                    JOptionPane.showMessageDialog(null, "já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
                     txtNome.setText("");
                 } else {
                     framePrincipal.getRockstar().addGrupoDeMusicas(cliente.criaPlaylist(nome));
