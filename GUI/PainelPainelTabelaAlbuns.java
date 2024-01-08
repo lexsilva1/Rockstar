@@ -6,13 +6,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class TabelaAlbuns extends TabelaMusicas {
+public class PainelPainelTabelaAlbuns extends PainelTabelaMusicas {
     private JTable tabela;
     private JPanel painelSuperior;
     private JLabel rotuloBarra;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
-    private PainelOpcoesCliente painelMusico;
+    private PainelOpcoes painelMusico;
 
     /**
      * Cria um <code>JPanel</code> com uma tabela onde são imprimidos os dados relativos às instâncias
@@ -22,7 +22,7 @@ public class TabelaAlbuns extends TabelaMusicas {
      * @param musico     instância de <code>Musico</code>, que será quem tem o login efetuado,
      *                   e sobre o qual queremos obter informações
      */
-    public TabelaAlbuns(FramePrincipal framePrincipal, Musico musico, PainelOpcoesCliente painelMusico) {
+    public PainelPainelTabelaAlbuns(FramePrincipal framePrincipal, Musico musico, PainelOpcoes painelMusico) {
         super(framePrincipal,musico);
         this.painelMusico = painelMusico;
 

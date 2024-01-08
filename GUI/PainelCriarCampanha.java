@@ -49,8 +49,8 @@ public class PainelCriarCampanha extends JPanel {
         txtAnoInicio.setForeground(Color.BLACK);
         add(txtAnoInicio);
 
-        JLabel lblAnoInicio = new JLabel("Ano");
-        lblAnoInicio.setBounds(160, 170, 50, 25);
+        JLabel lblAnoInicio = new JLabel("AAAA");
+        lblAnoInicio.setBounds(155, 170, 50, 25);
         lblAnoInicio.setForeground(Color.WHITE);
         add(lblAnoInicio);
 
@@ -60,8 +60,8 @@ public class PainelCriarCampanha extends JPanel {
         txtMesInicio.setForeground(Color.BLACK);
         add(txtMesInicio);
 
-        JLabel lblMesInicio = new JLabel("Mês");
-        lblMesInicio.setBounds(210, 170, 50, 25);
+        JLabel lblMesInicio = new JLabel("MM");
+        lblMesInicio.setBounds(205, 170, 50, 25);
         lblMesInicio.setForeground(Color.WHITE);
         add(lblMesInicio);
 
@@ -70,8 +70,8 @@ public class PainelCriarCampanha extends JPanel {
         txtDiaInicio.setForeground(Color.BLACK);
         add(txtDiaInicio);
 
-        JLabel lblDiaInicio = new JLabel("Dia");
-        lblDiaInicio.setBounds(260, 170, 50, 25);
+        JLabel lblDiaInicio = new JLabel("DD");
+        lblDiaInicio.setBounds(255, 170, 50, 25);
         lblDiaInicio.setForeground(Color.WHITE);
         add(lblDiaInicio);
 
@@ -85,8 +85,8 @@ public class PainelCriarCampanha extends JPanel {
         txtAnoFim.setForeground(Color.BLACK);
         add(txtAnoFim);
 
-        JLabel lblAnoFim = new JLabel("Ano");
-        lblAnoFim.setBounds(160, 220, 50, 25);
+        JLabel lblAnoFim = new JLabel("AAAA");
+        lblAnoFim.setBounds(155, 220, 50, 25);
         lblAnoFim.setForeground(Color.WHITE);
         add(lblAnoFim);
 
@@ -95,8 +95,8 @@ public class PainelCriarCampanha extends JPanel {
         txtMesFim.setForeground(Color.BLACK);
         add(txtMesFim);
 
-        JLabel lblMesFim = new JLabel("Mês");
-        lblMesFim.setBounds(210, 220, 50, 25);
+        JLabel lblMesFim = new JLabel("MM");
+        lblMesFim.setBounds(205, 220, 50, 25);
         lblMesFim.setForeground(Color.WHITE);
         add(lblMesFim);
 
@@ -105,8 +105,8 @@ public class PainelCriarCampanha extends JPanel {
         txtDiaFim.setForeground(Color.BLACK);
         add(txtDiaFim);
 
-        JLabel lblDiaFim = new JLabel("Dia");
-        lblDiaFim.setBounds(260, 220, 50, 25);
+        JLabel lblDiaFim = new JLabel("DD");
+        lblDiaFim.setBounds(255, 220, 50, 25);
         lblDiaFim.setForeground(Color.WHITE);
         add(lblDiaFim);
 

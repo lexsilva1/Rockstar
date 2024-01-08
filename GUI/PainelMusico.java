@@ -5,10 +5,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class PainelMusico extends JPanel {
     private Musico musico;
+    private  JButton btnlimpaPesquisa;
+
 
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelMusico', para a página inicial de um utlizador do tipo 'Musico',
@@ -17,6 +21,8 @@ public class PainelMusico extends JPanel {
      */
     public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
         this.musico = musico;
+        this.btnlimpaPesquisa = new JButton("Limpar");
+
         JLabel labelUsername = new JLabel("Bem-vindo: " + getMusico().getUsername());
         JButton btnVerAlbuns = new JButton("Os meus álbuns");
         JButton btnVerMusicas = new JButton("As minhas músicas");
@@ -28,7 +34,7 @@ public class PainelMusico extends JPanel {
 
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
-        PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
+        PainelOpcoes painelOpcoes = new PainelOpcoes(musico);
         BotaoLupa btnLupa = new BotaoLupa("/resources/lupa.png");
 
 
@@ -36,28 +42,31 @@ public class PainelMusico extends JPanel {
         setBackground(new Color(70, 90, 120));
         setLayout(null);
 
-        labelUsername.setBounds(20,5,200,25);
+        btnlimpaPesquisa.setBounds(640,605,85,25);
+        btnlimpaPesquisa.setVisible(false);
+
+        labelUsername.setBounds(20,5,180,25);
         labelUsername.setForeground(Color.WHITE);
 
-        lblPesquisar.setBounds(200  , 5, 100, 25);
+        lblPesquisar.setBounds(190  , 5, 80, 25);
         lblPesquisar.setForeground(Color.WHITE);
         lblPesquisar.setVisible(true);
         add(lblPesquisar);
 
-        txtPesquisar.setBounds(270, 5, 200, 25);
+        txtPesquisar.setBounds(250, 5, 200, 25);
         txtPesquisar.setVisible(true);
         add(txtPesquisar);
 
-        btnLupa.setBounds(480,5,20,20);
+        btnLupa.setBounds(450,7,20,20);
 
-        JRadioButton chkPesquisaNome = new JRadioButton("Nome");
-        chkPesquisaNome.setBounds(270, 25, 100, 25);
+        JRadioButton chkPesquisaNome = new JRadioButton("Título");
+        chkPesquisaNome.setBounds(250, 27, 100, 25);
         chkPesquisaNome.setBackground(new Color(70, 90, 120));
         chkPesquisaNome.setForeground(Color.WHITE);
         add(chkPesquisaNome);
 
         JRadioButton chkPesquisaGenero = new JRadioButton("Género");
-        chkPesquisaGenero.setBounds(390, 25, 100, 25);
+        chkPesquisaGenero.setBounds(370, 27, 100, 25);
         chkPesquisaGenero.setBackground(new Color(70, 90, 120));
         chkPesquisaGenero.setForeground(Color.WHITE);
         add(chkPesquisaGenero);
@@ -66,17 +75,17 @@ public class PainelMusico extends JPanel {
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
 
-        btnLogout.setBounds(725, 10, 75, 25);
+        btnLogout.setBounds(710, 10, 75, 25);
         btnVerAlbuns.setBounds(20,100,200,25);
         btnVerMusicas.setBounds(20,140,200,25);
-        btnCriarAlbum.setBounds(500,10,100,25);
-        btnAddMusica.setBounds(600,10,100,25);
+        btnCriarAlbum.setBounds(490,10,100,25);
+        btnAddMusica.setBounds(590,10,100,25);
         painelOpcoes.setBounds(275,100,450,500);
 
-        Border contorno = BorderFactory.createMatteBorder(3, 3, 0, 3, Color.white);
-        Border contorno1 = BorderFactory.createMatteBorder(3, 3, 0, 3, Color.white);
-        Border contorno2 = BorderFactory.createMatteBorder(0, 3, 0, 3, Color.white);
-        Border contorno3 = BorderFactory.createMatteBorder(0, 3, 3, 3, Color.white);
+        Border contorno = BorderFactory.createMatteBorder(5, 5, 0, 5, Color.white);
+        Border contorno1 = BorderFactory.createMatteBorder(3, 5, 0, 5, Color.white);
+        Border contorno2 = BorderFactory.createMatteBorder(0, 5, 0, 5, Color.white);
+        Border contorno3 = BorderFactory.createMatteBorder(0, 5, 5, 5, Color.white);
         String espaco = " ";
 
         JLabel lblCabecalho = new JLabel(" ESTATÍSTICAS");
@@ -125,7 +134,6 @@ public class PainelMusico extends JPanel {
         totalMusicas.setBorder(contorno2);
         totalMusicas.setFont(fonte2);
         totalMusicas.setVisible(true);
-
 
         JLabel lblValorMusicas = new JLabel(" Valor Total Músicas");
         lblValorMusicas.setBounds(30,290,180,25);
@@ -274,6 +282,25 @@ public class PainelMusico extends JPanel {
 
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
 
+        txtPesquisar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnLupa.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         btnAddMusica.addActionListener(e -> {
             painelOpcoes.removeAll();
             PainelAddMusica painelMusica = new PainelAddMusica(framePrincipal, this.musico, totalMusicas, valorMusicas);
@@ -285,9 +312,9 @@ public class PainelMusico extends JPanel {
 
         btnVerMusicas.addActionListener(e -> {
             painelOpcoes.removeAll();
-            TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
-            painelOpcoes.add(tabelaMusicas);
-            tabelaMusicas.setVisible(true);
+            PainelTabelaMusicas painelTabelaMusicas = new PainelTabelaMusicas(framePrincipal, musico);
+            painelOpcoes.add(painelTabelaMusicas);
+            painelTabelaMusicas.setVisible(true);
             revalidate();
             repaint();
         });
@@ -303,23 +330,25 @@ public class PainelMusico extends JPanel {
 
         btnVerAlbuns.addActionListener(e -> {
             painelOpcoes.removeAll();
-            TabelaAlbuns tabelaAlbuns = new TabelaAlbuns(framePrincipal, musico,painelOpcoes);
-            painelOpcoes.add(tabelaAlbuns);
-            tabelaAlbuns.setVisible(true);
+            PainelPainelTabelaAlbuns painelTabelaAlbuns = new PainelPainelTabelaAlbuns(framePrincipal, musico,painelOpcoes);
+            painelOpcoes.add(painelTabelaAlbuns);
+            painelTabelaAlbuns.setVisible(true);
             revalidate();
             repaint();
         });
 
         btnLupa.addActionListener((ActionEvent e) ->{
             painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(true);
+
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
-                TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
-                tabelaMusicas.setVisible(true);
-                painelOpcoes.add(tabelaMusicas);
+                PainelTabelaMusicas painelTabelaMusicas = new PainelTabelaMusicas(framePrincipal, musico);
+                painelTabelaMusicas.setVisible(true);
+                painelOpcoes.add(painelTabelaMusicas);
                 revalidate();
                 repaint();
             } else {
-                TabelaMusicas tabelaPesquisa = new TabelaMusicas(framePrincipal, musico);
+                PainelTabelaMusicas tabelaPesquisa = new PainelTabelaMusicas(framePrincipal, musico);
                 tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
                 painelOpcoes.add(tabelaPesquisa);
                 tabelaPesquisa.setVisible(true);
@@ -330,9 +359,17 @@ public class PainelMusico extends JPanel {
             repaint();
         });
 
+        btnlimpaPesquisa.addActionListener((ActionEvent e) -> {
+            painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(false);
+            revalidate();
+            repaint();
+        });
+
 
         add(labelUsername);
         add(btnLogout);
+        add(btnlimpaPesquisa);
         add(btnLupa);
         add(btnVerAlbuns);
         add(btnVerMusicas);
