@@ -20,7 +20,9 @@ public class PainelAdmin extends JPanel {
     private JTextField txtPesquisar;
     private JButton btnLogout;
     private BotaoLupa btnLupa;
-    private PainelOpcoesAdmin painelOpcoesAdmin;
+    private  JButton btnlimpaPesquisa;
+
+    private PainelOpcoes painelOpcoes;
     private PainelCriarAdmin painelCriarAdmin;
     private PainelCriarCampanha painelCriarCampanha;
 
@@ -40,12 +42,11 @@ public class PainelAdmin extends JPanel {
         this.txtPesquisar = new JTextField();
         this.btnLupa = new BotaoLupa("/resources/lupa.png");
         this.btnLogout = new JButton("Logout \u21AA");
-
         this.btnLogout.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 10));
-
-        this.painelOpcoesAdmin= new PainelOpcoesAdmin(admin);
+        this.painelOpcoes = new PainelOpcoes(admin);
         this.painelCriarAdmin = new PainelCriarAdmin(framePrincipal);
         this.painelCriarCampanha = new PainelCriarCampanha(framePrincipal, admin);
+        this.btnlimpaPesquisa = new JButton("Limpar");
 
         setBackground(new Color(70, 90, 120));
         setLayout(null);
@@ -59,7 +60,7 @@ public class PainelAdmin extends JPanel {
         btnLogout.addActionListener(e -> voltarPainelPrincipal());
         labelUsername.setBounds(20,5,200,25);
         labelUsername.setForeground(Color.WHITE);
-        painelOpcoesAdmin.setBounds(275,100,450,500);
+        painelOpcoes.setBounds(275,100,450,500);
 
         lblPesquisar.setBounds(300  , 5, 100, 25);
         lblPesquisar.setForeground(Color.WHITE);
@@ -69,6 +70,10 @@ public class PainelAdmin extends JPanel {
         txtPesquisar.setBounds(370, 5, 200, 25);
         txtPesquisar.setVisible(true);
         add(txtPesquisar);
+
+        btnlimpaPesquisa.setBounds(640,605,85,25);
+        btnlimpaPesquisa.setVisible(false);
+
 
         btnLupa.setBounds(580,5,20,20);
 
@@ -89,6 +94,9 @@ public class PainelAdmin extends JPanel {
         grupo.add(chkPesquisaUtilizador);
 
         btnLupa.addActionListener((ActionEvent e) ->{
+            painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(true);
+
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
                 JOptionPane.showMessageDialog(null, "Por favor escreva algo e selecione o parâmetro para pesquisar", "Campo vazio", JOptionPane.ERROR_MESSAGE);
             } else if( chkPesquisaMusica.isSelected()) {
@@ -228,37 +236,47 @@ public class PainelAdmin extends JPanel {
             }
         });
 
+        btnlimpaPesquisa.addActionListener((ActionEvent e) -> {
+            painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(false);
+            revalidate();
+            repaint();
+        });
+
         add(labelUsername);
         add(btnVerCampanhas);
         add(btnCriarCampanha);
         add(btnCriarAdministrador);
         add(btnLupa);
         add(btnLogout);
-        add(painelOpcoesAdmin);
+        add(painelOpcoes);
+        add(btnlimpaPesquisa);
         setVisible(true);
 
     }
 
     private void abrirPainelPesquisa(JPanel painel) {
-        painelOpcoesAdmin.removeAll();
-        painelOpcoesAdmin.add(painel);
-        painelOpcoesAdmin.revalidate();
-        painelOpcoesAdmin.repaint();
+        painelOpcoes.removeAll();
+        painelOpcoes.add(painel);
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     private void abrirPainelCriarCampanha() {
-        painelOpcoesAdmin.removeAll();
-        painelOpcoesAdmin.add(painelCriarCampanha);
-        painelOpcoesAdmin.revalidate();
-        painelOpcoesAdmin.repaint();
+        painelOpcoes.removeAll();
+        painelOpcoes.add(painelCriarCampanha);
+        btnlimpaPesquisa.setVisible(false);
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
 
     private void abrirPainelCriarAdmin() {
-        painelOpcoesAdmin.removeAll();
-        painelOpcoesAdmin.add(painelCriarAdmin);
+        painelOpcoes.removeAll();
+        painelOpcoes.add(painelCriarAdmin);
+        btnlimpaPesquisa.setVisible(false);
         painelCriarAdmin.setVisible(true);
-        painelOpcoesAdmin.revalidate();
-        painelOpcoesAdmin.repaint();
+        painelOpcoes.revalidate();
+        painelOpcoes.repaint();
     }
     public JPopupMenu criarPopupMenuMusica(FramePrincipal framePrincipal, JTable tabela, DefaultTableModel modeloTabela) {
         JPopupMenu popupMenu = new JPopupMenu();

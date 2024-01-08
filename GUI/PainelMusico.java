@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 
 public class PainelMusico extends JPanel {
     private Musico musico;
+    private  JButton btnlimpaPesquisa;
+
 
     /**
      * Cria um novo painel <code>JPanel</code> 'PainelMusico', para a página inicial de um utlizador do tipo 'Musico',
@@ -18,6 +20,8 @@ public class PainelMusico extends JPanel {
      */
     public PainelMusico(FramePrincipal framePrincipal, Musico musico) {
         this.musico = musico;
+        this.btnlimpaPesquisa = new JButton("Limpar");
+
         JLabel labelUsername = new JLabel("Bem-vindo: " + getMusico().getUsername());
         JButton btnVerAlbuns = new JButton("Os meus álbuns");
         JButton btnVerMusicas = new JButton("As minhas músicas");
@@ -29,13 +33,16 @@ public class PainelMusico extends JPanel {
 
         JLabel lblPesquisar = new JLabel("Pesquisar");
         JTextField txtPesquisar = new JTextField();
-        PainelOpcoesCliente painelOpcoes = new PainelOpcoesCliente(musico);
+        PainelOpcoes painelOpcoes = new PainelOpcoes(musico);
         BotaoLupa btnLupa = new BotaoLupa("/resources/lupa.png");
 
 
 
         setBackground(new Color(70, 90, 120));
         setLayout(null);
+
+        btnlimpaPesquisa.setBounds(640,605,85,25);
+        btnlimpaPesquisa.setVisible(false);
 
         labelUsername.setBounds(20,5,180,25);
         labelUsername.setForeground(Color.WHITE);
@@ -304,9 +311,9 @@ public class PainelMusico extends JPanel {
 
         btnVerMusicas.addActionListener(e -> {
             painelOpcoes.removeAll();
-            TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
-            painelOpcoes.add(tabelaMusicas);
-            tabelaMusicas.setVisible(true);
+            PainelTabelaMusicas painelTabelaMusicas = new PainelTabelaMusicas(framePrincipal, musico);
+            painelOpcoes.add(painelTabelaMusicas);
+            painelTabelaMusicas.setVisible(true);
             revalidate();
             repaint();
         });
@@ -322,23 +329,25 @@ public class PainelMusico extends JPanel {
 
         btnVerAlbuns.addActionListener(e -> {
             painelOpcoes.removeAll();
-            TabelaAlbuns tabelaAlbuns = new TabelaAlbuns(framePrincipal, musico,painelOpcoes);
-            painelOpcoes.add(tabelaAlbuns);
-            tabelaAlbuns.setVisible(true);
+            PainelPainelTabelaAlbuns painelTabelaAlbuns = new PainelPainelTabelaAlbuns(framePrincipal, musico,painelOpcoes);
+            painelOpcoes.add(painelTabelaAlbuns);
+            painelTabelaAlbuns.setVisible(true);
             revalidate();
             repaint();
         });
 
         btnLupa.addActionListener((ActionEvent e) ->{
             painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(true);
+
             if (txtPesquisar.getText().isEmpty() || grupo.getSelection() == null ) {
-                TabelaMusicas tabelaMusicas = new TabelaMusicas(framePrincipal, musico);
-                tabelaMusicas.setVisible(true);
-                painelOpcoes.add(tabelaMusicas);
+                PainelTabelaMusicas painelTabelaMusicas = new PainelTabelaMusicas(framePrincipal, musico);
+                painelTabelaMusicas.setVisible(true);
+                painelOpcoes.add(painelTabelaMusicas);
                 revalidate();
                 repaint();
             } else {
-                TabelaMusicas tabelaPesquisa = new TabelaMusicas(framePrincipal, musico);
+                PainelTabelaMusicas tabelaPesquisa = new PainelTabelaMusicas(framePrincipal, musico);
                 tabelaPesquisa.resultadosPesquisa(txtPesquisar, chkPesquisaNome);
                 painelOpcoes.add(tabelaPesquisa);
                 tabelaPesquisa.setVisible(true);
@@ -349,9 +358,17 @@ public class PainelMusico extends JPanel {
             repaint();
         });
 
+        btnlimpaPesquisa.addActionListener((ActionEvent e) -> {
+            painelOpcoes.removeAll();
+            btnlimpaPesquisa.setVisible(false);
+            revalidate();
+            repaint();
+        });
+
 
         add(labelUsername);
         add(btnLogout);
+        add(btnlimpaPesquisa);
         add(btnLupa);
         add(btnVerAlbuns);
         add(btnVerMusicas);

@@ -48,7 +48,7 @@ public class PainelCarrinhoCompras extends JPanel {
         tabela.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane scrollPane = new JScrollPane(tabela);
-        scrollPane.setBounds(10, 30, 400, 150); // Definir posição e tamanho manualmente
+        scrollPane.setBounds(10, 30, 400, 150);
 
         add(scrollPane);
 
@@ -78,10 +78,9 @@ public class PainelCarrinhoCompras extends JPanel {
         add(btnFinalizarCompra);
 
 
-        // Criar o modelo da tabela das campanhas
         modelotabelapromo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
-                return false; // Torna todas as células não editáveis
+                return false;
             }
         };
 
@@ -142,12 +141,12 @@ public class PainelCarrinhoCompras extends JPanel {
             if (this.promo == null) {
                 cliente.compra();
                 limparCarrinhoCompras(cliente, painelCliente);
-                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€",cliente.getSaldo())));
             } else {
                 cliente.compraPromo(promo);
                 limparCarrinhoCompras(cliente, painelCliente);
-                JOptionPane.showMessageDialog(null, "compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€",cliente.getSaldo())));
             }
         }
