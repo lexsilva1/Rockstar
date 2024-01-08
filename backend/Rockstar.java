@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Classe que armazena toda a informação base da aplicação
+ * Faz a administração de <code>Utilizador</code>, <code>Musica</code>, <code>GrupoMusicas</code>,<code>Promo</code>
+ */
 public class Rockstar implements Serializable {
     private ArrayList<Utilizador> utilizadores;
     private ArrayList<GrupoMusicas> grupoMusicas;
@@ -126,7 +130,7 @@ public class Rockstar implements Serializable {
 
 
     /**
-     * devolve o numero de clientes que têm pelo menos uma musica do musico que é passado como parametro.
+     * Devolve o número de clientes que têm pelo menos uma <code>Musica</code> do <code>Musico</code> que é passado como parâmetro.
      * @param musico
      * @return int
      */

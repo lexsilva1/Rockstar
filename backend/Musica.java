@@ -17,8 +17,8 @@ public class Musica implements Serializable {
     private double rating;
 
     /**
-     * Objecto Musica, criado pelo <code>Musico</code> .
-     * Possui um HashMap para as Classificações, para que os Utilizadores possam votar mais do que uma vez,
+     * Objecto <code>Musica</code>, criado pelo <code>Musico</code> .
+     * Possui um <code>HashMap</code> para as classificações, para que os Utilizadores possam votar mais do que uma vez,
      * mas substituindo o voto anterior.
      * @param titulo
      * @param genero
@@ -41,7 +41,7 @@ public class Musica implements Serializable {
     }
 
     /**
-     * Cria um novo objecto <code>Preco</code> e armazena no historico de preços da musica.
+     * Cria um novo objecto <code>Preco</code> e armazena no histórico de preços da <code>Musica</code>.
      * @param preco valor numerico do <code>Preco</code> criado.
      */
     public void alterarPreco(double preco){

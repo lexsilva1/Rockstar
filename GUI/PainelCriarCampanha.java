@@ -9,6 +9,11 @@ import backend.Admin;
 
 public class PainelCriarCampanha extends JPanel {
 
+    /**
+     * Classe responsável por gerir o <code>ArrayList</code> carrinhoDeCompras do <code>Cliente</code>
+     * @param framePrincipal
+     * @param admin
+     */
     public PainelCriarCampanha(FramePrincipal framePrincipal, Admin admin) {
 
         setLayout(null);
@@ -382,7 +387,8 @@ public class PainelCriarCampanha extends JPanel {
     }
 
     /**
-     * Metodo utilizado na criação de Promos para assegurar a correcte inserção de dados, e que a data de inicio da campanha é igyal ou superior á data atual;
+     * Metodo utilizado na criação de <code>Promo</code> para assegurar a correcta inserção de dados,
+     * e que a data de início da <code>Promo</code> é igyal ou superior à data atual;
      * @param anoInicio
      * @param mesInicio
      * @param diaInicio

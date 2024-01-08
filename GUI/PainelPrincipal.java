@@ -2,6 +2,10 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Tela principal da interface gráfica.
+ * É uma interface gráfica simples com botões para o acesso às funcionalidades de login e signup.
+ */
 public class PainelPrincipal extends JPanel {
     protected FramePrincipal framePrincipal;
     private JButton btnLogin;

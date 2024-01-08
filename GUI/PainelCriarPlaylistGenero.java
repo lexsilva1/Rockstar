@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por gerar as <code>Playlist</code> a partir das músicas adquiridas pelo <code>Cliente</code>
+ */
 public class PainelCriarPlaylistGenero extends JPanel {
     protected Utilizador cliente;
     protected JLabel lblNumero;
@@ -20,6 +23,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
     protected JRadioButton chkHipHop;
     protected JRadioButton chkPimba;
     protected ButtonGroup grupo;
+    protected JButton btnCriar;
 
     public PainelCriarPlaylistGenero(FramePrincipal framePrincipal, Utilizador utilazador) {
         this.cliente= utilazador;
@@ -80,51 +84,9 @@ public class PainelCriarPlaylistGenero extends JPanel {
         grupo.add(chkHipHop);
         grupo.add(chkPimba);
 
-        JButton btnCriar = new JButton("Criar");
+        this.btnCriar = new JButton("Criar");
         btnCriar.setBounds(300,350,100,25);
         add(btnCriar);
-
-
-        txtNome.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    btnCriar.doClick();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
-
-        txtNumero.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char caractere = e.getKeyChar();
-                if (!Character.isDigit(caractere)) {
-                    e.consume();
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    btnCriar.doClick();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
 
 
         btnCriar.addActionListener(e -> {
@@ -138,7 +100,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
                     if (Integer.parseInt(txtNumero.getText()) > framePrincipal.getRockstar().getMusicas().size()) {
                         JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até "+ framePrincipal.getRockstar().getMusicas().size() +" faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
                     } else {
-                      
+
                         String genero = "Rock";
                         if (chkPop.isSelected()) {
                             genero = "Pop";
@@ -166,6 +128,26 @@ public class PainelCriarPlaylistGenero extends JPanel {
             }
         });
 
+        txtNumero.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caractere = e.getKeyChar();
+                if (!Character.isDigit(caractere)) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
 
         setVisible(true);
 
@@ -179,13 +161,13 @@ public class PainelCriarPlaylistGenero extends JPanel {
      * @return
      */
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
-         ArrayList<Musica> listagenero =new ArrayList<>();
-         for(Musica m :  cliente.getMusicas()){
-             if(m.getGenero().equals(genero) && m.getAtiva()){
-                 listagenero.add(m);
-             }
-         }
-         return listagenero;
+        ArrayList<Musica> listagenero =new ArrayList<>();
+        for(Musica m :  cliente.getMusicas()){
+            if(m.getGenero().equals(genero) && m.getAtiva()){
+                listagenero.add(m);
+            }
+        }
+        return listagenero;
     }
 
     public boolean playlistExiste(String nome, FramePrincipal framePrincipal) {
@@ -196,4 +178,5 @@ public class PainelCriarPlaylistGenero extends JPanel {
         }
         return false;
     }
+
 }

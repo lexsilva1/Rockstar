@@ -119,12 +119,11 @@ public class PainelAdmin extends JPanel {
                 modeloTabela.addColumn("Data Lançamento");
                 modeloTabela.addColumn("Rating");
                 modeloTabela.addColumn("Preço");
-                modeloTabela.addColumn("Ações");
 
 
                 for (Musica a : framePrincipal.getRockstar().getMusicas() ){
                     if(a.getTitulo().toLowerCase().contains(txtPesquisar.getText().toLowerCase())){
-                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco(), a.getAtiva()});
+                        modeloTabela.addRow(new Object[]{a.getTitulo(), a.getAutor(), a.getGenero(), a.getDataLancamento(), a.getRating(), a.getPreco()});
                     }
                 }
 

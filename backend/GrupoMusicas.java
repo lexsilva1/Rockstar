@@ -10,7 +10,7 @@ public class GrupoMusicas implements Serializable {
 
     /**
      * Todos os objectos GrupoMusicas necessitam de uma String owner, que será o username de quem cria o objecto
-     * e um titulo que será o nome apresentado do objecto criado. Possuem tb um ArrayList de objectos Musica.
+     * e um titulo que será o nome apresentado do objecto criado. Possuem também um <code>ArrayList</code> de objectos <code>Musica</code>
      * @param owner
      * @param titulo
      */

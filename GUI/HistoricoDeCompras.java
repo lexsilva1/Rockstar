@@ -16,7 +16,7 @@ public class HistoricoDeCompras extends JPanel {
     private JScrollPane scrollPane;
 
     /**
-     * cria o histórico de todas as compras efectuadas pelo cliente com os respectivos detalhes.
+     * Cria o histórico de todas as compras efectuadas pelo cliente com os respectivos detalhes.
      * @param cliente
      */
     public HistoricoDeCompras(Cliente cliente) {
