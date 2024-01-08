@@ -138,6 +138,12 @@ public class Rockstar implements Serializable {
         }
         return musica.getTitulo()+ " - " + musica.getAutor()+ " - " + musica.calculoRating();
     }
+
+    /**
+     * devolve o numero de clientes que têm pelo menos uma musica do musico que é passado como parametro.
+     * @param musico
+     * @return int
+     */
     public int numeroUtilizadoresMusicas(Musico musico){
         boolean stoploop;
         int clientes=0;

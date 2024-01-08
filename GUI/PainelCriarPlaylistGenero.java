@@ -149,6 +149,14 @@ public class PainelCriarPlaylistGenero extends JPanel {
         setVisible(true);
 
     }
+
+    /**
+     * Cria um ArrayList com todas as musicas que o cliente já adquiriu que correspondem ao genero selecionado.
+     * Este método é usado no action listner para criar aplaylist com musicas aleatorias.
+     * @param cliente
+     * @param genero
+     * @return
+     */
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
          ArrayList<Musica> listagenero =new ArrayList<>();
          for(Musica m :  cliente.getMusicas()){

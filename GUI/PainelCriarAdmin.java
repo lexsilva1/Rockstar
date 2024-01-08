@@ -11,6 +11,10 @@ import backend.Admin;
 public class PainelCriarAdmin extends JPanel {
     private FramePrincipal framePrincipal;
 
+    /**
+     * cria um painel semelhante ao PainelCliente. Contem um PainelOpcoes para exibir as pesquisas e funcionalidades do Admin.
+     * @param framePrincipal
+     */
     public PainelCriarAdmin(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
 
@@ -56,9 +60,11 @@ public class PainelCriarAdmin extends JPanel {
         btnContinuar.setBounds(10, 380, 150, 25);
         btnContinuar.setVisible(false);
 
-        //Ao selecionar a checkbox 'chkConfirmar', verifica se o username já existe, se as passwords coincidem,
-        //e se todos os campos estão preenchidos.
-        //Quando as verificações são bem sucedidas, adiciona um botão "Continuar", caso contrário retira a seleção da checkbox
+        /**
+         * Ao selecionar a checkbox 'chkConfirmar', verifica se o username já existe, se as passwords coincidem,
+         * e se todos os campos estão preenchidos.
+         * Quando as verificações são bem sucedidas, adiciona um botão "Continuar", caso contrário retira a seleção da checkbox
+         */
         chkConfirmar.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 if (!verificarUser(txtUsername.getText())) {

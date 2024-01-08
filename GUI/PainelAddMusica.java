@@ -12,6 +12,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PainelAddMusica extends JPanel {
+    /**
+     * Cria o painel para preenchimento dos dados necessários para a criação de um novo Objecto <code>Musica</code>
+     * @param framePrincipal
+     * @param musico
+     * @param totalMusicas é passado para proceder arespectiva actualização após a criação de uma nova <code>Musica</code>
+     * @param valorMusicas é passado para proceder arespectiva actualização após a criação de uma nova <code>Musica</code>
+     */
     public PainelAddMusica(FramePrincipal framePrincipal, Musico musico, JLabel totalMusicas, JLabel valorMusicas) {
 
         setLayout(null);
