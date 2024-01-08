@@ -85,7 +85,12 @@ public class PainelMinhasPlaylists extends JPanel {
                 String nome = (String) tabela.getValueAt(linhaSelecionada, 0);
 
 
-                DefaultTableModel modeloTabela1 = new DefaultTableModel();
+                DefaultTableModel modeloTabela1;
+                modeloTabela1 = new DefaultTableModel() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
                 modeloTabela1.addColumn("Título");
                 modeloTabela1.addColumn("Artista");
                 modeloTabela1.addColumn("Género");
@@ -104,6 +109,8 @@ public class PainelMinhasPlaylists extends JPanel {
                 }
 
                 JTable tabela1 = new JTable(modeloTabela1);
+                tabela1.setAutoCreateRowSorter(true);
+                tabela1.getTableHeader().setReorderingAllowed(false);
                 JScrollPane scrollPane1 = new JScrollPane(tabela1);
                 tabela1.getTableHeader().setReorderingAllowed(false);
                 scrollPane1.setVisible(true);

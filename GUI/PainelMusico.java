@@ -330,7 +330,7 @@ public class PainelMusico extends JPanel {
 
         btnVerAlbuns.addActionListener(e -> {
             painelOpcoes.removeAll();
-            PainelPainelTabelaAlbuns painelTabelaAlbuns = new PainelPainelTabelaAlbuns(framePrincipal, musico,painelOpcoes);
+            PainelTabelaAlbuns painelTabelaAlbuns = new PainelTabelaAlbuns(framePrincipal, musico);
             painelOpcoes.add(painelTabelaAlbuns);
             painelTabelaAlbuns.setVisible(true);
             revalidate();
