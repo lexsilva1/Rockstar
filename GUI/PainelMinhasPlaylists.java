@@ -12,6 +12,13 @@ public class PainelMinhasPlaylists extends JPanel {
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
 
+    /**
+     * Gera o <code>Jpanel</code> no qual é possivel visualizar os detalhes de todas as <codePlaylist</code> do <code>Cliente</code>
+     * É também possivem interagir com as mesmas, podendo visualizar as <code>Musica</code> numa <code>Playlist</code>, ou remover a <code>Playlist</code>
+     * @param framePrincipal
+     * @param cliente
+     * @param painelCliente
+     */
 
     public PainelMinhasPlaylists(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
 

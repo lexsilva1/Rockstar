@@ -8,15 +8,19 @@ public class GrupoMusicas implements Serializable {
     private String titulo;
     private ArrayList<Musica> musicas;
 
+    /**
+     * Todos os objectos GrupoMusicas necessitam de uma String owner, que será o username de quem cria o objecto
+     * e um titulo que será o nome apresentado do objecto criado. Possuem tb um ArrayList de objectos Musica.
+     * @param owner
+     * @param titulo
+     */
     public GrupoMusicas(String owner, String titulo) {
         this.owner = owner;
         this.titulo = titulo;
         this.musicas=new ArrayList<>();
     }
 
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
-    }
+
     public void addMusica(Musica musica){
         musicas.add(musica);
     }
@@ -29,6 +33,9 @@ public class GrupoMusicas implements Serializable {
         return owner;
     }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
     @Override
     public String toString() {
         return titulo;

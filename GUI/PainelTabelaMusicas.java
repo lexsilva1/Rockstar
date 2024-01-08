@@ -5,11 +5,9 @@ import backend.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class TabelaMusicas extends JPanel {
+public class PainelTabelaMusicas extends JPanel {
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
@@ -21,7 +19,7 @@ public class TabelaMusicas extends JPanel {
      * @param musico         instância de <code>Musico</code>, que é o utilizador que tem o login efetuado,
      *                       e sobre o qual queremos obter informações
      */
-    public TabelaMusicas(FramePrincipal framePrincipal, Musico musico) {
+    public PainelTabelaMusicas(FramePrincipal framePrincipal, Musico musico) {
 
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
@@ -81,7 +79,9 @@ public class TabelaMusicas extends JPanel {
         JMenuItem altPreco = new JMenuItem("Alterar Preço");
         JMenuItem altEstado = new JMenuItem("Alterar Estado");
         JMenuItem addAlbum = new JMenuItem("Adicionar a Álbum");
-
+        /**
+         * Permite a alteração do título de uma <code>Musica</code>
+         */
         altTitulo.addActionListener(e -> {
             int selectedRow = tabela.getSelectedRow();
 

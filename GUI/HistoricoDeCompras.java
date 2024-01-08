@@ -9,13 +9,18 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Map;
 
-public class HistoricoDeCompras extends JPanel {
+public class HistoricodeCompras extends JPanel {
 
     private JTable tabela;
     private DefaultTableModel modeloTabela;
     private JScrollPane scrollPane;
 
-    public HistoricoDeCompras(FramePrincipal frameprincipal , Cliente cliente) {
+    /**
+     * cria o histórico de todas as compras efectuadas pelo cliente com os respectivos detalhes.
+     * @param frameprincipal
+     * @param cliente
+     */
+    public HistoricodeCompras(FramePrincipal frameprincipal ,Cliente cliente) {
         setLayout(new BorderLayout());
         setBackground(new Color(70, 90, 120));
         setPreferredSize(new Dimension(450, 500));

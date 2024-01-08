@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PainelCriarPlaylist extends JPanel {
+    /**
+     * Cria o painel que permite Criar ao <code>Cliente</code> vriar novos objectos <code>Playlist</code> vazios;
+     * @param framePrincipal
+     * @param cliente
+     */
     public PainelCriarPlaylist(FramePrincipal framePrincipal, Cliente cliente) {
 
 
@@ -27,7 +32,9 @@ public class PainelCriarPlaylist extends JPanel {
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.setBounds(300,250,100,25);
         add(btnAdicionar);
-
+/**
+ * Faz a s respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
+ */
         btnAdicionar.addActionListener(e -> {
 
             if (txtNome.getText().isEmpty()) {
