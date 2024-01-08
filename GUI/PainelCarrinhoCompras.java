@@ -14,6 +14,13 @@ public class PainelCarrinhoCompras extends JPanel {
     private JTable tabelapromo;
     private Promo promo;
 
+    /**
+     * Gera o painel do carrinho de compras do cliente que inclui uma <code>JTable</code> com o conteudo do carrinho de compras do cliente
+     * e outra com as Promos em vigor.
+     * @param framePrincipal
+     * @param cliente
+     * @param painelCliente
+     */
     public PainelCarrinhoCompras(FramePrincipal framePrincipal, Cliente cliente, PainelCliente painelCliente) {
         this.promo=null;
 
@@ -119,6 +126,11 @@ public class PainelCarrinhoCompras extends JPanel {
             return (custoTotal);
         }
 
+    /**
+     * Semelhante ao metodo anterior, mas recebe a <code>Promo<code> que o cliente pretende utilizar,e apresenta o custo final com o respectivo desconto.
+     * @param promo
+     * @return
+     */
     private double calcularCustoTotalPromo(Promo promo) {
                 double custoTotal = 0.0;
                 int rowCount = modeloTabela.getRowCount();
@@ -152,6 +164,13 @@ public class PainelCarrinhoCompras extends JPanel {
         }
     }
 
+    /**
+     * adiciona a promoção ao carrinho de compras e verifica se o cliente já usufruiu da mesma, impedindo a sua adição a compra em caso afirmativo.
+     * @param framePrincipal
+     * @param cliente
+     * @param labelCustoTotal
+     * @return
+     */
     public JPopupMenu criarPopupMenuPromo(FramePrincipal framePrincipal, Cliente cliente,JLabel labelCustoTotal) {
         JPopupMenu popupMenu = new JPopupMenu();
 
