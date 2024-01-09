@@ -5,6 +5,8 @@ import backend.Cliente;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class PainelCliente extends JPanel{
     private Cliente cliente;
@@ -49,9 +51,7 @@ public class PainelCliente extends JPanel{
         this.labelUsername = new JLabel("Bem-vindo: " + getCliente().getUsername());
         this.btnSaldo = new JButton("Saldo: " + String.format("%1$,.2f€",getCliente().getSaldo()));
         this.btnLoja = new JButton("Loja");
-        this.painelOpcoes= new PainelOpcoes(cliente);
-        this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
-        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
+        this.painelOpcoes = new PainelOpcoes(cliente);
         this.painelMusicasLoja = new PainelMusicasLoja(framePrincipal,cliente);
         this.btnlimpaPesquisa = new JButton("Limpar");
 
@@ -88,8 +88,6 @@ public class PainelCliente extends JPanel{
         btnLoja.addActionListener(e -> abrirPainelMusicasLoja());
 
         painelOpcoes.setBounds(275,100,450,500);
-        painelCriarPlaylist.setBounds(275,100,450,500);
-        painelCriarPlaylistGenero.setBounds(275,100,450,500);
 
         lblPesquisar.setBounds(300  , 5, 100, 25);
         lblPesquisar.setForeground(Color.WHITE);
@@ -105,7 +103,7 @@ public class PainelCliente extends JPanel{
         btnlimpaPesquisa.setBounds(640,605,85,25);
         btnlimpaPesquisa.setVisible(false);
 
-        JRadioButton chkPesquisaNome = new JRadioButton("Nome");
+        JRadioButton chkPesquisaNome = new JRadioButton("Título");
         chkPesquisaNome.setBounds(370, 30, 100, 25);
         chkPesquisaNome.setBackground(new Color(70, 90, 120));
         chkPesquisaNome.setForeground(Color.WHITE);
@@ -120,6 +118,25 @@ public class PainelCliente extends JPanel{
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(chkPesquisaNome);
         grupo.add(chkPesquisaGenero);
+
+        txtPesquisar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnLupa.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
         btnLupa.addActionListener((ActionEvent e) -> {
             painelOpcoes.removeAll();
@@ -167,6 +184,8 @@ public class PainelCliente extends JPanel{
 
     private void abrirPainelCriarPlaylist() {
         painelOpcoes.removeAll();
+        this.painelCriarPlaylist = new PainelCriarPlaylist(framePrincipal,cliente);
+        painelCriarPlaylist.setBounds(275,100,450,500);
         painelOpcoes.add(painelCriarPlaylist);
         btnlimpaPesquisa.setVisible(false);
         painelOpcoes.revalidate();
@@ -190,15 +209,16 @@ public class PainelCliente extends JPanel{
     }
     private void abrirHistoricoCompras() {
         painelOpcoes.removeAll();
-        painelOpcoes.add(new HistoricoDeCompras(framePrincipal,cliente));
+        painelOpcoes.add(new HistoricoDeCompras(cliente));
         btnlimpaPesquisa.setVisible(false);
         painelOpcoes.revalidate();
         painelOpcoes.repaint();
     }
 
-
     private void abrirPainelCriarPlaylistGenero() {
         painelOpcoes.removeAll();
+        this.painelCriarPlaylistGenero = new PainelCriarPlaylistGenero(framePrincipal, cliente);
+        painelCriarPlaylistGenero.setBounds(275,100,450,500);
         painelOpcoes.add(painelCriarPlaylistGenero);
         btnlimpaPesquisa.setVisible(false);
         painelOpcoes.revalidate();

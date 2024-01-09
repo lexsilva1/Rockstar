@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * É um objeto criado apenas por instâncias do objeto <code>Admin</code>
+ * É associado a uma <code>Compra</code> e aplica uma redução percentual ao seu valor
+ */
 public class Promo implements Serializable {
     private int cupoes;
     private String nome;

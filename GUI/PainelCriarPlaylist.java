@@ -6,6 +6,8 @@ import backend.Playlist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class PainelCriarPlaylist extends JPanel {
     /**
@@ -32,8 +34,28 @@ public class PainelCriarPlaylist extends JPanel {
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.setBounds(300,250,100,25);
         add(btnAdicionar);
+
+        txtNome.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnAdicionar.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
 /**
- * Faz a s respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
+ * Faz as respectivas verificações para garantir as condições de criação de uma <code>Playlist</code>.
  */
         btnAdicionar.addActionListener(e -> {
 
@@ -42,7 +64,7 @@ public class PainelCriarPlaylist extends JPanel {
             } else {
                 String nome = txtNome.getText();
                 if (playlistExiste(nome,framePrincipal)) {
-                    JOptionPane.showMessageDialog(null, "já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Já existe uma playlist com este nome", "Nome repetido", JOptionPane.ERROR_MESSAGE);
                     txtNome.setText("");
                 } else {
                     framePrincipal.getRockstar().addGrupoDeMusicas(cliente.criaPlaylist(nome));

@@ -1,9 +1,15 @@
 package backend;
 
 import GUI.FramePrincipal;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Classe que herda da classe <code>Utilizador</code>
+ * Possui a particularidade de criar objectos <code>Album</code>,<code>Musica</code> e é o único <code>Utilizador</code>
+ * que pode alterar parâmetros de <code>Musica</code>
+ */
 public class Musico extends Utilizador {
     private ArrayList<Musica> musicas;
     private ArrayList<Album> albuns;

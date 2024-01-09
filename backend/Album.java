@@ -5,7 +5,7 @@ public class Album extends GrupoMusicas{
     private int numFaixas;
 
     /**
-     * Os objectos da classe Album, possuem um numero de faixas e um género de entre os quatro definidos no programa.
+     * Os objectos da classe Album, possuem um número de faixas e um género de entre os quatro definidos no programa.
      * @param owner
      * @param titulo
      * @param genero

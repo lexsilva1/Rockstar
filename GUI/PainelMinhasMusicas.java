@@ -43,22 +43,18 @@ public class PainelMinhasMusicas extends JPanel {
 
 
 
-        // Criar a tabela com o modelo
         tabela = new JTable(modeloTabela);
         tabela.getTableHeader().setReorderingAllowed(false);
 
-        // Adicionar a barra extra com o rótulo "Minhas Músicas"
         JPanel painelSuperior = new JPanel(new BorderLayout());
         JLabel rotuloBarra = new JLabel("Minhas Músicas");
         rotuloBarra.setHorizontalAlignment(SwingConstants.CENTER);
         painelSuperior.add(rotuloBarra, BorderLayout.CENTER);
 
-        // Adicionar a tabela ao painel superior
         painelSuperior.add(tabela.getTableHeader(), BorderLayout.SOUTH);
 
         JScrollPane painelRolagem = new JScrollPane(tabela);
 
-        // Adicionar o painel de rolagem ao painel
         add(painelSuperior, BorderLayout.NORTH);
         add(painelRolagem, BorderLayout.CENTER);
 

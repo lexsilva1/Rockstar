@@ -59,7 +59,7 @@ public class PainelCarrinhoCompras extends JPanel {
 
         add(scrollPane);
 
-        JLabel labelCustoTotal = new JLabel("Custo Total: " + String.format("%1$,.2f€",calcularCustoTotal()) + " €");
+        JLabel labelCustoTotal = new JLabel("Custo Total: " + String.format("%1$,.2f€",calcularCustoTotal()));
         labelCustoTotal.setForeground(Color.WHITE);
         labelCustoTotal.setBounds(10, 190, 200, 25);
         add(labelCustoTotal);
@@ -98,8 +98,12 @@ public class PainelCarrinhoCompras extends JPanel {
         modelotabelapromo.addColumn("Cupões disponíveis");
 
         for (Promo a : framePrincipal.getRockstar().getPromos()) {
-            if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
-                modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+            if (calcularCustoTotal() > 0) {
+                if (a.getDataInicio().isBefore(LocalDate.now())) {
+                    if (a.getDataFim().isAfter(LocalDate.now()) && a.getCupoes() > 0) {
+                        modelotabelapromo.addRow(new Object[]{a.getNome(), a.getDesconto(), a.getDataInicio(), a.getDataFim(), a.getCupoes()});
+                    }
+                }
             }
         }
 
@@ -147,15 +151,19 @@ public class PainelCarrinhoCompras extends JPanel {
     }
 
     public void comprarMusicas(Cliente cliente, PainelCliente painelCliente) {
-        if (cliente.getSaldo() < calcularCustoTotal()) {
-            JOptionPane.showMessageDialog(this, "Saldo insuficiente.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else {
-            if (this.promo == null) {
+        if (this.promo == null) {
+            if (cliente.getSaldo() < calcularCustoTotal()) {
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }else {
                 cliente.compra();
                 limparCarrinhoCompras(cliente, painelCliente);
                 JOptionPane.showMessageDialog(null, "Compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€",cliente.getSaldo())));
-            } else {
+                painelCliente.botaosaldo().setText(("Saldo: " + String.format("%1$,.2f€", cliente.getSaldo())));
+            }
+        } else {
+            if (cliente.getSaldo() < calcularCustoTotalPromo(promo)) {
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }else {
                 cliente.compraPromo(promo);
                 limparCarrinhoCompras(cliente, painelCliente);
                 JOptionPane.showMessageDialog(null, "Compra efectuada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);

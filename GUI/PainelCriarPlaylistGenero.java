@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por gerar as <code>Playlist</code> a partir das músicas adquiridas pelo <code>Cliente</code>
+ */
 public class PainelCriarPlaylistGenero extends JPanel {
     protected Utilizador cliente;
     protected JLabel lblNumero;
@@ -97,7 +100,7 @@ public class PainelCriarPlaylistGenero extends JPanel {
                     if (Integer.parseInt(txtNumero.getText()) > framePrincipal.getRockstar().getMusicas().size()) {
                         JOptionPane.showMessageDialog(null, "Apenas pode criar playlists com até "+ framePrincipal.getRockstar().getMusicas().size() +" faixas", "Dados errados", JOptionPane.ERROR_MESSAGE);
                     } else {
-                      
+
                         String genero = "Rock";
                         if (chkPop.isSelected()) {
                             genero = "Pop";
@@ -158,13 +161,13 @@ public class PainelCriarPlaylistGenero extends JPanel {
      * @return
      */
     public ArrayList<Musica> criaArrayGernero( Cliente cliente, String genero){
-         ArrayList<Musica> listagenero =new ArrayList<>();
-         for(Musica m :  cliente.getMusicas()){
-             if(m.getGenero().equals(genero) && m.getAtiva()){
-                 listagenero.add(m);
-             }
-         }
-         return listagenero;
+        ArrayList<Musica> listagenero =new ArrayList<>();
+        for(Musica m :  cliente.getMusicas()){
+            if(m.getGenero().equals(genero) && m.getAtiva()){
+                listagenero.add(m);
+            }
+        }
+        return listagenero;
     }
 
     public boolean playlistExiste(String nome, FramePrincipal framePrincipal) {

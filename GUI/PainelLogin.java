@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Classe responsável por gerir e autenticar as credênciais das instâncias de <code>Utilizador</code>
+ */
 class PainelLogin extends JPanel {
     private FramePrincipal framePrincipal;
 

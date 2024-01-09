@@ -4,8 +4,8 @@ import backend.*;
 import javax.swing.*;
 import java.awt.*;
 /**
- * Constoi um novo PainelCriarAlbum.
- * As JLabel passadas no cosntrutor servem para actualizar as estatisticas se o musico criar novos albuns de um determinado género.
+ * Constrói um novo PainelCriarAlbum, a partir da classe <code>PainelCriarPlaylistGenero</code>
+ * As JLabel passadas no construtor servem para actualizar as estatísticas se o musico criar novos álbuns de um determinado género.
  * A framePrincipal é passada para poder aceder a toda a informação contida na Rockstar.
  */
 public class PainelCriarAlbum extends PainelCriarPlaylistGenero{

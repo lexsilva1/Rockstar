@@ -10,6 +10,13 @@ public class Cliente extends Utilizador {
     private ArrayList<Compra> historicoCompras;
     private ArrayList<Musica> musicas;
 
+    /**
+     * Classe que herda da classe <code>Utilizador</code>
+     * Possui a particularidade de criar objectos <code>Playlist</code>,<code>Compra</code> e é o único utilizador com saldo
+     * @param username
+     * @param password
+     */
+
     public Cliente(String username, String password) {
         super(username, password);
         this.musicas=new ArrayList<>();
@@ -23,8 +30,8 @@ public class Cliente extends Utilizador {
     }
 
     /**
-     * Cria uma Playlist a partir do ArrayList criado com todas as musicas do genero selcionado, utiliza o método Shuffle da classe Collections
-     * para randomizar a ordem, e usa o iterator para ir retirando musicas desse ArrayList depois de os colocar na Playlist criada.
+     * Cria uma Playlist a partir do ArrayList criado com todas as músicas do género selcionado, utiliza o método Shuffle da classe Collections
+     * para randomizar a ordem, e usa o iterator para ir retirando músicas desse ArrayList depois de os colocar na Playlist criada.
      * @param num
      * @param titulo
      * @param musicasGenero
@@ -50,7 +57,11 @@ public class Cliente extends Utilizador {
         return new Playlist(this.username,nome);
     }
 
-    public void compra() {//compra sem promocao
+    /**
+     * Efectua a compra das músicas presentes no carrinhoCompras, verificando o saldo, e adiciona o objecto <code>Compra</code>
+     * ao historicoCompras do cliente.
+     */
+    public void compra() {
         Compra compra = new Compra();
         double total = 0;
         for (Musica m : carrinhoCompras) {
@@ -63,7 +74,10 @@ public class Cliente extends Utilizador {
             historicoCompras.add(compra);
         }
     }
-
+    /**
+     * Efectua a compra das músicas presentes no carrinhoCompras, verificando o saldo
+     * aplicando o desconto respectivo à <code>Promo</code> utilizada e adiciona o objecto <code>Compra</code> ao historicoCompras do cliente.
+     */
     public void compraPromo(Promo promo) {
 
                 Compra compra = new Compra();
